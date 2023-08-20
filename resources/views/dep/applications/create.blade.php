@@ -26,8 +26,8 @@
                     <input type="text" name='name' class="custom-input" placeholder="Type here" value="">
                 </div>
                 <div>
-                    <label>Phone</label>
-                    <input type="text" name='phone' class="custom-input" placeholder="Type here" value="">
+                    <label>Phone<span id="phone_length" class="text-slate-500 text-xs ml-3">0/11</span></label>
+                    <input type="text" id='phone' name='phone' class="custom-input" placeholder="Type here" value="">
                 </div>
                 <div>
                     <label>Matric Roll # *</label>
@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <label>Marks *</label>
-                    <input type="number" name='matric_marks' class="custom-input" placeholder="Type here" value="">
+                    <input type="number" name='matric_marks' class="custom-input" placeholder="Type here" min=0 max=1100 value="">
                 </div>
                 <div>
                     <label>Applying for Group *</label>
@@ -60,4 +60,12 @@
 
     </div>
 </div>
+@endsection
+@section('script')
+<script type='module'>
+    $('#phone').on('input', function() {
+        var phone = $('#phone').val()
+        $('#phone_length').html(phone.length + "/11");
+    });
+</script>
 @endsection

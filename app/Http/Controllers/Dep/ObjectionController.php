@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\dep;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
+use App\Models\Session;
+use Exception;
 use Illuminate\Http\Request;
 
 class ObjectionController extends Controller
@@ -13,27 +16,19 @@ class ObjectionController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $session = Session::find(session('session_id'));
+        return view('dep.objections.index', compact('session'));
     }
 
     /**
      * Display the specified resource.
      */
+    public function create()
+    {
+        $session = Session::find(session('session_id'));
+        return view('dep.objections.create', compact('session'));
+    }
+
     public function show(string $id)
     {
         //
@@ -45,6 +40,8 @@ class ObjectionController extends Controller
     public function edit(string $id)
     {
         //
+        $application = Application::find($id);
+        return view('dep.objections.edit', compact('application'));
     }
 
     /**
@@ -53,6 +50,17 @@ class ObjectionController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'objection' => 'required',
+        ]);
+
+        $model = Application::find($id);
+        try {
+            $model->update($request->all());
+            return redirect()->route('dep.objections.index')->with('success', 'Successfully updated');
+        } catch (Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
     }
 
     /**
@@ -61,5 +69,14 @@ class ObjectionController extends Controller
     public function destroy(string $id)
     {
         //
+        $model = Application::find($id);
+        try {
+            $model->update([
+                'objection' => null,
+            ]);
+            return redirect()->route('dep.objections.index')->with('success', 'Successfully removed');
+        } catch (Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
     }
 }

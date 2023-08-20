@@ -16,15 +16,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('dep.applications.create')}}" class="flex items-center p-2">
+                <a href="{{route('dep.objections.create')}}" class="flex items-center p-2">
                     <i class="bi-bookmark-x"></i>
                     <span class="ml-3">Raise Objection</span>
                 </a>
             </li>
             <li>
-                <a href="{{url('fee')}}" class="flex items-center p-2">
+                <a href="{{route('dep.fee.create')}}" class="flex items-center p-2">
                     <i class="bi bi-currency-rupee"></i>
-                    <span class="ml-3">Fee Payment</span>
+                    <span class="ml-3">Collect Fee</span>
                 </a>
             </li>
             <li>

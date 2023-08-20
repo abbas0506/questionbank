@@ -10,6 +10,10 @@ use App\Http\Controllers\Dep\ApplicationController;
 use App\Http\Controllers\Dep\DepController;
 use App\Http\Controllers\Dep\DocumentController;
 use App\Http\Controllers\Dep\FeeController;
+use App\Http\Controllers\Dep\ObjectionController;
+use App\Http\Controllers\dep\RaiseObjectionController;
+use App\Http\Controllers\Dep\RecommendationController;
+use App\Http\Controllers\dep\UnderProcessController;
 use App\Models\Session;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
@@ -63,8 +67,9 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::get('/', [DepController::class, 'index']);
     Route::view('change/password', 'dep.change_password');
     Route::post('change/password', [AuthController::class, 'changePassword'])->name('change.password');
-
     Route::resource('applications', ApplicationController::class);
+    Route::resource('objections', ObjectionController::class);
     Route::resource('documents', DocumentController::class);
     Route::resource('fee', FeeController::class);
+    Route::resource('underprocess', UnderProcessController::class);
 });

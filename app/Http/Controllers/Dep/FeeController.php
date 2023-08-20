@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Deo;
+namespace App\Http\Controllers\Dep;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
+use App\Models\Session;
+use Exception;
 use Illuminate\Http\Request;
 
 class FeeController extends Controller
@@ -13,6 +16,8 @@ class FeeController extends Controller
     public function index()
     {
         //
+        $session = Session::find(session('session_id'));
+        return view('dep.fee.index', compact('session'));
     }
 
     /**
@@ -21,6 +26,8 @@ class FeeController extends Controller
     public function create()
     {
         //
+        $session = Session::find(session('session_id'));
+        return view('dep.fee.create', compact('session'));
     }
 
     /**
@@ -45,6 +52,8 @@ class FeeController extends Controller
     public function edit(string $id)
     {
         //
+        $application = Application::find($id);
+        return view('dep.fee.edit', compact('application'));
     }
 
     /**
@@ -53,6 +62,17 @@ class FeeController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'fee' => 'required|numeric|min:0',
+        ]);
+
+        $model = Application::find($id);
+        try {
+            $model->update($request->all());
+            return redirect()->route('dep.fee.index')->with('success', 'Successfully updated');
+        } catch (Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
     }
 
     /**
@@ -61,5 +81,14 @@ class FeeController extends Controller
     public function destroy(string $id)
     {
         //
+        $model = Application::find($id);
+        try {
+            $model->update([
+                'fee' => null,
+            ]);
+            return redirect()->route('dep.fee.index')->with('success', 'Successfully removed');
+        } catch (Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
     }
 }

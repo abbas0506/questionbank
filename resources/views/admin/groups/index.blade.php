@@ -31,6 +31,7 @@
             <tr class="border-b border-slate-200">
                 <th>Full Name</th>
                 <th>Short</th>
+                <th>Fee</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -40,6 +41,7 @@
             <tr class="tr">
                 <td>{{$group->name}}</td>
                 <td class="text-center">{{$group->short}}</td>
+                <td class="text-center">{{$group->fee}}</td>
                 <td>
                     <div class="flex justify-center items-center space-x-3">
                         <a href="{{route('admin.groups.edit', $group)}}">

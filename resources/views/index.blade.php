@@ -6,7 +6,7 @@
     <div class="flex flex-col items-center w-full px-5 md:w-1/3">
 
         <!-- <img class="w-full" alt="logo" src="{{asset('/images/logo/logo.png')}}"> -->
-        <h1 class="text-lg md:text-6xl text-indigo-900 mt-4 font-culpa tracking-wider">SMS</h1>
+        <h1 class="text-lg md:text-6xl text-indigo-900 mt-4 tracking-wider">SMS</h1>
         <p>Student Management System</p>
         <div class="w-full mt-4">
 

@@ -23,13 +23,25 @@ class Application extends Model
         'session_id',
     ];
 
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+    public function status()
+    {
+        $status = 0;    //under process
+        if ($this->objection != null) $status = 1; //objection over
+        elseif ($this->fee != null) $status = 2;   //fee paid
+        return $status;
+    }
+
     public function scopeToday($query)
     {
         return $query->whereDate('created_at', Carbon::today());
     }
-    public function scopeRecommended($query)
+    public function scopeUnderprocess($query)
     {
-        return $query->whereNull('objection');
+        return $query->whereNull('objection')->whereNull('fee');
     }
     public function scopeObjectioned($query)
     {

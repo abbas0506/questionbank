@@ -17,6 +17,13 @@
 
         <div class="flex flex-col w-full mt-16">
             <h1 class="text-teal-600">Edit {{ $group->name }}</h1>
+            <!-- page message -->
+            @if($errors->any())
+            <x-message :errors='$errors'></x-message>
+            @else
+            <x-message></x-message>
+            @endif
+
             <form action="{{route('admin.groups.update', $group)}}" method='post' class="mt-4">
                 @csrf
                 @method('PATCH')
@@ -29,6 +36,10 @@
                     <div>
                         <label>Short Name <span class="text-sm">(if any)</span></label>
                         <input type="text" name='short' class="custom-input" placeholder="For example: SE" value="{{$group->short}}">
+                    </div>
+                    <div>
+                        <label>Fee</label>
+                        <input type="number" name='fee' class="custom-input" min=0 placeholder="3000" value="{{$group->fee}}">
                     </div>
 
                     <button type="submmit" class="btn-teal rounded p-2 mt-6 w-32">Update Now</button>

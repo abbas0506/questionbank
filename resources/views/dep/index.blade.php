@@ -16,41 +16,41 @@
 
     <!-- pallets -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-        <a href="" class="pallet-box">
+        <a href="{{route('dep.applications.index')}}" class="pallet-box">
             <div class="flex-1">
                 <div class="title">Total Applications</div>
                 <div class="h2">{{ $session->applications()->count()}}</div>
             </div>
             <div class="ico bg-green-100">
-                <i class="bi bi-person-circle text-green-600"></i>
+                <i class="bi bi-file-earmark-arrow-up text-green-600"></i>
             </div>
         </a>
-        <a href="" class="pallet-box">
+        <a href="{{route('dep.underprocess.index')}}" class="pallet-box">
             <div class="flex-1 ">
-                <div class="title">Recommeded</div>
-                <div class="h2">{{ $session->applications()->recommended()->count()}}</div>
+                <div class="title">Under Process</div>
+                <div class="h2">{{ $session->applications()->underprocess()->count()}}</div>
             </div>
-            <div class="ico bg-teal-100">
-                <i class="bi bi-card-checklist text-teal-600"></i>
+            <div class="ico bg-blue-100">
+                <i class="bi bi-file-earmark-code text-blue-600"></i>
             </div>
         </a>
-        <a href="{{url('teachers')}}" class="pallet-box">
+        <a href="{{route('dep.objections.index')}}" class="pallet-box">
             <div class="flex-1">
                 <div class="title">Objection Raised</div>
                 <div class="h2">{{ $session->applications()->objectioned()->count() }}</div>
             </div>
-            <div class="ico bg-indigo-100">
-                <i class="bi bi-person-workspace text-indigo-400"></i>
+            <div class="ico bg-orange-100">
+                <i class="bi bi-file-earmark-x text-orange-400"></i>
             </div>
         </a>
 
-        <a href="" class="pallet-box">
+        <a href="{{route('dep.fee.index')}}" class="pallet-box">
             <div class="flex-1">
                 <div class="title">Fee Paid</div>
                 <div class="h2"> {{ $session->applications()->feepaid()->count()}}</div>
             </div>
-            <div class="ico bg-sky-100">
-                <i class="bi bi-graph-up text-sky-600"></i>
+            <div class="ico bg-teal-100">
+                <i class="bi bi-file-earmark-check text-teal-600"></i>
             </div>
         </a>
     </div>
@@ -79,8 +79,8 @@
         <div class="">
             <div class="bg-sky-100 p-4">
                 <div class="flex items-center space-x-2">
-                    <i class="bi-people text-lg"></i>
-                    <h2>Applications</h2>
+                    <i class="bi-file-earmark-check text-lg"></i>
+                    <h2>Confirmed Applications</h2>
                 </div>
                 <div class="divider mt-4 border-sky-200"></div>
                 <div class="flex items-center justify-between mt-2 text-sm">
@@ -88,28 +88,28 @@
                         <i class="bi-heart-pulse w-8"></i>
                         <a href="{{route('admin.sessions.index')}}" class="link">Pre Medical</a>
                     </div>
-                    <div>{{$session->applications()->medical()->count()}}</div>
+                    <div>{{$session->applications()->medical()->feepaid()->count()}}</div>
                 </div>
                 <div class="flex items-center justify-between mt-2 text-sm">
                     <div class="flex items-center">
                         <i class="bi-tools w-8"></i>
                         <a href="{{route('admin.groups.index')}}" class="link">Pre Engineering</a>
                     </div>
-                    <div>{{$session->applications()->engg()->count()}}</div>
+                    <div>{{$session->applications()->engg()->feepaid()->count()}}</div>
                 </div>
                 <div class="flex items-center justify-between mt-2 text-sm">
                     <div class="flex items-center">
                         <i class="bi-laptop w-8"></i>
                         <a href="{{route('admin.groups.index')}}" class="link">ICS</a>
                     </div>
-                    <div>{{$session->applications()->ics()->count()}}</div>
+                    <div>{{$session->applications()->ics()->feepaid()->count()}}</div>
                 </div>
                 <div class="flex items-center justify-between mt-2 text-sm">
                     <div class="flex items-center">
                         <i class="bi-emoji-smile w-8"></i>
                         <a href="{{route('admin.groups.index')}}" class="link">Arts</a>
                     </div>
-                    <div>{{$session->applications()->arts()->count()}}</div>
+                    <div>{{$session->applications()->arts()->feepaid()->count()}}</div>
                 </div>
 
 

@@ -8,7 +8,6 @@
     <title>Student Management System</title>
     <link rel="icon" href="{{ asset('/images/logo/logo-light.png') }}">
     <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Styles -->
     @vite(['resources/js/app.js','resources/css/app.css'])
@@ -18,6 +17,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* font-family: Nunito, sans-serif; */
+        }
+    </style>
 </head>
 
 <body>

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Dep;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Group;
+use App\Models\Session;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApplicationController extends Controller
 {
@@ -16,6 +18,9 @@ class ApplicationController extends Controller
     public function index()
     {
         //
+        $session = Session::find(session('session_id'));
+
+        return view('dep.applications.index', compact('session'));
     }
 
     /**
@@ -45,10 +50,18 @@ class ApplicationController extends Controller
             'group_id' => 'required|numeric',
             'session_id' => 'required|numeric'
         ]);
+        DB::beginTransaction();
         try {
-            Application::create($request->all());
+            $application = Application::create($request->all());
+            if ($request->is_other_board) {
+                $application->update([
+                    'objection' => 'NOC required'
+                ]);
+            }
+            DB::commit();
             return redirect()->back()->with('success', 'Successfully created');
         } catch (Exception $e) {
+            DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
         }
@@ -68,6 +81,9 @@ class ApplicationController extends Controller
     public function edit(string $id)
     {
         //
+        $application = Application::find($id);
+        $groups = Group::all();
+        return view('dep.applications.edit', compact('application', 'groups'));
     }
 
     /**
@@ -76,6 +92,33 @@ class ApplicationController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'matric_rollno' => 'required|numeric',
+            'matric_marks' => 'required|numeric',
+            'group_id' => 'required|numeric',
+        ]);
+        DB::beginTransaction();
+        try {
+            $application = Application::find($id);
+            $application->update($request->all());
+            if ($request->is_other_board) {
+                $application->update([
+                    'objection' => 'NOC required'
+                ]);
+            }
+            if (!$request->is_other_board) {
+                $application->update([
+                    'is_other_board' => 0
+                ]);
+            }
+            DB::commit();
+            return redirect()->back()->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**
@@ -84,5 +127,12 @@ class ApplicationController extends Controller
     public function destroy(string $id)
     {
         //
+        $model = Application::find($id);
+        try {
+            $model->delete();
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully removed');
+        } catch (Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
     }
 }

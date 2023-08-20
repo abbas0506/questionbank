@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('short');
+            $table->unsignedSmallInteger('fee')->default('3000');
             $table->timestamps();
         });
     }

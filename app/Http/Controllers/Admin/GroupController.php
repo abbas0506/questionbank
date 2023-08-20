@@ -37,6 +37,7 @@ class GroupController extends Controller
         $request->validate([
             'name' => 'required',
             'short' => 'required',
+            'fee' => 'required|numeric|min:0'
         ]);
 
         try {
@@ -75,6 +76,7 @@ class GroupController extends Controller
         $request->validate([
             'name' => 'required',
             'short' => 'required',
+            'fee' => 'required|numeric|min:0'
         ]);
 
         $model = Group::find($id);
