@@ -10,9 +10,11 @@ use App\Http\Controllers\Dep\ApplicationController;
 use App\Http\Controllers\Dep\DepController;
 use App\Http\Controllers\Dep\DocumentController;
 use App\Http\Controllers\Dep\FeeController;
+use App\Http\Controllers\dep\GroupController as DepGroupController;
 use App\Http\Controllers\Dep\ObjectionController;
 use App\Http\Controllers\dep\RaiseObjectionController;
 use App\Http\Controllers\Dep\RecommendationController;
+use App\Http\Controllers\dep\TodayActivityController;
 use App\Http\Controllers\dep\UnderProcessController;
 use App\Models\Session;
 use FontLib\Table\Type\cmap;
@@ -72,4 +74,6 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::resource('documents', DocumentController::class);
     Route::resource('fee', FeeController::class);
     Route::resource('underprocess', UnderProcessController::class);
+    Route::resource('groups', DepGroupController::class)->only('show');
+    Route::resource('todayactivity', TodayActivityController::class)->only('index');
 });

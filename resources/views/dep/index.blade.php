@@ -55,12 +55,16 @@
         </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 mt-8 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 mt-8 gap-6 ">
         <!-- middle panel  -->
-        <div class="md:col-span-2">
-            <!-- update news  -->
+        <div class="md:col-span-2 relative">
+            <a href="{{route('dep.todayactivity.index')}}" class="absolute top-2 right-2">
+                <i class="bi-arrows-angle-expand"></i>
+            </a>
+            <!-- todays progress  -->
             <div class="p-4 bg-red-50">
                 <h2>Today's Activity </h2>
+                <div class="divider mt-2 border-orange-200"></div>
                 <div class="grid grid-cols-2 mt-4">
                     <div>
                         <h3>Applications</h3>
@@ -86,28 +90,28 @@
                 <div class="flex items-center justify-between mt-2 text-sm">
                     <div class="flex items-center">
                         <i class="bi-heart-pulse w-8"></i>
-                        <a href="{{route('admin.sessions.index')}}" class="link">Pre Medical</a>
+                        <a href="{{route('dep.groups.show',1)}}" class="link">Pre Medical</a>
                     </div>
                     <div>{{$session->applications()->medical()->feepaid()->count()}}</div>
                 </div>
                 <div class="flex items-center justify-between mt-2 text-sm">
                     <div class="flex items-center">
                         <i class="bi-tools w-8"></i>
-                        <a href="{{route('admin.groups.index')}}" class="link">Pre Engineering</a>
+                        <a href="{{route('dep.groups.show',2)}}" class="link">Pre Engineering</a>
                     </div>
                     <div>{{$session->applications()->engg()->feepaid()->count()}}</div>
                 </div>
                 <div class="flex items-center justify-between mt-2 text-sm">
                     <div class="flex items-center">
                         <i class="bi-laptop w-8"></i>
-                        <a href="{{route('admin.groups.index')}}" class="link">ICS</a>
+                        <a href="{{route('dep.groups.show',3)}}" class="link">ICS</a>
                     </div>
                     <div>{{$session->applications()->ics()->feepaid()->count()}}</div>
                 </div>
                 <div class="flex items-center justify-between mt-2 text-sm">
                     <div class="flex items-center">
                         <i class="bi-emoji-smile w-8"></i>
-                        <a href="{{route('admin.groups.index')}}" class="link">Arts</a>
+                        <a href="{{route('dep.groups.show',4)}}" class="link">Arts</a>
                     </div>
                     <div>{{$session->applications()->arts()->feepaid()->count()}}</div>
                 </div>

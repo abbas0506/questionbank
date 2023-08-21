@@ -54,7 +54,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        @role('dep')
+                        @if(!$application->fee)
                         <div class="flex justify-center items-center space-x-3">
                             <a href="{{route('dep.applications.edit', $application)}}">
                                 <i class="bi bi-pencil-square text-green-600"></i>
@@ -67,8 +67,7 @@
                                 </button>
                             </form>
                         </div>
-
-                        @endrole
+                        @endif
                     </td>
 
                 </tr>

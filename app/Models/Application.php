@@ -37,7 +37,7 @@ class Application extends Model
 
     public function scopeToday($query)
     {
-        return $query->whereDate('created_at', Carbon::today());
+        return $query->whereDate('updated_at', Carbon::today());
     }
     public function scopeUnderprocess($query)
     {
@@ -66,5 +66,9 @@ class Application extends Model
     public function scopeArts($query)
     {
         return $query->where('group_id', 4);
+    }
+    public function scopeGroup($query, $id)
+    {
+        return $query->where('group_id', $id);
     }
 }

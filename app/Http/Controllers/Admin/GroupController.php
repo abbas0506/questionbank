@@ -55,6 +55,7 @@ class GroupController extends Controller
     public function show(string $id)
     {
         //
+
     }
 
     /**
