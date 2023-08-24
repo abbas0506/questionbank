@@ -46,24 +46,24 @@
                     <td>{{ $application->group->short }}</td>
                     <td class="text-center w-32">
                         @if($application->status()==0)
-                        <div>Under Process</div>
+                        <div>Processing ...</div>
                         @elseif($application->status()==1)
                         <div class="text-red-600">Objection</div>
                         @else
-                        <div class="text-green-700">Fee Paid</div>
+                        <div class="text-green-700"><i class="bi-check-lg"></i></div>
                         @endif
                     </td>
                     <td class="text-center">
                         @if(!$application->fee)
                         <div class="flex justify-center items-center space-x-3">
                             <a href="{{route('dep.applications.edit', $application)}}">
-                                <i class="bi bi-pencil-square text-green-600"></i>
+                                <i class="bi-pencil-square text-green-600 text-xs"></i>
                             </a>
                             <form action="{{route('dep.applications.destroy',$application)}}" method="POST" id='del_form{{$application->id}}'>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-transparent p-0 border-0" onclick="delme('{{$application->id}}')">
-                                    <i class="bi bi-trash3 text-red-600"></i>
+                                    <i class="bi-trash3 text-red-600 text-xs"></i>
                                 </button>
                             </form>
                         </div>
@@ -106,7 +106,9 @@
         var str = 0;
         $('.tr').each(function() {
             if (!(
-                    $(this).children().eq(0).prop('outerText').toLowerCase().includes(searchtext)
+                    $(this).children().eq(0).prop('outerText').toLowerCase().includes(searchtext) ||
+                    $(this).children().eq(1).prop('outerText').toLowerCase().includes(searchtext) ||
+                    $(this).children().eq(3).prop('outerText').toLowerCase().includes(searchtext)
                 )) {
                 $(this).addClass('hidden');
             } else {
