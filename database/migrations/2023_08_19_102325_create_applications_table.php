@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('father', 100)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('address', 150)->nullable();
-            $table->string('matric_rollno', 20);
+            $table->string('matric_rollno', 20)->unique();
             $table->unsignedSmallInteger('matric_marks');
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('session_id');

@@ -45,7 +45,7 @@ class ApplicationController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'matric_rollno' => 'required|numeric',
+            'matric_rollno' => 'required|numeric|unique:applications',
             'matric_marks' => 'required|numeric',
             'group_id' => 'required|numeric',
             'session_id' => 'required|numeric'
