@@ -78,12 +78,15 @@
             </div>
             <div class="bg-white p-4 mt-4">
                 <!-- <h2 class="text-center">Summary</h2> -->
-                <div class="grid grid-cols-2 space-x-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <canvas id="app_count_chart" height="200"></canvas>
+                        <canvas id="chart1" height="200"></canvas>
                     </div>
                     <div>
-                        <canvas id="fee_paid_chart" height="200"></canvas>
+                        <canvas id="chart2" height="200"></canvas>
+                    </div>
+                    <div>
+                        <canvas id="chart3" height="200"></canvas>
                     </div>
 
                 </div>
@@ -167,9 +170,13 @@
 
 <script>
     var groups = @json($groups);
-    var groupWiseAppCount = @json($groupWiseAppCount);
+    var groupWiseCount = @json($groupWiseCount);
     var days = @json($days);
-    var dayWiseAppCount = @json($dayWiseAppCount);
+    var dayWiseCount = @json($dayWiseCount);
+    var feeWiseCount = @json($feeWiseCount);
+    var objectionWiseCount = @json($objectionWiseCount);
+    var percentLabels = @json($percentLabels);
+    var percentWiseCount = @json($percentWiseCount);
 
     // plugin registration
     Chart.register(ChartDataLabels);
@@ -179,7 +186,7 @@
         labels: groups,
         datasets: [{
             label: 'Applications',
-            data: groupWiseAppCount,
+            data: groupWiseCount,
             backgroundColor: [
                 'rgba(255, 0, 0, 0.4)',
                 'rgba(0, 162, 235, 0.6)',
@@ -229,8 +236,8 @@
                 },
                 title: {
                     display: true,
-                    text: 'Group Wise Applications',
-                    color: 'navy',
+                    text: 'Group Wise',
+                    color: 'black',
                     position: 'bottom',
                     align: 'center',
                     font: {
@@ -253,14 +260,36 @@
     const data2 = {
         labels: days,
         datasets: [{
-            label: 'Last Week Applications',
-            data: dayWiseAppCount,
-            lineTension: 0.2,
-            fill: false,
-            // borderWidth: 1,
-            borderColor: 'rgba(255, 99, 132, 0.6)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        }]
+                // first data set 
+                label: "Applications",
+                data: dayWiseCount,
+                lineTension: 0.2,
+                fill: false,
+                // borderWidth: 1,
+                borderColor: 'rgba(0, 162, 235, 0.6)',
+                backgroundColor: 'rgba(0, 162, 235, 0.2)',
+            },
+            // {
+            //     label: "Fee",
+            //     data: feeWiseCount,
+            //     lineTension: 0.2,
+            //     fill: false,
+            //     // borderWidth: 1,
+            //     borderColor: 'rgba(255, 99, 132, 0.6)',
+            //     backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            // },
+            {
+                // 3rd data set
+                label: "Objection",
+                data: objectionWiseCount,
+                lineTension: 0.2,
+                fill: false,
+                // borderWidth: 1,
+                borderColor: 'rgba(255, 0, 50, 0.6)',
+                backgroundColor: 'rgba(255, 0, 50, 0.2)',
+            },
+
+        ]
     };
 
 
@@ -276,13 +305,105 @@
                     }
                 }
             },
+            plugins: {
+                datalabels: {
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Date Wise',
+                    color: 'black',
+                    position: 'bottom',
+                    align: 'center',
+                    font: {
+                        weight: 'bold'
+                    },
+                    padding: 8,
+                    fullSize: true,
+
+                },
+                legend: {
+                    display: true,
+                }
+            },
             indexAxis: 'x',
             borderWidth: 1,
             maintainAspectRatio: false,
 
         },
     };
-    const chart1 = new Chart(document.getElementById('app_count_chart'), config1);
-    const chart2 = new Chart(document.getElementById('fee_paid_chart'), config2);
+
+
+    // chart 3
+
+    const data3 = {
+        labels: percentLabels,
+        datasets: [{
+            label: 'Applications',
+            data: percentWiseCount,
+            lineTension: 0.2,
+            fill: false,
+            // borderWidth: 1,
+            borderColor: 'rgba(0, 100, 255, 0.6)',
+            backgroundColor: 'rgba(0, 100, 255, 0.2)',
+        }]
+    };
+
+
+    const config3 = {
+        type: 'bar',
+        data: data3,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    ticks: {
+                        display: true
+                    }
+                }
+            },
+
+            indexAxis: 'x',
+            borderWidth: 1,
+            labels: {
+                display: false,
+            },
+            plugins: {
+                datalabels: {
+                    display: false,
+                    // anchor: 'center',
+                    // align: 'center',
+                    // formatter: Math.round,
+                    // font: {
+                    //     // weight: 'bold',
+                    //     size: 10
+                    // },
+                    // offset: 0,
+                },
+                title: {
+                    display: true,
+                    text: 'Percentage Wise',
+                    color: 'black',
+                    position: 'bottom',
+                    align: 'center',
+                    font: {
+                        weight: 'bold'
+                    },
+                    padding: 8,
+                    fullSize: true,
+                },
+                legend: {
+                    display: false,
+                }
+            },
+
+            maintainAspectRatio: false,
+
+        },
+    };
+
+    const chart1 = new Chart(document.getElementById('chart1'), config1);
+    const chart2 = new Chart(document.getElementById('chart2'), config2);
+    const chart3 = new Chart(document.getElementById('chart3'), config3);
 </script>
 @endsection

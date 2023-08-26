@@ -17,12 +17,9 @@ class DepController extends Controller
     public function index()
     {
 
-        // $collection = Application::all()->groupBy(function ($data) {
-        //     return \Carbon\Carbon::parse($data->created_at)->format('d-M-y');
-        // })->sortBy('created_at');
-
-
-
+        // dataset1
+        $groups = collect();
+        $groupWiseCount = collect();
 
         $group_wise_count = Application::selectRaw('group_id, count(*) as count')
             ->groupBy('group_id');
@@ -32,37 +29,49 @@ class DepController extends Controller
             $join->on('groups.id', '=', 'sub.group_id');
         })->select('short', 'count')->get();
 
+        foreach ($dataset1 as $data) {
+            $groups->add($data->short);
+            $groupWiseCount->add($data->count);
+        }
 
-        $dataset2 = Application::selectRaw('day(created_at) as day, count(*) as count')
+        // dataset 2
+        $days = collect();
+        $dayWiseCount = collect();
+        $feeWiseCount = collect();
+        $objectionWiseCount = collect();
+
+        $dataset2 = Application::selectRaw('concat(day(created_at)," ", substring(monthname(created_at),1,3)) as day, count(*) as count, sum(fee) as fee')
             ->where('created_at', '>=', Carbon::today()->subDays(7))
             ->groupBy('day')
             ->get();
 
-        // ->selectRaw('groups.id, groups.name as name, count(*) as count')
-        // ->groupBy('groups.id')
-        // ->get();
+        $dataset2a = Application::selectRaw('day(created_at) as day, count(*) as count')
+            ->where('created_at', '>=', Carbon::today()->subDays(7))
+            ->whereNotNull('objection')
+            ->groupBy('day')
+            ->get();
 
-        // $collection = Application::join('groups', 'applications.group_id', '=', 'groups.id')
-        //     ->selectRaw('groups.id, groups.name as name, count(*) as count')
-        //     ->groupBy('groups.id')
-        //     ->get();
-
-        // echo $date;
-        $groups = collect();
-        $groupWiseAppCount = collect();
-        $days = collect();
-        $dayWiseAppCount = collect();
-
-        foreach ($dataset1 as $data) {
-            $groups->add($data->short);
-            $groupWiseAppCount->add($data->count);
-        }
         foreach ($dataset2 as $data) {
             $days->add($data->day);
-            $dayWiseAppCount->add($data->count);
+            $dayWiseCount->add($data->count);
+            $feeWiseCount->add($data->fee);
+        }
+        foreach ($dataset2a as $data) {
+            $objectionWiseCount->add($data->count);
+        }
+
+        // dataset 3
+        $percentLabels = collect();
+        $percentWiseCount = collect();
+
+        $marks_percentage = Application::selectRaw("round(matric_marks/11,0) as percentage")->get();
+
+        for ($i = 45; $i < 100; $i += 5) {
+            $percentLabels->add($i . "-" . $i + 4);
+            $percentWiseCount->add($marks_percentage->whereBetween('percentage', [$i, $i + 4])->count());
         }
 
         $session = Session::find(session('session_id'));
-        return view('dep.index', compact('session', 'groups', 'groupWiseAppCount', 'days', 'dayWiseAppCount'));
+        return view('dep.index', compact('session', 'groups', 'groupWiseCount', 'days', 'dayWiseCount', 'feeWiseCount', 'objectionWiseCount', 'percentLabels', 'percentWiseCount'));
     }
 }
