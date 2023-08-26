@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Dep;
 
 use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\Group;
 use App\Models\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use PHPUnit\Metadata\Api\Groups;
 
 class DepController extends Controller
 {
@@ -17,26 +21,48 @@ class DepController extends Controller
         //     return \Carbon\Carbon::parse($data->created_at)->format('d-M-y');
         // })->sortBy('created_at');
 
-        $collection = Application::selectRaw('day(created_at) as day, count(*) as count, sum(fee) as fee')
+
+
+
+        $group_wise_count = Application::selectRaw('group_id, count(*) as count')
+            ->groupBy('group_id');
+
+
+        $dataset1 = Group::joinSub($group_wise_count, 'sub', function ($join) {
+            $join->on('groups.id', '=', 'sub.group_id');
+        })->select('short', 'count')->get();
+
+
+        $dataset2 = Application::selectRaw('day(created_at) as day, count(*) as count')
+            ->where('created_at', '>=', Carbon::today()->subDays(7))
             ->groupBy('day')
             ->get();
 
+        // ->selectRaw('groups.id, groups.name as name, count(*) as count')
+        // ->groupBy('groups.id')
+        // ->get();
 
-        $labels = collect();
-        $apps = collect();
-        $medical = collect();
-        $engg = collect();
-        $ics = collect();
-        $arts = collect();
-        $fee = collect();
+        // $collection = Application::join('groups', 'applications.group_id', '=', 'groups.id')
+        //     ->selectRaw('groups.id, groups.name as name, count(*) as count')
+        //     ->groupBy('groups.id')
+        //     ->get();
 
-        foreach ($collection as $detail) {
-            $labels->add($detail->day);
-            $apps->add($detail->count);
-            $fee->add($detail->fee);
+        // echo $date;
+        $groups = collect();
+        $groupWiseAppCount = collect();
+        $days = collect();
+        $dayWiseAppCount = collect();
+
+        foreach ($dataset1 as $data) {
+            $groups->add($data->short);
+            $groupWiseAppCount->add($data->count);
+        }
+        foreach ($dataset2 as $data) {
+            $days->add($data->day);
+            $dayWiseAppCount->add($data->count);
         }
 
         $session = Session::find(session('session_id'));
-        return view('dep.index', compact('session', 'labels', 'apps', 'fee'));
+        return view('dep.index', compact('session', 'groups', 'groupWiseAppCount', 'days', 'dayWiseAppCount'));
     }
 }

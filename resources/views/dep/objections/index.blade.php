@@ -32,6 +32,7 @@
                     <th>Roll #</th>
                     <th>Name</th>
                     <th>Marks</th>
+                    <th>Group</th>
                     <th>Objection</th>
                     <th>Action</th>
                 </tr>
@@ -42,9 +43,10 @@
                     <td class="text-center">{{$application->matric_rollno}}</td>
                     <td>{{$application->name}}</td>
                     <td class="text-center">{{$application->matric_marks}}</td>
+                    <td class="text-center">{{$application->group->short}}</td>
                     <td>{{$application->objection}}</td>
 
-                    <td class="text-center">
+                    <td class="text-center text-xs">
                         @role('dep')
                         <div class="flex justify-center items-center space-x-3">
                             <a href="{{route('dep.objections.edit', $application)}}">

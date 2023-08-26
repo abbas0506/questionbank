@@ -58,6 +58,16 @@ class ApplicationController extends Controller
                     'objection' => 'NOC required'
                 ]);
             }
+            if ($request->matric_marks <= 485) {
+                $application->update([
+                    'objection' => '3rd division'
+                ]);
+            }
+            if ($request->matric_marks < 660 && $request->group_id < 4) {
+                $application->update([
+                    'objection' => 'Below Criteria'
+                ]);
+            }
             DB::commit();
             return redirect()->back()->with('success', 'Successfully created');
         } catch (Exception $e) {

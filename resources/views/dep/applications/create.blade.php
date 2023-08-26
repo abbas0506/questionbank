@@ -21,14 +21,7 @@
         <form action="{{route('dep.applications.store')}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
-                <div>
-                    <label>Student Name *</label>
-                    <input type="text" name='name' class="custom-input" placeholder="Type here" value="">
-                </div>
-                <div>
-                    <label>Phone<span id="phone_length" class="text-slate-500 text-xs ml-3">0/11</span></label>
-                    <input type="text" id='phone' name='phone' class="custom-input" placeholder="Type here" value="">
-                </div>
+
                 <div>
                     <label>Matric Roll # *</label>
                     <input type="number" name='matric_rollno' class="custom-input" placeholder="Type here" value="">
@@ -36,6 +29,14 @@
                 <div>
                     <label>Marks *</label>
                     <input type="number" name='matric_marks' class="custom-input" placeholder="Type here" min=0 max=1100 value="">
+                </div>
+                <div>
+                    <label>Student Name *</label>
+                    <input type="text" name='name' class="custom-input" placeholder="Type here" value="">
+                </div>
+                <div>
+                    <label>Phone<span id="phone_length" class="text-slate-500 text-xs ml-3">0/11</span></label>
+                    <input type="text" id='phone' name='phone' class="custom-input" placeholder="Type here" value="">
                 </div>
                 <div>
                     <label>Applying for Group *</label>

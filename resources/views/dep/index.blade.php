@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="bg-white p-4 mt-4">
-                <h2>Summary</h2>
+                <!-- <h2 class="text-center">Summary</h2> -->
                 <div class="grid grid-cols-2 space-x-8">
                     <div>
                         <canvas id="app_count_chart" height="200"></canvas>
@@ -166,116 +166,107 @@
 @section('script')
 
 <script>
-    var labels = @json($labels);
-    var apps = @json($apps);
-    var fee = @json($fee);
+    var groups = @json($groups);
+    var groupWiseAppCount = @json($groupWiseAppCount);
+    var days = @json($days);
+    var dayWiseAppCount = @json($dayWiseAppCount);
 
-    const dataset1 = {
-        label: "No of Applications",
-        data: apps,
-        lineTension: 0.2,
-        fill: false,
-        // borderWidth: 1,
-        borderColor: '#DE5FF9',
-        backgroundColor: '#F5D9FB',
-    }
+    // plugin registration
+    Chart.register(ChartDataLabels);
 
-    const dataset2 = {
-        label: "Fee Paid",
-        data: fee,
-        lineTension: 0.2,
-        fill: false,
-        // borderWidth: 1,
-        borderColor: 'rgba(255, 99, 132, 0.8)',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    }
-    // const dataset2 = {
-    //     label: "Courses",
-    //     data: courses,
-    //     lineTension: 0.2,
-    //     fill: false,
-    //     borderColor: 'rgba(255, 99, 132, 0.8)',
-    //     backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    // }
-    // const dataset3 = {
-    //     label: "Teachers",
-    //     data: teachers,
-    //     lineTension: 0.2,
-    //     fill: false,
-    //     borderColor: 'rgba(213, 176, 59, 0.8)',
-    //     backgroundColor: 'rgba(213, 176, 59, 0.2)',
-    // }
-    // const dataset4 = {
-    //     label: "Sections",
-    //     data: sections,
-    //     lineTension: 0.2,
-    //     fill: false,
-    //     borderColor: 'rgba(54, 162, 235, 0.8)',
-    //     backgroundColor: 'rgba(54, 162, 235, 0.2)',
-    // }
-    // const dataset5 = {
-    //     label: "Students",
-    //     data: students,
-    //     lineTension: 0.2,
-    //     fill: false,
-    //     borderColor: 'rgba(58, 199, 176, 0.8)',
-    //     backgroundColor: 'rgba(58, 199, 176, 0.2)',
-    // }
-
-    var chartDataset = {
-        labels: labels,
-        datasets: [dataset1]
+    // doughnut chart
+    const data1 = {
+        labels: groups,
+        datasets: [{
+            label: 'Applications',
+            data: groupWiseAppCount,
+            backgroundColor: [
+                'rgba(255, 0, 0, 0.4)',
+                'rgba(0, 162, 235, 0.6)',
+                'rgba(0, 200, 86, 0.4)',
+                'rgba(0, 0, 200, 0.4)'
+            ],
+            cutout: '70%',
+            // borderRadius: 10,
+            hoverBorderColor: 'black',
+            hoverBorderWidth: 1,
+        }]
     };
-    var feeDataset = {
-        labels: labels,
-        datasets: [dataset2]
-    };
-
-    var chartOptions = {
-        legend: {
-            display: false,
-            position: 'bottom',
-            labels: {
-                boxWidth: 80,
-                fontColor: 'black'
-            }
-        }
-    };
-
-    // const data = {
-    //     labels: labels,
-    //     datasets: [{
-    //         label: 'Programs',
-    //         backgroundColor: 'rgb(200, 99, 132)',
-    //         borderColor: 'rgb(255, 99, 132)',
-    //         data: programsCount,
-    //     }]
-    // };
-
-
 
     const config1 = {
-        type: 'bar',
-        data: chartDataset,
+        type: 'doughnut',
+        data: data1,
         options: {
             responsive: true,
-            scales: {
-                x: {
-                    ticks: {
-                        display: true
-                    }
-                }
-            },
-            indexAxis: 'x',
-            borderWidth: 1,
             maintainAspectRatio: false,
+            plugins: {
+                datalabels: {
+                    anchor: 'center',
+                    align: 'center',
+                    formatter: Math.round,
+                    font: {
+                        // weight: 'bold',
+                        size: 10
+                    },
+                    // offset: 0,
+                },
+
+                legend: {
+                    display: true,
+                    position: 'right',
+                    align: 'start',
+                    // rtl: true,
+                    labels: {
+                        usePointStyle: true,
+                        color: 'black',
+                        font: {
+                            weight: 'bold',
+                            size: 10,
+                        },
+                        padding: 10,
+                    },
+
+                },
+                title: {
+                    display: true,
+                    text: 'Group Wise Applications',
+                    color: 'navy',
+                    position: 'bottom',
+                    align: 'center',
+                    font: {
+                        weight: 'bold'
+                    },
+                    padding: 8,
+                    fullSize: true,
+
+                },
+                tooltip: {
+                    enabled: false,
+                },
+
+            },
 
         },
 
     };
+
+    const data2 = {
+        labels: days,
+        datasets: [{
+            label: 'Last Week Applications',
+            data: dayWiseAppCount,
+            lineTension: 0.2,
+            fill: false,
+            // borderWidth: 1,
+            borderColor: 'rgba(255, 99, 132, 0.6)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        }]
+    };
+
+
     const config2 = {
         type: 'bar',
-        data: feeDataset,
+        data: data2,
         options: {
             responsive: true,
             scales: {
@@ -290,16 +281,8 @@
             maintainAspectRatio: false,
 
         },
-
     };
-
-    const chart1 = new Chart(
-        document.getElementById('app_count_chart'),
-        config1
-    );
-    const chart2 = new Chart(
-        document.getElementById('fee_paid_chart'),
-        config2
-    );
+    const chart1 = new Chart(document.getElementById('app_count_chart'), config1);
+    const chart2 = new Chart(document.getElementById('fee_paid_chart'), config2);
 </script>
 @endsection
