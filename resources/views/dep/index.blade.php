@@ -58,23 +58,13 @@
     <div class="grid grid-cols-1 md:grid-cols-3 mt-8 gap-6 ">
         <!-- middle panel  -->
         <div class="md:col-span-2 relative">
-            <a href="{{route('dep.todayactivity.index')}}" class="absolute top-2 right-2">
-                <i class="bi-arrows-angle-expand"></i>
+            <a href="{{url('dep/today/activity')}}" class="absolute top-0 right-1">
+                <i class="bi-arrows-angle-expand text-xs"></i>
             </a>
             <!-- todays progress  -->
-            <div class="p-4 bg-red-50">
+            <div class="flex justify-between items-center p-4 bg-white">
                 <h2>Today's Activity </h2>
-                <div class="divider mt-2 border-orange-200"></div>
-                <div class="grid grid-cols-2 mt-4">
-                    <div>
-                        <h3>Applications</h3>
-                        <p>{{$session->applications()->today()->count()}}</p>
-                    </div>
-                    <div>
-                        <h3>Fee Collection</h3>
-                        <p>{{$session->applications()->today()->sum('fee')}}</p>
-                    </div>
-                </div>
+                <p class="mr-8">Fee Collection: {{$session->applications()->today()->feePaid()->sum('fee')}}</p>
             </div>
             <div class="bg-white p-4 mt-4">
                 <!-- <h2 class="text-center">Summary</h2> -->
@@ -236,7 +226,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Group Wise',
+                    text: 'Groupwise Applications',
                     color: 'black',
                     position: 'bottom',
                     align: 'center',
@@ -269,15 +259,6 @@
                 borderColor: 'rgba(0, 162, 235, 0.6)',
                 backgroundColor: 'rgba(0, 162, 235, 0.2)',
             },
-            // {
-            //     label: "Fee",
-            //     data: feeWiseCount,
-            //     lineTension: 0.2,
-            //     fill: false,
-            //     // borderWidth: 1,
-            //     borderColor: 'rgba(255, 99, 132, 0.6)',
-            //     backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            // },
             {
                 // 3rd data set
                 label: "Objection",
@@ -311,7 +292,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Date Wise',
+                    text: 'Datewise Applications',
                     color: 'black',
                     position: 'bottom',
                     align: 'center',
@@ -382,7 +363,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Percentage Wise',
+                    text: 'Percentagewise Applications',
                     color: 'black',
                     position: 'bottom',
                     align: 'center',

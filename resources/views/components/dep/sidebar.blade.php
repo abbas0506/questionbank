@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2">
+                <a href="{{url('dep/print')}}" class="flex items-center p-2">
                     <i class="bi bi-printer"></i>
                     <span class="ml-3">Print / Download</span>
                 </a>

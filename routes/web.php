@@ -12,6 +12,8 @@ use App\Http\Controllers\Dep\DocumentController;
 use App\Http\Controllers\Dep\FeeController;
 use App\Http\Controllers\dep\GroupController as DepGroupController;
 use App\Http\Controllers\Dep\ObjectionController;
+use App\Http\Controllers\dep\PdfController as DepPdfController;
+use App\Http\Controllers\dep\PrintController as DepPrintCotroller;
 use App\Http\Controllers\dep\RaiseObjectionController;
 use App\Http\Controllers\Dep\RecommendationController;
 use App\Http\Controllers\dep\TodayActivityController;
@@ -75,5 +77,8 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::resource('fee', FeeController::class);
     Route::resource('underprocess', UnderProcessController::class);
     Route::resource('groups', DepGroupController::class)->only('show');
-    Route::resource('todayactivity', TodayActivityController::class)->only('index');
+    Route::get('today/activity', [TodayActivityController::class, 'index']);
+    Route::get('print', [DepPrintCotroller::class, 'index']);
+    Route::get('pdf/recommended', [DepPdfController::class, 'recommended']);
+    Route::get('pdf/objectioned', [DepPdfController::class, 'objectioned']);
 });

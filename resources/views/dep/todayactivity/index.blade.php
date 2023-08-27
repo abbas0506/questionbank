@@ -34,6 +34,7 @@
                     <th>Phone</th>
                     <th>Marks</th>
                     <th>Group</th>
+                    <th>Status</th>
                     <th>Objection</th>
                     <th>Fee</th>
                 </tr>
@@ -46,6 +47,7 @@
                     <td>{{$application->phone}}</td>
                     <td class="text-center">{{$application->matric_marks}} <span class="text-xs">({{round($application->matric_marks/11,0)}} %)</span></td>
                     <td class="text-center">{{$application->group->short}}</td>
+                    <td class="text-center">@if($application->created_at->format('d-m-Y')==$application->updated_at->format('d-m-Y')) new @endif</td>
                     <td class="text-center">{{$application->objection}}</td>
                     <td class="text-center">{{$application->fee ?? ''}}</td>
                 </tr>

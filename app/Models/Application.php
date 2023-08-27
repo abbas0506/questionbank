@@ -39,6 +39,7 @@ class Application extends Model
     {
         return $query->whereDate('updated_at', Carbon::today());
     }
+
     public function scopeUnderprocess($query)
     {
         return $query->whereNull('objection')->whereNull('fee');
