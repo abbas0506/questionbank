@@ -10,7 +10,7 @@ use App\Http\Controllers\Dep\ApplicationController;
 use App\Http\Controllers\Dep\DepController;
 use App\Http\Controllers\Dep\DocumentController;
 use App\Http\Controllers\Dep\FeeController;
-use App\Http\Controllers\dep\GroupController as DepGroupController;
+use App\Http\Controllers\Dep\GroupController as DepGroupController;
 use App\Http\Controllers\Dep\ObjectionController;
 use App\Http\Controllers\Dep\PdfController as DepPdfController;
 use App\Http\Controllers\Dep\PrintController as DepPrintCotroller;
