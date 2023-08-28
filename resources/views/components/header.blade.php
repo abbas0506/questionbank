@@ -6,7 +6,7 @@
             </a>
             <div class="text-base md:text-xl font-semibold ml-4">SMS</div>
             <div class="px-1 md:px-4">|</div>
-            <div>{{ App\models\Session::find(session('session_id'))->starts_at ?? ''}}</div>
+            <div>{{ App\Models\Session::find(session('session_id'))->starts_at ?? ''}}</div>
 
         </div>
         <!-- right sided current user info -->
