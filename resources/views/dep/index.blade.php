@@ -64,7 +64,7 @@
             <!-- todays progress  -->
             <div class="flex justify-between items-center p-4 bg-white">
                 <h2>Today's Activity </h2>
-                <p class="mr-8">Fee Collection: {{$session->applications()->today()->feePaid()->sum('fee')}}</p>
+                <p class="mr-8">Fee Collection: {{$session->applications()->today()->feepaid()->sum('fee')}}</p>
             </div>
             <div class="bg-white p-4 mt-4">
                 <!-- <h2 class="text-center">Summary</h2> -->
