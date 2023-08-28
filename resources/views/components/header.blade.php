@@ -1,16 +1,16 @@
 <header>
-    <div class="flex flex-wrap w-full h-16 items-center justify-between">
+    <div class="flex flex-wrap w-full h-16 items-center justify-between px-4 md:px-12">
         <div class="flex items-center">
             <a href="{{url('/')}}">
-                <img alt="logo" src="{{asset('/images/logo/main_logo.png')}}" class="w-20 md:w-40">
+                <img alt="logo" src="{{asset('/images/logo/main_logo.png')}}" class="w-10 h-10">
             </a>
-            <div class="hidden md:flex text-base md:text-xl font-semibold ml-4">SMS</div>
-            <div class="hidden md:flex px-1 md:px-4">|</div>
+            <div class="text-base md:text-xl font-semibold ml-4">SMS</div>
+            <div class="px-1 md:px-4">|</div>
             <div>{{ App\models\Session::find(session('session_id'))->starts_at ?? ''}}</div>
 
         </div>
         <!-- right sided current user info -->
-        <div id="current-user-area" class="flex space-x-3 items-center justify-center relative mr-8">
+        <div id="current-user-area" class="flex space-x-3 items-center justify-center relative">
             <input type="checkbox" id='toggle-current-user-dropdown' hidden>
             <label for="toggle-current-user-dropdown" class="hidden md:flex items-center">
                 <div class="">{{Auth::user()->name}}</div>
