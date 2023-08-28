@@ -2,7 +2,7 @@
     <div class="flex flex-wrap w-full h-16 items-center justify-between">
         <div class="flex items-center">
             <a href="{{url('/')}}">
-                <img alt="logo" src="{{asset('/images/logo/logo.jpg')}}" class="w-20 md:w-40">
+                <img alt="logo" src="{{asset('/images/logo/main_logo.png')}}" class="w-20 md:w-40">
             </a>
             <div class="hidden md:flex text-base md:text-xl font-semibold ml-4">SMS</div>
             <div class="hidden md:flex px-1 md:px-4">|</div>
