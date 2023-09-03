@@ -115,7 +115,7 @@ $roman = config('global.romans');
             <table class="w-full">
                 <tbody>
                     <tr class="text-xs">
-                        <td class="text-left">No. of Applications: {{ $session->applications()->feepaid()->count()}}</td>
+                        <td class="text-left">Total Applications: {{ $session->applications()->feepaid()->count()}}</td>
                         <td class="text-center">Total Fee: Rs. {{ $session->applications->sum('fee')}} /-</td>
                         <td class="text-right">Verified by: ______________</td>
                     </tr>
