@@ -28,4 +28,22 @@ class PdfController extends Controller
         $file = "Objection List " . $session->title() . ".pdf";
         return $pdf->stream($file);
     }
+    public function underprocess()
+    {
+        $session = Session::find(session('session_id'));
+        $pdf = PDF::loadView('dep.pdf.underprocess', compact('session'))->setPaper('a4', 'portrait');
+        $pdf->set_option("isPhpEnabled", true);
+
+        $file = "Under Process " . $session->title() . ".pdf";
+        return $pdf->stream($file);
+    }
+    public function confirmed()
+    {
+        $session = Session::find(session('session_id'));
+        $pdf = PDF::loadView('dep.pdf.confirmed', compact('session'))->setPaper('a4', 'portrait');
+        $pdf->set_option("isPhpEnabled", true);
+
+        $file = "Confirmed " . $session->title() . ".pdf";
+        return $pdf->stream($file);
+    }
 }

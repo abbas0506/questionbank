@@ -96,7 +96,7 @@ $roman = config('global.romans');
             <div class="mt-8">
                 <table class="w-full">
                     <tbody>
-                        <tr class="text-sm">
+                        <tr class="text-xs">
                             <td class="text-left">Part I, Session {{$session->title()}}</td>
                             <td class="text-right">{{ now()->format('d-M-Y')}}</td>
                         </tr>

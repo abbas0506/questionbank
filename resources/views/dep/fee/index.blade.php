@@ -23,7 +23,12 @@
     @endif
 
     <div class="overflow-x-auto w-full mt-8">
-        <label for="">{{ $session->applications()->feepaid()->count() }} records found</label>
+        <div class="flex flex-wrap justify-between items-center">
+            <label for="">{{ $session->applications()->feepaid()->count() }} records found</label>
+            <a href="{{url('dep/pdf/confirmed')}}" target="_blank" class="btn-teal px-3">Print / Download</a>
+        </div>
+
+
         <table class="table-auto w-full mt-2">
             <thead>
                 <tr>
