@@ -99,7 +99,6 @@ $roman = config('global.romans');
                     </tr>
                     @php $i++; @endphp
                     @endforeach
-
                 </tbody>
             </table>
             @if($i%40!=1)
@@ -108,7 +107,7 @@ $roman = config('global.romans');
             <div class="page-break"></div>
 
             @endforeach
-
+            <div class="text-xs mt-1">*The form # is same as matric roll number</div>
     </main>
 
     <footer class="footer">
