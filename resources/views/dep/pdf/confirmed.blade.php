@@ -39,9 +39,6 @@ $roman = config('global.romans');
 @endphp
 
 <body>
-    <footer class="footer">
-
-    </footer>
 
     <main>
         <div class="container">
@@ -113,6 +110,21 @@ $roman = config('global.romans');
             @endforeach
 
     </main>
+
+    <footer class="footer">
+        <div class="mt-8">
+            <table class="w-full">
+                <tbody>
+                    <tr class="text-xs">
+                        <td class="text-left">No. of Applications: {{ $session->applications()->feepaid()->count()}}</td>
+                        <td class="text-center">Total Fee: Rs. {{ $session->applications->sum('fee')}} /-</td>
+                        <td class="text-right">Verified by: ______________</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </footer>
+
     <script type="text/php">
         if (isset($pdf) ) {
             $x = 285;
