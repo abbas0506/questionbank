@@ -82,9 +82,9 @@ $roman = config('global.romans');
                         <th class="w-8">#</th>
                         <th>Roll #</th>
                         <th>Name</th>
-                        <th>Marks</th>
                         <th>%</th>
                         <th>Group</th>
+                        <th>Fee</th>
                         <th>Fee Date</th>
                     </tr>
                 </thead>
@@ -95,9 +95,9 @@ $roman = config('global.romans');
                         <td>{{$i}}</td>
                         <td>{{$application->matric_rollno}}</td>
                         <td style="text-align: left !important; padding:2px 6px;">{{$application->name}}</td>
-                        <td>{{$application->matric_marks}}</td>
                         <td>{{round($application->matric_marks/11,0)}} %</td>
                         <td>{{$application->group->short}}</td>
+                        <td>{{$application->fee}}</td>
                         <td>{{$application->updated_at->format('d-M-y')}}</td>
                     </tr>
                     @php $i++; @endphp
