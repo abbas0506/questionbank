@@ -13,24 +13,52 @@
             <div class="md:col-span-2 p-4 text-center">
                 <i class="bi-printer text-2xl"></i>
             </div>
-            <a href="{{url('dep/pdf/recommended')}}" target='_blank' class="pallet-box">
+            <a href="{{url('dep/pdf/underprocess')}}" target='_blank' class="pallet-box">
                 <div class="flex-1">
-                    <div class="title">Recommended List</div>
+                    <div class="title">Under Process</div>
                     <div class="h2">{{ $session->applications()->underprocess()->count() }}</div>
                 </div>
-                <div class="ico bg-green-100">
-                    <i class="bi bi-check-lg text-green-600"></i>
+                <div class="ico bg-blue-100">
+                    <i class="bi bi-activity text-blue-600"></i>
                 </div>
             </a>
             <a href="{{url('dep/pdf/objectioned')}}" target='_blank' class="pallet-box">
                 <div class="flex-1">
-                    <div class="title">Objections List</div>
+                    <div class="title">Objection Over</div>
                     <div class="h2">{{ $session->applications()->objectioned()->count() }}</div>
                 </div>
                 <div class="ico bg-orange-100">
                     <i class="bi bi-file-earmark-x text-orange-400"></i>
                 </div>
             </a>
+            <a href="{{url('dep/pdf/feepaid')}}" target='_blank' class="pallet-box">
+                <div class="flex-1">
+                    <div class="title">Fee Paid</div>
+                    <div class="h2">{{ $session->applications()->feepaid()->count() }}</div>
+                </div>
+                <div class="ico bg-pink-100">
+                    <i class="bi bi-currency-rupee text-pink-600"></i>
+                </div>
+            </a>
+            <a href="{{url('dep/pdf/recommended')}}" target='_blank' class="pallet-box">
+                <div class="flex-1">
+                    <div class="title">Recommendation List</div>
+                    <div class="h2">{{ $session->applications()->underprocess()->count() }}</div>
+                </div>
+                <div class="ico bg-green-100">
+                    <i class="bi bi-check-lg text-green-600"></i>
+                </div>
+            </a>
+            <a href="{{url('dep/pdf/finalized')}}" target='_blank' class="pallet-box">
+                <div class="flex-1">
+                    <div class="title">Finalized List</div>
+                    <div class="h2">{{ $session->applications()->feepaid()->count() }}</div>
+                </div>
+                <div class="ico bg-teal-100">
+                    <i class="bi bi-check-all text-teal-600"></i>
+                </div>
+            </a>
+
         </div>
     </div>
 </div>

@@ -82,5 +82,6 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::get('pdf/recommended', [DepPdfController::class, 'recommended']);
     Route::get('pdf/objectioned', [DepPdfController::class, 'objectioned']);
     Route::get('pdf/underprocess', [DepPdfController::class, 'underprocess']);
-    Route::get('pdf/confirmed', [DepPdfController::class, 'confirmed']);
+    Route::get('pdf/feepaid', [DepPdfController::class, 'feepaid']);
+    Route::get('pdf/finalized', [DepPdfController::class, 'finalized']);
 });

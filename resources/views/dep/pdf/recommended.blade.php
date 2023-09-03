@@ -109,7 +109,7 @@ $roman = config('global.romans');
                 <thead>
                     <tr style="background-color: #bbb;">
                         <th class="w-8">#</th>
-                        <th>Roll #</th>
+                        <th>Form #</th>
                         <th>Name</th>
                         <th>Marks</th>
                         <th>%</th>

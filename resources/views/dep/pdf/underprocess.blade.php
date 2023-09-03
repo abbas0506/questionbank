@@ -75,17 +75,17 @@ $roman = config('global.romans');
                 </table>
             </div>
             @php $i=1; @endphp
-            @foreach($session->applications()->underprocess()->get()->sortBy('group_id')->chunk(40) as $chunk)
+            @foreach($session->applications()->underprocess()->get()->sortBy('matric_rollno')->chunk(40) as $chunk)
             <table class="w-full mt-2 data">
                 <thead>
                     <tr style="background-color: #bbb;">
                         <th class="w-8">#</th>
-                        <th>Roll #</th>
+                        <th>Form #</th>
                         <th>Name</th>
-                        <th>Marks</th>
                         <th>%</th>
                         <th>Group</th>
                         <th>App. Date</th>
+                        <th>Phone</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,10 +95,10 @@ $roman = config('global.romans');
                         <td>{{$i}}</td>
                         <td>{{$application->matric_rollno}}</td>
                         <td style="text-align: left !important; padding:2px 6px;">{{$application->name}}</td>
-                        <td>{{$application->matric_marks}}</td>
                         <td>{{round($application->matric_marks/11,0)}} %</td>
                         <td>{{$application->group->short}}</td>
                         <td>{{$application->created_at->format('d-M-y')}}</td>
+                        <td>{{$application->phone}}</td>
                     </tr>
                     @php $i++; @endphp
                     @endforeach

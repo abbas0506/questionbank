@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objection List</title>
+    <title>Fee Paid</title>
     <link href="{{public_path('css/pdf_tw.css')}}" rel="stylesheet">
     <style>
         @page {
@@ -39,38 +39,6 @@ $roman = config('global.romans');
 @endphp
 
 <body>
-    <footer class="footer">
-        <table class="mt-8 w-full">
-            <tbody>
-                <tr class="text-xs text-center">
-                    <td style="color:#777; font-size:10px">Sign</td>
-                    <td style="color:#777; font-size:10px">Sign</td>
-                    <td style="color:#777; font-size:10px">Sign</td>
-                </tr>
-                <tr class="text-xs text-center">
-                    <td>__________________</td>
-                    <td>__________________</td>
-                    <td>__________________</td>
-                </tr>
-                <tr class="text-xs text-center">
-                    <td class="font-bold "></td>
-                    <td class="font-bold "></td>
-                    <td class="font-bold "></td>
-                </tr>
-                <tr class="text-xs text-center">
-                    <td>Member 1</td>
-                    <td>Member 2</td>
-                    <td>Principal </td>
-                </tr>
-                <tr>
-                    <td colspan=3 class="pt-4" style="border-bottom:1px solid #888;border-bottom-style:dashed"></td>
-                </tr>
-                <tr class="text-xs text-center ">
-                    <td colspan="3" style="color:#222;font-size:10px">List of Objections, Part I, Session {{$session->title()}}, {{now()}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </footer>
 
     <main>
         <div class="container">
@@ -82,7 +50,7 @@ $roman = config('global.romans');
                 <table class="w-full">
                     <tbody>
                         <tr>
-                            <td class="text-center text-xl font-bold">List of Objections</td>
+                            <td class="text-center text-xl font-bold">Fee Payment</td>
                         </tr>
                         <tr>
                             <td class="text-center text-sm">Govt. Higher Secondary School Chak Bedi, Pakpattan</td>
@@ -98,23 +66,23 @@ $roman = config('global.romans');
                     <tbody>
                         <tr class="text-xs">
                             <td class="text-left">Part I, Session {{$session->title()}}</td>
-                            <td class="text-right">{{ now()->format('d-M-Y')}}</td>
+                            <td class="text-right">Printed on {{ now()->format('d-M-Y')}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             @php $i=1; @endphp
-            @foreach($session->applications()->objectioned()->get()->sortBy('matric_rollno')->chunk(40) as $chunk)
+            @foreach($session->applications()->feepaid()->get()->sortBy('matric_rollno')->chunk(40) as $chunk)
             <table class="w-full mt-2 data">
                 <thead>
                     <tr style="background-color: #bbb;">
                         <th class="w-8">#</th>
                         <th>Form #</th>
                         <th>Name</th>
-                        <th>Marks</th>
                         <th>%</th>
                         <th>Group</th>
-                        <th>Objection</th>
+                        <th>Fee</th>
+                        <th>Fee Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,14 +92,13 @@ $roman = config('global.romans');
                         <td>{{$i}}</td>
                         <td>{{$application->matric_rollno}}</td>
                         <td style="text-align: left !important; padding:2px 6px;">{{$application->name}}</td>
-                        <td>{{$application->matric_marks}}</td>
                         <td>{{round($application->matric_marks/11,0)}} %</td>
                         <td>{{$application->group->short}}</td>
-                        <td>{{$application->objection}}</td>
+                        <td>{{$application->fee}}</td>
+                        <td>{{$application->updated_at->format('d-M-y')}}</td>
                     </tr>
                     @php $i++; @endphp
                     @endforeach
-
                 </tbody>
             </table>
             @if($i%40!=1)
@@ -140,8 +107,12 @@ $roman = config('global.romans');
             <div class="page-break"></div>
 
             @endforeach
-
+            <div class="text-xs mt-1">*The form # is same as matric roll number</div>
     </main>
+
+    <footer class="footer">
+    </footer>
+
     <script type="text/php">
         if (isset($pdf) ) {
             $x = 285;

@@ -37,10 +37,19 @@ class PdfController extends Controller
         $file = "Under Process " . $session->title() . ".pdf";
         return $pdf->stream($file);
     }
-    public function confirmed()
+    public function feepaid()
     {
         $session = Session::find(session('session_id'));
-        $pdf = PDF::loadView('dep.pdf.confirmed', compact('session'))->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('dep.pdf.feepaid', compact('session'))->setPaper('a4', 'portrait');
+        $pdf->set_option("isPhpEnabled", true);
+
+        $file = "Fee Paid " . $session->title() . ".pdf";
+        return $pdf->stream($file);
+    }
+    public function finalized()
+    {
+        $session = Session::find(session('session_id'));
+        $pdf = PDF::loadView('dep.pdf.finalized', compact('session'))->setPaper('a4', 'portrait');
         $pdf->set_option("isPhpEnabled", true);
 
         $file = "Confirmed " . $session->title() . ".pdf";
