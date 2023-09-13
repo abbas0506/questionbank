@@ -18,6 +18,7 @@ use App\Http\Controllers\Dep\RaiseObjectionController;
 use App\Http\Controllers\Dep\RecommendationController;
 use App\Http\Controllers\Dep\TodayActivityController;
 use App\Http\Controllers\Dep\UnderProcessController;
+use App\Http\Controllers\StudentController;
 use App\Models\Session;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
     Route::resource('groups', GroupController::class);
     Route::resource('classes', ClasController::class);
     Route::resource('sections', SectionController::class);
+    Route::get('students/import/{section}', [StudentController::class, 'import']);
+    Route::post('students/import', [StudentController::class, 'importStudents']);
+    Route::get('sections/print/{section}', [SectionController::class, 'print']);
 });
 
 Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], function () {
@@ -72,6 +76,9 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::view('change/password', 'dep.change_password');
     Route::post('change/password', [AuthController::class, 'changePassword'])->name('change.password');
     Route::resource('applications', ApplicationController::class);
+    Route::get('change/group/{app}', [ApplicationController::class, 'viewChangeGroup']);
+    Route::patch('change/group/{app}', [ApplicationController::class, 'postChangeGroup']);
+
     Route::resource('objections', ObjectionController::class);
     Route::resource('documents', DocumentController::class);
     Route::resource('fee', FeeController::class);

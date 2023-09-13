@@ -22,14 +22,17 @@ return new class extends Migration
             $table->string('address', 150)->nullable();
             $table->string('image', 100)->default('default.png');
             $table->date('dob')->nullable();
-            $table->enum('gender', ['M', 'F', 'T']);
+            $table->enum('gender', ['M', 'F', 'T'])->default('M');
             $table->string('regno', 40)->unique()->nullable();
             $table->string('rollno', 40)->unique();
+            $table->unsignedInteger('score');
 
             $table->unsignedBigInteger('section_id');
+            $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('status_id')->default(1);
 
             $table->foreign('section_id')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('status_id')->references('id')->on('statuses')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();

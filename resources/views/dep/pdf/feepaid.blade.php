@@ -72,7 +72,7 @@ $roman = config('global.romans');
                 </table>
             </div>
             @php $i=1; @endphp
-            @foreach($session->applications()->feepaid()->get()->sortBy('matric_rollno')->chunk(40) as $chunk)
+            @foreach($session->applications()->feepaid()->orderBy('matric_marks', 'desc')->get()->sortBy('group_id')->chunk(40) as $chunk)
             <table class="w-full mt-2 data">
                 <thead>
                     <tr style="background-color: #bbb;">
@@ -92,10 +92,10 @@ $roman = config('global.romans');
                         <td>{{$i}}</td>
                         <td>{{$application->matric_rollno}}</td>
                         <td style="text-align: left !important; padding:2px 6px;">{{$application->name}}</td>
-                        <td>{{round($application->matric_marks/11,0)}} %</td>
-                        <td>{{$application->group->short}}</td>
-                        <td>{{$application->fee}}</td>
-                        <td>{{$application->updated_at->format('d-M-y')}}</td>
+                        <td>{{ $application->matric_marks }}</td>
+                        <td>{{ $application->group->short }}</td>
+                        <td>{{ $application->fee }}</td>
+                        <td>{{ $application->updated_at->format('d-M-y') }}</td>
                     </tr>
                     @php $i++; @endphp
                     @endforeach
@@ -111,6 +111,17 @@ $roman = config('global.romans');
     </main>
 
     <footer class="footer">
+        <div class="mt-8">
+            <table class="w-full">
+                <tbody>
+                    <tr class="text-xs">
+                        <td class="text-left">Total Applications: {{ $session->applications()->feepaid()->count()}}</td>
+                        <td class="text-center">Total Fee: Rs. {{ $session->applications->sum('fee')}} /-</td>
+                        <td class="text-right">Verified by: ______________</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </footer>
 
     <script type="text/php">

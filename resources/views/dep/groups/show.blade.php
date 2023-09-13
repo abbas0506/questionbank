@@ -4,7 +4,7 @@
 <div class="container">
     <h1>{{$group->short}}</h1>
     <div class="bread-crumb">
-        <a href="/">Home</a>
+        <a href="{{route('dep.applications.index')}}">Applications</a>
         <div>/</div>
         <div>{{$group->short}}</div>
         <div>/</div>
@@ -29,19 +29,23 @@
         <table class="table-auto w-full mt-2">
             <thead>
                 <tr>
-                    <th>Roll #</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Marks</th>
+                    <th class="w-16">Roll #</th>
+                    <th class="w-48">Name</th>
+                    <th class="w-12">Marks</th>
+                    <th class="w-24">Phone</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($session->applications()->feepaid()->group($group->id)->get()->sortByDesc('matric_marks') as $application)
                 <tr class="tr text-sm">
-                    <td class="text-center">{{$application->matric_rollno}}</td>
-                    <td>{{$application->name}}</td>
+                    <td>
+                        <a href="{{route('dep.applications.show',$application)}}" class="link">
+                            {{$application->matric_rollno}}
+                        </a>
+                    </td>
+                    <td class="text-left">{{$application->name}}</td>
+                    <td>{{$application->matric_marks}}</td>
                     <td>{{$application->phone}}</td>
-                    <td class="text-center">{{round($application->matric_marks/11,0)}} %</td>
                 </tr>
                 @endforeach
             </tbody>

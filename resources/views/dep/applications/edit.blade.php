@@ -1,13 +1,13 @@
 @extends('layouts.dep')
 @section('page-content')
 <div class="container">
-    <h2>New Applications</h2>
+    <h2>Edit Basic Info</h2>
     <div class="bread-crumb">
-        <a href="/">Home</a>
-        <div>/</div>
         <a href="{{route('dep.applications.index')}}">Applications</a>
         <div>/</div>
-        <div>New</div>
+        <div>{{ $application->matric_rollno }}</div>
+        <div>/</div>
+        <div>Edit</div>
     </div>
 
     <div class="w-full md:w-3/4 mx-auto mt-16">
@@ -38,21 +38,6 @@
                     <label>Marks *</label>
                     <input type="number" name='matric_marks' class="custom-input" placeholder="Type here" min=0 max=1100 value="{{$application->matric_marks}}">
                 </div>
-                <div>
-                    <label>Applying for Group *</label>
-                    <select name="group_id" id="" class="custom-input p-2">
-                        @forelse($groups as $group)
-                        <option value="{{$group->id}}" @selected($application->group_id==$group->id)>{{ $group->short }}</option>
-                        @empty
-                        <option value="">No group available</option>
-                        @endforelse
-                    </select>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <input type="checkbox" name="is_other_board" id="isOtherBoard" class="w-4 h-4" value="1" @checked($application->is_other_board==1)>
-                    <label for="isOtherBoard" class="font-bold text-red-600">Other Board Case?</label>
-                </div>
-
             </div>
             <div class="flex mt-4">
                 <button type="submit" class="btn-teal rounded p-2">Update Now</button>

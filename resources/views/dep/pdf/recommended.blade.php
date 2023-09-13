@@ -104,7 +104,7 @@ $roman = config('global.romans');
                 </table>
             </div>
             @php $i=1; @endphp
-            @foreach($session->applications()->underprocess()->get()->sortBy('matric_rollno')->chunk(40) as $chunk)
+            @foreach($session->applications()->underprocess()->orderBy('matric_marks', 'desc')->get()->sortBy('group_id')->chunk(40) as $chunk)
             <table class="w-full mt-2 data">
                 <thead>
                     <tr style="background-color: #bbb;">

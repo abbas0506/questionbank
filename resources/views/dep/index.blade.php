@@ -18,25 +18,16 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         <a href="{{route('dep.applications.index')}}" class="pallet-box">
             <div class="flex-1">
-                <div class="title">Total Applications</div>
+                <div class="title">All Applications</div>
                 <div class="h2">{{ $session->applications()->count()}}</div>
             </div>
             <div class="ico bg-green-100">
                 <i class="bi bi-file-earmark-arrow-up text-green-600"></i>
             </div>
         </a>
-        <a href="{{route('dep.underprocess.index')}}" class="pallet-box">
-            <div class="flex-1 ">
-                <div class="title">Under Process</div>
-                <div class="h2">{{ $session->applications()->underprocess()->count()}}</div>
-            </div>
-            <div class="ico bg-blue-100">
-                <i class="bi bi-file-earmark-code text-blue-600"></i>
-            </div>
-        </a>
         <a href="{{route('dep.objections.index')}}" class="pallet-box">
             <div class="flex-1">
-                <div class="title">Objection Raised</div>
+                <div class="title">Objection Over</div>
                 <div class="h2">{{ $session->applications()->objectioned()->count() }}</div>
             </div>
             <div class="ico bg-orange-100">
@@ -51,6 +42,16 @@
             </div>
             <div class="ico bg-teal-100">
                 <i class="bi bi-file-earmark-check text-teal-600"></i>
+            </div>
+        </a>
+
+        <a href="{{route('dep.underprocess.index')}}" class="pallet-box">
+            <div class="flex-1 ">
+                <div class="title">Under Process</div>
+                <div class="h2">{{ $session->applications()->underprocess()->count()}}</div>
+            </div>
+            <div class="ico bg-blue-100">
+                <i class="bi bi-file-earmark-code text-blue-600"></i>
             </div>
         </a>
     </div>

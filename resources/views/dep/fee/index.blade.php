@@ -2,11 +2,11 @@
 @section('page-content')
 
 <div class="container">
-    <h1>Fee Paid</h1>
+    <h1>Confirmed Applications</h1>
     <div class="bread-crumb">
-        <a href="/">Home</a>
+        <a href="{{route('dep.applications.index')}}">Applications</a>
         <div>/</div>
-        <div>Fee Paid</div>
+        <div>Confirmed</div>
     </div>
 
     <!-- search -->
@@ -32,40 +32,25 @@
         <table class="table-auto w-full mt-2">
             <thead>
                 <tr>
-                    <th>Roll #</th>
-                    <th>Name</th>
-                    <th>Marks</th>
-                    <th>Group</th>
-                    <th>Fee</th>
-                    <th>Action</th>
+                    <th class="w-16">Roll #</th>
+                    <th class="w-48">Name</th>
+                    <th class="w-12">Marks</th>
+                    <th class="w-24">Group</th>
+                    <th class="w-16">Fee</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($session->applications()->feepaid()->get()->sortByDesc('updated_at') as $application)
                 <tr class="tr text-sm">
-                    <td class="text-center">{{$application->matric_rollno}}</td>
-                    <td>{{$application->name}}</td>
-                    <td class="text-center">{{$application->matric_marks}}</td>
-                    <td class="text-center">{{$application->group->short}}</td>
-                    <td class="text-center">{{$application->fee}}</td>
-                    <td class="text-center">
-                        @role('dep')
-                        <div class="flex justify-center items-center space-x-3">
-                            <a href="{{route('dep.fee.edit', $application)}}">
-                                <i class="bi bi-pencil-square text-green-600"></i>
-                            </a>
-                            <form action="{{route('dep.fee.destroy',$application)}}" method="POST" id='del_form{{$application->id}}'>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-transparent p-0 border-0" onclick="delme('{{$application->id}}')">
-                                    <i class="bi bi-trash3 text-red-600"></i>
-                                </button>
-                            </form>
-                        </div>
-
-                        @endrole
+                    <td>
+                        <a href="{{route('dep.applications.show',$application)}}" class="link">
+                            {{$application->matric_rollno}}
+                        </a>
                     </td>
-
+                    <td class="text-left">{{$application->name}}</td>
+                    <td>{{$application->matric_marks}}</td>
+                    <td>{{$application->group->short}}</td>
+                    <td>{{$application->fee}}</td>
                 </tr>
                 @endforeach
             </tbody>

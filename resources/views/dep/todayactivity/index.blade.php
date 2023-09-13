@@ -34,22 +34,26 @@
                     <th>Phone</th>
                     <th>Marks</th>
                     <th>Group</th>
-                    <th>Status</th>
-                    <th>Objection</th>
                     <th>Fee</th>
+                    <th>Objection</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($session->applications()->today()->get() as $application)
                 <tr class="tr text-sm">
-                    <td class="text-center">{{$application->matric_rollno}}</td>
-                    <td class="w-60">{{$application->name}}</td>
+                    <td>
+                        <a href="{{route('dep.applications.show',$application)}}" class="link">
+                            {{$application->matric_rollno}}
+                        </a>
+                    </td>
+                    <td class="text-left">{{$application->name}}</td>
                     <td>{{$application->phone}}</td>
-                    <td class="text-center">{{$application->matric_marks}} <span class="text-xs">({{round($application->matric_marks/11,0)}} %)</span></td>
-                    <td class="text-center">{{$application->group->short}}</td>
-                    <td class="text-center">@if($application->created_at->format('d-m-Y')==$application->updated_at->format('d-m-Y')) new @endif</td>
-                    <td class="text-center">{{$application->objection}}</td>
-                    <td class="text-center">{{$application->fee ?? ''}}</td>
+                    <td>{{$application->matric_marks}} </td>
+                    <td>{{$application->group->short}}</td>
+                    <td>{{$application->fee ?? ''}}</td>
+                    <td>{{$application->objection}}</td>
+                    <td>@if($application->created_at->format('d-m-Y')==$application->updated_at->format('d-m-Y')) new @endif</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -69,7 +69,7 @@ class ApplicationController extends Controller
                 ]);
             }
             DB::commit();
-            return redirect()->back()->with('success', 'Successfully created');
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully created');
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
@@ -83,6 +83,8 @@ class ApplicationController extends Controller
     public function show(string $id)
     {
         //
+        $application = Application::find($id);
+        return view('dep.applications.show', compact('application'));
     }
 
     /**
@@ -106,24 +108,38 @@ class ApplicationController extends Controller
             'name' => 'required',
             'matric_rollno' => 'required|numeric',
             'matric_marks' => 'required|numeric',
+        ]);
+        DB::beginTransaction();
+        try {
+            $application = Application::find($id);
+            $application->update($request->all());
+            DB::commit();
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
+    }
+
+    public function viewChangeGroup($id)
+    {
+        $application = Application::find($id);
+        $groups = Group::where('id', '<>', $application->group_id)->get();
+        return view('dep.applications.change_group', compact('application', 'groups'));
+    }
+    public function postChangeGroup(Request $request, string $id)
+    {
+        //
+        $request->validate([
             'group_id' => 'required|numeric',
         ]);
         DB::beginTransaction();
         try {
             $application = Application::find($id);
             $application->update($request->all());
-            if ($request->is_other_board) {
-                $application->update([
-                    'objection' => 'NOC required'
-                ]);
-            }
-            if (!$request->is_other_board) {
-                $application->update([
-                    'is_other_board' => 0
-                ]);
-            }
             DB::commit();
-            return redirect()->back()->with('success', 'Successfully updated');
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully updated');
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
@@ -137,10 +153,10 @@ class ApplicationController extends Controller
     public function destroy(string $id)
     {
         //
-        $model = Application::find($id);
+        $application = Application::find($id);
         try {
-            $model->delete();
-            return redirect()->route('dep.applications.index')->with('success', 'Successfully removed');
+            $application->delete();
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully removed:' . $application->matric_rollno);
         } catch (Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }

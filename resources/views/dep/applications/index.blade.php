@@ -26,50 +26,36 @@
 
     <div class="overflow-x-auto w-full mt-8">
         <label for="">{{ $session->applications()->count() }} records found</label>
-        <table class="table-auto w-full mt-2">
+        <table class="table-fixed w-full mt-2">
             <thead>
                 <tr>
-                    <th>Roll #</th>
-                    <th>Name</th>
-                    <th>Marks</th>
-                    <th>Group</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th class="w-16">Roll #</th>
+                    <th class="w-48">Name</th>
+                    <th class="w-12">Marks</th>
+                    <th class="w-24">Group</th>
+                    <th class="w-12">Status</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($session->applications()->get() as $application)
+                @foreach($session->applications()->get()->sortByDesc('updated_at') as $application)
                 <tr class="tr text-sm">
-                    <td class="text-center">{{$application->matric_rollno}}</td>
-                    <td class="w-60">{{$application->name}}</td>
-                    <td class="text-center">{{ $application->matric_marks }}</td>
+                    <td>
+                        <a href="{{route('dep.applications.show',$application)}}" class="link">
+                            {{$application->matric_rollno}}
+                        </a>
+                    </td>
+                    <td class="w-60 text-left">{{$application->name}}</td>
+                    <td>{{ $application->matric_marks }}</td>
                     <td>{{ $application->group->short }}</td>
-                    <td class="text-center w-32">
+                    <td class="w-32">
                         @if($application->status()==0)
-                        <div>Processing ...</div>
+                        <div></div>
                         @elseif($application->status()==1)
-                        <div class="text-red-600">Objection</div>
+                        <div class="text-red-600">?</div>
                         @else
                         <div class="text-green-700"><i class="bi-check-lg"></i></div>
                         @endif
                     </td>
-                    <td class="text-center">
-                        @if(!$application->fee)
-                        <div class="flex justify-center items-center space-x-3">
-                            <a href="{{route('dep.applications.edit', $application)}}">
-                                <i class="bi-pencil-square text-green-600 text-xs"></i>
-                            </a>
-                            <form action="{{route('dep.applications.destroy',$application)}}" method="POST" id='del_form{{$application->id}}'>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-transparent p-0 border-0" onclick="delme('{{$application->id}}')">
-                                    <i class="bi-trash3 text-red-600 text-xs"></i>
-                                </button>
-                            </form>
-                        </div>
-                        @endif
-                    </td>
-
                 </tr>
                 @endforeach
             </tbody>

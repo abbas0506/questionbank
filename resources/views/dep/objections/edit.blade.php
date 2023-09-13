@@ -2,18 +2,18 @@
 @section('page-content')
 
 <div class="container">
-    <h1>Raise Objection</h1>
+    <h1>Objection</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
         <div>/</div>
-        <a href="{{route('dep.objections.index')}}">Objections</a>
+        <a href="{{route('dep.applications.index')}}">Applications</a>
         <div>/</div>
         <div>{{ $application->matric_rollno }}</div>
         <div>/</div>
-        <div>Raise</div>
+        <div>Objection</div>
     </div>
 
-    <div class="md:w-2/3 mx-auto mt-8">
+    <div class="mt-8">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>

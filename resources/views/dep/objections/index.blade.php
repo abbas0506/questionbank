@@ -2,13 +2,11 @@
 @section('page-content')
 
 <div class="container">
-    <h1>Objections</h1>
+    <h1>Objection Over</h1>
     <div class="bread-crumb">
-        <a href="/">Home</a>
+        <a href="{{route('dep.applications.index')}}">Applications</a>
         <div>/</div>
-        <div>Objections</div>
-        <div>/</div>
-        <div>All</div>
+        <div>Objection Over</div>
     </div>
 
     <!-- search -->
@@ -24,51 +22,33 @@
     <x-message></x-message>
     @endif
 
-    <div class="overflow-x-auto w-full mt-8">
-        <div class="flex flex-wrap justify-between items-center">
-            <label for="">{{ $session->applications()->objectioned()->count() }} records found</label>
-            <a href="{{url('dep/pdf/objectioned')}}" target="_blank" class="btn-teal px-3">Print / Download</a>
-        </div>
-
-
-        <table class="table-auto w-full mt-2">
+    <div class="flex flex-wrap justify-between items-center mt-8">
+        <label for="">{{ $session->applications()->objectioned()->count() }} records found</label>
+        <a href="{{url('dep/pdf/objectioned')}}" target="_blank" class="btn-teal px-3">Print / Download</a>
+    </div>
+    <div class="overflow-x-auto w-full mt-2">
+        <table class="table-fixed w-full">
             <thead>
                 <tr>
-                    <th>Roll #</th>
-                    <th>Name</th>
-                    <th>Marks</th>
-                    <th>Group</th>
-                    <th>Objection</th>
-                    <th>Action</th>
+                    <th class="w-16">Roll #</th>
+                    <th class="w-48">Name</th>
+                    <th class="w-12">Marks</th>
+                    <th class="w-24">Group</th>
+                    <th class="w-48">Objection</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($session->applications()->objectioned()->get()->sortByDesc('updated_at') as $application)
                 <tr class="tr text-sm">
-                    <td class="text-center">{{$application->matric_rollno}}</td>
-                    <td>{{$application->name}}</td>
-                    <td class="text-center">{{$application->matric_marks}}</td>
-                    <td class="text-center">{{$application->group->short}}</td>
-                    <td>{{$application->objection}}</td>
-
-                    <td class="text-center text-xs">
-                        @role('dep')
-                        <div class="flex justify-center items-center space-x-3">
-                            <a href="{{route('dep.objections.edit', $application)}}">
-                                <i class="bi bi-pencil-square text-green-600"></i>
-                            </a>
-                            <form action="{{route('dep.objections.destroy',$application)}}" method="POST" id='del_form{{$application->id}}'>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-transparent p-0 border-0" onclick="delme('{{$application->id}}')">
-                                    <i class="bi bi-trash3 text-red-600"></i>
-                                </button>
-                            </form>
-                        </div>
-
-                        @endrole
+                    <td>
+                        <a href="{{route('dep.applications.show',$application)}}" class="link">
+                            {{$application->matric_rollno}}
+                        </a>
                     </td>
-
+                    <td class="text-left">{{$application->name}}</td>
+                    <td>{{$application->matric_marks}}</td>
+                    <td>{{$application->group->short}}</td>
+                    <td class="text-left">{{$application->objection}}</td>
                 </tr>
                 @endforeach
             </tbody>

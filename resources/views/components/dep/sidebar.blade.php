@@ -16,18 +16,6 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('dep.objections.create')}}" class="flex items-center p-2">
-                    <i class="bi-bookmark-x"></i>
-                    <span class="ml-3">Raise Objection</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('dep.fee.create')}}" class="flex items-center p-2">
-                    <i class="bi bi-currency-rupee"></i>
-                    <span class="ml-3">Collect Fee</span>
-                </a>
-            </li>
-            <li>
                 <a href="{{url('dep/print')}}" class="flex items-center p-2">
                     <i class="bi bi-printer"></i>
                     <span class="ml-3">Print / Download</span>

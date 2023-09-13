@@ -69,7 +69,7 @@ class FeeController extends Controller
         $model = Application::find($id);
         try {
             $model->update($request->all());
-            return redirect()->route('dep.fee.index')->with('success', 'Successfully updated');
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully updated : fee');
         } catch (Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }

@@ -57,7 +57,7 @@ class ObjectionController extends Controller
         $model = Application::find($id);
         try {
             $model->update($request->all());
-            return redirect()->route('dep.objections.index')->with('success', 'Successfully updated');
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully updated');
         } catch (Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }
@@ -74,7 +74,7 @@ class ObjectionController extends Controller
             $model->update([
                 'objection' => null,
             ]);
-            return redirect()->route('dep.objections.index')->with('success', 'Successfully removed');
+            return redirect()->route('dep.applications.index')->with('success', 'Successfully removed: objection');
         } catch (Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }

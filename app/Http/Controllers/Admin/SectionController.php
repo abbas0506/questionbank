@@ -70,6 +70,8 @@ class SectionController extends Controller
     public function show(string $id)
     {
         //
+        $section = Section::find($id);
+        return view('admin.sections.show', compact('section'));
     }
 
     /**
@@ -94,5 +96,9 @@ class SectionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function print($id)
+    {
+        $section = Section::find($id);
     }
 }

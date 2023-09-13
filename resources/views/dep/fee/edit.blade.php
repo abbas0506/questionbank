@@ -25,15 +25,16 @@
             <form action="{{route('dep.fee.update', $application)}}" method='post' class="mt-4">
                 @csrf
                 @method('PATCH')
-                <div class="grid grid-cols-2 gap-y-2">
-                    <div>
-                        <h3>Name</h3>
-                        <label>{{$application->name}}</label>
-                    </div>
+                <div class="grid grid-cols-2 gap-y-4">
                     <div>
                         <h3>Roll #</h3>
                         <label>{{$application->matric_rollno}}</label>
                     </div>
+                    <div>
+                        <h3>Name</h3>
+                        <label>{{$application->name}}</label>
+                    </div>
+
                     <div>
                         <h3>Marks</h3>
                         <label>{{$application->matric_marks}}</label>
@@ -43,7 +44,7 @@
                         <label>{{$application->group->short}}</label>
                     </div>
 
-                    <div class="md:col-span-2 mt-8">
+                    <div class="md:col-span-2 mt-6">
                         <h3>Fee</h3>
                         <input type="number" name='fee' class="custom-input" placeholder="3000" value="{{ $application->fee ? $application->fee : $application->group->fee }}">
                     </div>

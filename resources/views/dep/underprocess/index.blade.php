@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Under Process</h1>
     <div class="bread-crumb">
-        <a href="/">Home</a>
+        <a href="{{route('dep.applications.index')}}">Applications</a>
         <div>/</div>
         <div>Under Process</div>
     </div>
@@ -30,35 +30,23 @@
         <table class="table-auto w-full mt-2">
             <thead>
                 <tr>
-                    <th>Roll #</th>
-                    <th>Name</th>
-                    <th>Marks</th>
-                    <th>Group</th>
-                    <th colspan="2">Actions</th>
+                    <th class="w-16">Roll #</th>
+                    <th class="w-48">Name</th>
+                    <th class="w-12">Marks</th>
+                    <th class="w-24">Group</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($session->applications()->underprocess()->get() as $application)
                 <tr class="tr text-sm">
-                    <td class="text-center">{{$application->matric_rollno}}</td>
-                    <td>{{$application->name}}</td>
-                    <td class="text-center">{{$application->matric_marks}}</td>
+                    <td>
+                        <a href="{{route('dep.applications.show',$application)}}" class="link">
+                            {{$application->matric_rollno}}
+                        </a>
+                    </td>
+                    <td class="text-left">{{$application->name}}</td>
+                    <td>{{$application->matric_marks}}</td>
                     <td>{{$application->group->short}}</td>
-                    <td class="text-center">
-                        @role('dep')
-                        <a href="{{route('dep.objections.edit', $application)}}" class="link">
-                            <i class="bi-bookmark-x"></i> Raise Objection
-                        </a>
-                        @endrole
-                    </td>
-                    <td class="text-center">
-                        @role('dep')
-                        <a href="{{route('dep.fee.edit', $application)}}" class="btn-blue rounded text-xs">
-                            PAY FEE
-                        </a>
-                        @endrole
-                    </td>
-
                 </tr>
                 @endforeach
             </tbody>

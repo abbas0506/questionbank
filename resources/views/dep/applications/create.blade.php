@@ -1,10 +1,8 @@
 @extends('layouts.dep')
 @section('page-content')
 <div class="container">
-    <h2>New Applications</h2>
+    <h2>New Application</h2>
     <div class="bread-crumb">
-        <a href="/">Home</a>
-        <div>/</div>
         <a href="{{route('dep.applications.index')}}">Applications</a>
         <div>/</div>
         <div>New</div>
