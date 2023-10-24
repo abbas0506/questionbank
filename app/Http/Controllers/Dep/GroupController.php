@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\Session;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class GroupController extends Controller
 {
@@ -47,24 +48,14 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function print(string $id)
     {
         //
-    }
+        $group = Group::find($id);
+        $pdf = PDF::loadView('dep.groups.print', compact('group'))->setPaper('a4', 'portrait');
+        $pdf->set_option("isPhpEnabled", true);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $file = "group " . $group->name . ".pdf";
+        return $pdf->stream($file);
     }
 }

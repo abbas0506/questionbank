@@ -13,4 +13,8 @@ class Group extends Model
         'short',
         'fee',
     ];
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }

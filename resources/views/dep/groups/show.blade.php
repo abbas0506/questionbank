@@ -12,9 +12,13 @@
     </div>
 
     <!-- search -->
-    <div class="flex relative w-full md:w-1/3 mt-12">
-        <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
-        <i class="bx bx-search absolute top-2 right-2"></i>
+    <div class="flex justify-between w-full mt-12">
+        <div class="relative md:w-1/3">
+            <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
+            <i class="bx bx-search absolute top-2 right-2"></i>
+        </div>
+        <a href="{{route('dep.groups.print',$group)}}" class="btn-teal">Print</a>
+
     </div>
 
     <!-- page message -->
@@ -25,7 +29,7 @@
     @endif
 
     <div class="overflow-x-auto w-full mt-8">
-        <label for="">{{ $session->applications()->feepaid()->group($group->id)->count() }} records found</label>
+        <label for="">{{ $group->applications()->feepaid()->group($group->id)->count() }} records found</label>
         <table class="table-auto w-full mt-2">
             <thead>
                 <tr>
@@ -36,7 +40,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($session->applications()->feepaid()->group($group->id)->get()->sortByDesc('matric_marks') as $application)
+                @foreach($group->applications()->feepaid()->group($group->id)->get()->sortByDesc('matric_marks') as $application)
                 <tr class="tr text-sm">
                     <td>
                         <a href="{{route('dep.applications.show',$application)}}" class="link">

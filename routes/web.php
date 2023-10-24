@@ -84,6 +84,7 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::resource('fee', FeeController::class);
     Route::resource('underprocess', UnderProcessController::class);
     Route::resource('groups', DepGroupController::class)->only('show');
+    Route::get('groups/{group}/print', [DepGroupController::class, 'print'])->name('groups.print');
     Route::get('today/activity', [TodayActivityController::class, 'index']);
     Route::get('print', [DepPrintCotroller::class, 'index']);
     Route::get('pdf/recommended', [DepPdfController::class, 'recommended']);
