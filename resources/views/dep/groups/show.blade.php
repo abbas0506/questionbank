@@ -17,7 +17,7 @@
             <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
             <i class="bx bx-search absolute top-2 right-2"></i>
         </div>
-        <a href="{{route('dep.groups.print',$group)}}" class="btn-teal">Print</a>
+        <a href="{{route('dep.groups.print',$group)}}" target='_blank' class="flex justify-center items-center btn-teal py-0"><i class="bi-printer"></i></a>
 
     </div>
 
