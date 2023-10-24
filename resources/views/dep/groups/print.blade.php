@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$group->name}}</title>
+    <title>XI-A</title>
     <link href="{{public_path('css/pdf_tw.css')}}" rel="stylesheet">
     <style>
         @page {
@@ -50,7 +50,7 @@ $roman = config('global.romans');
                 <table class="w-full">
                     <tbody>
                         <tr>
-                            <td class="text-center text-xl font-bold">{{$group->name}}</td>
+                            <td class="text-center text-xl font-bold">XI-A</td>
                         </tr>
                         <tr>
                             <td class="text-center text-sm">Govt. Higher Secondary School Chak Bedi, Pakpattan</td>
@@ -83,7 +83,7 @@ $roman = config('global.romans');
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($group->applications()->feepaid()->get()->sortByDesc('matric_marks') as $application)
+                    @foreach($session->applications()->where('group_id','!=',4)->feepaid()->get()->sortByDesc('matric_marks') as $application)
                     <tr class="tr">
                         <td class="text-center border">{{$i++}}</td>
                         <td class="text-center border">{{$application->matric_rollno}}</td>

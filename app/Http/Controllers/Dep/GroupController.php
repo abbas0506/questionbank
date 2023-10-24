@@ -52,7 +52,8 @@ class GroupController extends Controller
     {
         //
         $group = Group::find($id);
-        $pdf = PDF::loadView('dep.groups.print', compact('group'))->setPaper('a4', 'portrait');
+        $session = Session::find(session('session_id'));
+        $pdf = PDF::loadView('dep.groups.print', compact('group', 'session'))->setPaper('a4', 'portrait');
         $pdf->set_option("isPhpEnabled", true);
 
         $file = "group " . $group->name . ".pdf";
