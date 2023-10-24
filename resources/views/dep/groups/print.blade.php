@@ -83,7 +83,7 @@ $roman = config('global.romans');
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($group->applications()->feepaid()->group($group->id)->get()->sortByDesc('matric_marks') as $application)
+                    @foreach($group->applications()->feepaid()->get()->sortByDesc('matric_marks') as $application)
                     <tr class="tr">
                         <td class="text-center border">{{$i++}}</td>
                         <td class="text-center border">{{$application->matric_rollno}}</td>
