@@ -78,9 +78,9 @@ $roman = config('global.romans');
                         <th class="w-12 border">Roll #</th>
                         <th class="w-16 border">Form #</th>
                         <th class="w-48 text-left border pl-2">Name</th>
-                        <th class="w-48 border">Group</th>
-                        <th class="w-12 border">Marks</th>
-                        <th class="w-24 border">Phone</th>
+                        <th class="w-32 border">Group</th>
+                        <th class="w-20 border">Marks</th>
+                        <th class="w-32 border">Phone</th>
                     </tr>
                 </thead>
                 <tbody>
