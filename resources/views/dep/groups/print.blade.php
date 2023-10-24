@@ -65,7 +65,7 @@ $roman = config('global.romans');
                 <table class="w-full">
                     <tbody>
                         <tr class="text-xs">
-                            <td class="text-left">Part I, Session 2023-25</td>
+                            <td class="text-left">Part I, 2023-25</td>
                             <td class="text-right">Printed on {{ now()->format('d-M-Y')}}</td>
                         </tr>
                     </tbody>
@@ -78,16 +78,28 @@ $roman = config('global.romans');
                         <th class="w-12 border">Roll #</th>
                         <th class="w-16 border">Form #</th>
                         <th class="w-48 text-left border pl-2">Name</th>
+                        <th class="w-48 border">Group</th>
                         <th class="w-12 border">Marks</th>
                         <th class="w-24 border">Phone</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($session->applications()->where('group_id','!=',4)->feepaid()->get()->sortByDesc('matric_marks') as $application)
+                    @foreach($session->applications()->where('group_id',1)->feepaid()->get()->sortByDesc('matric_marks') as $application)
                     <tr class="tr">
                         <td class="text-center border">{{$i++}}</td>
                         <td class="text-center border">{{$application->matric_rollno}}</td>
                         <td class="text-left border pl-2">{{$application->name}}</td>
+                        <td class="text-center border">{{$application->group->short}}</td>
+                        <td class="text-center border">{{$application->matric_marks}}</td>
+                        <td class="text-center border">{{$application->phone}}</td>
+                    </tr>
+                    @endforeach
+                    @foreach($session->applications()->where('group_id',3)->feepaid()->get()->sortByDesc('matric_marks') as $application)
+                    <tr class="tr">
+                        <td class="text-center border">{{$i++}}</td>
+                        <td class="text-center border">{{$application->matric_rollno}}</td>
+                        <td class="text-left border pl-2">{{$application->name}}</td>
+                        <td class="text-center border">{{$application->group->short}}</td>
                         <td class="text-center border">{{$application->matric_marks}}</td>
                         <td class="text-center border">{{$application->phone}}</td>
                     </tr>
