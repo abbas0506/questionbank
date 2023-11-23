@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('reader_id');
-            $table->unsignedMediumInteger('copy_no');
+            $table->unsignedSmallInteger('copy_no');
             $table->date('issue_date');
             $table->date('due_date');
             $table->date('return_date');

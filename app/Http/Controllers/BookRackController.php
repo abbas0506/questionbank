@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassLevel;
+use App\Models\BookRack;
 use Illuminate\Http\Request;
 
-class ClassLevelController extends Controller
+class BookRackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ClassLevelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ClassLevel $classLevel)
+    public function show(BookRack $bookRack)
     {
         //
     }
@@ -42,7 +42,7 @@ class ClassLevelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ClassLevel $classLevel)
+    public function edit(BookRack $bookRack)
     {
         //
     }
@@ -50,7 +50,7 @@ class ClassLevelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ClassLevel $classLevel)
+    public function update(Request $request, BookRack $bookRack)
     {
         //
     }
@@ -58,7 +58,7 @@ class ClassLevelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ClassLevel $classLevel)
+    public function destroy(BookRack $bookRack)
     {
         //
     }

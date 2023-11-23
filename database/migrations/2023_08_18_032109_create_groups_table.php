@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('short');
+            $table->string('short_name');
+            $table->string('full_name');
             $table->unsignedSmallInteger('fee')->default('3000');
             $table->timestamps();
         });

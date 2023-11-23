@@ -13,9 +13,12 @@ class GroupSeeder extends Seeder
     public function run(): void
     {
         //
-        Group::create(['name' => 'Pre-Medical', 'short' => 'Medical']);
-        Group::create(['name' => 'Pre-Engineering', 'short' => 'Non-medical']);
-        Group::create(['name' => 'Intermediate in Computer Science', 'short' => 'ICS']);
-        Group::create(['name' => 'Humanities', 'short' => 'Arts']);
+
+        Group::create(['short_name' => 'MED', 'full_name' => 'Pre Medical']);
+        Group::create(['short_name' => 'NMD', 'full_name' => 'Pre Engineering']);
+        Group::create(['short_name' => 'ICS', 'full_name' => 'Intermediate in Computer Science']);
+        Group::create(['short_name' => 'HMT', 'full_name' => 'Humanities']);
+        Group::create(['short_name' => 'Science', 'full_name' => 'Science']);
+        Group::create(['short_name' => 'Arts', 'full_name' => 'Arts']);
     }
 }

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_return_policies', function (Blueprint $table) {
+        Schema::create('book_racks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedSmallInteger('max_days');
-            $table->unsignedSmallInteger('fine_per_day')->default(10);
+            $table->string('label', 5);
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('book_return_policies');
+        Schema::dropIfExists('book_racks');
     }
 };

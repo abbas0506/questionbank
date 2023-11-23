@@ -23,14 +23,13 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             LanguageSeeder::class,
-            SessionSeeder::class,
-            GroupSeeder::class,
             LevelSeeder::class,
+            GroupSeeder::class,
             ClassSeeder::class,
             StatusSeeder::class,
             BookDomainSeeder::class,
             BookReturnPolicySeeder::class,
-
+            BookRackSeeder::class,
         ]);
     }
 }

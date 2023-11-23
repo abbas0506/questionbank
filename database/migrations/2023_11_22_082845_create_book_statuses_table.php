@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('book_statuses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('book_id');
-            $table->unsignedMediumInteger('copy_no');
+            $table->unsignedSmallInteger('copy_no');
             $table->boolean('status')->default(1); //spoilt/healthy
 
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');

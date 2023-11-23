@@ -9,12 +9,10 @@ class Section extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'section_label',
+        'label',    //section label A, B, C
         'clas_id',
         'incharge_id',
-        'start_year',
-        'end_year',
-
+        'induction_year',
     ];
 
     public function students()

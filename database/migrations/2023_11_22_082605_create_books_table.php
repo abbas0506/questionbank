@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('introduction', 200)->nullable();
             $table->string('author', 50);
             $table->string('publisher', 50)->nullable();
-            $table->unsignedMediumInteger('publish_year')->nullable();
-            $table->unsignedMediumInteger('num_of_pages');
-            $table->unsignedMediumInteger('num_of_copies')->default(1);
-            $table->unsignedMediumInteger('price');
-            $table->unsignedMediumInteger('rack_no');
+            $table->unsignedSmallInteger('publish_year')->nullable();
+            $table->unsignedSmallInteger('num_of_pages')->default(1);
+            $table->unsignedSmallInteger('num_of_copies')->default(1);
+            $table->unsignedSmallInteger('price');
+            $table->unsignedSmallInteger('rack_no');
             $table->unsignedBigInteger('language_id');
             $table->unsignedBigInteger('book_domain_id');
 
