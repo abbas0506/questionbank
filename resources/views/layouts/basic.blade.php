@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Student Management System</title>
+    <title>ghss-cb</title>
     <link rel="icon" href="{{ asset('/images/logo/logo-light.png') }}">
     <!-- Fonts -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

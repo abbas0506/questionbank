@@ -13,21 +13,24 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('father', 100)->nullable();
-            $table->string('phone', 20)->nullable();
-            $table->string('address', 150)->nullable();
-            $table->string('matric_rollno', 20)->unique();
-            $table->unsignedSmallInteger('matric_marks');
-            $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('session_id');
-            $table->boolean('is_other_board')->default(false);
+            $table->string('name', 50);
+            $table->string('father', 50);
+            $table->string('phone', 16)->nullable();
+            $table->string('address', 100)->nullable();
+            $table->year('year');
+            $table->string('previous_rollno', 8)->unique();
+            $table->unsignedSmallInteger('previous_marks');
+            $table->string('previous_board', 20)->nullable();
+            $table->enum('previous_medium', ['English', 'Urdu'])->default('Urdu'); //english:0, urdu:1
             $table->string('objection', 200)->nullable();
             $table->unsignedSmallInteger('fee')->nullable();
             $table->timestamps();
 
+            $table->unsignedBigInteger('clas_id');
+            $table->unsignedBigInteger('group_id');
+
+            $table->foreign('clas_id')->references('id')->on('clas')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
-            $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
         });
     }
 

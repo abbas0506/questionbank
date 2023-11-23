@@ -11,15 +11,16 @@ class Book extends Model
     protected $fillable = [
         'title',
         'reference_no',
+        'inroduction',
         'author',
-        'book_domain_id',
-        'language_id',
         'publisher',
         'publish_year',
-        'introduction',
         'num_of_pages',
         'num_of_copies',
         'price',
-        'rack_no',
+
+        'language_id',
+        'book_domain_id',
+        'book_rack_id',
     ];
 }

@@ -14,13 +14,16 @@ class Application extends Model
         'father',
         'phone',
         'adddress',
-        'matric_rollno',
-        'matric_marks',
-        'group_id',
-        'is_other_board',
+        'previous_rollno',
+        'previous_marks',
+        'previous_board',
+        'previous_medium', //english / urdu
+        'previous_school',
+
+        'group_id', //applied for
         'objection',
         'fee',
-        'session_id',
+        'year',     //applied when
     ];
 
     public function group()

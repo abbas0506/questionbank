@@ -22,12 +22,14 @@ return new class extends Migration
             $table->unsignedSmallInteger('num_of_pages')->default(1);
             $table->unsignedSmallInteger('num_of_copies')->default(1);
             $table->unsignedSmallInteger('price');
-            $table->unsignedSmallInteger('rack_no');
+
             $table->unsignedBigInteger('language_id');
             $table->unsignedBigInteger('book_domain_id');
+            $table->unsignedBigInteger('book_rack_id');
 
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
             $table->foreign('book_domain_id')->references('id')->on('book_domains')->onDelete('cascade');
+            $table->foreign('book_rack_id')->references('id')->on('book_racks')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
-use App\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-
 use App\Models\User;
 use Exception;
 
@@ -51,8 +47,17 @@ class AuthController extends Controller
 
         // 
         if (Auth::attempt($credentials)) {
-            return redirect('login/as');
+            //user verified
+            if (Auth::user()->hasRole('library_incharge'))
+                return redirect('library/incharge');
+            elseif (Auth::user()->hasRole('library_assistant'))
+                return redirect('library/assistant');
+            elseif (Auth::user()->roles()->count() > 1)
+                return redirect('login/as');
+            else
+                return redirect(Auth::user()->roles()->first()->name);
         } else {
+            //user not verified
             return redirect()->back()->with(['warning' => 'User credentials incorrect !']);
         }
     }
@@ -60,19 +65,19 @@ class AuthController extends Controller
     public function loginAs(Request $request)
     {
         $request->validate([
-            'session_id' => 'required_if:role,admin,incharge,hod,teacher,dep',
+            'role' => 'required',
         ]);
 
 
         if (Auth::user()->hasRole($request->role)) {
             // save selected semester id for entire session
-            if (Auth::user()->hasAnyRole('super', 'admin', 'hod', 'incharge', 'teacher', 'dep')) {
-                session([
-                    'session_id' => $request->session_id,
-                ]);
+            // if (Auth::user()->hasAnyRole('super', 'admin', 'hod', 'incharge', 'teacher', 'dep')) {
+            //     session([
+            //         'year' => date('Y'),
+            //     ]);
 
-                // session()->put(['session_id' => $request->session_id]);
-            }
+            //     // session()->put(['session_id' => $request->session_id]);
+            // }
             return redirect($request->role);
         } else
             return redirect('/');

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\library\assistant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
-use App\Models\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class LibrayAssistantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $groups = Group::all();
-        return view('admin.index', compact('groups'));
+        $user = Auth::user();
+        return view('modules.library.assistant.index', compact('user'));
     }
 
     /**

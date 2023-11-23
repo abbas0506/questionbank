@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\library\incharge;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
-use App\Models\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class LibrayInchargeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $groups = Group::all();
-        return view('admin.index', compact('groups'));
+        $user = Auth::user();
+        return view('modules.library.incharge.index', compact('user'));
     }
 
     /**

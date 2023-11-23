@@ -6,8 +6,7 @@
             </a>
             <div class="text-base md:text-xl font-semibold ml-4">eSchool</div>
             <div class="px-1 md:px-4">|</div>
-            <div></div>
-
+            <div>Library</div>
         </div>
         <!-- right sided current user info -->
         <div id="current-user-area" class="flex space-x-3 items-center justify-center relative">

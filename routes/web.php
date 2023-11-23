@@ -18,6 +18,8 @@ use App\Http\Controllers\Dep\RaiseObjectionController;
 use App\Http\Controllers\Dep\RecommendationController;
 use App\Http\Controllers\Dep\TodayActivityController;
 use App\Http\Controllers\Dep\UnderProcessController;
+use App\Http\Controllers\library\assistant\LibrayAssistantController;
+use App\Http\Controllers\library\incharge\LibrayInchargeController;
 use App\Http\Controllers\StudentController;
 use App\Models\Session;
 use FontLib\Table\Type\cmap;
@@ -49,8 +51,8 @@ Route::get('/', function () {
 });
 
 Route::get('login/as', function () {
-    $sessions = Session::active()->get();
-    return view('login_as', compact('sessions'));
+    $year = date('Y');
+    return view('login_as', compact('year'));
 });
 
 Route::post('login', [AuthController::class, 'login']);
@@ -92,4 +94,12 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::get('pdf/underprocess', [DepPdfController::class, 'underprocess']);
     Route::get('pdf/feepaid', [DepPdfController::class, 'feepaid']);
     Route::get('pdf/finalized', [DepPdfController::class, 'finalized']);
+});
+
+Route::group(['prefix' => 'library/incharge', 'as' => 'library.incharge.', 'middleware' => ['role:library_incharge']], function () {
+    Route::get('/', [LibrayInchargeController::class, 'index']);
+});
+
+Route::group(['prefix' => 'library/assistant', 'as' => 'library.assistant.', 'middleware' => ['role:library_assistant']], function () {
+    Route::get('/', [LibrayAssistantController::class, 'index']);
 });

@@ -30,21 +30,10 @@
                 @endif
 
                 <select id="role" name="role" class="custom-input  px-4 py-3 w-full mt-3 bg-transparent" onchange="loadDepartments()">
-                    @if(Auth::user()->hasAnyRole('hod','teacher','super'))
-                    <option value="">- select -</option>
-                    @endif
                     @foreach(Auth::user()->roles as $role)
-                    <option value="{{$role->name}}" class="">{{Str::upper($role->name)}}</option>
+                    <option value="{{$role->name}}" class="">{{$role->name}}</option>
                     @endforeach
                 </select>
-                <div class="mt-3">
-                    <label for="" class="text-base text-gray-700 text-left w-full">Session</label>
-                    <select name="session_id" class="custom-input px-4 py-3 w-full">
-                        @foreach($sessions as $session)
-                        <option value="{{$session->id}}">{{$session->starts_at}} - {{ $session->starts_at + 2 - 2000 }}</option>
-                        @endforeach
-                    </select>
-                </div>
                 <div class="flex items-center space-x-4 mt-6">
                     <a href="{{url('signout')}}" class="flex flex-1 btn-orange justify-center py-2">Singout</a>
                     <button type="submit" class="flex flex-1 btn-indigo justify-center py-2">Proceed <i class="bx bx-right-arrow-alt bx-fade-right text-lg"></i></button>
