@@ -10,8 +10,10 @@ class Clas extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'session_id',
-        'incharge_id',
+        'english_name',          //Nine
+        'roman_name',            //IX
+        'positional_name',       //9th
+        'level_id',
     ];
 
 

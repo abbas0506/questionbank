@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('email', 50)->nullable();
-            $table->string('password', 30)->nullable();
             $table->string('father', 100)->nullable();
             $table->string('cnic', 20)->nullable()->unique();
             $table->string('phone', 20)->nullable();
@@ -24,10 +22,11 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->enum('gender', ['M', 'F', 'T'])->default('M');
             $table->string('regno', 40)->unique()->nullable();
-            $table->string('rollno', 40)->unique();
+
             $table->unsignedInteger('score');
 
             $table->unsignedBigInteger('section_id');
+            $table->string('rollno');
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('status_id')->default(1);
 

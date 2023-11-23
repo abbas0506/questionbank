@@ -22,10 +22,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            LanguageSeeder::class,
             SessionSeeder::class,
             GroupSeeder::class,
+            LevelSeeder::class,
             ClassSeeder::class,
             StatusSeeder::class,
+            BookDomainSeeder::class,
+            BookReturnPolicySeeder::class,
 
         ]);
     }

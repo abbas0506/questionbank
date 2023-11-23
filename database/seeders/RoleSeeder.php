@@ -16,11 +16,12 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'super']);
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'principal']);
-        Role::create(['name' => 'hod']);
         Role::create(['name' => 'incharge']);
         Role::create(['name' => 'teacher']);
         Role::create(['name' => 'accountant']);
-        Role::create(['name' => 'dep']);
+        Role::create(['name' => 'library_incharge']);
+        Role::create(['name' => 'library_assistant']);
         Role::create(['name' => 'student']);
+        Role::create(['name' => 'student_feeder']);
     }
 }

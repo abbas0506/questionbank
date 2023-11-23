@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('incharge_id')->nullable();
+            $table->string('section_label');
             $table->unsignedBigInteger('clas_id');  //
-            $table->unique(['name', 'clas_id']); //disallow same section name within a class
+            $table->unsignedBigInteger('incharge_id')->nullable();
+            $table->year('start_year');
+            $table->year('end_year');
+
             $table->timestamps();
 
+            $table->unique(['clas_id', 'section_label']); //disallow same section name within a class
             $table->foreign('clas_id')->references('id')->on('clas')->onDelete('cascade');
+            $table->foreign('incharge_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -16,44 +16,37 @@ class UserSeeder extends Seeder
         //
         $user = User::create([
             'name' => 'Super',
-            'email' => 'super@sms.com',
+            'email' => 'abbas.sscs@gmail.com',
             'password' => Hash::make('password'),
         ]);
         $user->assignRole('super');
 
         $user = User::create([
             'name' => 'Admin',
-            'email' => 'admin@sms.com',
+            'email' => 'atifzohaibkhan@gmail.com',
             'password' => Hash::make('password'),
         ]);
         $user->assignRole('admin');
 
         $user = User::create([
             'name' => 'Principal',
-            'email' => 'principal@sms.com',
+            'email' => 'ahmadbilalraza@gmail.com',
             'password' => Hash::make('password'),
         ]);
         $user->assignRole('principal');
 
         $user = User::create([
-            'name' => 'Incharge',
-            'email' => 'incharge@sms.com',
+            'name' => 'Library Incharge',
+            'email' => 'library.incharge@ghss.edu.pk',
             'password' => Hash::make('password'),
         ]);
-        $user->assignRole('incharge');
+        $user->assignRole('library_incharge');
 
         $user = User::create([
-            'name' => 'Teacher',
-            'email' => 'teacher@sms.com',
+            'name' => 'Library Assistant',
+            'email' => 'library.assistant@ghss.edu.pk',
             'password' => Hash::make('password'),
         ]);
-        $user->assignRole('teacher');
-
-        $user = User::create([
-            'name' => 'Data Entry Person',
-            'email' => 'dep@sms.com',
-            'password' => Hash::make('password'),
-        ]);
-        $user->assignRole('dep');
+        $user->assignRole('library_assistant');
     }
 }

@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Level extends Model
+class BookReview extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',          //Nine
+        'book_id',
+        'reader_id',
+        'rating',
+        'remarks',
     ];
 }
