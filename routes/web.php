@@ -18,7 +18,10 @@ use App\Http\Controllers\Dep\RaiseObjectionController;
 use App\Http\Controllers\Dep\RecommendationController;
 use App\Http\Controllers\Dep\TodayActivityController;
 use App\Http\Controllers\Dep\UnderProcessController;
+use App\Http\Controllers\library\assistant\BookController;
+use App\Http\Controllers\library\assistant\BookRackController;
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
+use App\Http\Controllers\library\assistant\QRCodeController;
 use App\Http\Controllers\library\incharge\LibrayInchargeController;
 use App\Http\Controllers\StudentController;
 use App\Models\Session;
@@ -102,4 +105,8 @@ Route::group(['prefix' => 'library/incharge', 'as' => 'library.incharge.', 'midd
 
 Route::group(['prefix' => 'library/assistant', 'as' => 'library.assistant.', 'middleware' => ['role:library_assistant']], function () {
     Route::get('/', [LibrayAssistantController::class, 'index']);
+    Route::resource('books', BookController::class)->except('delete');
+    Route::resource('book_racks', BookRackController::class)->only('index', 'show');
+    // Route::resource('qrcodes', QRCodeController::class);
+    Route::get('qrcodes/preview/{rack}', [QRCodeController::class, 'preview'])->name('qrcodes.preview');
 });

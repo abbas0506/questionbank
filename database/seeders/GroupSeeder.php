@@ -20,5 +20,6 @@ class GroupSeeder extends Seeder
         Group::create(['short_name' => 'HMT', 'full_name' => 'Humanities']);
         Group::create(['short_name' => 'Science', 'full_name' => 'Science']);
         Group::create(['short_name' => 'Arts', 'full_name' => 'Arts']);
+        Group::create(['short_name' => 'General', 'full_name' => 'General']);
     }
 }

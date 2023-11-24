@@ -17,7 +17,6 @@ class ClasController extends Controller
     {
         //
         $classes = Clas::query()->active()->get();
-        $session = Session::find(session('session_id'));
         return view('admin.classes.index', compact('session', 'classes'));
     }
 

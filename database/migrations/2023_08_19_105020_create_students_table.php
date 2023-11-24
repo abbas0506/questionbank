@@ -14,25 +14,21 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->string('father', 50)->nullable();
-            $table->string('cnic', 15)->nullable()->unique();
+            $table->string('father', 50);
+            $table->string('cnic', 15)->unique();
             $table->string('phone', 16)->nullable();
             $table->string('address', 100)->nullable();
-            $table->string('image', 20)->default('default.png');
             $table->date('dob')->nullable();
-            $table->enum('gender', ['M', 'F', 'T'])->default('M');
-            $table->string('regno', 20)->unique()->nullable();
+            $table->boolean('is_enrolled')->default(1);
+            $table->boolean('can_borrow_books')->default(1);
 
-            $table->unsignedInteger('score');
-
-            $table->unsignedBigInteger('section_id');
             $table->string('rollno');
+            $table->string('regno', 20)->nullable();
+            $table->unsignedBigInteger('clas_id');
             $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('status_id')->default(1);
 
-            $table->foreign('section_id')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('clas_id')->references('id')->on('clas')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('status_id')->references('id')->on('statuses')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->string('reference_no', 20);
+            $table->string('reference_no', 20)->nullable();
             $table->string('introduction', 200)->nullable();
             $table->string('author', 50);
             $table->string('publisher', 50)->nullable();
             $table->unsignedSmallInteger('publish_year')->nullable();
-            $table->unsignedSmallInteger('num_of_pages')->default(1);
             $table->unsignedSmallInteger('num_of_copies')->default(1);
             $table->unsignedSmallInteger('price');
 

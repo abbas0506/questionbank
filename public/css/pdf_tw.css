@@ -39,11 +39,12 @@ table {
 thead,
 tbody,
 td {
+    text-align: center;
     border-width: thin !important;
 }
 
-tr th.border,
-tr td.border {
+tr.border th,
+tr.border td {
     border: solid thin #333;
 }
 

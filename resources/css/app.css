@@ -43,7 +43,7 @@
         @apply leading-relaxed;
     }
     label {
-        @apply text-sm text-slate-800;
+        @apply text-xs text-slate-600;
     }
 }
 

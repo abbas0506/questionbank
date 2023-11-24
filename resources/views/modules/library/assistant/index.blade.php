@@ -18,6 +18,15 @@
 
     <!-- pallets -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+        <a href="{{route('library.assistant.books.index')}}" class="pallet-box">
+            <div class="flex-1 ">
+                <div class="title">Search a Book</div>
+                <div class="h2">%</div>
+            </div>
+            <div class="ico bg-teal-100">
+                <i class="bi bi-search text-teal-600"></i>
+            </div>
+        </a>
         <a href="" class="pallet-box">
             <div class="flex-1 ">
                 <div class="title">Issued</div>
@@ -34,15 +43,6 @@
             </div>
             <div class="ico bg-green-100">
                 <i class="bi bi-journal-check text-green-600"></i>
-            </div>
-        </a>
-        <a href="" class="pallet-box">
-            <div class="flex-1 ">
-                <div class="title">Missing Books</div>
-                <div class="h2">%</div>
-            </div>
-            <div class="ico bg-teal-100">
-                <i class="bi bi-journal-x text-teal-600"></i>
             </div>
         </a>
         <a href="" class="pallet-box">

@@ -12,22 +12,18 @@ class Student extends Model
         'name',
         'father',
         'cnic',
-        'phone',
-        'email',
-        'password',
-        'address',
         'dob',
-        'gender',
-        'image',
+        'password',
+        'phone',
+        'address',
         'group_id',
-        'score',
+        'is_enrolled',
+        'can_borrow_books',
 
         //school tag
-        'admno',
-        'section_id',
-        'regno',
+        'clas_id',
         'rollno',
-        'status_id',
+        'regno',
 
         //bise tag will be in separate model
     ];

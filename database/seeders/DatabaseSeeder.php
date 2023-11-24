@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
             LevelSeeder::class,
             GroupSeeder::class,
             ClassSeeder::class,
-            StatusSeeder::class,
             BookDomainSeeder::class,
             BookReturnPolicySeeder::class,
             BookRackSeeder::class,
