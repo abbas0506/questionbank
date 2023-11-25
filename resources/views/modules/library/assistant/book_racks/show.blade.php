@@ -11,14 +11,16 @@
     </div>
 
     <div class="mt-8">
-        <div class="flex items-center flex-wrap justify-between mt-8">
+        <div class="flex items-center no-wrap justify-between w-full mt-8">
             <!-- search -->
-            <div class="flex relative w-full md:w-1/3">
+            <div class="flex relative md:w-1/3">
                 <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
                 <i class="bx bx-search absolute top-2 right-2"></i>
             </div>
-
-            <!-- <a href="" class="btn-teal rounded">Create New</a> -->
+            <div class="flex flex-col justify-center items-center">
+                <a href="{{route('library.assistant.qrcodes.preview',$book_rack)}}" target="_blank"><i class="bi bi-qr-code"></i></a>
+                <label for="">Print QRCode</label>
+            </div>
         </div>
         <!-- page message -->
         @if($errors->any())
@@ -28,7 +30,7 @@
         @endif
 
         @php $sr=1; @endphp
-        <table class="table-auto w-full mt-8">
+        <table class="table-auto w-full mt-4">
             <thead>
                 <tr class="border-b border-slate-200">
                     <th>Sr</th>

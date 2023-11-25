@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Status;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\TeacherImport;
+use Exception;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +16,7 @@ class StatusController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -35,7 +38,7 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Status $status)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +46,7 @@ class StatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Status $status)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +54,7 @@ class StatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Status $status)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,8 +62,21 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Status $status)
+    public function destroy(string $id)
     {
         //
+    }
+    public function import()
+    {
+        return view('admin.teachers.import');
+    }
+    public function postImport(Request $request)
+    {
+        try {
+            Excel::import(new TeacherImport, $request->file('file'));
+            return redirect()->route('admin.teachers.import')->with('success', 'Teachers imported successfully');
+        } catch (Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
     }
 }

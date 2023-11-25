@@ -12,8 +12,7 @@ class BookRackController extends Controller
     public function index()
     {
         //
-        $book_racks = BookRack::all();
-        return view('modules.library.assistant.book_racks.index', compact('book_racks'));
+
     }
     /**
      * Display a listing of the resource.

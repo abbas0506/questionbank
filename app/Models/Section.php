@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'label',    //section label A, B, C
-        'clas_id',
-        'incharge_id',
-        'induction_year',
-    ];
+    protected $fillable = [];
 
     public function students()
     {

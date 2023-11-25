@@ -2,13 +2,13 @@
 @section('page-content')
 
 <div class="container">
-    <h1>Class</h1>
+    <h1>{{$clas->roman()}}</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
         <div>/</div>
-        <div>Classes</div>
+        <div>{{$clas->roman()}}</div>
         <div>/</div>
-        <div>All</div>
+        <div>Students</div>
     </div>
 
     <!-- search -->
@@ -17,7 +17,7 @@
             <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
             <i class="bx bx-search absolute top-2 right-2"></i>
         </div>
-
+        <a href="{{url('admin/students/import',$clas)}}" class="text-sm p-2 border hover:bg-teal-50">Import from Excel <i class="bi bi-file-earmark-excel text-teal-600"></i></a>
     </div>
 
     <!-- page message -->
@@ -32,19 +32,19 @@
         <table class="table-auto w-full">
             <thead>
                 <tr>
-                    <th>Class</th>
-                    <th>Strength</th>
-                    <th>Import</th>
+                    <th>Roll No</th>
+                    <th>Name</th>
+                    <th>Father</th>
+                    <th>BForm</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($classes as $clas)
+                @foreach($clas->students as $student)
                 <tr class="text-sm">
-                    <td>
-                        <a href="{{route('admin.classes.show',$clas)}}" class="link">{{$clas->roman()}}</a>
-                    </td>
-                    <td>{{$clas->students->count()}}</td>
-                    <td><a href="{{route('admin.classes.show',$clas)}}" class="link"><i class="bi bi-file-earmark-excel text-teal-600"></i></a></td>
+                    <td>{{$student->roll_no}}</td>
+                    <td>{{$student->name}}</td>
+                    <td>{{$student->father}}</td>
+                    <td>{{$student->bform}}</td>
                 </tr>
                 @endforeach
             </tbody>

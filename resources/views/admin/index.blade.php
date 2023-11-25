@@ -74,31 +74,7 @@
         <!-- middle panel end -->
         <!-- right side bar starts -->
         <div class="">
-            <div class="bg-sky-100 p-4">
-                <div class="flex items-center space-x-2">
-                    <i class="bi-gear text-lg"></i>
-                    <h2>Config for Once</h2>
-                </div>
-                <div class="divider mt-4 border-sky-200"></div>
-                <div class="flex items-center justify-between mt-2 text-sm">
-                    <div class="flex items-center">
-                        <i class="bi bi-award w-8"></i>
-                        <a href="{{route('admin.sessions.index')}}" class="link">Sessions</a>
-                    </div>
-                    <div>{{ $sessions->count()}}</div>
-                </div>
-                <div class="flex items-center justify-between mt-2 text-sm">
-                    <div class="flex items-center">
-                        <i class="bi-book w-8"></i>
-                        <a href="{{route('admin.groups.index')}}" class="link">Groups</a>
-                    </div>
-                    <div>{{ $groups->count() }}</div>
-                </div>
-
-
-            </div>
-
-            <div class="mt-4 bg-white p-4">
+            <div class="bg-white p-4">
                 <h2>Profile</h2>
                 <div class="flex flex-col">
                     <div class="flex text-sm mt-4">

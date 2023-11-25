@@ -10,38 +10,36 @@ class Clas extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'english_name',          //Nine
-        'roman_name',            //IX
-        'positional_name',       //9th
-        'level_id',
+        'grade_id',
+        'section_label',    //section label A, B, C
+        'induction_year',
+        'incharge_id',
     ];
 
 
-    public function session()
+    public function grade()
     {
-        return $this->belongsTo(Session::class);
+        return $this->belongsTo(Grade::class);
     }
 
-    public function title()
+    public function incharge()
     {
-        if ($this->session_id == session('session_id')) return "Part I";
-        if ($this->session_id == session('session_id') - 1) return "Part II";
-    }
-    public function sections()
-    {
-        return $this->hasMany(Section::class);
+        return $this->belongsTo(User::class, 'incharge_id');
     }
 
-    public function strength()
+    public function students()
     {
-        return $this->sections->sum(function ($query) {
-            return $query->students->count();
-        });
+        return $this->hasMany(Student::class);
     }
 
+    public function roman()
+    {
+        return $this->grade->roman_name . "-" . $this->section_label;
+    }
     public function scopeActive($query)
     {
-        return $query->where('session_id', '=', session('session_id'))
-            ->orWhere('session_id', '=', session('session_id') - 1);
+        $duration = ($this->grade_no < 9 ? 3 : 2);
+
+        return $query->where('induction_year', '>=', date('y') - $duration);
     }
 }

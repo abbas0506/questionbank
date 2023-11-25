@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class GradeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view('admin.index');
+        $grades = Grade::all();
+        return view('admin.grades.index', compact('grades'));
     }
 }

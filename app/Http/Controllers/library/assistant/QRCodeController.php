@@ -5,11 +5,20 @@ namespace App\Http\Controllers\library\assistant;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BookRack;
+use App\Models\Clas;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class QRCodeController extends Controller
 {
+
+    public function index()
+    {
+        $book_racks = BookRack::all();
+        $classes = Clas::all();
+        return view('modules.library.assistant.qrcodes.index', compact('book_racks', 'classes'));
+    }
     /**
      * Display a listing of the resource.
      */

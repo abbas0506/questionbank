@@ -50,7 +50,7 @@ $roman = config('global.romans');
                 <table class="w-full">
                     <tbody>
                         <tr>
-                            <td class="text-center text-xl font-bold">QR Codes for Library Books </td>
+                            <td class="text-center text-xl font-bold">QR Codes - {{$book_rack->label}} </td>
                         </tr>
                         <tr>
                             <td class="text-center text-sm">Govt. Higher Secondary School Chak Bedi, Pakpattan</td>

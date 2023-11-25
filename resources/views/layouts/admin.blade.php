@@ -1,7 +1,7 @@
 @extends('layouts.basic')
 
 @section('header')
-<x-header></x-header>
+<x-admin.header></x-admin.header>
 @endsection
 
 @section('sidebar')
@@ -16,14 +16,8 @@
 </div>
 
 <script type="module">
-    $('#toggle-current-user-dropdown').click(function() {
-        $("#current-user-dropdown").toggle();
-    });
     $('#menu').click(function() {
         $("#sidebar").toggle();
-    });
-    $('#cboSemesterId').change(function() {
-        $('#switchSemesterForm').submit();
     });
 </script>
 @endsection

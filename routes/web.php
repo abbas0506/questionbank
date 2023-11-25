@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ClasController;
-use App\Http\Controllers\Admin\GroupController;
-use App\Http\Controllers\Admin\SectionController;
-use App\Http\Controllers\Admin\SessionController;
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\ClassController;
+use App\Http\Controllers\admin\GradeController;
+use App\Http\Controllers\admin\StudentController;
+use App\Http\Controllers\admin\TeacherController;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Dep\ApplicationController;
 use App\Http\Controllers\Dep\DepController;
@@ -23,8 +24,7 @@ use App\Http\Controllers\library\assistant\BookRackController;
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
 use App\Http\Controllers\library\assistant\QRCodeController;
 use App\Http\Controllers\library\incharge\LibrayInchargeController;
-use App\Http\Controllers\StudentController;
-use App\Models\Session;
+
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -64,16 +64,19 @@ Route::get('signout', [AuthController::class, 'signout'])->name('signout');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admin']], function () {
     Route::get('/', [AdminController::class, 'index']);
+    Route::resource('grades', GradeController::class)->only('index');
+    Route::resource('classes', ClassController::class);
+
+    Route::get('teachers/import', [TeacherController::class, 'import']);
+    Route::post('teachers/import', [TeacherController::class, 'postImport']);
+
+    Route::get('students/import/{clas}', [StudentController::class, 'import']);
+    Route::post('students/import', [StudentController::class, 'postImport']);
+
     Route::view('change/password', 'admin.change_password');
     Route::post('change/password', [AuthController::class, 'changePassword'])->name('change.password');
-    Route::resource('sessions', SessionController::class);
-    Route::resource('sessions', SessionController::class);
+
     Route::resource('groups', GroupController::class);
-    Route::resource('classes', ClasController::class);
-    Route::resource('sections', SectionController::class);
-    Route::get('students/import/{section}', [StudentController::class, 'import']);
-    Route::post('students/import', [StudentController::class, 'importStudents']);
-    Route::get('sections/print/{section}', [SectionController::class, 'print']);
 });
 
 Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], function () {
@@ -106,7 +109,7 @@ Route::group(['prefix' => 'library/incharge', 'as' => 'library.incharge.', 'midd
 Route::group(['prefix' => 'library/assistant', 'as' => 'library.assistant.', 'middleware' => ['role:library_assistant']], function () {
     Route::get('/', [LibrayAssistantController::class, 'index']);
     Route::resource('books', BookController::class)->except('delete');
-    Route::resource('book_racks', BookRackController::class)->only('index', 'show');
-    // Route::resource('qrcodes', QRCodeController::class);
+    Route::resource('book_racks', BookRackController::class)->only('show');
+    Route::get('qrcodes', [QRCodeController::class, 'index'])->name('qrcodes.index');
     Route::get('qrcodes/preview/{rack}', [QRCodeController::class, 'preview'])->name('qrcodes.preview');
 });

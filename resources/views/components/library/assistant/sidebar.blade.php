@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('library.assistant.book_racks.index')}}" class="flex items-center p-2">
+                <a href="{{route('library.assistant.qrcodes.index')}}" class="flex items-center p-2">
                     <i class="bi bi-qr-code"></i>
                     <span class="ml-3">Print QRCodes</span>
                 </a>

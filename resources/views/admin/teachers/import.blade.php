@@ -3,7 +3,7 @@
 
 
 <div class="container">
-    <h2>Import Students to {{ $clas->roman() }}</h2>
+    <h2>Import Teachers</h2>
     <div class="bread-crumb">
         <a href="{{url('admin')}}">Cancel & Go Back</a>
     </div>
@@ -29,10 +29,11 @@
                 <table class="table-auto w-full">
                     <thead>
                         <tr class="text-sm">
-                            <th>rollno</th>
                             <th>name</th>
-                            <th>father</th>
+                            <th>personal</th>
                             <th>cnic</th>
+                            <th>phone</th>
+                            <th>email</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,9 +42,10 @@
                             <td></td>
                             <td></td>
                             <td></td>
-
+                            <td></td>
                         </tr>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -56,7 +58,7 @@
             </div>
         </div>
 
-        <form action="{{url('admin/students/import')}}" method="POST" enctype="multipart/form-data" class="flex flex-col w-full">
+        <form action="{{url('admin/teachers/import')}}" method="POST" enctype="multipart/form-data" class="flex flex-col w-full">
             @csrf
 
             <div class="flex flex-col border rounded-sm bg-gray-100 p-3">
