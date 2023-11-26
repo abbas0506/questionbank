@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            // $table->string('user_id', 20);
             $table->string('name', 50);
             $table->string('father', 50);
             $table->string('cnic', 15)->unique();
             $table->string('phone', 16)->nullable();
             $table->string('address', 100)->nullable();
             $table->date('dob')->nullable();
-            $table->boolean('is_enrolled')->default(1);
+            $table->boolean('active')->default(1);
             $table->boolean('can_borrow_books')->default(1);
 
             $table->string('rollno');

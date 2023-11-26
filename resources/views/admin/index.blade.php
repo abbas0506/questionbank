@@ -4,7 +4,7 @@
     <!--welcome  -->
     <div class="flex items-center">
         <div class="flex-1">
-            <h2>Welcome {{ Auth::user()->name }}!</h2>
+            <h2>Welcome {{ Auth::user()->userable->name }}!</h2>
             <div class="bread-crumb">
                 <div>Admin</div>
                 <div>/</div>
@@ -79,15 +79,15 @@
                 <div class="flex flex-col">
                     <div class="flex text-sm mt-4">
                         <div class="w-8"><i class="bi-person"></i></div>
-                        <div>{{ Auth::user()->name }}</div>
+                        <div>{{ Auth::user()->userable->name }}</div>
                     </div>
                     <div class="flex text-sm mt-2">
                         <div class="w-8"><i class="bi-envelope-at"></i></div>
-                        <div>{{ Auth::user()->email }}</div>
+                        <div>{{ Auth::user()->userable->email }}</div>
                     </div>
                     <div class="flex text-sm mt-2">
                         <div class="w-8"><i class="bi-phone"></i></div>
-                        <div>{{ Auth::user()->phone }}</div>
+                        <div>{{ Auth::user()->userable->phone }}</div>
                     </div>
                     <div class="divider border-blue-200 mt-4"></div>
                     <div class="flex text-sm mt-4">

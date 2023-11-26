@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->unique(['grade_id', 'section_label']); //disallow same section name within a class
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
-            $table->foreign('incharge_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('incharge_id')->references('id')->on('teachers')->onDelete('cascade');
         });
     }
 

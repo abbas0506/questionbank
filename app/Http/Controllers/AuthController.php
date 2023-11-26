@@ -40,7 +40,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'user_id' => 'required',
+            'login_id' => 'required',
             'password' => 'required',
 
         ]);

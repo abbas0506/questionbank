@@ -3,7 +3,9 @@
 namespace App\Imports;
 
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -16,7 +18,7 @@ class StudentImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            Student::create([
+            $student = Student::create([
                 'rollno' => $row['rollno'],
                 'name' => $row['name'],
                 'father' => $row['father'],
@@ -24,6 +26,14 @@ class StudentImport implements ToCollection, WithHeadingRow
                 'clas_id' => session('clas_id'),
                 'group_id' => 2,
             ]);
+
+            $user = User::create([
+                'login_id' => $student->cnic,
+                'password' => Hash::make('password'),
+                'userable_id' => $student->id,
+                'userable_type' => 'App\Models\Student',
+            ]);
+            $user->assignRole('student');
         }
     }
 }

@@ -19,10 +19,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', //will be removed
-        'user_id',
+        // 'user_id',
+        'login_id',
         'password',
-        'user_type',
+        'userable_id',
+        'userable_type',
     ];
 
     /**
@@ -45,12 +46,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function teacherProfile()
+    // public function profile()
+    // {
+    //     if ($this->user_type == 'teacher')
+    //         return $this->hasOne(Teacher::class, 'user_id', 'id');
+    //     else
+    //         return $this->hasOne(Student::class, 'user_id', 'id');
+    // }
+
+    public function userable()
     {
-        return $this->hasOne(Teacher::class);
-    }
-    public function studentProfile()
-    {
-        return $this->hasOne(Student::class);
+        return $this->morphTo();
     }
 }

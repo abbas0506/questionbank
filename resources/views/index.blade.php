@@ -24,7 +24,8 @@
                     <div class="flex items-center w-full relative">
                         <i class="bi bi-person absolute left-2 text-slate-600"></i>
                         <!-- <input type="text" id="email" name="email" class="w-full custom-input px-8" placeholder="Type your email here"> -->
-                        <input type="text" id="user_id" name="user_id" class="w-full custom-input px-8" placeholder="Login id">
+                        <!-- <input type="text" id="user_id" name="user_id" class="w-full custom-input px-8" placeholder="Login id"> -->
+                        <input type="text" id="login_id" name="login_id" class="w-full custom-input px-8" placeholder="Login id">
                     </div>
                     <div class="flex items-center w-full mt-3 relative">
                         <i class="bi bi-key absolute left-2 text-slate-600 -rotate-[45deg]"></i>

@@ -18,7 +18,7 @@
             <div class="text-center">
                 <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>
             </div>
-            <h1 class="text-center text-slate-800 mt-8">Welcome {{Auth::user()->name}}</h1>
+            <h1 class="text-center text-slate-800 mt-8">Welcome {{Auth::user()->userable->name}}</h1>
 
             <form action="{{route('login.as')}}" method='post' class="w-full mt-8" onsubmit="return validate(event)">
                 @csrf

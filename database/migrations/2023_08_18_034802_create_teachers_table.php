@@ -23,11 +23,11 @@ return new class extends Migration
             $table->string('designation', 20)->nullable();
             $table->date('join_date')->nullable();
             $table->string('personal_no', 10)->unique();
-            $table->boolean('is_active')->default(1);
+            $table->boolean('active')->default(1);
 
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

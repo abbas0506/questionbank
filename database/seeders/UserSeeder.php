@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -14,16 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        $user = User::create([
-            'name' => 'Muhammad Abbas',
-            'user_id' => '3530119663433',
-            'password' => Hash::make('password'),
-            'user_type' => 'teacher',
-        ]);
-
-        Teacher::create([
-            'user_id' => $user->id,
+        //admin
+        $teacher = Teacher::create([
             'name' => "Muhammad Abbas",
             'father' => "Muhammad Yousaf",
             'cnic' => "3530119663433",
@@ -32,17 +25,19 @@ class UserSeeder extends Seeder
             'designation' => 'SS(CS)',
             'personal_no' => "31282674",
         ]);
+
+        $user = User::create([
+            'login_id' => $teacher->cnic,
+            'password' => Hash::make('password'),
+            'userable_id' => $teacher->id,
+            'userable_type' => 'App\Models\Teacher',
+        ]);
+
         $user->assignRole('admin');
         $user->assignRole('teacher');
 
-        $user = User::create([
-            'name' => 'Abdul Majeed',
-            'user_id' => '3530119663434',
-            'password' => Hash::make('password'),
-            'user_type' => 'teacher',
-        ]);
-        Teacher::create([
-            'user_id' => $user->id,
+        // principal
+        $teacher = Teacher::create([
             'name' => "Abdul Majeed",
             'father' => "Muhammad Yousaf",
             'cnic' => "3530119663434",
@@ -51,18 +46,17 @@ class UserSeeder extends Seeder
             'designation' => 'SS(Eco)',
             'personal_no' => "31282675",
         ]);
+        $user = User::create([
+            'login_id' => $teacher->cnic,
+            'password' => Hash::make('password'),
+            'userable_id' => $teacher->id,
+            'userable_type' => 'App\Models\Teacher',
+        ]);
         $user->assignRole('principal');
         $user->assignRole('teacher');
 
-        $user = User::create([
-            'name' => 'Muhammad Ittefaq',
-            'user_id' => '3530119663435',
-            'password' => Hash::make('password'),
-            'user_type' => 'teacher',
-        ]);
-
-        Teacher::create([
-            'user_id' => $user->id,
+        // lab incharge
+        $teacher = Teacher::create([
             'name' => 'Muhammad Ittefaq',
             'father' => "Muhammad Yousaf",
             'cnic' => "3530119663436",
@@ -71,15 +65,31 @@ class UserSeeder extends Seeder
             'designation' => 'EST',
             'personal_no' => "31282676",
         ]);
+        $user = User::create([
+            'login_id' => $teacher->cnic,
+            'password' => Hash::make('password'),
+            'userable_id' => $teacher->id,
+            'userable_type' => 'App\Models\Teacher',
+        ]);
         $user->assignRole('library_incharge');
 
-        $user = User::create([
-            'name' => 'Library Assistant',
-            'user_id' => '3530119663436',
-            'password' => Hash::make('password'),
-            'user_type' => 'teacher',
-        ]);
+        // lab assistant
+        $student = Student::create([
+            'name' => 'Muzammail Hussain',
+            'father' => "Munawar Hussain",
+            'cnic' => "3530119663437",
+            'phone' => "03000373006",
+            'clas_id' => 6,
+            'rollno' => 13,
+            'group_id' => 3,
 
+        ]);
+        $user = User::create([
+            'login_id' => $student->cnic,
+            'password' => Hash::make('password'),
+            'userable_id' => $student->id,
+            'userable_type' => 'App\Models\Student',
+        ]);
         $user->assignRole('library_assistant');
     }
 }

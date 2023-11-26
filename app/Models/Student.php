@@ -9,20 +9,20 @@ class Student extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'name',
         'father',
         'dob',
         'cnic',
         'phone',
         'address',
-        'group_id',
-        'is_enrolled',
+        'active',
         'can_borrow_books',
 
         //school tag
         'clas_id',
         'rollno',
+        'group_id',
         'regno',
 
         //bise tag will be in separate model
@@ -30,8 +30,9 @@ class Student extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        $this->morphOne(User::class, 'userable');
     }
+
     public function clas()
     {
         return $this->belongsTo(Clas::class);

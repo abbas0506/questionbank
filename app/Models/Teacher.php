@@ -9,7 +9,6 @@ class Teacher extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
         'name',
         'father',
         'dob',
@@ -26,6 +25,6 @@ class Teacher extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        $this->morphOne(User::class, 'userable');
     }
 }

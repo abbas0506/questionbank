@@ -17,15 +17,8 @@ class TeacherImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            $user = User::create([
-                'name' => $row['name'],
-                'user_id' => $row['cnic'],
-                'password' => Hash::make('password'),
-                'user_type' => 'teacher',
-            ]);
 
-            Teacher::create([
-                'user_id' => $user->id,
+            $teacher = Teacher::create([
                 'name' => $row['name'],
                 'father' => $row['father'],
                 'cnic' => $row['cnic'],
@@ -34,6 +27,13 @@ class TeacherImport implements ToCollection, WithHeadingRow
                 'designation' => $row['designation'],
                 'personal_no' => $row['personal'],
             ]);
+            $user = User::create([
+                'login_id' => $teacher->cnic,
+                'password' => Hash::make('password'),
+                'userable_id' => $teacher->id,
+                'userable_type' => 'App\Models\Teacher',
+            ]);
+
             $user->assignRole('teacher');
         }
     }
