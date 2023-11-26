@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <form action="{{url('admin/teachers/import')}}" method="POST" enctype="multipart/form-data" class="flex flex-col w-full">
+        <form action="{{route('admin.teachers.import.post')}}" method="POST" enctype="multipart/form-data" class="flex flex-col w-full">
             @csrf
 
             <div class="flex flex-col border rounded-sm bg-gray-100 p-3">

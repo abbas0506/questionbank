@@ -4,11 +4,11 @@
 <div class="container">
     <h1>{{$clas->roman()}}</h1>
     <div class="bread-crumb">
-        <a href="/">Home</a>
+        <a href="{{url('admin')}}">Home</a>
+        <div>/</div>
+        <a href="{{route('admin.classes.index')}}">Classes</a>
         <div>/</div>
         <div>{{$clas->roman()}}</div>
-        <div>/</div>
-        <div>Students</div>
     </div>
 
     <!-- search -->
@@ -40,11 +40,15 @@
             </thead>
             <tbody>
                 @foreach($clas->students as $student)
-                <tr class="text-sm">
-                    <td>{{$student->roll_no}}</td>
+                <tr class="tr text-sm">
+                    <td>
+                        <a href="{{route('admin.students.show', $student)}}" class="link">
+                            {{$student->rollno}}
+                        </a>
+                    </td>
                     <td>{{$student->name}}</td>
                     <td>{{$student->father}}</td>
-                    <td>{{$student->bform}}</td>
+                    <td>{{$student->cnic}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -79,7 +83,8 @@
         var str = 0;
         $('.tr').each(function() {
             if (!(
-                    $(this).children().eq(0).prop('outerText').toLowerCase().includes(searchtext)
+                    $(this).children().eq(0).prop('outerText').toLowerCase().includes(searchtext) ||
+                    $(this).children().eq(1).prop('outerText').toLowerCase().includes(searchtext)
                 )) {
                 $(this).addClass('hidden');
             } else {

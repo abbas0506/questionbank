@@ -11,15 +11,6 @@
         <div>All</div>
     </div>
 
-    <!-- search -->
-    <div class="flex items-center justify-between mt-12">
-        <div class="flex relative w-full md:w-1/3">
-            <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
-            <i class="bx bx-search absolute top-2 right-2"></i>
-        </div>
-
-    </div>
-
     <!-- page message -->
     @if($errors->any())
     <x-message :errors='$errors'></x-message>
@@ -27,7 +18,7 @@
     <x-message></x-message>
     @endif
 
-    <div class="overflow-x-auto w-full mt-8">
+    <div class="overflow-x-auto w-full mt-12">
 
         <table class="table-auto w-full">
             <thead>

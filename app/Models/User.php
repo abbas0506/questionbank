@@ -19,9 +19,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'name', //will be removed
+        'user_id',
         'password',
+        'user_type',
     ];
 
     /**
@@ -40,7 +41,16 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function teacherProfile()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+    public function studentProfile()
+    {
+        return $this->hasOne(Student::class);
+    }
 }

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Imports\StudentImport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\TeacherImport;
 use App\Models\Clas;
+use App\Models\Student;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -43,6 +43,8 @@ class StudentController extends Controller
     public function show(string $id)
     {
         //
+        $student = Student::find($id);
+        return view('admin.students.show', compact('student'));
     }
 
     /**
@@ -68,12 +70,18 @@ class StudentController extends Controller
     {
         //
     }
+    /**
+     * Show the form for data import from excel
+     */
     public function import($id)
     {
         session(['clas_id' => $id]);
         $clas = Clas::find($id);
         return view('admin.students.import', compact('clas'));
     }
+    /**
+     * import data from excel
+     */
     public function postImport(Request $request)
     {
         try {

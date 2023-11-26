@@ -22,18 +22,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{url('admin/teachers/import')}}" class="flex items-center p-2">
+                <a href="{{route('admin.teachers.index')}}" class="flex items-center p-2">
                     <i class="bi-person"></i>
                     <span class="ml-3">Teachers</span>
                 </a>
             </li>
-            <li>
-                <a href="{{url('admin/teachers/excel')}}" class="flex items-center p-2">
-                    <i class="bi-person"></i>
-                    <span class="ml-3">Students</span>
-                </a>
-            </li>
-
             <li>
                 <a href="{{url('students')}}" class="flex items-center p-2">
                     <i class="bi bi-search"></i>

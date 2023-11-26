@@ -9,11 +9,11 @@ class Student extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'name',
         'father',
-        'cnic',
         'dob',
-        'password',
+        'cnic',
         'phone',
         'address',
         'group_id',
@@ -28,6 +28,14 @@ class Student extends Model
         //bise tag will be in separate model
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function clas()
+    {
+        return $this->belongsTo(Clas::class);
+    }
     public function group()
     {
         return $this->belongsTo(Group::class);

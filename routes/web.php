@@ -66,9 +66,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
     Route::get('/', [AdminController::class, 'index']);
     Route::resource('grades', GradeController::class)->only('index');
     Route::resource('classes', ClassController::class);
+    Route::resource('students', StudentController::class);
+    Route::resource('teachers', TeacherController::class);
 
-    Route::get('teachers/import', [TeacherController::class, 'import']);
-    Route::post('teachers/import', [TeacherController::class, 'postImport']);
+    Route::get('more/teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
+    Route::post('more/teachers/import', [TeacherController::class, 'postImport'])->name('teachers.import.post');
 
     Route::get('students/import/{clas}', [StudentController::class, 'import']);
     Route::post('students/import', [StudentController::class, 'postImport']);

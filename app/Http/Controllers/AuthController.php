@@ -40,7 +40,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required',
+            'user_id' => 'required',
             'password' => 'required',
 
         ]);
@@ -52,13 +52,11 @@ class AuthController extends Controller
                 return redirect('library/incharge');
             elseif (Auth::user()->hasRole('library_assistant'))
                 return redirect('library/assistant');
-            elseif (Auth::user()->roles()->count() > 1)
-                return redirect('login/as');
-            else
-                return redirect(Auth::user()->roles()->first()->name);
-        } else {
+            // elseif (Auth::user()->roles()->count() > 1)
+            return redirect('login/as');
+            // } else {
             //user not verified
-            return redirect()->back()->with(['warning' => 'User credentials incorrect !']);
+            // return redirect()->back()->with(['warning' => 'User credentials incorrect !']);
         }
     }
     // login step2

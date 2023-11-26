@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\TeacherImport;
+use App\Models\Teacher;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,8 @@ class TeacherController extends Controller
     public function index()
     {
         //
-
+        $teachers = Teacher::all();
+        return view('admin.teachers.index', compact('teachers'));
     }
 
     /**
@@ -41,6 +44,8 @@ class TeacherController extends Controller
     public function show(string $id)
     {
         //
+        $teacher = Teacher::find($id);
+        return view('admin.teachers.show', compact('teacher'));
     }
 
     /**
@@ -74,7 +79,7 @@ class TeacherController extends Controller
     {
         try {
             Excel::import(new TeacherImport, $request->file('file'));
-            return redirect()->route('admin.teachers.import')->with('success', 'Teachers imported successfully');
+            return redirect()->route('admin.teachers.index')->with('success', 'Teachers imported successfully');
         } catch (Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }
