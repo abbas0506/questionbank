@@ -35,7 +35,7 @@
                 <h2 class="py-2 bg-slate-50 text-center">Classes</h2>
                 <div class="grid grid-cols-4 md:grid-cols-4 gap-2 p-4 text-sm text-center">
                     @foreach($classes as $clas)
-                    <a href="{{route('library.assistant.book_racks.show',$book_rack)}}" class="link">{{$clas->grade->roman_name}}-{{$clas->section_label}}</a>
+                    <a href="{{route('library.assistant.classes.show',$clas)}}" class="link">{{$clas->grade->roman_name}}-{{$clas->section_label}}</a>
                     @endforeach
                 </div>
             </div>
@@ -45,7 +45,10 @@
                 <h2 class="py-2 bg-slate-50 text-center">Teachers</h2>
                 <div class="flex justify-center items-center h-full">
 
-                    <i class="bi bi-qr-code"></i>
+                    <div class="flex flex-col justify-center items-center">
+                        <a href="{{route('library.assistant.qrcodes.teachers.preview')}}" target="_blank"><i class="bi bi-qr-code"></i></a>
+                        <label for="">Print QRCode</label>
+                    </div>
 
                 </div>
             </div>

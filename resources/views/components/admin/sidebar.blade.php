@@ -28,17 +28,12 @@
                 </a>
             </li>
             <li>
-                <a href="{{url('students')}}" class="flex items-center p-2">
+                <a href="" class="flex items-center p-2">
                     <i class="bi bi-search"></i>
                     <span class="ml-3">Search Student</span>
                 </a>
             </li>
-            <li>
-                <a href="#" class="flex items-center p-2">
-                    <i class="bi bi-printer"></i>
-                    <span class="ml-3">Print / Download</span>
-                </a>
-            </li>
+
         </ul>
     </div>
 </aside>

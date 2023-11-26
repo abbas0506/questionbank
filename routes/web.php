@@ -21,6 +21,7 @@ use App\Http\Controllers\Dep\TodayActivityController;
 use App\Http\Controllers\Dep\UnderProcessController;
 use App\Http\Controllers\library\assistant\BookController;
 use App\Http\Controllers\library\assistant\BookRackController;
+use App\Http\Controllers\library\assistant\ClassController as AssistantClassController;
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
 use App\Http\Controllers\library\assistant\QRCodeController;
 use App\Http\Controllers\library\incharge\LibrayInchargeController;
@@ -112,6 +113,11 @@ Route::group(['prefix' => 'library/assistant', 'as' => 'library.assistant.', 'mi
     Route::get('/', [LibrayAssistantController::class, 'index']);
     Route::resource('books', BookController::class)->except('delete');
     Route::resource('book_racks', BookRackController::class)->only('show');
+    Route::resource('classes', AssistantClassController::class)->only('show');
+
     Route::get('qrcodes', [QRCodeController::class, 'index'])->name('qrcodes.index');
-    Route::get('qrcodes/preview/{rack}', [QRCodeController::class, 'preview'])->name('qrcodes.preview');
+
+    Route::get('qrcodes/books/preview/{rack}', [QRCodeController::class, 'previewBooksQR'])->name('qrcodes.books.preview');
+    Route::get('qrcodes/teachers/preview', [QRCodeController::class, 'previewTeachersQR'])->name('qrcodes.teachers.preview');
+    Route::get('qrcodes/students/preview/{clas}', [QRCodeController::class, 'previewStudentsQR'])->name('qrcodes.students.preview');
 });

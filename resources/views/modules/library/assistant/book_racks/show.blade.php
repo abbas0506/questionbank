@@ -18,7 +18,7 @@
                 <i class="bx bx-search absolute top-2 right-2"></i>
             </div>
             <div class="flex flex-col justify-center items-center">
-                <a href="{{route('library.assistant.qrcodes.preview',$book_rack)}}" target="_blank"><i class="bi bi-qr-code"></i></a>
+                <a href="{{route('library.assistant.qrcodes.books.preview',$book_rack)}}" target="_blank"><i class="bi bi-qr-code"></i></a>
                 <label for="">Print QRCode</label>
             </div>
         </div>
