@@ -10,13 +10,13 @@
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center p-2">
+                <a href="{{route('library.assistant.book-issuance.scan')}}" class="flex items-center p-2">
                     <i class="bi-journal-arrow-up"></i>
                     <span class="ml-3">Issue Book</span>
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center p-2">
+                <a href="{{route('library.assistant.book-return.scan')}}" class="flex items-center p-2">
                     <i class="bi bi-hdd-rack"></i>
                     <span class="ml-3">Return Book</span>
                 </a>

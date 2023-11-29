@@ -23,6 +23,10 @@
         @apply border-0;
     }
 
+    table.xs thead tr th,
+    table.xs tbody tr td {
+        @apply text-xs;
+    }
     .tr:nth-child(even) {
         @apply bg-slate-100;
     }

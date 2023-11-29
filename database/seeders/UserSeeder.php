@@ -91,5 +91,44 @@ class UserSeeder extends Seeder
             'userable_type' => 'App\Models\Student',
         ]);
         $user->assignRole('library_assistant');
+        $user->assignRole('student');
+
+        // student
+        $student = Student::create([
+            'name' => 'Adeel Jameel',
+            'father' => "Jameel Hussain",
+            'cnic' => "3530119663438",
+            'phone' => "03000373008",
+            'clas_id' => 6,
+            'rollno' => 14,
+            'group_id' => 3,
+
+        ]);
+        $user = User::create([
+            'login_id' => $student->cnic,
+            'password' => Hash::make('password'),
+            'userable_id' => $student->id,
+            'userable_type' => 'App\Models\Student',
+        ]);
+        $user->assignRole('student');
+
+        // student
+        $student = Student::create([
+            'name' => 'Adeel Mursleen',
+            'father' => "Mursleen Iqbal",
+            'cnic' => "3530119663439",
+            'phone' => "03000373009",
+            'clas_id' => 6,
+            'rollno' => 15,
+            'group_id' => 3,
+
+        ]);
+        $user = User::create([
+            'login_id' => $student->cnic,
+            'password' => Hash::make('password'),
+            'userable_id' => $student->id,
+            'userable_type' => 'App\Models\Student',
+        ]);
+        $user->assignRole('student');
     }
 }

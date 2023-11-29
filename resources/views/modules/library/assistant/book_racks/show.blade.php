@@ -44,8 +44,6 @@
 
                 @foreach($book_rack->books->sortByDesc('updated_at') as $book)
                 <tr class="tr">
-
-                    <!-- <td class="w-12 h-12">{!! DNS2D::getBarcodeHTML($book->reference_no, 'QRCODE',3,3) !!}</td> -->
                     <td>{{$sr++}}</td>
                     <td class="text-left">
                         <a href="{{route('library.assistant.books.show', $book)}}" class="link">{{$book->title}}</a>

@@ -16,13 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('reader_id');
             $table->unsignedSmallInteger('copy_no');
-            $table->date('issue_date');
             $table->date('due_date');
-            $table->date('return_date');
+            $table->date('return_date')->nullable();
             $table->boolean('book_status')->default(1);
 
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->foreign('reader_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('reader_id')->references('id')->on('students')->onDelete('cascade');
             $table->timestamps();
         });
     }

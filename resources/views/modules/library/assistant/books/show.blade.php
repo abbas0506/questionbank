@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="flex justify-center items-center border bg-slate-100 p-4">
-            {!! DNS2D::getBarcodeHTML($book->reference_no, 'QRCODE',4,4) !!}
+            {!! DNS2D::getBarcodeHTML($book->reference(), 'QRCODE',4,4) !!}
         </div>
     </div>
 

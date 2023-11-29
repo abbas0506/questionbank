@@ -41,4 +41,8 @@ class Student extends Model
     {
         return $this->belongsTo(Group::class);
     }
+    public function readings()
+    {
+        return $this->hasMany(BookIssuance::class, 'reader_id');
+    }
 }

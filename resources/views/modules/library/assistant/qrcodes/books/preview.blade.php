@@ -87,20 +87,25 @@ $roman = config('global.romans');
                     @php $copy_sr=''; @endphp
                     @foreach($book_rack->books as $book)
                     @for($copy_sr=1; $copy_sr<=$book->num_of_copies;$copy_sr++)
+
                         <tr class="border text-sm">
-                            <td>{{$i++}}</td>
-                            <td class="text-left pl-3">
-                                {{$book->title}}
-                                <br>
-                                <span class="text-xs text-slate-600">{{$book->author}}</span>
-                                <br>
-                                <span class="text-xs text-slate-600">{{$book->reference()."-".$copy_sr}}</span>
-                            </td>
-                            <td>{{$copy_sr}}</td>
-                            <td>{{$book->rack->label}}</td>
-                            <td class="w-20 p-2">
-                                {!! DNS2D::getBarcodeHTML($book->reference()."-".$copy_sr, 'QRCODE',4,4) !!}
-                            </td>
+                            @php if($copy_sr<10) $copy_sr="0" .$copy_sr; @endphp <td>{{$i++}}</td>
+                                <td class="text-left pl-3">
+                                    {{$book->title}}
+                                    <br>
+                                    <span class="text-xs text-slate-600">{{$book->author}}</span>
+                                    <br>
+                                    <span class="text-xs text-slate-600">{{$book->reference()."-".$copy_sr}}</span>
+                                </td>
+                                <td>{{$copy_sr}}</td>
+                                <td>{{$book->rack->label}}</td>
+                                <td class="w-20 p-2">
+                                    <div class="flex flex-col">
+                                        <div>{!! DNS2D::getBarcodeHTML($book->reference()."-".$copy_sr, 'QRCODE',4,4) !!}</div>
+                                        <label class="text-xs">{{$book->reference()}}-{{$copy_sr}}</label>
+                                    </div>
+
+                                </td>
                         </tr>
                         @endfor
                         @endforeach

@@ -3,10 +3,12 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\ClassController;
 use App\Http\Controllers\admin\GradeController;
+use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\TeacherController;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\library\assistant\BookIssuanceController;
 use App\Http\Controllers\Dep\ApplicationController;
 use App\Http\Controllers\Dep\DepController;
 use App\Http\Controllers\Dep\DocumentController;
@@ -21,6 +23,7 @@ use App\Http\Controllers\Dep\TodayActivityController;
 use App\Http\Controllers\Dep\UnderProcessController;
 use App\Http\Controllers\library\assistant\BookController;
 use App\Http\Controllers\library\assistant\BookRackController;
+use App\Http\Controllers\library\assistant\BookReturnController;
 use App\Http\Controllers\library\assistant\ClassController as AssistantClassController;
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
 use App\Http\Controllers\library\assistant\QRCodeController;
@@ -114,8 +117,17 @@ Route::group(['prefix' => 'library/assistant', 'as' => 'library.assistant.', 'mi
     Route::resource('books', BookController::class)->except('delete');
     Route::resource('book_racks', BookRackController::class)->only('show');
     Route::resource('classes', AssistantClassController::class)->only('show');
-
     Route::get('qrcodes', [QRCodeController::class, 'index'])->name('qrcodes.index');
+
+    Route::get('book-issuance/scan', [BookIssuanceController::class, 'scan'])->name('book-issuance.scan');
+    Route::post('book-issuance/scan', [BookIssuanceController::class, 'postScan'])->name('book-issuance.scan.post');
+    Route::get('book-issuance/confirm', [BookIssuanceController::class, 'confirm'])->name('book-issuance.confirm');
+    Route::post('book-issuance/confirm', [BookIssuanceController::class, 'postConfirm'])->name('book-issuance.confirm.post');
+
+    Route::get('book-return/scan', [BookReturnController::class, 'scan'])->name('book-return.scan');
+    Route::post('book-return/scan', [BookReturnController::class, 'postScan'])->name('book-return.scan.post');
+    Route::get('book-return/confirm', [BookReturnController::class, 'confirm'])->name('book-return.confirm');
+    Route::patch('book-return/confirm/{book_issuance}', [BookReturnController::class, 'postConfirm'])->name('book-return.confirm.post');
 
     Route::get('qrcodes/books/preview/{rack}', [QRCodeController::class, 'previewBooksQR'])->name('qrcodes.books.preview');
     Route::get('qrcodes/teachers/preview', [QRCodeController::class, 'previewTeachersQR'])->name('qrcodes.teachers.preview');

@@ -33,6 +33,7 @@
                 <tr class="border-b border-slate-200">
                     <th>Sr</th>
                     <th>Title/Author</th>
+                    <th>Ref.</th>
                     <th>Domain</th>
                     <th>Published</th>
                     <th>Copies</th>
@@ -43,13 +44,13 @@
                 @foreach($books->sortByDesc('updated_at') as $book)
                 <tr class="tr">
 
-                    <!-- <td class="w-12 h-12">{!! DNS2D::getBarcodeHTML($book->reference_no, 'QRCODE',3,3) !!}</td> -->
                     <td>{{$sr++}}</td>
                     <td class="text-left">
                         <a href="{{route('library.assistant.books.show', $book)}}" class="link">{{$book->title}}</a>
                         <br>
                         <span class="text-xs text-slate-600">{{$book->author}}</span>
                     </td>
+                    <td>{{$book->reference()}}</td>
                     <td>{{$book->domain->name}}</td>
                     <td>{{$book->publish_year}}</td>
                     <td>{{$book->num_of_copies}}</td>
