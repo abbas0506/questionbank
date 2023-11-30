@@ -102,7 +102,7 @@ class UserSeeder extends Seeder
             'father' => "Muhammad Munawar",
             'cnic' => "3640200000000",
             'phone' => "03000000000",
-            'clas_id' => 22, //XI-A
+            'clas_id' => 18, //XI-A
             'rollno' => 13,
             'group_id' => 3,
 
