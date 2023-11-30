@@ -33,7 +33,7 @@
             <!-- classes -->
             <div class="border rounded border-dashed shadow-lg">
                 <h2 class="py-2 bg-slate-50 text-center">Classes</h2>
-                <div class="grid grid-cols-4 md:grid-cols-4 gap-2 p-4 text-sm text-center">
+                <div class="grid grid-cols-3 md:grid-cols-3 gap-2 p-4 text-sm text-center">
                     @foreach($classes as $clas)
                     <a href="{{route('library.assistant.classes.show',$clas)}}" class="link">{{$clas->grade->roman_name}}-{{$clas->section_label}}</a>
                     @endforeach
