@@ -79,8 +79,7 @@ $roman = config('global.romans');
                         <th>Sr</th>
                         <th>Teacher</th>
                         <th>Designation</th>
-                        <th>Personal #</th>
-                        <th>QRCode</th>
+                        <th>Bar Code</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,9 +93,11 @@ $roman = config('global.romans');
                             <span class="text-xs text-slate-600">{{$teacher->cnic}}</span>
                         </td>
                         <td>{{ $teacher->designation }} </td>
-                        <td>{{ $teacher->personal_no }} </td>
                         <td class="w-20 p-2">
-                            {!! DNS2D::getBarcodeHTML($teacher->cnic, 'QRCODE',4,4) !!}
+                            <div class="flex flex-col">
+                                <div>{!! DNS1D::getBarcodeHTML($teacher->cnic, 'C39',0.6,32) !!}</div>
+                                <label class="text-xs">{{$teacher->cnic}}</label>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
