@@ -101,8 +101,8 @@ $roman = config('global.romans');
                                 <td>{{$book->rack->label}}</td>
                                 <td class="w-20 p-2">
                                     <div class="flex flex-col">
-                                        <!-- <div>{!! DNS2D::getBarcodeHTML($book->reference()."-".$copy_sr, 'QRCODE',4,4) !!}</div> -->
-                                        <div>{!! DNS1D::getBarcodeHTML($book->reference()."-".$copy_sr, 'C39',0.6,40) !!}</div>
+                                        <div>{!! DNS2D::getBarcodeHTML($book->reference()."-".$copy_sr, 'QRCODE',4,4) !!}</div>
+                                        <!-- <div>{!! DNS1D::getBarcodeHTML($book->reference()."-".$copy_sr, 'C39',0.6,40) !!}</div> -->
                                         <label class="text-xs">{{$book->reference()}}-{{$copy_sr}}</label>
                                     </div>
 
