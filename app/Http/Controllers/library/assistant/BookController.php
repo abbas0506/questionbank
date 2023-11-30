@@ -56,7 +56,6 @@ class BookController extends Controller
         DB::beginTransaction();
         try {
             $book = Book::create($request->all());
-            $book->reference_no = $book->reference();
             $book->update();
             Db::commit();
             return redirect()->back()->with('success', 'Successfully added');
