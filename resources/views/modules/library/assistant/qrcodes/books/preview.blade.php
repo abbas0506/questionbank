@@ -59,7 +59,6 @@ $roman = config('global.romans');
                 </table>
             </div>
 
-
             <!-- table header -->
             <div class="mt-8">
                 <table class="w-full">
@@ -113,18 +112,6 @@ $roman = config('global.romans');
                 </tbody>
             </table>
     </main>
-
-    <footer class="footer">
-        <div class="mt-8">
-            <table class="w-full">
-                <tbody>
-                    <tr class="text-xs">
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </footer>
 
     <script type="text/php">
         if (isset($pdf) ) {
