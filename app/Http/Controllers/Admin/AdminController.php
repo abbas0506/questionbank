@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,6 +15,8 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view('admin.index');
+        $teachers = Teacher::all();
+        $students = Student::all();
+        return view('admin.index', compact('students', 'teachers'));
     }
 }

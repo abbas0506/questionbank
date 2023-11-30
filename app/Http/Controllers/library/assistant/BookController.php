@@ -53,14 +53,17 @@ class BookController extends Controller
             'book_rack_id' => 'required',
             'language_id' => 'required',
         ]);
-        DB::beginTransaction();
         try {
             $book = Book::create($request->all());
-            $book->update();
-            Db::commit();
-            return redirect()->back()->with('success', 'Successfully added');
+            return redirect()->back()->with(
+                [
+                    'success' => 'Successfully added',
+                    'recent_language_id' => $book->language_id,
+                    'recent_domain_id' => $book->book_domain_id,
+                    'recent_rack_id' => $book->book_rack_id,
+                ]
+            );
         } catch (Exception $e) {
-            DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
         }

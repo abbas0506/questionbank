@@ -19,16 +19,16 @@
         <a href="{{url('students')}}" class="pallet-box">
             <div class="flex-1">
                 <div class="title">Students</div>
-                <div class="h2">?</div>
+                <div class="h2">{{$students->count()}}</div>
             </div>
             <div class="ico bg-green-100">
                 <i class="bi bi-person-circle text-green-600"></i>
             </div>
         </a>
-        <a href="{{url('teachers')}}" class="pallet-box">
+        <a href="{{route('admin.teachers.index')}}" class="pallet-box">
             <div class="flex-1">
                 <div class="title">Teachers</div>
-                <div class="h2"></div>
+                <div class="h2">{{$teachers->count()}}</div>
             </div>
             <div class="ico bg-indigo-100">
                 <i class="bi bi-person-workspace text-indigo-400"></i>

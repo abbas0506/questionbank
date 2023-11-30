@@ -10,7 +10,7 @@
         <div>New</div>
     </div>
 
-    <div class="w-full md:w-3/4 mx-auto mt-8">
+    <div class="w-full md:w-3/4 mx-auto mt-12">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
@@ -22,22 +22,22 @@
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-1">
 
-                <div class="col-span-2">
-                    <label>Title *</label>
+                <div class="col-span-3">
+                    <label>Book Title *</label>
                     <input type="text" name='title' class="custom-input" placeholder="Type here" value="">
                 </div>
-                <div class="">
+                <div class="col-span-3">
                     <label>Author *</label>
                     <input type="text" name='author' class="custom-input" placeholder="Type here" value="">
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-3" hidden>
                     <label>Introduction</label>
                     <textarea name='introduction' class="custom-input" placeholder="Type here" value="" rows="2"></textarea>
                 </div>
                 <div>
                     <label>Publish Year</label>
-                    <input type="number" name='publish_year' class="custom-input" placeholder="Type here" value="{{date('Y')}}" min="1800" max="{{date('Y')}}">
+                    <input type="number" name='publish_year' class="custom-input" placeholder="Type here" value="{{date('Y')}}" min="1900" max="{{date('Y')}}">
                 </div>
                 <div>
                     <label>How Many Copies? *</label>
@@ -51,7 +51,7 @@
                     <label>Language *</label>
                     <select name="language_id" id="" class="custom-input">
                         @foreach($languages as $language)
-                        <option value="{{$language->id}}">{{$language->name}}</option>
+                        <option value="{{$language->id}}" @selected($language->id==session('recent_language_id'))>{{$language->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -60,7 +60,7 @@
                     <select name="book_domain_id" id="" class="custom-input">
                         <option value="">Select --</option>
                         @foreach($book_domains as $book_domain)
-                        <option value="{{$book_domain->id}}">{{$book_domain->name}}</option>
+                        <option value="{{$book_domain->id}}" @selected($book_domain->id==session("recent_domain_id"))>{{ $book_domain->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -69,7 +69,7 @@
                     <select name="book_rack_id" id="" class="custom-input">
                         <option value="">Select --</option>
                         @foreach($book_racks as $book_rack)
-                        <option value="{{$book_rack->id}}">{{$book_rack->label}}</option>
+                        <option value="{{$book_rack->id}}" @selected($book_rack->id==session("recent_rack_id"))>{{$book_rack->label}}</option>
                         @endforeach
                     </select>
 

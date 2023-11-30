@@ -22,16 +22,16 @@
             @csrf
             @method('PATCH')
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-1">
-                <div class="col-span-2">
-                    <label>Title *</label>
+                <div class="col-span-3">
+                    <label>Book Title *</label>
                     <input type="text" name='title' class="custom-input" placeholder="Type here" value="{{$book->title}}">
                 </div>
-                <div class="">
+                <div class="col-span-3">
                     <label>Author *</label>
                     <input type="text" name='author' class="custom-input" placeholder="Type here" value="{{$book->author}}">
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-3" hidden>
                     <label>Introduction</label>
                     <textarea name='introduction' class="custom-input" placeholder="Type here" rows="2">{{$book->introduction}}</textarea>
                 </div>
