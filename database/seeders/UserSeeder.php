@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
         $student = Student::create([
             'name' => 'Muzammail Hussain',
             'father' => "Muhammad Munawar",
-            'cnic' => "3640200000000",
+            'cnic' => "3640212345678",
             'phone' => "03000000000",
             'clas_id' => 18, //XI-A
             'rollno' => 13,
