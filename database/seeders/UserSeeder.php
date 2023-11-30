@@ -36,6 +36,28 @@ class UserSeeder extends Seeder
         $user->assignRole('admin');
         $user->assignRole('teacher');
 
+        //admin
+        $teacher = Teacher::create([
+            'name' => "Atif Zohaib",
+            'father' => "Ghulam Kibria Khan",
+            'cnic' => "3610457786765",
+            'phone' => "03045562621",
+            'email' => "atifzohaibkhan@gmail.com",
+            'designation' => 'SSE(CS)',
+            'personal_no' => "31751791",
+        ]);
+
+        $user = User::create([
+            'login_id' => $teacher->cnic,
+            'password' => Hash::make('password'),
+            'userable_id' => $teacher->id,
+            'userable_type' => 'App\Models\Teacher',
+        ]);
+
+        $user->assignRole('admin');
+        $user->assignRole('teacher');
+
+
         // principal
         $teacher = Teacher::create([
             'name' => "Abdul Majeed",
@@ -57,13 +79,13 @@ class UserSeeder extends Seeder
 
         // lab incharge
         $teacher = Teacher::create([
-            'name' => 'Muhammad Ittefaq',
-            'father' => "Muhammad Yousaf",
-            'cnic' => "3530119663436",
-            'phone' => "03000373006",
-            'email' => "ittefaq.sscs@gmail.com",
+            'name' => 'Muhammad Ittfaq',
+            'father' => "Ghazi Muhammad",
+            'cnic' => "3640291865395",
+            'phone' => "03143661308",
+            'email' => "muhammadittfaq007@gmail.com",
             'designation' => 'EST',
-            'personal_no' => "31282676",
+            'personal_no' => "31561467",
         ]);
         $user = User::create([
             'login_id' => $teacher->cnic,
@@ -72,11 +94,12 @@ class UserSeeder extends Seeder
             'userable_type' => 'App\Models\Teacher',
         ]);
         $user->assignRole('library_incharge');
+        $user->assignRole('teacher');
 
         // lab assistant
         $student = Student::create([
             'name' => 'Muzammail Hussain',
-            'father' => "Munawar Hussain",
+            'father' => "Muhammad Munawar",
             'cnic' => "3530119663437",
             'phone' => "03000373006",
             'clas_id' => 6,
