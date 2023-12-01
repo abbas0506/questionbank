@@ -21,12 +21,12 @@
         <form action="{{route('library.assistant.books.update', $book)}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             @method('PATCH')
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-1">
-                <div class="col-span-3">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1">
+                <div class="col-span-2 md:col-span-3">
                     <label>Book Title *</label>
                     <input type="text" name='title' class="custom-input" placeholder="Type here" value="{{$book->title}}">
                 </div>
-                <div class="col-span-3">
+                <div class="col-span-2 md:col-span-3">
                     <label>Author *</label>
                     <input type="text" name='author' class="custom-input" placeholder="Type here" value="{{$book->author}}">
                 </div>
