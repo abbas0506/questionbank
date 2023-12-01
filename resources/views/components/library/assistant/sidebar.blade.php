@@ -11,7 +11,7 @@
             </li>
             <li>
                 <a href="{{route('library.assistant.book-issuance.scan')}}" class="flex items-center p-2">
-                    <i class="bi-journal-arrow-up"></i>
+                    <i class="bi-upc"></i>
                     <span class="ml-3">Issue Book</span>
                 </a>
             </li>
@@ -30,7 +30,7 @@
             <li>
                 <a href="{{route('library.assistant.qrcodes.index')}}" class="flex items-center p-2">
                     <i class="bi bi-qr-code"></i>
-                    <span class="ml-3">Print QRCodes</span>
+                    <span class="ml-3">QR Codes</span>
                 </a>
             </li>
             <li class="md:hidden">

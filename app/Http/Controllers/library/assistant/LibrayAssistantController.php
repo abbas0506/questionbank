@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\library\assistant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Models\BookIssuance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,8 @@ class LibrayAssistantController extends Controller
     {
         //
         $user = Auth::user();
-        return view('modules.library.assistant.index', compact('user'));
+        $books = Book::all();
+        return view('modules.library.assistant.index', compact('user', 'books'));
     }
 
     /**

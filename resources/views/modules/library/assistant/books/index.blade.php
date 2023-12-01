@@ -1,7 +1,7 @@
 @extends('layouts.library.assistant')
 @section('page-content')
 <div class="container">
-    <h2>Search for a Book</h2>
+    <h2>Books</h2>
     <div class="bread-crumb">
         <a href="{{url('library/assistant')}}">Home</a>
         <div>/</div>
@@ -27,8 +27,10 @@
         <x-message></x-message>
         @endif
 
+        <div class="text-gray-400 mt-8">({{ $books->count() }}) records found</div>
+
         @php $sr=1; @endphp
-        <table class="table-auto w-full mt-8">
+        <table class="table-auto w-full mt-1">
             <thead>
                 <tr class="border-b border-slate-200">
                     <th>Sr</th>

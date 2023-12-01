@@ -18,7 +18,8 @@ class QRCodeController extends Controller
     {
         $book_racks = BookRack::all();
         $classes = Clas::all();
-        return view('modules.library.assistant.qrcodes.index', compact('book_racks', 'classes'));
+        $teachers = Teacher::all();
+        return view('modules.library.assistant.qrcodes.index', compact('book_racks', 'classes', 'teachers'));
     }
     /**
      * Display a listing of the resource.

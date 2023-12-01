@@ -21,7 +21,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="border rounded border-dashed shadow-lg">
 
-                <h2 class="py-2 bg-slate-50 text-center">Book Rack</h2>
+                <h2 class="py-2 bg-slate-50 text-center">Books <span class="text-xs font-normal text-slate-600">(choose a book rack)</span></h2>
 
                 <div class="grid grid-cols-4 md:grid-cols-4 gap-2 p-4 text-sm text-center">
                     @foreach($book_racks as $book_rack)
@@ -32,7 +32,7 @@
 
             <!-- classes -->
             <div class="border rounded border-dashed shadow-lg">
-                <h2 class="py-2 bg-slate-50 text-center">Classes</h2>
+                <h2 class="py-2 bg-slate-50 text-center">Students <span class="text-xs font-normal text-slate-600">(choose a class)</span></h2>
                 <div class="grid grid-cols-3 md:grid-cols-3 gap-2 p-4 text-sm text-center">
                     @foreach($classes as $clas)
                     <a href="{{route('library.assistant.classes.show',$clas)}}" class="link">{{$clas->grade->roman_name}}-{{$clas->section_label}}</a>
@@ -41,15 +41,11 @@
             </div>
 
             <!-- Teachers -->
-            <div class="border rounded border-dashed shadow-lg">
+            <div class="border flex flex-col rounded border-dashed shadow-lg">
                 <h2 class="py-2 bg-slate-50 text-center">Teachers</h2>
-                <div class="flex justify-center items-center h-full">
-
-                    <div class="flex flex-col justify-center items-center">
-                        <a href="{{route('library.assistant.qrcodes.teachers.preview')}}" target="_blank"><i class="bi bi-qr-code"></i></a>
-                        <label for="">Print QRCode</label>
-                    </div>
-
+                <div class="flex flex-col flex-1 justify-center items-center">
+                    <h1 class="">{{$teachers->count()}}</h1>
+                    <a href="{{route('library.assistant.qrcodes.teachers.preview')}}" target="_blank"><i class="bi bi-qr-code"></i></a>
                 </div>
             </div>
 

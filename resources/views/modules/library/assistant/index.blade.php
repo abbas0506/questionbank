@@ -20,29 +20,29 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         <a href="{{route('library.assistant.books.index')}}" class="pallet-box">
             <div class="flex-1 ">
-                <div class="title">Search a Book</div>
-                <div class="h2">%</div>
+                <div class="title">All Books</div>
+                <div class="h2">{{$books->count()}}</div>
             </div>
             <div class="ico bg-teal-100">
-                <i class="bi bi-search text-teal-600"></i>
+                <i class="bi bi-book text-teal-600"></i>
             </div>
         </a>
         <a href="" class="pallet-box">
             <div class="flex-1 ">
-                <div class="title">Issued</div>
-                <div class="h2">%</div>
+                <div class="title">Issued Books</div>
+                <div class="h2">?</div>
             </div>
             <div class="ico bg-teal-100">
-                <i class="bi bi-journal-arrow-up text-teal-600"></i>
+                <i class="bi bi-upc text-teal-600"></i>
             </div>
         </a>
         <a href="" class="pallet-box">
             <div class="flex-1">
-                <div class="title">Returned</div>
+                <div class="title">Delayed Books</div>
                 <div class="h2">?</div>
             </div>
             <div class="ico bg-green-100">
-                <i class="bi bi-journal-check text-green-600"></i>
+                <i class="bi bi-clock-history text-green-600"></i>
             </div>
         </a>
         <a href="" class="pallet-box">
@@ -78,8 +78,8 @@
                         <div>{{ Auth::user()->userable->name }}</div>
                     </div>
                     <div class="flex text-sm mt-2">
-                        <div class="w-8"><i class="bi-envelope-at"></i></div>
-                        <div>{{ Auth::user()->userable->email }}</div>
+                        <div class="w-8"><i class="bi-at"></i></div>
+                        <div>{{ Auth::user()->userable->clas->roman() }}, {{ Auth::user()->userable->rollno }}</div>
                     </div>
                     <div class="flex text-sm mt-2">
                         <div class="w-8"><i class="bi-phone"></i></div>

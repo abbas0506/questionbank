@@ -34,6 +34,10 @@ class Book extends Model
     {
         return $this->belongsTo(BookRack::class, 'book_rack_id');
     }
+    public function book_issuances()
+    {
+        return $this->hasMany(BookIssuance::class);
+    }
     public function reference()
     {
         $pre = '';

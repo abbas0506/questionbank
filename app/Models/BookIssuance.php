@@ -54,4 +54,12 @@ class BookIssuance extends Model
     {
         return $query->whereNull('return_date');
     }
+    public function returned($query)
+    {
+        return $query->whereNotNull('return_date');
+    }
+    public function scopeIssued($query)
+    {
+        return $query->whereNull('return_date');
+    }
 }
