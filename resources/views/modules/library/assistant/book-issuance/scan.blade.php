@@ -42,7 +42,7 @@
     function validate(event) {
 
         var bookRef = $('#book_ref').val();
-        var bookRegex = /^[A-Z][0-9]-[0-9]{4}-[0-9]{2}$/;
+        var bookRegex = /^[A-e][0-9]-[0-9]{5}-[0-9]{2}$/;
 
         var studentRef = $('#student_ref').val();
         var studentRegex = /^[3][0-9]{12}$/;
