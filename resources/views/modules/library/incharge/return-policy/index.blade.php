@@ -1,11 +1,11 @@
-@extends('layouts.library.assistant')
+@extends('layouts.library.incharge')
 @section('page-content')
 <div class="container">
-    <h2>Return Book</h2>
+    <h2>Return Policy</h2>
     <div class="bread-crumb">
-        <a href="{{url('library/assistant')}}">Home</a>
+        <a href="{{url('library/incharge')}}">Home</a>
         <div>/</div>
-        <div>Return Book</div>
+        <div>Return Policy</div>
     </div>
     <div class="h-96 flex justify-center items-center">
 
@@ -18,18 +18,15 @@
             <x-message></x-message>
             @endif
 
-            <form action="{{route('library.assistant.book-return.scan')}}" method='post' class="mt-4" onsubmit="return validate(event)">
-                @csrf
-
-                <div class="relative">
-                    <i class="bx bx-book absolute right-2 top-4"></i>
-                    <input type="text" id='book_ref' name='book_ref' class="custom-input" placeholder="Scan here" value="">
-                </div>
-                <div class="flex mt-4 float-right">
-                    <button type="submit" class="btn-teal rounded px-4">Next</button>
-                </div>
-            </form>
-
+            <div class="text-right"><a href="{{route('library.incharge.book-return-policy.edit', $bookReturnPolicy)}}" class="btn-teal">Edit <i class="bx bx-pencil"></i></a></div>
+            <div class="border rouned-lg flex justify-between items-center p-5 mt-1">
+                <div class="flex-1">Max Days <span class="text-sm text-slate-600">(Student can possess a book)</span></div>
+                <div>{{$bookReturnPolicy->max_days}}</div>
+            </div>
+            <div class="border rouned-lg flex justify-between items-center p-5">
+                <div class="flex-1">Fine / Day <span class="text-sm text-slate-600">(After due date)</span></div>
+                <div>{{$bookReturnPolicy->fine_per_day}}</div>
+            </div>
         </div>
     </div>
 </div>

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BookReturnPolicy extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'max_days',
+        'fine_per_day',
+    ];
 }

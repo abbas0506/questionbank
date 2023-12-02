@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\library\incharge;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\BookReturnPolicy;
+use Exception;
 use Illuminate\Http\Request;
 
 class BookReturnPolicyController extends Controller
@@ -13,6 +16,8 @@ class BookReturnPolicyController extends Controller
     public function index()
     {
         //
+        $bookReturnPolicy = BookReturnPolicy::first();
+        return view('modules.library.incharge.return-policy.index', compact('bookReturnPolicy'));
     }
 
     /**
@@ -45,6 +50,8 @@ class BookReturnPolicyController extends Controller
     public function edit(BookReturnPolicy $bookReturnPolicy)
     {
         //
+        // $book_return_policy = BookReturnPolicy::first();
+        return view('modules.library.incharge.return-policy.edit', compact('bookReturnPolicy'));
     }
 
     /**
@@ -53,6 +60,17 @@ class BookReturnPolicyController extends Controller
     public function update(Request $request, BookReturnPolicy $bookReturnPolicy)
     {
         //
+        $request->validate([
+            'max_days' => 'required|numeric|min:0',
+            'fine_per_day' => 'required|numeric|min:0',
+        ]);
+        try {
+            $bookReturnPolicy->update($request->all());
+            return redirect()->back()->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**

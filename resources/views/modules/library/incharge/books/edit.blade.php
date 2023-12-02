@@ -1,11 +1,11 @@
-@extends('layouts.library.assistant')
+@extends('layouts.library.incharge')
 @section('page-content')
 <div class="container">
     <h2>Edit Book</h2>
     <div class="bread-crumb">
-        <a href="{{url('library/assistant')}}">Home</a>
+        <a href="{{url('library/incharge')}}">Home</a>
         <div>/</div>
-        <a href="{{route('library.assistant.books.index')}}">Books</a>
+        <a href="{{route('library.incharge.books.index')}}">Books</a>
         <div>/</div>
         <div>Edit</div>
     </div>
@@ -18,7 +18,7 @@
         <x-message></x-message>
         @endif
 
-        <form action="{{route('library.assistant.books.update', $book)}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        <form action="{{route('library.incharge.books.update', $book)}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             @method('PATCH')
             <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1">

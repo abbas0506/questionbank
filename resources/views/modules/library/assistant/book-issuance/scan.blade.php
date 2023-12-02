@@ -18,15 +18,13 @@
 
             <form action="{{route('library.assistant.book-issuance.scan')}}" method='post' class="mt-4" onsubmit="return validate(event)">
                 @csrf
-                <div class="flex flex-col gap-y-1">
-                    <div class="flex space-x-4 items-center">
-                        <label class="w-32 text-sm">Book Ref.</label>
-                        <input type="text" id='book_ref' name='book_ref' class="custom-input" placeholder="Scan here" value="">
-                    </div>
-                    <div class="flex space-x-4 items-center">
-                        <label class="w-32 text-sm">Student Ref.</label>
-                        <input type="text" id='student_ref' name='student_ref' class="custom-input" placeholder="Scan here" value="">
-                    </div>
+                <div class="relative">
+                    <i class="bx bx-book absolute right-2 top-4"></i>
+                    <input type="text" id='book_ref' name='book_ref' class="custom-input" placeholder="Scan here" value="">
+                </div>
+                <div class="relative mt-2">
+                    <i class="bx bx-user absolute right-2 top-4"></i>
+                    <input type="text" id='student_ref' name='student_ref' class="custom-input" placeholder="Scan here" value="">
                 </div>
                 <div class="flex mt-4 float-right">
                     <button type="submit" class="btn-teal rounded px-4">Next</button>

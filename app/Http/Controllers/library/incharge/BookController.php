@@ -1,9 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\library\incharge;
 
+use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\BookDomain;
+use App\Models\BookRack;
+use App\Models\Language;
+use Exception;
 use Illuminate\Http\Request;
+
 
 class BookController extends Controller
 {
@@ -13,6 +19,8 @@ class BookController extends Controller
     public function index()
     {
         //
+        $books = Book::all();
+        return view('modules.library.incharge.books.index', compact('books'));
     }
 
     /**
@@ -34,26 +42,52 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(string $id)
     {
-        //
+        $book = Book::find($id);
+        return view('modules.library.incharge.books.show', compact('book'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Book $book)
+    public function edit(string $id)
     {
         //
+        $book = Book::find($id);
+        $languages = Language::all();
+        $book_domains = BookDomain::all();
+        $book_racks = BookRack::all();
+        return view('modules.library.incharge.books.edit', compact('book', 'languages', 'book_domains', 'book_racks'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'publish_year' => 'required',
+            'language_id' => 'required',
+            'num_of_copies' => 'required',
+            'price' => 'required|min:0',
+            'book_domain_id' => 'required',
+            'book_rack_id' => 'required',
+            'language_id' => 'required',
+        ]);
+        try {
+            $book = Book::find($id);
+            $book->update($request->all());
+            return redirect()->back()->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -61,5 +95,11 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //
+        try {
+            $book->delete();
+            return redirect()->back()->with('success', 'Successfully deleted!');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 }

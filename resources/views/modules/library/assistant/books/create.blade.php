@@ -1,13 +1,19 @@
 @extends('layouts.library.assistant')
 @section('page-content')
 <div class="container">
-    <h2>New Book</h2>
-    <div class="bread-crumb">
-        <a href="{{url('library/assistant')}}">Home</a>
-        <div>/</div>
-        <a href="{{route('library.assistant.books.index')}}">Books</a>
-        <div>/</div>
-        <div>New</div>
+    <div class="flex items-center">
+        <div class="w-5/6">
+            <h2>New Book</h2>
+            <div class="bread-crumb">
+                <a href="{{url('library/assistant')}}">Home</a>
+                <div>/</div>
+                <a href="{{route('library.assistant.books.index')}}">Books</a>
+                <div>/</div>
+                <div>New</div>
+            </div>
+
+        </div>
+        <h1 class="text-green-600  text-4xl">{{$books->count()}}</h1>
     </div>
 
     <div class="w-full md:w-3/4 mx-auto mt-12">

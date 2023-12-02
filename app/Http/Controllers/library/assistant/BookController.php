@@ -33,7 +33,8 @@ class BookController extends Controller
         $languages = Language::all();
         $book_domains = BookDomain::all();
         $book_racks = BookRack::all();
-        return view('modules.library.assistant.books.create', compact('languages', 'book_domains', 'book_racks'));
+        $books = Book::all();
+        return view('modules.library.assistant.books.create', compact('languages', 'book_domains', 'book_racks', 'books'));
     }
 
     /**

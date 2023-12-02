@@ -27,6 +27,8 @@ use App\Http\Controllers\library\assistant\BookReturnController;
 use App\Http\Controllers\library\assistant\ClassController as AssistantClassController;
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
 use App\Http\Controllers\library\assistant\QRCodeController;
+use App\Http\Controllers\library\incharge\BookController as InchargeBookController;
+use App\Http\Controllers\library\incharge\BookReturnPolicyController;
 use App\Http\Controllers\library\incharge\LibrayInchargeController;
 
 use FontLib\Table\Type\cmap;
@@ -110,6 +112,8 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
 
 Route::group(['prefix' => 'library/incharge', 'as' => 'library.incharge.', 'middleware' => ['role:library_incharge']], function () {
     Route::get('/', [LibrayInchargeController::class, 'index']);
+    Route::resource('books', InchargeBookController::class);
+    Route::resource('book-return-policy', BookReturnPolicyController::class);
 });
 
 Route::group(['prefix' => 'library/assistant', 'as' => 'library.assistant.', 'middleware' => ['role:library_assistant']], function () {

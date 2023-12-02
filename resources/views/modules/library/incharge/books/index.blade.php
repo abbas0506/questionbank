@@ -1,9 +1,9 @@
-@extends('layouts.library.assistant')
+@extends('layouts.library.incharge')
 @section('page-content')
 <div class="container">
     <h2>Books</h2>
     <div class="bread-crumb">
-        <a href="{{url('library/assistant')}}">Home</a>
+        <a href="{{url('library/incharge')}}">Home</a>
         <div>/</div>
         <div>Books</div>
         <div>/</div>
@@ -29,6 +29,7 @@
 
         <div class="text-gray-400 mt-8">({{ $books->count() }}) records found</div>
 
+
         @php $sr=1; @endphp
         <div class="overflow-x-auto w-full">
             <table class="table-fixed w-full mt-1">
@@ -45,13 +46,12 @@
                 </thead>
                 <tbody>
 
-
                     @foreach($books->sortByDesc('updated_at') as $book)
                     <tr class="tr">
 
                         <td>{{$sr++}}</td>
                         <td class="text-left">
-                            <a href="{{route('library.assistant.books.show', $book)}}" class="link">{{$book->title}}</a>
+                            <a href="{{route('library.incharge.books.show', $book)}}" class="link">{{$book->title}}</a>
                             <br>
                             <span class="text-xs text-slate-600">{{$book->author}}</span>
                         </td>
@@ -59,6 +59,18 @@
                         <td>{{$book->domain->name}}</td>
                         <td>{{$book->publish_year}}</td>
                         <td>{{$book->num_of_copies}}</td>
+                        <td>
+                            <div class="flex items-center justify-center">
+                                <a href="{{route('library.incharge.books.edit',$book)}}"><i class="bx bx-pencil text-green-600"></i></a>
+                                <span class="text-slate-300 px-2">|</span>
+                                <form action="{{route('library.incharge.books.destroy',$book)}}" method="post" onsubmit="return confirmDel(event)">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button><i class="bx bx-trash text-red-600"></i></button>
+                                </form>
+                            </div>
+
+                        </td>
                     </tr>
                     @endforeach
 
@@ -83,6 +95,24 @@
             }
         });
     }
-</script>
 
+    function confirmDel(event) {
+        event.preventDefault(); // prevent form submit
+        var form = event.target; // storing the form
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                form.submit();
+            }
+        })
+    }
+</script>
 @endsection
