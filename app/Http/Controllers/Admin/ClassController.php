@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clas;
+use App\Models\Grade;
+use App\Models\Teacher;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,9 @@ class ClassController extends Controller
     public function create()
     {
         //
-        return view('admin.classes.create');
+        $grades = Grade::where('id', '>', 5)->get();
+        $teachers = Teacher::all();
+        return view('admin.classes.create', compact('grades', 'teachers'));
     }
 
     /**
@@ -31,10 +35,15 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         //
-        $request->merge(['session_id' => session('session_id')]);
+
         $request->validate([
-            'session_id' => 'required',
+            'grade_id' => 'required|numeric',
+            'section_label' => 'required',
+            'induction_year' => 'required|numeric',
+            'incharge_id' => 'nullable|numeric',
         ]);
+
+
         try {
             Clas::create($request->all());
             return redirect()->route('admin.classes.index')->with('success', 'Successfully created');
@@ -50,6 +59,7 @@ class ClassController extends Controller
     public function show(string $id)
     {
         //
+
         $clas = Clas::find($id);
         return view('admin.classes.show', compact('clas'));
     }

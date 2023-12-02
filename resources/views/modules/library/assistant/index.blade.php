@@ -32,8 +32,8 @@
                 <div class="title">Issued Books</div>
                 <div class="h2">?</div>
             </div>
-            <div class="ico bg-teal-100">
-                <i class="bi bi-upc text-teal-600"></i>
+            <div class="ico bg-blue-100">
+                <i class="bi bi-upc text-blue-600"></i>
             </div>
         </a>
         <a href="" class="pallet-box">
@@ -48,14 +48,12 @@
         <a href="" class="pallet-box">
             <div class="flex-1">
                 <div class="title">Defaulters</div>
-                <div class="h2"> %</div>
+                <div class="h2">?</div>
             </div>
             <div class="ico bg-orange-100">
                 <i class="bi bi-person-slash text-orange-600"></i>
             </div>
         </a>
-
-
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 mt-8 gap-6">

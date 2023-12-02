@@ -41,9 +41,10 @@ class Book extends Model
     public function reference()
     {
         $pre = '';
-        if ($this->id < 10) $pre = '000';
-        elseif ($this->id < 100) $pre = '00';
-        elseif ($this->id < 1000) $pre = '0';
+        if ($this->id < 10) $pre = '0000';
+        elseif ($this->id < 100) $pre = '000';
+        elseif ($this->id < 1000) $pre = '00';
+        elseif ($this->id < 10000) $pre = '0';
         else $pre = '';
         return  $this->rack->label . "-" . $pre . $this->id;
     }

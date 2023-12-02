@@ -10,24 +10,35 @@
         <div>/</div>
         <div>All</div>
     </div>
+    <div class="overflow-x-auto">
+        <table class="table-fixed w-full mt-12 text-sm">
+            <thead>
+                <tr>
+                    <th class="w-16">Grade #</th>
+                    <th class="w-32">Engllish</th>
+                    <th class="w-16">Roman</th>
+                    <th class="w-24">Sections</th>
+                    <th class="w-16"><i class="bi-people-fill"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($grades as $grade)
+                <tr class="text-sm">
+                    <td>{{$grade->grade_no}}</td>
+                    <td>{{$grade->english_name}}</td>
+                    <td>{{$grade->roman_name}}</td>
+                    <td>
 
-    <table class="table-auto w-full mt-12">
-        <thead>
-            <tr>
-                <th>Grade #</th>
-                <th>Engllish</th>
-                <th>Roman</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($grades as $grade)
-            <tr class="text-sm">
-                <td>{{$grade->grade_no}}</td>
-                <td>{{$grade->english_name}}</td>
-                <td>{{$grade->roman_name}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+                        @foreach($grade->classes as $clas)
+                        <a href="{{route('admin.classes.show',$clas)}}" class="w-4 link">{{$clas->section_label}}</a>
+                        @endforeach
+
+                    </td>
+                    <td>{{$grade->students->count()}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection

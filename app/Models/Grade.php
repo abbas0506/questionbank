@@ -13,4 +13,13 @@ class Grade extends Model
         'english_name',          //Nine
         'roman_name',            //IX
     ];
+
+    public function classes()
+    {
+        return $this->hasMany(Clas::class);
+    }
+    public function students()
+    {
+        return $this->hasManyThrough(Student::class, Clas::class);
+    }
 }

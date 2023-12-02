@@ -18,19 +18,31 @@
     <x-message></x-message>
     @endif
 
+    <!-- search -->
+    <div class="flex items-center justify-between mt-12">
+        <div class="flex relative w-full md:w-1/3">
+            <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
+            <i class="bx bx-search absolute top-2 right-2"></i>
+        </div>
+        <a href="{{route('admin.classes.create')}}" class="text-sm p-2 border hover:bg-teal-50">Add New <i class="bi bi-plus text-teal-600"></i></a>
+    </div>
+
+    @php $sr=1; @endphp
     <div class="overflow-x-auto w-full mt-12">
 
         <table class="table-auto w-full">
             <thead>
                 <tr>
+                    <th>Sr</th>
                     <th>Class</th>
-                    <th>Strength</th>
+                    <th><i class="bi-people-fill"></i></th>
                     <th>Import</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($classes as $clas)
-                <tr class="text-sm">
+                <tr class="tr text-sm">
+                    <td>{{$sr++}}</td>
                     <td>
                         <a href="{{route('admin.classes.show',$clas)}}" class="link">{{$clas->roman()}}</a>
                     </td>
@@ -70,7 +82,7 @@
         var str = 0;
         $('.tr').each(function() {
             if (!(
-                    $(this).children().eq(0).prop('outerText').toLowerCase().includes(searchtext)
+                    $(this).children().eq(1).prop('outerText').toLowerCase().includes(searchtext)
                 )) {
                 $(this).addClass('hidden');
             } else {
