@@ -3,7 +3,7 @@
 <div class="container">
     <h2>QRCodes <i class="bi bi-qr-code"></i></h2>
     <div class="bread-crumb">
-        <a href="{{url('library/assistant')}}">Home</a>
+        <a href="{{url('library-assistant')}}">Home</a>
         <div>/</div>
         <div>QRCodes</div>
         <div>/</div>

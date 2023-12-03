@@ -3,7 +3,7 @@
 <div class="container">
     <h2>Return Book</h2>
     <div class="bread-crumb">
-        <a href="{{url('library/assistant')}}">Home</a>
+        <a href="{{url('library-assistant')}}">Home</a>
         <div>/</div>
         <div>Return Book</div>
     </div>

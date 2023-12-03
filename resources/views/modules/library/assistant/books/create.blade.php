@@ -5,7 +5,7 @@
         <div class="w-5/6">
             <h2>New Book</h2>
             <div class="bread-crumb">
-                <a href="{{url('library/assistant')}}">Home</a>
+                <a href="{{url('library-assistant')}}">Home</a>
                 <div>/</div>
                 <a href="{{route('library.assistant.books.index')}}">Books</a>
                 <div>/</div>
