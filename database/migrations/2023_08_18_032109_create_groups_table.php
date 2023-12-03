@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('short_name');
             $table->string('full_name');
-            $table->unsignedSmallInteger('fee')->default('3000');
+            $table->unsignedSmallInteger('admission_fee')->default('5000');
             $table->timestamps();
         });
     }

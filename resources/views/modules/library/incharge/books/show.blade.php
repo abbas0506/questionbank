@@ -7,8 +7,8 @@
             <p>{{$book->author}}</p>
         </div>
         <div class="flex-1 space-x-4 text-center text-sm">
-            <a href="{{route('library.incharge.books.edit', $book)}}" class="text-green-600">Edit <i class="bx bx-pencil"></i></a>
-            <a href="{{route('library.incharge.books.index')}}" class="text-blue-600">Cancel</a>
+            <a href="{{route('librarian.books.edit', $book)}}" class="text-green-600">Edit <i class="bx bx-pencil"></i></a>
+            <a href="{{route('librarian.books.index')}}" class="text-blue-600">Cancel</a>
         </div>
     </div>
     <div class="mt-8">

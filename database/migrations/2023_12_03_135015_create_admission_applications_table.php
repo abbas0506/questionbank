@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('admission_applications', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
             $table->string('father', 50);
             $table->string('phone', 16)->nullable();
             $table->string('address', 100)->nullable();
-            $table->year('year');
-            $table->string('previous_rollno', 8)->unique();
-            $table->unsignedSmallInteger('previous_marks');
-            $table->string('previous_board', 20)->nullable();
-            $table->enum('previous_medium', ['English', 'Urdu'])->default('Urdu'); //english:0, urdu:1
+            $table->string('bise_name', 20);
+            $table->year('pass_year');
+            $table->string('rollno', 8);
+            $table->unsignedSmallInteger('marks');
+            $table->enum('medium', ['English', 'Urdu'])->default('Urdu'); //english:0, urdu:1
             $table->string('objection', 200)->nullable();
             $table->unsignedSmallInteger('fee')->nullable();
             $table->timestamps();
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('admission_applications');
     }
 };

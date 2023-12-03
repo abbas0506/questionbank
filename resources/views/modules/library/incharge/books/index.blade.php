@@ -51,7 +51,7 @@
 
                         <td>{{$sr++}}</td>
                         <td class="text-left">
-                            <a href="{{route('library.incharge.books.show', $book)}}" class="link">{{$book->title}}</a>
+                            <a href="{{route('librarian.books.show', $book)}}" class="link">{{$book->title}}</a>
                             <br>
                             <span class="text-xs text-slate-600">{{$book->author}}</span>
                         </td>
@@ -61,9 +61,9 @@
                         <td>{{$book->num_of_copies}}</td>
                         <td>
                             <div class="flex items-center justify-center">
-                                <a href="{{route('library.incharge.books.edit',$book)}}"><i class="bx bx-pencil text-green-600"></i></a>
+                                <a href="{{route('librarian.books.edit',$book)}}"><i class="bx bx-pencil text-green-600"></i></a>
                                 <span class="text-slate-300 px-2">|</span>
-                                <form action="{{route('library.incharge.books.destroy',$book)}}" method="post" onsubmit="return confirmDel(event)">
+                                <form action="{{route('librarian.books.destroy',$book)}}" method="post" onsubmit="return confirmDel(event)">
                                     @csrf
                                     @method('DELETE')
                                     <button><i class="bx bx-trash text-red-600"></i></button>

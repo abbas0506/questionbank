@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('incharge_id')->nullable();
             $table->timestamps();
 
-            $table->unique(['grade_id', 'section_label']); //disallow same section name within a class
+            $table->unique(['grade_id', 'section_label', 'induction_year']); //disallow same section name within a class
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreign('incharge_id')->references('id')->on('teachers')->onDelete('cascade');
         });

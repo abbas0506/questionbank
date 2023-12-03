@@ -93,7 +93,7 @@ class UserSeeder extends Seeder
             'userable_id' => $teacher->id,
             'userable_type' => 'App\Models\Teacher',
         ]);
-        $user->assignRole('library_incharge');
+        $user->assignRole('librarian');
         $user->assignRole('teacher');
 
         // lab assistant
@@ -113,7 +113,7 @@ class UserSeeder extends Seeder
             'userable_id' => $student->id,
             'userable_type' => 'App\Models\Student',
         ]);
-        $user->assignRole('library_assistant');
+        $user->assignRole('library-assistant');
         $user->assignRole('student');
     }
 }

@@ -18,7 +18,7 @@
             <x-message></x-message>
             @endif
 
-            <form action="{{route('library.incharge.book-return-policy.update', $bookReturnPolicy)}}" method='post' class="mt-4" onsubmit="return validate(event)">
+            <form action="{{route('librarian.book-return-policy.update', $bookReturnPolicy)}}" method='post' class="mt-4" onsubmit="return validate(event)">
                 @csrf
                 @method('PATCH')
                 <div class="border rouned-lg flex justify-between items-center p-5 mt-1">

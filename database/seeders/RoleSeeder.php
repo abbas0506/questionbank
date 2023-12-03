@@ -19,9 +19,9 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'incharge']);
         Role::create(['name' => 'teacher']);
         Role::create(['name' => 'accountant']);
-        Role::create(['name' => 'library_incharge']);
-        Role::create(['name' => 'library_assistant']);
+        Role::create(['name' => 'librarian']);
+        Role::create(['name' => 'library-assistant']);
         Role::create(['name' => 'student']);
-        Role::create(['name' => 'student_feeder']);
+        Role::create(['name' => 'admission-receiver']);
     }
 }

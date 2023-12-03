@@ -110,13 +110,13 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
     Route::get('pdf/finalized', [DepPdfController::class, 'finalized']);
 });
 
-Route::group(['prefix' => 'library/incharge', 'as' => 'library.incharge.', 'middleware' => ['role:library_incharge']], function () {
+Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['role:librarian']], function () {
     Route::get('/', [LibrayInchargeController::class, 'index']);
     Route::resource('books', InchargeBookController::class);
     Route::resource('book-return-policy', BookReturnPolicyController::class);
 });
 
-Route::group(['prefix' => 'library/assistant', 'as' => 'library.assistant.', 'middleware' => ['role:library_assistant']], function () {
+Route::group(['prefix' => 'library-assistant', 'as' => 'library.assistant.', 'middleware' => ['role:library-assistant']], function () {
     Route::get('/', [LibrayAssistantController::class, 'index']);
     Route::resource('books', BookController::class)->except('delete');
     Route::resource('book_racks', BookRackController::class)->only('show');

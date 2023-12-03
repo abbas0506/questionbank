@@ -18,7 +18,7 @@
             <x-message></x-message>
             @endif
 
-            <div class="text-right"><a href="{{route('library.incharge.book-return-policy.edit', $bookReturnPolicy)}}" class="btn-teal">Edit <i class="bx bx-pencil"></i></a></div>
+            <div class="text-right"><a href="{{route('librarian.book-return-policy.edit', $bookReturnPolicy)}}" class="btn-teal">Edit <i class="bx bx-pencil"></i></a></div>
             <div class="border rouned-lg flex justify-between items-center p-5 mt-1">
                 <div class="flex-1">Max Days <span class="text-sm text-slate-600">(Student can possess a book)</span></div>
                 <div>{{$bookReturnPolicy->max_days}}</div>

@@ -48,11 +48,7 @@ class AuthController extends Controller
         // 
         if (Auth::attempt($credentials)) {
             //user verified
-            if (Auth::user()->hasRole('library_incharge'))
-                return redirect('library/incharge');
-            elseif (Auth::user()->hasRole('library_assistant'))
-                return redirect('library/assistant');
-            else return redirect('login/as');
+            return redirect('login/as');
         } else {
             //user not verified
             return redirect()->back()->with(['warning' => 'User credentials incorrect !']);

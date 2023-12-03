@@ -4,7 +4,7 @@
     <div class="mt-12">
         <ul class="space-y-2">
             <li>
-                <a href="{{url('library/incharge')}}" class="flex items-center p-2">
+                <a href="{{url('librarian')}}" class="flex items-center p-2">
                     <i class="bi-house"></i>
                     <span class="ml-3">Home</span>
                 </a>
@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('library.incharge.book-return-policy.index')}}" class="flex items-center p-2">
+                <a href="{{route('librarian.book-return-policy.index')}}" class="flex items-center p-2">
                     <i class="bi bi-bookmark-check"></i>
                     <span class="ml-3">Return Policy</span>
                 </a>
@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('library.incharge.books.index')}}" class="flex items-center p-2">
+                <a href="{{route('librarian.books.index')}}" class="flex items-center p-2">
                     <i class="bi bi-book"></i>
                     <span class="ml-3">Manage Books</span>
                 </a>
