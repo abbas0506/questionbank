@@ -13,7 +13,7 @@
             </div>
 
         </div>
-        <h1 class="text-green-600  text-2xl">{{Auth::user()->userable->books()->createdToday()->count()}}/{{$books->count()}}</h1>
+        <h1 class="text-green-600  text-2xl">{{Auth::user()->userable->books()->createdToday()->count()}}/{{$books->whereDate('created_at',today())}}</h1>
     </div>
 
     <div class="w-full md:w-3/4 mx-auto mt-12">
