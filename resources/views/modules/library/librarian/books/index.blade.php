@@ -61,12 +61,13 @@
                         <th class="w-24">Domain</th>
                         <th class="w-24">Published</th>
                         <th class="w-24">Copies</th>
+                        <th class="w-24">Crated By</th>
                         <th class="w-20">Action</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach($books->sortBy('title') as $book)
+                    @foreach($books->sortByDesc('updated_at') as $book)
                     <tr class="tr">
 
                         <td>{{$sr++}}</td>
@@ -79,6 +80,7 @@
                         <td>{{$book->domain->name}}</td>
                         <td>{{$book->publish_year}}</td>
                         <td>{{$book->num_of_copies}}</td>
+                        <td>{{$book->assistant->name ?? ''}}</td>
                         <td>
                             <div class="flex items-center justify-center">
                                 <a href="{{route('librarian.books.edit',$book)}}"><i class="bx bx-pencil text-green-600"></i></a>
