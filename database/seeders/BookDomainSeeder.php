@@ -18,5 +18,7 @@ class BookDomainSeeder extends Seeder
         BookDomain::create(['name' => 'Religion']);
         BookDomain::create(['name' => 'Literature']);
         BookDomain::create(['name' => 'Kids Corner']);
+        BookDomain::create(['name' => 'History']);
+        BookDomain::create(['name' => 'Encyclopedia']);
     }
 }

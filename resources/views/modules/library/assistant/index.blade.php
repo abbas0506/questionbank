@@ -77,11 +77,11 @@
                     </div>
                     <div class="flex text-sm mt-2">
                         <div class="w-8"><i class="bi-at"></i></div>
-                        <div>{{ Auth::user()->userable->clas->roman() }}, {{ Auth::user()->userable->rollno }}</div>
+                        <div>...</div>
                     </div>
                     <div class="flex text-sm mt-2">
                         <div class="w-8"><i class="bi-phone"></i></div>
-                        <div>{{ Auth::user()->userable->phone }}</div>
+                        <div>...</div>
                     </div>
                     <div class="divider border-blue-200 mt-4"></div>
                     <div class="flex text-sm mt-4">

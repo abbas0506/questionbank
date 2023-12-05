@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\library\librarian;
 
 use App\Http\Controllers\Controller;
+use App\Models\Assistant;
 use App\Models\Book;
 use App\Models\BookDomain;
 use Illuminate\Http\Request;
@@ -17,7 +18,9 @@ class LibrayInchargeController extends Controller
     {
         //
         $user = Auth::user();
-        return view('modules.library.librarian.index', compact('user'));
+        $assistants = Assistant::all();
+        $books = Book::all();
+        return view('modules.library.librarian.index', compact('user', 'assistants', 'books'));
     }
 
     /**

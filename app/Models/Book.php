@@ -20,6 +20,7 @@ class Book extends Model
         'language_id',
         'book_domain_id',
         'book_rack_id',
+        'assistant_id',
     ];
 
     public function language()
@@ -33,6 +34,10 @@ class Book extends Model
     public function rack()
     {
         return $this->belongsTo(BookRack::class, 'book_rack_id');
+    }
+    public function assistant()
+    {
+        return $this->belongsTo(Assistant::class);
     }
     public function book_issuances()
     {
@@ -53,5 +58,9 @@ class Book extends Model
     public function readers()
     {
         return $this->hasManyThrough(Student::class, BookIssuance::class, 'reader_id');
+    }
+    public function scopeCreatedToday($query)
+    {
+        return $query->whereDate('created_at', today());
     }
 }

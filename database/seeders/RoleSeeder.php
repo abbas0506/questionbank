@@ -20,8 +20,8 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'teacher']);
         Role::create(['name' => 'accountant']);
         Role::create(['name' => 'librarian']);
-        Role::create(['name' => 'library-assistant']);
+        Role::create(['name' => 'assistant']);
+        Role::create(['name' => 'feeder']);
         Role::create(['name' => 'student']);
-        Role::create(['name' => 'admission-receiver']);
     }
 }

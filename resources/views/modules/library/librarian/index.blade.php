@@ -61,7 +61,17 @@
         <div class="md:col-span-2">
             <!-- update news  -->
             <div class="p-4 bg-red-50">
-                <h2>Today's Activity</h2>
+                <h2>Today's Activity <span class="font-normal text-sm">({{$books->count()}})</span></h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 mt-3">
+                    @foreach($assistants as $assistant)
+                    <div class="text-center">
+                        <label for="">{{$assistant->name}}</label>
+                        <p>{{$assistant->books()->createdToday()->count()}}</p>
+                    </div>
+
+                    @endforeach
+
+                </div>
             </div>
 
         </div>

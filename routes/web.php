@@ -120,7 +120,7 @@ Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['r
     Route::resource('book-return-policy', BookReturnPolicyController::class);
 });
 
-Route::group(['prefix' => 'library-assistant', 'as' => 'library.assistant.', 'middleware' => ['role:library-assistant']], function () {
+Route::group(['prefix' => 'assistant', 'as' => 'library.assistant.', 'middleware' => ['role:assistant']], function () {
     Route::get('/', [LibrayAssistantController::class, 'index']);
     Route::resource('books', BookController::class)->except('delete');
     Route::resource('book_racks', BookRackController::class)->only('show');

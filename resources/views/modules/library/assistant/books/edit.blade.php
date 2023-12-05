@@ -3,7 +3,7 @@
 <div class="container">
     <h2>Edit Book</h2>
     <div class="bread-crumb">
-        <a href="{{url('library-assistant')}}">Home</a>
+        <a href="{{url('assistant')}}">Home</a>
         <div>/</div>
         <a href="{{route('library.assistant.books.index')}}">Books</a>
         <div>/</div>

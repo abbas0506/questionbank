@@ -9,6 +9,7 @@ use App\Models\BookRack;
 use App\Models\Language;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -55,6 +56,9 @@ class BookController extends Controller
             'language_id' => 'required',
         ]);
         try {
+            $request->merge([
+                'assistant_id' => Auth::user()->userable->id,
+            ]);
             $book = Book::create($request->all());
             return redirect()->back()->with(
                 [

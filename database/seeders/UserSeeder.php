@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Assistant;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
@@ -96,24 +97,44 @@ class UserSeeder extends Seeder
         $user->assignRole('librarian');
         $user->assignRole('teacher');
 
-        // lab assistant
-        $student = Student::create([
-            'name' => 'Muzammail Hussain',
-            'father' => "Muhammad Munawar",
-            'cnic' => "3640212345678",
-            'phone' => "03000000000",
-            'clas_id' => 18, //XI-A
-            'rollno' => 13,
-            'group_id' => 3,
-
-        ]);
+        // assistant 1
+        $assistant = Assistant::create(['name' => 'Muzammil']);
         $user = User::create([
-            'login_id' => $student->cnic,
+            'login_id' => 'muzammil',
             'password' => Hash::make('password'),
-            'userable_id' => $student->id,
-            'userable_type' => 'App\Models\Student',
+            'userable_id' => $assistant->id,
+            'userable_type' => 'App\Models\Assistant',
         ]);
-        $user->assignRole('library-assistant');
-        $user->assignRole('student');
+        $user->assignRole('assistant');
+
+        // assistant 2
+        $assistant = Assistant::create(['name' => 'Aman Ullah']);
+        $user = User::create([
+            'login_id' => 'aman',
+            'password' => Hash::make('password'),
+            'userable_id' => $assistant->id,
+            'userable_type' => 'App\Models\Assistant',
+        ]);
+        $user->assignRole('assistant');
+
+        // assistant 3
+        $assistant = Assistant::create(['name' => 'Abc']);
+        $user = User::create([
+            'login_id' => 'abc',
+            'password' => Hash::make('password'),
+            'userable_id' => $assistant->id,
+            'userable_type' => 'App\Models\Assistant',
+        ]);
+        $user->assignRole('assistant');
+
+        // assistant 4
+        $assistant = Assistant::create(['name' => 'Xyz']);
+        $user = User::create([
+            'login_id' => 'xyz',
+            'password' => Hash::make('password'),
+            'userable_id' => $assistant->id,
+            'userable_type' => 'App\Models\Assistant',
+        ]);
+        $user->assignRole('assistant');
     }
 }

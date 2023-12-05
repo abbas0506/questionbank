@@ -4,7 +4,7 @@
     <div class="mt-12">
         <ul class="space-y-2">
             <li>
-                <a href="{{url('library-assistant')}}" class="flex items-center p-2">
+                <a href="{{url('assistant')}}" class="flex items-center p-2">
                     <i class="bi-house"></i>
                     <span class="ml-3">Home</span>
                 </a>
