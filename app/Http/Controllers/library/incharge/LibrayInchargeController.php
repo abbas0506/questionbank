@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\library\incharge;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Models\BookDomain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

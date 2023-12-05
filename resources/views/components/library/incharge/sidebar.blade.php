@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center p-2">
+                <a href="{{route('librarian.book-domains.index')}}" class="flex items-center p-2">
                     <i class="bi-diagram-3"></i>
                     <span class="ml-3">Book Domain</span>
                 </a>

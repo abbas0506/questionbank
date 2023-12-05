@@ -1,11 +1,13 @@
 @extends('layouts.library.incharge')
 @section('page-content')
 <div class="container">
-    <h2>Books</h2>
+    <h2>Book Domains</h2>
     <div class="bread-crumb">
-        <a href="{{url('library/incharge')}}">Home</a>
+        <a href="{{url('librarian')}}">Home</a>
         <div>/</div>
-        <div>Books</div>
+        <div>Book Domains</div>
+        <div>/</div>
+        <div>{{ $bookDomain->name }}</div>
         <div>/</div>
         <div>All</div>
     </div>
@@ -17,7 +19,7 @@
                 <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
                 <i class="bx bx-search absolute top-2 right-2"></i>
             </div>
-            <h1 class="text-green-600  text-4xl">{{$books->count()}}</h1>
+            <h1 class="text-green-600  text-4xl">{{$bookDomain->books->count()}}</h1>
             <!-- <a href="" class="btn-teal rounded">Create New</a> -->
         </div>
         <!-- page message -->
@@ -28,25 +30,16 @@
         @endif
 
         <div class="flex items-center flex-wrap justify-between mt-8">
-            <div class="text-gray-400">({{ $books->count() }}) records found</div>
-
+            <div class="text-gray-400">({{ $bookDomain->books->count() }}) records found</div>
             <div id="filterSection" class="hidden border border-slate-200 p-4 mt-4">
                 <div class="grid grid-col-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     <div id='all' class="filterOption active" onclick="filter('all')">
                         <span class="desc">All</span>
                         <span class="ml-1 text-sm text-slate-600">
-                            ({{$books->count()}})
+                            ({{$bookDomain->books->count()}})
                         </span>
                     </div>
-                    @foreach($bookDomains as $bookDomain)
 
-                    <div id='{{$bookDomain->id}}' class="filterOption" onclick="filter('{{$bookDomain->id}}')">
-                        <span class="desc">{{$bookDomain->name}}</span>
-                        <span class="ml-1 text-sm text-slate-600">
-
-                        </span>
-                    </div>
-                    @endforeach
                 </div>
             </div>
         </div>
@@ -58,39 +51,23 @@
                         <th class="w-12">Sr</th>
                         <th class="w-40">Title/Author</th>
                         <th class="w-16">Ref.</th>
-                        <th class="w-24">Domain</th>
                         <th class="w-24">Published</th>
                         <th class="w-24">Copies</th>
-                        <th class="w-20">Action</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach($books->sortByDesc('updated_at') as $book)
+                    @foreach($bookDomain->books->sortByDesc('updated_at') as $book)
                     <tr class="tr">
 
                         <td>{{$sr++}}</td>
                         <td class="text-left">
-                            <a href="{{route('librarian.books.show', $book)}}" class="link">{{$book->title}}</a>
-                            <br>
+                            <div>{{$book->title}}</div>
                             <span class="text-xs text-slate-600">{{$book->author}}</span>
                         </td>
                         <td>{{$book->reference()}}</td>
-                        <td>{{$book->domain->name}}</td>
                         <td>{{$book->publish_year}}</td>
                         <td>{{$book->num_of_copies}}</td>
-                        <td>
-                            <div class="flex items-center justify-center">
-                                <a href="{{route('librarian.books.edit',$book)}}"><i class="bx bx-pencil text-green-600"></i></a>
-                                <span class="text-slate-300 px-2">|</span>
-                                <form action="{{route('librarian.books.destroy',$book)}}" method="post" onsubmit="return confirmDel(event)">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button><i class="bx bx-trash text-red-600"></i></button>
-                                </form>
-                            </div>
-
-                        </td>
                     </tr>
                     @endforeach
 

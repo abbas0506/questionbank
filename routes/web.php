@@ -28,6 +28,7 @@ use App\Http\Controllers\library\assistant\ClassController as AssistantClassCont
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
 use App\Http\Controllers\library\assistant\QRCodeController;
 use App\Http\Controllers\library\incharge\BookController as InchargeBookController;
+use App\Http\Controllers\library\incharge\BookDomainController;
 use App\Http\Controllers\library\incharge\BookReturnPolicyController;
 use App\Http\Controllers\library\incharge\LibrayInchargeController;
 
@@ -113,6 +114,7 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
 Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['role:librarian']], function () {
     Route::get('/', [LibrayInchargeController::class, 'index']);
     Route::resource('books', InchargeBookController::class);
+    Route::resource('book-domains', BookDomainController::class);
     Route::resource('book-return-policy', BookReturnPolicyController::class);
 });
 

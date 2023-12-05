@@ -20,7 +20,8 @@ class BookController extends Controller
     {
         //
         $books = Book::all();
-        return view('modules.library.incharge.books.index', compact('books'));
+        $bookDomains = BookDomain::all();
+        return view('modules.library.incharge.books.index', compact('books', 'bookDomains'));
     }
 
     /**

@@ -31,7 +31,7 @@
 
                 <select id="role" name="role" class="custom-input  px-4 py-3 w-full mt-3 bg-transparent" onchange="loadDepartments()">
                     @foreach(Auth::user()->roles as $role)
-                    <option value="{{$role->name}}" class="">{{$role->name}}</option>
+                    <option value="{{$role->name}}" class="">{{ucfirst($role->name)}}</option>
                     @endforeach
                 </select>
                 <div class="flex items-center space-x-4 mt-6">
