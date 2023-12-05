@@ -59,6 +59,11 @@
                         <td>{{$book->domain->name}}</td>
                         <td>{{$book->publish_year}}</td>
                         <td>{{$book->num_of_copies}}</td>
+                        <td>
+                            <a href="{{route('library.assistant.books.edit',$book)}}">
+                                <i class="bx bx-pencil text-green-600"></i>
+                            </a>
+                        </td>
                     </tr>
                     @endforeach
 
