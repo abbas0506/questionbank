@@ -27,11 +27,11 @@ use App\Http\Controllers\library\assistant\BookReturnController;
 use App\Http\Controllers\library\assistant\ClassController as AssistantClassController;
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
 use App\Http\Controllers\library\assistant\QRCodeController;
-use App\Http\Controllers\library\incharge\BookController as InchargeBookController;
-use App\Http\Controllers\library\incharge\BookDomainController;
-use App\Http\Controllers\library\incharge\BookRackController as InchargeBookRackController;
-use App\Http\Controllers\library\incharge\BookReturnPolicyController;
-use App\Http\Controllers\library\incharge\LibrayInchargeController;
+use App\Http\Controllers\library\librarian\BookController as InchargeBookController;
+use App\Http\Controllers\library\librarian\BookDomainController;
+use App\Http\Controllers\library\librarian\BookRackController as InchargeBookRackController;
+use App\Http\Controllers\library\librarian\BookReturnPolicyController;
+use App\Http\Controllers\library\librarian\LibrayInchargeController;
 
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
