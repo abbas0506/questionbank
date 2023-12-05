@@ -46,12 +46,7 @@
                     <span class="ml-3">QR Codes</span>
                 </a>
             </li>
-            <li>
-                <a href="" class="flex items-center p-2">
-                    <i class="bi bi-people"></i>
-                    <span class="ml-3">Manage Asstt.</span>
-                </a>
-            </li>
+
         </ul>
     </div>
 </aside>
