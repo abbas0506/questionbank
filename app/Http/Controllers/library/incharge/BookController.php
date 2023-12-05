@@ -21,7 +21,7 @@ class BookController extends Controller
         //
         $books = Book::all();
         $bookDomains = BookDomain::all();
-        return view('modules.library.incharge.books.index', compact('books', 'bookDomains'));
+        return view('modules.library.librarian.books.index', compact('books', 'bookDomains'));
     }
 
     /**
@@ -46,7 +46,7 @@ class BookController extends Controller
     public function show(string $id)
     {
         $book = Book::find($id);
-        return view('modules.library.incharge.books.show', compact('book'));
+        return view('modules.library.librarian.books.show', compact('book'));
     }
 
     /**
@@ -59,7 +59,7 @@ class BookController extends Controller
         $languages = Language::all();
         $book_domains = BookDomain::all();
         $book_racks = BookRack::all();
-        return view('modules.library.incharge.books.edit', compact('book', 'languages', 'book_domains', 'book_racks'));
+        return view('modules.library.librarian.books.edit', compact('book', 'languages', 'book_domains', 'book_racks'));
     }
 
     /**

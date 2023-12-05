@@ -17,7 +17,7 @@ class LibrayInchargeController extends Controller
     {
         //
         $user = Auth::user();
-        return view('modules.library.incharge.index', compact('user'));
+        return view('modules.library.librarian.index', compact('user'));
     }
 
     /**

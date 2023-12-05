@@ -1,9 +1,9 @@
-@extends('layouts.library.incharge')
+@extends('layouts.library.librarian')
 @section('page-content')
 <div class="container">
     <h2>Books</h2>
     <div class="bread-crumb">
-        <a href="{{url('library/incharge')}}">Home</a>
+        <a href="{{url('librarian')}}">Home</a>
         <div>/</div>
         <div>Books</div>
         <div>/</div>
@@ -66,7 +66,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach($books->sortByDesc('updated_at') as $book)
+                    @foreach($books->sortBy('title') as $book)
                     <tr class="tr">
 
                         <td>{{$sr++}}</td>

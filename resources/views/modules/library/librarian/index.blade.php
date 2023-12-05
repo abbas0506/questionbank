@@ -1,4 +1,4 @@
-@extends('layouts.library.incharge')
+@extends('layouts.library.librarian')
 @section('page-content')
 <div class="container bg-slate-100">
     <!--welcome  -->

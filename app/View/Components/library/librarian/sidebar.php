@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\library\incharge;
+namespace App\View\Components\library\librarian;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class sidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.library.incharge.sidebar');
+        return view('components.library.librarian.sidebar');
     }
 }

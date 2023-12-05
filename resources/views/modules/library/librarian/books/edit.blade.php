@@ -1,9 +1,9 @@
-@extends('layouts.library.incharge')
+@extends('layouts.library.librarian')
 @section('page-content')
 <div class="container">
     <h2>Edit Book</h2>
     <div class="bread-crumb">
-        <a href="{{url('library/incharge')}}">Home</a>
+        <a href="{{url('librarian')}}">Home</a>
         <div>/</div>
         <a href="{{route('librarian.books.index')}}">Books</a>
         <div>/</div>
