@@ -113,7 +113,7 @@ class BookController extends Controller
         try {
             $book = Book::find($id);
             $book->update($request->all());
-            return redirect()->back()->with('success', 'Successfully updated');
+            return redirect()->route('library.assistant.books.index')->with('success', 'Successfully updated');
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
