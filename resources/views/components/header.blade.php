@@ -1,53 +1,44 @@
-<header>
-    <div class="flex flex-wrap w-full h-16 items-center justify-between px-4 md:px-12">
-        <div class="flex items-center">
-            <a href="{{url('/')}}">
-                <img alt="logo" src="{{asset('images/logo/app_logo.png')}}" class="w-10 h-10">
-            </a>
-            <div class="text-base md:text-xl font-semibold ml-4">eSchool</div>
-            <div class="px-1 md:px-4">|</div>
-            <div></div>
-
-        </div>
-        <!-- right sided current user info -->
-        <div id="current-user-area" class="flex space-x-3 items-center justify-center relative">
-            <input type="checkbox" id='toggle-current-user-dropdown' hidden>
-            <label for="toggle-current-user-dropdown" class="hidden md:flex items-center">
-                <div class="">{{Auth::user()->userable->name}}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 mx-2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                </svg>
-            </label>
-
-            <div class="hidden md:flex rounded-full bg-indigo-300 text-indigo-800 p-2" id='current-user-avatar'>
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="w-5 h-5" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <!-- <img src="{{asset('/images/logo/logo-light.png')}}" alt="" class="rounded-full w-10 h-10"> -->
+<header class="sticky-header" id='header'>
+    <div class="flex justify-between items-center w-full">
+        <a href="{{url('/')}}" class="flex text-xl font-bold items-center">
+            <img src="{{asset('images/logo/app_logo_transparent.png')}}" alt="" class="w-8 md:w-12">
+            <div class="px-2">
+                <div class="app-title text-lg font-medium">GHSSCB</div>
+                <div class="app-subtitle text-xs font-thin">Govt Higher Secondary School Chak Bedi</div>
             </div>
+        </a>
+        <nav id='navbar' class="navbar">
+            <ul>
+                <li class="float-right md:hidden" onclick="toggleNavbarMobile()">
+                    <!-- close -->
+                    <i class="bi-x-lg w-8 h-8 text-slate-300 hover:-rotate-90 transition duration-500 ease-in-out"></i>
+                </li>
+                <li><a href="{{url('about')}}" class="nav-item">About</a></li>
+                <li><a href="{{url('services')}}" class="nav-item">Services</a></li>
+                <li><a href="{{url('team')}}" class="nav-item">Team</a></li>
+                <li><a href="{{url('blogs')}}" class="nav-item">Blogs</a></li>
+                <li><a href="#" class="nav-item">Contact Us</a></li>
+                <li><a href="{{url('login')}}" class="nav-item">Login</a></li>
+            </ul>
+        </nav>
 
-            <div class="current-user-dropdown text-sm" id='current-user-dropdown'>
-
-                <a href="{{route('admin.change.password')}}" class="flex items-center border-b py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-4 h-4 mr-3 -rotate-90">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
-                    </svg>
-                    Change Password
-                </a>
-                <a href="{{url('signout')}}" class="flex items-center border-b py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-3">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                    </svg>
-                    Sign Out
-                </a>
-            </div>
-            <span id='menu' class="flex md:hidden">
-                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                </svg>
-            </span>
-        </div>
+        <button class="md:hidden" onclick="toggleNavbarMobile()">
+            <!-- menu -->
+            <i class="bi-list text-lg text-slate-100"></i>
+        </button>
     </div>
-
 </header>
+<script>
+    var header = document.getElementById("header");
+    window.onscroll = function() {
+        if (window.pageYOffset > 5) {
+            header.classList.add("scrolled-down");
+        } else {
+            header.classList.remove("scrolled-down");
+        }
+    };
+
+    function toggleNavbarMobile() {
+        $('#navbar').toggleClass('mobile');
+    }
+</script>

@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('/css/swiper.css') }}">
     <style>
         body {
             /* font-family: Nunito, sans-serif; */
@@ -36,6 +36,8 @@
 
     <script src="{{asset('js/sweetalert2@10.js')}}"></script>
     <script type="module" src="{{asset('js/collapsible.js')}}"></script>
+    <script type="module" src="{{asset('js/swiper.js')}}"></script>
+    <script type="module" src="{{asset('js/testimonial.js')}}"></script>
 
     @yield('script')
     @yield('footer')

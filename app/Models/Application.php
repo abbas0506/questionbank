@@ -14,18 +14,24 @@ class Application extends Model
         'father',
         'phone',
         'adddress',
-        'previous_rollno',
-        'previous_marks',
-        'previous_board',
-        'previous_medium', //english / urdu
-        'previous_school',
-
-        'group_id', //applied for
+        'bise_name',
+        'rollno',
+        'marks',
+        'pass_year',    //applied when
+        'medium',       //english / urdu
+        'group_id',     //applied for
         'objection',
         'fee',
-        'year',     //applied when
+
+        'clas_id',
+        'group_id',
+
     ];
 
+    public function clas()
+    {
+        return $this->belongsTo(Clas::class);
+    }
     public function group()
     {
         return $this->belongsTo(Group::class);
@@ -40,7 +46,7 @@ class Application extends Model
 
     public function scopeToday($query)
     {
-        return $query->whereDate('updated_at', Carbon::today());
+        return $query->whereDate('updated_at', today());
     }
 
     public function scopeUnderprocess($query)
