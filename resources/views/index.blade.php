@@ -26,56 +26,53 @@
 </div>
 
 <!-- features section -->
-<section id='features' class="mt-12">
-
-
+<section id='features' class="mt-12 px-24">
     <h2 class="text-4xl text-center">We Provide</h2>
-
-    <div class="feature container grid grid-cols-1 md:grid-cols-3 space-x-0 md:space-x-8 space-y-4 md:space-y-0">
+    <div class="feature container grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-pink-300">
             <div class="flex items-center justify-center bg-pink-100 rounded-full w-16 h-16">
                 <i class="bi-book text-2xl text-pink-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Free Education</h3>
-            <p class="text-sm text-center">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <p class="text-sm text-center">We provide free education as per govt policy from nursery to 12<sup>th</sup> class.</p>
+        </div>
+        <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-orange-300">
+            <div class="flex items-center justify-center bg-orange-100 rounded-full w-16 h-16">
+                <i class="bi-laptop text-2xl text-orange-400"></i>
+            </div>
+            <h3 class="mt-3 text-lg">IT Skills</h3>
+            <p class="text-sm text-center">Students learn basic IT skills using state of art NComputing lab. </p>
         </div>
         <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-cyan-200 box-border">
             <div class="flex items-center justify-center bg-cyan-100 rounded-full w-16 h-16">
                 <i class="bi bi-palette text-2xl text-cyan-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Practical Labs</h3>
-            <p class="text-sm text-center">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <p class="text-sm text-center">We have well equipped pratcical labs of all core science subjects.</p>
         </div>
         <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-green-200">
             <div class="flex items-center justify-center bg-green-100 rounded-full w-16 h-16">
                 <i class="bx bx-run text-2xl text-green-400"></i>
             </div>
-            <h3 class="mt-3 text-lg">Sports Playgrounds</h3>
-            <p class="text-sm text-center">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <h3 class="mt-3 text-lg">Vast Playgrounds</h3>
+            <p class="text-sm text-center">Vast playgrounds of hockey, footbal, cricket are always open to students.</p>
         </div>
-        <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-pink-300">
-            <div class="flex items-center justify-center bg-pink-100 rounded-full w-16 h-16">
-                <i class="bi-book text-2xl text-pink-400"></i>
-            </div>
-            <h3 class="mt-3 text-lg">IT Skills</h3>
-            <p class="text-sm text-center">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-        </div>
-        <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-cyan-200 box-border">
-            <div class="flex items-center justify-center bg-cyan-100 rounded-full w-16 h-16">
-                <i class="bi bi-palette text-2xl text-cyan-400"></i>
+
+        <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-indigo-200 box-border">
+            <div class="flex items-center justify-center bg-indigo-100 rounded-full w-16 h-16">
+                <i class="bi bi-palette text-2xl text-indigo-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Quiz Competitions</h3>
-            <p class="text-sm text-center">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <p class="text-sm text-center">We conduct vairous competitions to promote our students' inner talent.</p>
         </div>
-        <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-green-200">
-            <div class="flex items-center justify-center bg-green-100 rounded-full w-16 h-16">
-                <i class="bx bx-run text-2xl text-green-400"></i>
+        <div class="flex flex-col justify-center items-center p-8 shadow-lg border border-transparent hover:border hover:border-rose-200">
+            <div class="flex items-center justify-center bg-rose-100 rounded-full w-16 h-16">
+                <i class="bx bx-run text-2xl text-rose-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Day Celebrations</h3>
-            <p class="text-sm text-center">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <p class="text-sm text-center">We celebrate various days like national heroes, culture day, etc. </p>
         </div>
     </div>
-
 
 </section>
 <div class="mt-24 bg-slate-100">
@@ -93,229 +90,81 @@
 </div>
 <!-- testimonial section -->
 <section class="testimonials pt-0" data-aos="fade-up">
-    <div class="container">
-
-        <div class="section-title">
-            <h2>Our Team</h2>
-            <p class="text-gray-900">
-                We are focusing on four major areas of research, development and capacity building:
-                Developing Remote Sensing and GIS applications, models, tools,
-                technologies, and scientific approaches to support sustainable
-                developments in the fields of food security, agriculture, and
-                environment, air and water pollution assessment and solutions, efficient management of natural
-                resources and urban areas, and a pathway towards a blue economy.
-
-            </p>
-        </div>
-        <div class="testimonials-carousel swiper w-full mt-4">
-            <div class="swiper-wrapper">
-                <div class="testimonial-item swiper-slide">
-                    <img src="images/dr/1.png" class="testimonial-img" alt="">
-                    <h3>Dr. Zia ul Haq</h3>
-                    <h4>Principal Investigator/Director</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Remote Sensing of Atmosphere, Sustainable Development, Atmospheric Reactive and
-                        Greenhouse Gases, Air Pollution Impact linkage with Climate Chang, Socioeconomics of Climate Change, Climate Projections and Adaptation
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-
-                <div class="testimonial-item swiper-slide">
-                    <img src="images/dr/3.png" class="testimonial-img" alt="">
-                    <h3>Dr. Syeda Adila Batool</h3>
-                    <h4>Co-Principal Investigator</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Sustainable Development, Urban Climate, Climate Projections and Adaptation, Solid Waste Management, Life Cycle Assessment, Greenhouse Gases Emissions and Impact on Ecology,
-                        Climate and Human Health
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-                <div class="testimonial-item swiper-slide">
-                    <img src="images/dr/6.png" class="testimonial-img" alt="">
-                    <h3>Dr. Asim Daud Rana</h3>
-                    <h4>Team Lead/Lab Member</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Passion driven scientist with distinguished academic career and having almost 20 years’
-                        experience of imparting and sharing knowledge of satellite remote sensing through university
-                        education, multi-national and semi government organisations.
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-
-                <div class="testimonial-item swiper-slide">
-                    <img src="images/dr/2.png" class="testimonial-img" alt="">
-                    <h3>Dr. Khalid Mahmood</h3>
-                    <h4>Co-Principal Investigator</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Satellite Based Environmental Indices, Hazards Assessment, Geospatial Economical
-                        Alternatives, Multi Criteria Decision Support Systems, Geographic Information Science (GISc) Development,
-                        Anthropogenic Emissions, Ecology and Climate Change
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-
-                <div class="testimonial-item swiper-slide">
-                    <img src="images/dr/4.png" class="testimonial-img" alt="">
-                    <h3>Dr. Salman Tariq</h3>
-                    <h4>Co-Principal Investigator</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Remote Sensing of Atmosphere and Air Pollution, Climate Modelling, Sustainable Development, Transboundary Aerosols, Radiative
-                        Forcing of Aerosols, Coastal Environments
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-
-                <div class="testimonial-item swiper-slide">
-                    <img src="images/dr/5.png" class="testimonial-img" alt="">
-                    <h3>Dr. Shahid Pervaiz</h3>
-                    <h4>Team Lead/Lab Member</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Satellite Based Environmental Indices, Hazards Assessment, Geospatial Economical
-                        Alternatives, Multi Criteria Decision Support Systems, Geographic Information Science (GISc) Development,
-                        Anthropogenic Emissions, Ecology and Climate Change
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-
+    <div class="mt-24 px-16 md:w-3/4 mx-auto">
+        <h2 class="text-4xl text-center">Our Staff</h2>
+        <p class="text-gray-600 text-center mt-8">
+            We have highly skilled and qualified teaching staff who consistently demonstrate a passion for fostering student growth through innovative teaching methods and personalized support
+        </p>
+        <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
     </div>
+    <div class="testimonials-carousel swiper w-full md:w-3/4 mx-auto mt-12">
+        <div class="swiper-wrapper">
+            <div class="testimonial-item swiper-slide">
+                <img src="{{asset('images/logo/app_logo.png')}}" class="testimonial-img" alt="">
+                <h3>Abdul Majeed</h3>
+                <h4>Principal</h4>
+                <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    "Through a commitment to academic excellence, character education, and inclusive community engagement, we empower our students to become lifelong learners, compassionate leaders, and contributors to a globally connected society."
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+            </div>
+
+            <div class="testimonial-item swiper-slide">
+                <img src="{{asset('images/logo/app_logo.png')}}" class="testimonial-img" alt="">
+                <h3>Rasheed Ahmad Khawar</h3>
+                <h4>Senior Subject Specialist (Physics)</h4>
+                <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    "Our mission at GHSS Chakbedi is to cultivate a dynamic learning environment that inspires intellectual curiosity, fosters critical thinking, and promotes the holistic development of each student."
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+            </div>
+            <div class="testimonial-item swiper-slide">
+                <img src="{{asset('images/logo/app_logo.png')}}" class="testimonial-img" alt="">
+                <h3>Dr. Ahmad Ali</h3>
+                <h4>Senior Subject Specialist (Biology)</h4>
+                <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    "We are committed to provide quality education to each and every student of this instiution. For this purpose, we leave no stone unturned to keep the confidence level maintained."
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
 </section><!-- End Ttstimonials Section -->
-
-
-
-
-<!-- Team section -->
-<!-- <section class="bg-cover bg-center py-12" style="background-image: url('images/path7.png');">
-    <div class="container">
-        <div class="section-title">
-            <h2>Team</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mt-8 w-full place-items-center">
-            <div class="flip-card bg-transparent">
-                <div class="inner">
-                    <div class="front">
-                        <img src="images/dr/1.png" alt="" class="w-20 h-20 rounded-full">
-                        <h3 class="mt-3">Dr. Zia Ul Haq</h3>
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                    <div class="back">
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                        <a href="" class="mt-5 hyper">See profile</a>
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card bg-transparent">
-                <div class="inner">
-                    <div class="front">
-                        <img src="images/dr/1.png" alt="" class="w-20 h-20 rounded-full">
-                        <h3 class="mt-3">Dr. Zia Ul Haq</h3>
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                    <div class="back">
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card bg-transparent">
-                <div class="inner">
-                    <div class="front">
-                        <img src="images/dr/1.png" alt="" class="w-20 h-20 rounded-full">
-                        <h3 class="mt-3">Dr. Zia Ul Haq</h3>
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                    <div class="back">
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flip-card bg-transparent">
-                <div class="inner">
-                    <div class="front">
-                        <img src="images/dr/1.png" alt="" class="w-20 h-20 rounded-full">
-                        <h3 class="mt-3">Dr. Zia Ul Haq</h3>
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                    <div class="back">
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card bg-transparent">
-                <div class="inner">
-                    <div class="front">
-                        <img src="images/dr/1.png" alt="" class="w-20 h-20 rounded-full">
-                        <h3 class="mt-3">Dr. Zia Ul Haq</h3>
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                    <div class="back">
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card bg-transparent">
-                <div class="inner">
-                    <div class="front">
-                        <img src="images/dr/1.png" alt="" class="w-20 h-20 rounded-full">
-                        <h3 class="mt-3">Dr. Zia Ul Haq</h3>
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                    <div class="back">
-                        <p>Co-Principal Investigator</p>
-                        <p>aadila.spsc@pu.edu.pk</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section id='services' class="mt-12 px-24">
+    <div class="mt-24 px-16 md:w-3/4 mx-auto">
+        <h2 class="text-4xl text-center">Key Features</h2>
+        <p class="text-gray-600 text-center mt-8">
+            We have highly skilled and qualified teaching staff who consistently demonstrate a passion for fostering student growth through innovative teaching methods and personalized support
+        </p>
+        <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
     </div>
-</section> -->
-
-
-<section id='services' class="mt-12">
-    <div class="bg-fixed bg-cover py-16 bg-origin-border hover:bg-origin-padding" style="background-image: url('images/mini/globe-2.png');">
-        <h1 class="text-center text-white">Our Services</h1>
-    </div>
-    <div class="container">
+    <div class="">
         <div class="flex flex-col md:flex-row mt-8 w-full justify-between">
             <div class="w-full p-5 md:w-1/2">
-                <h2>Academics</h2>
-                <p class="mt-3 text-lg">Capacity Building of professionals and researchers through courses, trainings, workshops, seminars etc. (GIS, Climate Change, Satellites, Drones, RADARs, LiDARs, Optical/Thermal/Microwave Imagery)</p>
+                <h2 class="text-2xl text-slate-800">Planned Testing</h2>
+                <p class="mt-3 text-slate-600 leading-relaxed">We conduct well planned series of tests in order to get our students ready for their final exams. Our online assessment system also helps specially the brilliant students to perform their self assessment and identify their deficiencies properly.</p>
             </div>
             <div class="custom-cell w-1/2">
-                <img src="images/mini/academics.png" alt="" class="w-60">
+                <img src="{{asset('images/sports/shield.png')}}" alt="" class="w-3/4 float-right">
             </div>
         </div>
     </div>
     <div class="container">
         <div class="flex flex-col-reverse md:flex-row mt-8 w-full justify-between">
             <div class="custom-cell w-1/2">
-                <img src="images/mini/research.png" alt="" class="w-60">
+                <img src="{{asset('images/library/library-1.png')}}" alt="" class="w-3/4">
             </div>
             <div class="w-full p-5 md:w-1/2">
-                <h2>Research & Development</h2>
-                <p class="mt-3 text-lg">Development of GIS & Space Applications to be shared with internatinoal organizations and
-                    help in improving living standards of Pakistan through sustainable solution for healthy environment, better urban planning,
-                    saving of natural resources, etc. </p>
+                <h2 class="text-2xl text-slate-800">Computerized Library System</h2>
+                <p class="mt-3 text-slate-600 leading-relaxed">
+                    We have a lot of books covering all subject domains like religion, science, culture, literature, history, etc. These books are free for all students. Thanks to our web application that keeps track of all the readers and books.
+                </p>
             </div>
 
         </div>
@@ -323,26 +172,27 @@
     <div class="container">
         <div class="flex flex-col md:flex-row mt-8 w-full justify-between">
             <div class="w-full p-5 md:w-1/2">
-                <h2>Consultancy Services</h2>
-                <p class="mt-3 text-lg">Mapping and analyzing for identifying problems, monitoring changes, managing and
-                    responding to events, perform forecasting, setting priorities and understanding trends
+                <h2 class="text-2xl text-slate-800">Moral Care</h2>
+                <p class="mt-3 text-slate-600 leading-relaxed">
+                    We own our students in real sense. We show them the right way that can lead to their destination. We provide them evironment where they learn how to become good citizens of the nation.
                 </p>
             </div>
             <div class="custom-cell w-1/2">
-                <img src="images/consultancy.png" alt="" class="w-52">
+                <img src="{{asset('images/events/prayer.png')}}" alt="" class="w-4/5 float-right">
             </div>
         </div>
     </div>
 
 </section>
 
-<section id='events' class="mt-16">
+<section id='events' class="mt-16 px-24">
     <!-- <div class="container"> -->
     <div class="section-title">
-        <h2>Events</h2>
+        <h2 class="text-4xl text-slate-800 text-center">Recent Events</h2>
+        <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
     </div>
-    <div class="bg-slate-100 p-12 mt-16">
-        <p class="italic text-center text-2xl">We arrange wonderful and supportive events full of knowledge and experience for students and professionals. We are very concerned about enhancing your professional capacities.</p>
+    <div class="bg-slate-100 mt-12 p-6">
+        <p class="italic text-center text-xl">We arrange wonderful and supportive events full of knowledge and experience for students and professionals. We are very concerned about enhancing our professional capacities.</p>
         <div class="flex flex-col md:flex-row space-x-4 md:space-x-0 mt-12">
 
             <div class="flex flex-1">
@@ -351,36 +201,14 @@
                     <div class="relative h-48 md:h-80 overflow-hidden  bg-slate-600">
                         <!-- Item 1 -->
                         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-                            <img src="images/events/1.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-50" alt="...">
+                            <img src="{{asset('images/events/events-1.png')}}" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-50" alt="...">
                             <p class="absolute top-20 left-0 text-center w-full h-full opacity-80 text-white text-lg z-30">It is description of the event</p>
                         </div>
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/2.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            <img src="{{asset('images/events/events-2.png')}}" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                         </div>
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/3.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/4.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/5.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/6.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/7.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/8.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/9.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="images/events/10.jpg" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            <img src="{{asset('images/events/events-3.png')}}" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                         </div>
                     </div>
                     <!-- Slider indicators -->
@@ -388,13 +216,6 @@
                         <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
                         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
                         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 6" data-carousel-slide-to="5"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 7" data-carousel-slide-to="6"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 8" data-carousel-slide-to="7"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 9" data-carousel-slide-to="8"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 10" data-carousel-slide-to="9"></button>
                     </div>
                     <!-- Slider controls -->
                     <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
@@ -419,41 +240,20 @@
                 <!-- <h4 class="w-full underline underline-offset-8 text-cyan-800">Upcoming</h4> -->
                 <div class="">
                     <div class="upcoming-event flex">
-                        <div class="flex justify-center items-start">
-                            <a href="" class="flex-centered bg-cyan-50 w-12 h-12">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-slate-500">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                                </svg>
-                            </a>
-                        </div>
                         <div class="pl-5">
-                            <h4>Seminars</h4>
+                            <h2 class="text-teal-600">Seminars</h2>
                             <p>We have great seminars for you. Click here to read which seminars are waiting for your click</p>
                         </div>
                     </div>
                     <div class="upcoming-event flex mt-5">
-                        <div class="flex justify-center items-start">
-                            <a href="" class="flex-centered bg-cyan-50 w-12 h-12">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-slate-500">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                                </svg>
-                            </a>
-                        </div>
                         <div class="pl-5">
-                            <h4>Workshops</h4>
+                            <h2 class="text-rose-600">Workshops</h2>
                             <p>We have great seminars for you. Click here to read which seminars are waiting for your click</p>
                         </div>
                     </div>
                     <div class="upcoming-event flex mt-5">
-                        <div class="flex justify-center items-start">
-                            <a href="" class="flex-centered bg-cyan-50 w-12 h-12">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-slate-500">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                                </svg>
-                            </a>
-                        </div>
                         <div class="pl-5">
-                            <h4>Trainings</h4>
+                            <h2 class="text-indigo-600">Trainings</h2>
                             <p>We have great seminars for you. Click here to read which seminars are waiting for your click</p>
                         </div>
                     </div>
@@ -508,13 +308,13 @@
 
         </div>
         <div class="flex-1 overflow-x-hidden">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.6559355793825!2d74.29039268428063!3d31.49414510119047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919031d2ee1bf09%3A0x1727a9182c585b6e!2sRemote%20Sensing%2C%20GIS%20and%20Climatic%20Research%20Lab%20(RSGCRL)!5e0!3m2!1sen!2s!4v1682359604140!5m2!1sen!2s" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6044.265479385004!2d73.49551048367726!3d30.485434912974124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shigher%20secondary%20school%20near%20Chak%20Bedi!5e0!3m2!1sen!2s!4v1701884753529!5m2!1sen!2s" width="520" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
     </div>
     <div class="flex flex-col md:flex-row justify-center md:items-center w-full mt-12 space-y-3 md:space-x-4">
         <img src="{{url('images/mini/email-5.png')}}" alt="" class="w-16 -rotate-6">
-        <input type="text" placeholder="Enter your mailing address" class="w-full md:w-3/4 px-3">
+        <input type="text" placeholder="Enter your mailing address" class="w-full md:w-3/4 px-3 custom-input">
         <button class="btn-teal py-2 px-4">Submit</button>
 
     </div>
@@ -527,7 +327,6 @@
 
 @section('script')
 <script lang="javascript">
-    alert();
     import {
         Carousel
     }

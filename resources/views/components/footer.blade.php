@@ -11,24 +11,24 @@
             <p class="text-sm text-slate-400">We are a model higher secondary school(government sector) in district Pakpattan, imparting education upto intermediate level</p>
         </div>
         <div class="text-slate-400">
-            <h3 class="text-base">Contact Us</h3>
-            <div class="flex flex-col text-sm">
-                <i class="bi-geo-alt"></i>
-                <p class="text-sm">Govt Higher Secondary Chack Bedi, Distt. Pakpattan, Pakistan</p>
-
+            <h3 class="text-orange-300">Contact Us</h3>
+            <div class="text-sm">
+                <div class="flex space-x-2">
+                    <i class="bi-geo-alt mr-2"></i>
+                    <p class="text-sm">Govt Higher Secondary Chack Bedi, Distt. Pakpattan, Pakistan</p>
+                </div>
+                <div class="flex space-x-2">
+                    <i class="bi-phone mr-2"></i>
+                    <p class="text-sm">+92 300 8754001</p>
+                </div>
             </div>
         </div>
         <div>
-            <h3 class="text-base">Follow Us</h3>
+            <h3 class="text-orange-300">Follow Us</h3>
             <div class="flex flex-row space-x-2">
-                <a href="{{url('https://twitter.com/rsgcrl')}}" target="_blank"><img src="images/social/twitter.png" alt="" class="w-4 h-4"></a>
-                <a href="{{url('https://www.facebook.com/rsgcrl')}}" target="_blank"><img src="images/social/fb.png" alt="" class="w-4 h-4"></a>
-                <a href="{{url('https://www.linkedin.com/in/rsgcrl')}}" target="_blank"><img src="images/social/linkedin.png" alt="" class="w-4 h-4"></a>
-                <a href="{{url('https://www.instagram.com/climateresearch_lab/')}}" target="_blank"><img src="images/social/insta.png" alt="" class="w-4 h-4"></a>
-                <a href="{{url('https://www.youtube.com/channel/UCzHTLnN5PNFtrDHl0Qy_n_Q/')}}" target="_blank"><img src="images/social/youtube.png" alt="" class="w-4 h-4"></a>
-                </p>
+                <a href="{{url('https://web.facebook.com/ghsschakbedi.pakpattan.1')}}" target="_blank"><i class="bi-facebook text-slate-400 w-4 h-4"></i></a>
+                <a href="{{url('https://web.facebook.com/ghsschakbedi.pakpattan.1')}}" target="_blank"><i class="bi-twitter text-slate-400 w-4 h-4"></i></a>
             </div>
-
         </div>
     </div>
 </div>

@@ -13,10 +13,10 @@
                     <!-- close -->
                     <i class="bi-x-lg w-8 h-8 text-slate-300 hover:-rotate-90 transition duration-500 ease-in-out"></i>
                 </li>
-                <li><a href="{{url('about')}}" class="nav-item">About</a></li>
-                <li><a href="{{url('services')}}" class="nav-item">Services</a></li>
-                <li><a href="{{url('team')}}" class="nav-item">Team</a></li>
-                <li><a href="{{url('blogs')}}" class="nav-item">Blogs</a></li>
+                <li><a href="#" class="nav-item">About</a></li>
+                <li><a href="#" class="nav-item">Services</a></li>
+                <li><a href="#" class="nav-item">Team</a></li>
+                <li><a href="#" class="nav-item">Blogs</a></li>
                 <li><a href="#" class="nav-item">Contact Us</a></li>
                 <li><a href="{{url('login')}}" class="nav-item">Login</a></li>
             </ul>
