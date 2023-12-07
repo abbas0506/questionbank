@@ -272,6 +272,18 @@
         @apply ring-2 ring-teal-800 ring-offset-2;
     }
 
+    .pallet-box {
+        @apply flex w-full rounded-lg bg-white drop-shadow-sm p-4;
+    }
+    .pallet-box .title {
+        @apply text-sm text-slate-500 font-thin;
+    }
+    .pallet-box .ico {
+        @apply flex justify-center items-center w-12 h-12 rounded-full;
+    }
+    .pallet-box .bi {
+        @apply text-[24px];
+    }
     .divider {
         @apply border-t border-slate-200 border-dashed;
     }
