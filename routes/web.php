@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\admin\ClassController;
-use App\Http\Controllers\admin\GradeController;
-use App\Http\Controllers\Admin\GroupController;
-use App\Http\Controllers\admin\StudentController;
-use App\Http\Controllers\admin\TeacherController;
+use App\Http\Controllers\administrator\AdminController;
+use App\Http\Controllers\administrator\ClassController;
+use App\Http\Controllers\administrator\GradeController;
+use App\Http\Controllers\administrator\GroupController;
+use App\Http\Controllers\administrator\StudentController;
+use App\Http\Controllers\administrator\TeacherController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\library\assistant\BookIssuanceController;
