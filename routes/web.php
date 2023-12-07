@@ -51,11 +51,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     if (Auth::check()) {
-
-        if (Auth::user()->hasRole('admin'))
-            return redirect('admin');
-        elseif (Auth::user()->hasRole('dep'))
-            return redirect('dep');
+        return redirect(session('role'));
     } else {
         return view('index');
     }

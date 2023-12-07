@@ -29,7 +29,7 @@
 <section id='features' class="mt-24 px-4 md:px-24">
     <h2 class="text-4xl text-center">We Provide</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-        <div class="feature-box hover:border-pink-300 hover:bg-pink-50">
+        <div class="flex flex-col justify-center items-center px-8 border border-transparent hover:border-pink-300 hover:bg-pink-50">
             <div class="flex items-center justify-center bg-pink-100 rounded-full w-16 h-16">
                 <i class="bi-book text-2xl text-pink-400"></i>
             </div>
@@ -37,7 +37,7 @@
             <p class="text-sm text-center">We provide free education as per govt policy from nursery to 12<sup>th</sup> class.</p>
         </div>
 
-        <div class="feature-box hover:border-orange-300 hover:bg-orange-50">
+        <div class="flex flex-col justify-center items-center p-8 border-transparent hover:border-orange-300 hover:bg-orange-50">
             <div class="flex items-center justify-center bg-orange-100 rounded-full w-16 h-16">
                 <i class="bi-laptop text-2xl text-orange-400"></i>
             </div>
@@ -45,7 +45,7 @@
             <p class="text-sm text-center">Students learn basic IT skills using state of art NComputing lab. </p>
         </div>
 
-        <div class="feature-box hover:border-cyan-200 hover:bg-cyan-50">
+        <div class="flex flex-col justify-center items-center p-8 border border-transparent hover:border-cyan-200 hover:bg-cyan-50">
             <div class="flex items-center justify-center bg-cyan-100 rounded-full w-16 h-16">
                 <i class="bi bi-palette text-2xl text-cyan-400"></i>
             </div>
@@ -53,7 +53,7 @@
             <p class="text-sm text-center">We have well equipped pratcical labs of all core science subjects.</p>
         </div>
 
-        <div class="feature-box hover:border-green-200 hover:bg-green-50">
+        <div class="flex flex-col justify-center items-center p-8 border border-transparent hover:border-green-200 hover:bg-green-50">
             <div class="flex items-center justify-center bg-green-100 rounded-full w-16 h-16">
                 <i class="bx bx-run text-2xl text-green-400"></i>
             </div>
@@ -61,14 +61,14 @@
             <p class="text-sm text-center">Vast playgrounds of hockey, footbal, cricket are always open to students.</p>
         </div>
 
-        <div class="feature-box hover:border-indigo-200 hover:bg-indigo-50">
+        <div class="flex flex-col justify-center items-center p-8 border border-transparent hover:border-indigo-200 hover:bg-indigo-50">
             <div class="flex items-center justify-center bg-indigo-100 rounded-full w-16 h-16">
                 <i class="bi bi-palette text-2xl text-indigo-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Quiz Competitions</h3>
             <p class="text-sm text-center">We conduct vairous competitions to promote our students' inner talent.</p>
         </div>
-        <div class="feature-box hover:border-rose-200 hover:bg-rose-50">
+        <div class="flex flex-col justify-center items-center p-8 border border-transparent hover:border-rose-200 hover:bg-rose-50">
             <div class="flex items-center justify-center bg-rose-100 rounded-full w-16 h-16">
                 <i class="bx bx-run text-2xl text-rose-400"></i>
             </div>
@@ -76,31 +76,27 @@
             <p class="text-sm text-center">We celebrate various days like national heroes, culture day, etc. </p>
         </div>
     </div>
-</section>
 
-<!-- distinction -->
-<section>
-    <div class="mt-24 bg-slate-100">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-4 md:p-8">
-            <div class="flex flex-1">
-                <img src="{{url('images/sports/trophy.png')}}" alt="sat" class="">
-            </div>
-            <div class="flex flex-col flex-1">
-                <h2 class="text-xl">Our Distinction</h2>
-                <p class="leading-relaxed">
-                    Thanks to Almighty Allah, for blessing us with the honour of wining All Punjab Qirat Competition and Division Level Hockey Tournament.
-                </p>
-            </div>
+</section>
+<div class="mt-24 bg-slate-100">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+        <div class="flex flex-1">
+            <img src="{{url('images/sports/trophy.png')}}" alt="sat" class="">
+        </div>
+        <div class="flex flex-col flex-1">
+            <h2 class="text-xl">Our Distinction</h2>
+            <p class="leading-relaxed">
+                Thanks to Almighty Allah, for blessing us with the honour of wining All Punjab Qirat Competition and Division Level Hockey Tournament.
+            </p>
         </div>
     </div>
-</section>
-
+</div>
 <!-- testimonial section -->
 <section class="testimonials pt-0" data-aos="fade-up">
-    <div class="mt-24 px-4 md:px-16 md:w-3/4 mx-auto">
-        <h2 class="text-4xl text-center">Our Faculty</h2>
+    <div class="mt-24 px-16 md:w-3/4 mx-auto">
+        <h2 class="text-4xl text-center">Our Staff</h2>
         <p class="text-gray-600 text-center mt-8">
-            We have highly skilled and qualified teaching faculty who consistently demonstrate a passion for fostering student growth through innovative teaching methods and personalized support
+            We have highly skilled and qualified teaching staff who consistently demonstrate a passion for fostering student growth through innovative teaching methods and personalized support
         </p>
         <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
     </div>
@@ -143,62 +139,65 @@
     </div>
 
 </section><!-- End Ttstimonials Section -->
-
-<section id='key_features' class="mt-12 md:mt-24 px-4 md:px-24">
-    <div class="md:w-3/4 mx-auto">
+<section id='services' class="mt-12 px-24">
+    <div class="mt-24 px-16 md:w-3/4 mx-auto">
         <h2 class="text-4xl text-center">Key Features</h2>
         <p class="text-gray-600 text-center mt-8">
             We have highly skilled and qualified teaching staff who consistently demonstrate a passion for fostering student growth through innovative teaching methods and personalized support
         </p>
         <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
     </div>
-
-    <div class="flex flex-col md:flex-row gap-y-6 mt-16 w-full justify-between">
-        <div class="flex-1">
-            <h2 class="text-2xl text-slate-800">Planned Testing</h2>
-            <p class="mt-3 text-slate-600 leading-relaxed">We conduct well planned series of tests in order to get our students ready for their final exams. Our online assessment system also helps specially the brilliant students to perform their self assessment and identify their deficiencies properly.</p>
-        </div>
-        <div class="flex-1">
-            <img src="{{asset('images/sports/shield.png')}}" alt="" class="md:w-3/4 md:float-right">
+    <div class="">
+        <div class="flex flex-col md:flex-row mt-8 w-full justify-between">
+            <div class="w-full p-5 md:w-1/2">
+                <h2 class="text-2xl text-slate-800">Planned Testing</h2>
+                <p class="mt-3 text-slate-600 leading-relaxed">We conduct well planned series of tests in order to get our students ready for their final exams. Our online assessment system also helps specially the brilliant students to perform their self assessment and identify their deficiencies properly.</p>
+            </div>
+            <div class="custom-cell w-1/2">
+                <img src="{{asset('images/sports/shield.png')}}" alt="" class="w-3/4 float-right">
+            </div>
         </div>
     </div>
+    <div class="container">
+        <div class="flex flex-col-reverse md:flex-row mt-8 w-full justify-between">
+            <div class="custom-cell w-1/2">
+                <img src="{{asset('images/library/library-1.png')}}" alt="" class="w-3/4">
+            </div>
+            <div class="w-full p-5 md:w-1/2">
+                <h2 class="text-2xl text-slate-800">Computerized Library System</h2>
+                <p class="mt-3 text-slate-600 leading-relaxed">
+                    We have a lot of books covering all subject domains like religion, science, culture, literature, history, etc. These books are free for all students. Thanks to our web application that keeps track of all the readers and books.
+                </p>
+            </div>
 
-    <div class="flex flex-col-reverse md:flex-row gap-y-6 mt-6 md:mt-16 w-full justify-between">
-        <div class="flex-1">
-            <img src="{{asset('images/library/library-1.png')}}" alt="" class="md:w-3/4 md:float-left">
         </div>
-        <div class="flex-1">
-            <h2 class="text-2xl text-slate-800">Computerized Library System</h2>
-            <p class="mt-3 text-slate-600 leading-relaxed">
-                We have a lot of books covering all subject domains like religion, science, culture, literature, history, etc. These books are free for all students. Thanks to our web application that keeps track of all the readers and books.
-            </p>
-        </div>
-
     </div>
-    <div class="flex flex-col md:flex-row gap-y-6 mt-6 md:mt-16 w-full justify-between">
-        <div class="flex-1">
-            <h2 class="text-2xl text-slate-800">Moral Care</h2>
-            <p class="mt-3 text-slate-600 leading-relaxed">
-                We own our students in real sense. We show them the right way that can lead to their destination. We provide them evironment where they learn how to become good citizens of the nation.
-            </p>
-        </div>
-        <div class="flex-1">
-            <img src="{{asset('images/events/prayer.png')}}" alt="" class="md:w-3/4 md:float-right">
+    <div class="container">
+        <div class="flex flex-col md:flex-row mt-8 w-full justify-between">
+            <div class="w-full p-5 md:w-1/2">
+                <h2 class="text-2xl text-slate-800">Moral Care</h2>
+                <p class="mt-3 text-slate-600 leading-relaxed">
+                    We own our students in real sense. We show them the right way that can lead to their destination. We provide them evironment where they learn how to become good citizens of the nation.
+                </p>
+            </div>
+            <div class="custom-cell w-1/2">
+                <img src="{{asset('images/events/prayer.png')}}" alt="" class="w-4/5 float-right">
+            </div>
         </div>
     </div>
 
 </section>
 
-
-<section id='events' class="mt-12 md:mt-16 px-4 md:px-24">
-    <!-- section title -->
-    <h2 class="text-4xl text-slate-800 text-center">Recent Events</h2>
-    <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
-
+<section id='events' class="mt-24 px-4 md:px-24">
+    <!-- <div class="container"> -->
+    <div class="section-title">
+        <h2 class="text-4xl text-slate-800 text-center">Recent Events</h2>
+        <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
+    </div>
     <div class="bg-slate-100 mt-12 p-6">
         <p class="italic text-center text-xl">We arrange wonderful and supportive events full of knowledge and experience for students and professionals. We are very concerned about enhancing our professional capacities.</p>
+        <div class="flex flex-col md:flex-row space-x-4 md:space-x-0 mt-12">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mt-12">
             <div class="flex flex-1">
                 <div id="default-carousel" class="relative w-full" data-carousel="slide">
                     <!-- Carousel wrapper -->
@@ -240,30 +239,79 @@
                     </button>
                 </div>
             </div>
+            <div class="flex flex-1 flex-col justify-center items-center p-5">
+                <!-- <h4 class="w-full underline underline-offset-8 text-cyan-800">Upcoming</h4> -->
+                <div class="">
+                    <div class="upcoming-event flex">
+                        <div class="pl-5">
+                            <h2 class="text-teal-600">Seminars</h2>
+                            <p>We have great seminars for you. Click here to read which seminars are waiting for your click</p>
+                        </div>
+                    </div>
+                    <div class="upcoming-event flex mt-5">
+                        <div class="pl-5">
+                            <h2 class="text-rose-600">Workshops</h2>
+                            <p>We have great seminars for you. Click here to read which seminars are waiting for your click</p>
+                        </div>
+                    </div>
+                    <div class="upcoming-event flex mt-5">
+                        <div class="pl-5">
+                            <h2 class="text-indigo-600">Trainings</h2>
+                            <p>We have great seminars for you. Click here to read which seminars are waiting for your click</p>
+                        </div>
+                    </div>
 
-            <div class="flex flex-col flex-1">
-                <h2 class="text-slate-800">Seminars</h2>
-                <p class="text-slate-600">We have great seminars for you. Click here to read which seminars are waiting for your click</p>
-                <h2 class="text-slate-800 mt-6">Workshops</h2>
-                <p class="text-slate-600">We have great seminars for you. Click here to read which seminars are waiting for your click</p>
-                <h2 class="text-slate-800 mt-6">Trainings</h2>
-                <p class="text-slate-600">We have great seminars for you. Click here to read which seminars are waiting for your click</p>
+
+                </div>
+
             </div>
         </div>
     </div>
 
 </section>
 
-<section class="mt-24 md:px-24">
-    <div class="grid grid-cols-1 md:grid-cols-2 border">
-        <div class="p-4 md:p-8 text-center">
-            <img src="{{url(asset('images/donor.png'))}}" alt="" class="w-40 h-40 rounded-full mx-auto">
-            <h2 class="mt-3">Rao Zahoor Ahmad</h2>
-            <p class="text-slate-600 text-sm mt-2">A well known charity person of village Chak Bedi, who donated his 9 acres land for the establisment of school. May his sould rest in peace!</p>
-        </div>
+<section class="mt-16 px-24">
+    <div class="section-title">
+        >
+    </div>
+    <div class="flex flex-col md:flex-row w-full space-y-4 md:space-x-4 my-12">
+        <div class="flex flex-1">
+            <ul class="list-disk space-y-2">
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    What is your question yweyreiuwyrywie
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    What is your question yweyreiuwyrywie
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    What is your question yweyreiuwyrywie
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    What is your question yweyreiuwyrywie
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    What is your question yweyreiuwyrywie
+                </li>
+            </ul>
 
-        <div class="overflow-x-hidden">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6044.265479385004!2d73.49551048367726!3d30.485434912974124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shigher%20secondary%20school%20near%20Chak%20Bedi!5e0!3m2!1sen!2s!4v1701884753529!5m2!1sen!2s" width="540" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="flex-1 overflow-x-hidden">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6044.265479385004!2d73.49551048367726!3d30.485434912974124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shigher%20secondary%20school%20near%20Chak%20Bedi!5e0!3m2!1sen!2s!4v1701884753529!5m2!1sen!2s" width="520" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
     </div>

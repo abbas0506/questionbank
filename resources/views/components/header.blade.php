@@ -4,7 +4,7 @@
             <img src="{{asset('images/logo/app_logo_transparent.png')}}" alt="" class="w-8 md:w-12">
             <div class="px-2">
                 <div class="app-title text-lg font-medium">GHSSCB</div>
-                <div class="app-subtitle text-xs font-thin">Govt Higher Secondary School Chak Bedi</div>
+                <div class="app-subtitle text-xs font-thin hidden md:block">Govt Higher Secondary School Chak Bedi</div>
             </div>
         </a>
         <nav id='navbar' class="navbar">
@@ -14,17 +14,17 @@
                     <i class="bi-x-lg w-8 h-8 text-slate-300 hover:-rotate-90 transition duration-500 ease-in-out"></i>
                 </li>
                 <li><a href="#" class="nav-item">About</a></li>
+                <li><a href="#" class="nav-item">Faculty</a></li>
                 <li><a href="#" class="nav-item">Services</a></li>
-                <li><a href="#" class="nav-item">Team</a></li>
                 <li><a href="#" class="nav-item">Blogs</a></li>
                 <li><a href="#" class="nav-item">Contact Us</a></li>
                 <li><a href="{{url('login')}}" class="nav-item">Login</a></li>
             </ul>
         </nav>
 
-        <button class="md:hidden" onclick="toggleNavbarMobile()">
+        <button class="md:hidden" onclick="toggleNavbarMobile()" id='menu'>
             <!-- menu -->
-            <i class="bi-list text-lg text-slate-100"></i>
+            <i class="bi-list text-lg"></i>
         </button>
     </div>
 </header>

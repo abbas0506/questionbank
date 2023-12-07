@@ -63,14 +63,11 @@ class AuthController extends Controller
 
 
         if (Auth::user()->hasRole($request->role)) {
-            // save selected semester id for entire session
-            // if (Auth::user()->hasAnyRole('super', 'admin', 'hod', 'incharge', 'teacher', 'dep')) {
-            //     session([
-            //         'year' => date('Y'),
-            //     ]);
 
-            //     // session()->put(['session_id' => $request->session_id]);
-            // }
+            session([
+                'role' => $request->role,
+            ]);
+            // go to related page
             return redirect($request->role);
         } else
             return redirect('/');
