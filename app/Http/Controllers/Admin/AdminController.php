@@ -17,6 +17,7 @@ class AdminController extends Controller
         //
         $teachers = Teacher::all();
         $students = Student::all();
-        return view('admin.index', compact('students', 'teachers'));
+        echo "Num of students: " . $students->count();
+        // return view('admin.index', compact('students', 'teachers'));
     }
 }
