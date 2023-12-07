@@ -315,7 +315,7 @@
 
     /* hero */
     .feature-box {
-        @apply flex flex-col justify-center items-center md:px-8 border border-transparent;
+        @apply flex flex-col justify-center items-center p-4 md:p-8 border border-transparent;
     }
     .testimonials {
         padding: 60px 0;
