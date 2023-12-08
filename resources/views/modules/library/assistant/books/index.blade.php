@@ -14,8 +14,8 @@
         <div class="flex items-center flex-wrap justify-between mt-8">
             <!-- search -->
             <div class="flex relative w-full md:w-1/3">
-                <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full">
-                <i class="bx bx-search absolute top-2 right-2" onclick="search(event)"></i>
+                <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
+                <i class="bx bx-search absolute top-2 right-2"></i>
             </div>
 
             <!-- <a href="" class="btn-teal rounded">Create New</a> -->
@@ -27,7 +27,7 @@
         <x-message></x-message>
         @endif
 
-        <div class="text-gray-400 mt-8">({{ $books->count() }}) records found</div>
+        <div class="text-gray-400 mt-8">({{Auth::user()->userable->books()->createdToday()->count()}}/{{$books->count()}}) created today</div>
 
         @php $sr=1; @endphp
         <div class="overflow-x-auto w-full">
@@ -46,7 +46,7 @@
                 <tbody>
 
 
-                    @foreach($books->where('updated_at',today())->sortByDesc('updated_at') as $book)
+                    @foreach(Auth::user()->userable->books()->createdToday()->get()->sortByDesc('updated_at') as $book)
                     <tr class="tr">
 
                         <td>{{$sr++}}</td>

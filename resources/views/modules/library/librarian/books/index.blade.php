@@ -14,8 +14,11 @@
         <div class="flex items-center flex-wrap justify-between mt-8">
             <!-- search -->
             <div class="flex relative w-full md:w-1/3">
-                <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
-                <i class="bx bx-search absolute top-2 right-2"></i>
+                <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full">
+                <div class="absolute text-center top-2 -right-2 w-8 h-8 p-1 btn-orange rounded-full">
+                    <i class="bx bx-search hover:cursor-pointer" onclick="search(event)"></i>
+                </div>
+
             </div>
             <h1 class="text-green-600  text-4xl">{{$books->count()}}</h1>
             <!-- <a href="" class="btn-teal rounded">Create New</a> -->
@@ -105,7 +108,8 @@
 @section('script')
 <script type="text/javascript">
     function search(event) {
-        var searchtext = event.target.value.toLowerCase();
+        // var searchtext = event.target.value.toLowerCase();
+        var searchtext = $('#searchby').val().toLowerCase();
         var str = 0;
         $('.tr').each(function() {
             if (!(
