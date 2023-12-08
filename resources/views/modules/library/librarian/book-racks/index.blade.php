@@ -44,7 +44,7 @@
                 <tbody>
 
 
-                    @foreach($bookRacks->sortByDesc('updated_at') as $bookRack)
+                    @foreach($bookRacks as $bookRack)
                     <tr class="tr">
 
                         <td>{{$sr++}}</td>

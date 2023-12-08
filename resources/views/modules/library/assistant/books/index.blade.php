@@ -46,7 +46,7 @@
                 <tbody>
 
 
-                    @foreach($books->sortByDesc('updated_at') as $book)
+                    @foreach($books->where('updated_at',today())->sortByDesc('updated_at') as $book)
                     <tr class="tr">
 
                         <td>{{$sr++}}</td>
