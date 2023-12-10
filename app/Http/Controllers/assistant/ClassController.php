@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\library\assistant;
+namespace App\Http\Controllers\assistant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Book;
-use App\Models\BookIssuance;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Clas;
 use Illuminate\Http\Request;
 
-class LibrayAssistantController extends Controller
+class ClassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,6 @@ class LibrayAssistantController extends Controller
     public function index()
     {
         //
-        $user = Auth::user();
-        $books = Book::all();
-        return view('assistant.index', compact('user', 'books'));
     }
 
     /**
@@ -43,6 +38,8 @@ class LibrayAssistantController extends Controller
     public function show(string $id)
     {
         //
+        $clas = Clas::find($id);
+        return view("assistant.classes.show", compact('clas'));
     }
 
     /**

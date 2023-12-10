@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\library\assistant;
+namespace App\View\Components\assistant;
 
 use Closure;
 use Illuminate\Contracts\View\View;

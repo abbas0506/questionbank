@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\library\librarian;
+namespace App\View\Components\librarian;
 
 use Closure;
 use Illuminate\Contracts\View\View;

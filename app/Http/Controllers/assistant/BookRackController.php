@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\library\assistant;
+namespace App\Http\Controllers\assistant;
 
 use App\Http\Controllers\Controller;
 use App\Models\BookRack;

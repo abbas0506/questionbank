@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\library\assistant;
+namespace App\Http\Controllers\assistant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clas;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
-class ClassController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +15,8 @@ class ClassController extends Controller
     public function index()
     {
         //
+        $teachers = Teacher::all();
+        return view("assistant.teachers.index", compact('teachers'));
     }
 
     /**
@@ -38,8 +41,7 @@ class ClassController extends Controller
     public function show(string $id)
     {
         //
-        $clas = Clas::find($id);
-        return view("assistant.classes.show", compact('clas'));
+
     }
 
     /**

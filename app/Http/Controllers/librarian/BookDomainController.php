@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\library\librarian;
+namespace App\Http\Controllers\librarian;
 
 use App\Http\Controllers\Controller;
-use App\Models\BookRack;
+
+use App\Models\BookDomain;
 use Exception;
 use Illuminate\Http\Request;
 
-class BookRackController extends Controller
+class BookDomainController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         //
-        $bookRacks = BookRack::all();
-        return view('librarian.book-racks.index', compact('bookRacks'));
+        $bookDomains = BookDomain::all();
+        return view('librarian.book-domains.index', compact('bookDomains'));
     }
 
     /**
@@ -23,7 +26,7 @@ class BookRackController extends Controller
     public function create()
     {
         //
-        return view('librarian.book-racks.create');
+        return view('librarian.book-domains.create');
     }
 
     /**
@@ -33,11 +36,11 @@ class BookRackController extends Controller
     {
         //
         $request->validate([
-            'label' => 'required',
+            'name' => 'required',
         ]);
         try {
-            BookRack::create($request->all());
-            return redirect()->route('librarian.book-racks.index')->with('success', 'Successfully updated');
+            BookDomain::create($request->all());
+            return redirect()->route('librarian.book-domains.index')->with('success', 'Successfully updated');
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
@@ -47,34 +50,33 @@ class BookRackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BookRack $BookRack)
+    public function show(BookDomain $bookDomain)
     {
         //
-        return view('librarian.book-racks.show', compact('BookRack'));
+        return view('librarian.book-domains.show', compact('bookDomain'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(BookDomain $bookDomain)
     {
         //
-        $bookRack = BookRack::find($id);
-        return view('librarian.book-racks.edit', compact('bookRack'));
+        return view('librarian.book-domains.edit', compact('bookDomain'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BookRack $BookRack)
+    public function update(Request $request, BookDomain $bookDomain)
     {
         //
         $request->validate([
-            'label' => 'required',
+            'name' => 'required',
         ]);
         try {
-            $BookRack->update($request->all());
-            return redirect()->route('librarian.book-racks.index')->with('success', 'Successfully updated');
+            $bookDomain->update($request->all());
+            return redirect()->route('librarian.book-domains.index')->with('success', 'Successfully updated');
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
@@ -84,11 +86,11 @@ class BookRackController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BookRack $BookRack)
+    public function destroy(BookDomain $bookDomain)
     {
         //
         try {
-            $BookRack->delete();
+            $bookDomain->delete();
             return redirect()->back()->with('success', 'Successfully deleted!');
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
