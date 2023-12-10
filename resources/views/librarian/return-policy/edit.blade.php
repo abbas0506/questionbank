@@ -1,4 +1,4 @@
-@extends('layouts.library.librarian')
+@extends('layouts.librarian')
 @section('page-content')
 <div class="container">
     <h2>Return Policy</h2>

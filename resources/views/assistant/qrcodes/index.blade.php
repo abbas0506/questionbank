@@ -1,4 +1,4 @@
-@extends('layouts.library.assistant')
+@extends('layouts.assistant')
 @section('page-content')
 <div class="container">
     <h2>QRCodes <i class="bi bi-qr-code"></i></h2>

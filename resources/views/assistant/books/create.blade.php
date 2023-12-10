@@ -1,4 +1,4 @@
-@extends('layouts.library.assistant')
+@extends('layouts.assistant')
 @section('page-content')
 <div class="container">
     <div class="flex items-center">

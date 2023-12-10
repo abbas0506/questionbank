@@ -1,4 +1,4 @@
-@extends('layouts.library.librarian')
+@extends('layouts.librarian')
 @section('page-content')
 <div class="container">
     <div class="flex flex-col md:flex-row items-center">

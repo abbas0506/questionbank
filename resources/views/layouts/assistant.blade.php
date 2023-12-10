@@ -5,7 +5,7 @@
 @endsection
 
 @section('sidebar')
-<x-library.librarian.sidebar></x-library.librarian.sidebar>
+<x-assistant.sidebar></x-assistant.sidebar>
 @endsection
 
 
