@@ -22,6 +22,6 @@ class BookRackController extends Controller
     {
         //
         $book_rack = BookRack::find($id);
-        return view('modules.library.assistant.book_racks.show', compact('book_rack'));
+        return view('assistant.book_racks.show', compact('book_rack'));
     }
 }

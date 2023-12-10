@@ -17,7 +17,7 @@ class BookDomainController extends Controller
     {
         //
         $bookDomains = BookDomain::all();
-        return view('modules.library.librarian.book-domains.index', compact('bookDomains'));
+        return view('librarian.book-domains.index', compact('bookDomains'));
     }
 
     /**
@@ -26,7 +26,7 @@ class BookDomainController extends Controller
     public function create()
     {
         //
-        return view('modules.library.librarian.book-domains.create');
+        return view('librarian.book-domains.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class BookDomainController extends Controller
     public function show(BookDomain $bookDomain)
     {
         //
-        return view('modules.library.librarian.book-domains.show', compact('bookDomain'));
+        return view('librarian.book-domains.show', compact('bookDomain'));
     }
 
     /**
@@ -62,7 +62,7 @@ class BookDomainController extends Controller
     public function edit(BookDomain $bookDomain)
     {
         //
-        return view('modules.library.librarian.book-domains.edit', compact('bookDomain'));
+        return view('librarian.book-domains.edit', compact('bookDomain'));
     }
 
     /**

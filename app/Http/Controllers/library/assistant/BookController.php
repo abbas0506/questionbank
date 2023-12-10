@@ -22,7 +22,7 @@ class BookController extends Controller
     {
         //
         $books = Book::all();
-        return view('modules.library.assistant.books.index', compact('books'));
+        return view('assistant.books.index', compact('books'));
     }
 
     /**
@@ -35,7 +35,7 @@ class BookController extends Controller
         $book_domains = BookDomain::all();
         $book_racks = BookRack::all();
         $books = Book::all();
-        return view('modules.library.assistant.books.create', compact('languages', 'book_domains', 'book_racks', 'books'));
+        return view('assistant.books.create', compact('languages', 'book_domains', 'book_racks', 'books'));
     }
 
     /**
@@ -81,7 +81,7 @@ class BookController extends Controller
     {
         //
         $book = Book::find($id);
-        return view('modules.library.assistant.books.show', compact('book'));
+        return view('assistant.books.show', compact('book'));
     }
 
     /**
@@ -94,7 +94,7 @@ class BookController extends Controller
         $languages = Language::all();
         $book_domains = BookDomain::all();
         $book_racks = BookRack::all();
-        return view('modules.library.assistant.books.edit', compact('book', 'languages', 'book_domains', 'book_racks'));
+        return view('assistant.books.edit', compact('book', 'languages', 'book_domains', 'book_racks'));
     }
 
     /**

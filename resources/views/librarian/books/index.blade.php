@@ -13,15 +13,11 @@
     <div class="mt-8">
         <div class="flex items-center flex-wrap justify-between mt-8">
             <!-- search -->
-            <div class="flex relative w-full md:w-1/3">
-                <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full">
-                <div class="absolute text-center top-2 -right-2 w-8 h-8 p-1 btn-orange rounded-full">
-                    <i class="bx bx-search hover:cursor-pointer" onclick="search(event)"></i>
-                </div>
-
-            </div>
-            <h1 class="text-green-600  text-4xl">{{$books->count()}}</h1>
-            <!-- <a href="" class="btn-teal rounded">Create New</a> -->
+            <form action="{{route('librarian.books.search')}}" class="flex items-center w-full md:w-1/3">
+                <input type="text" id='searchby' name='searchby' placeholder="Search ..." class="border-b border-slate-200 focus:border-indigo-200 outline-none w-full">
+                <button type="submit" class="btn-teal py-2"><i class="bx bx-search hover:cursor-pointer"></i></button>
+            </form>
+            <div onclick="toggleFilterSection()" class="hover:cursor-pointer"><i class="bi-filter pr-2"></i>Filter</div>
         </div>
         <!-- page message -->
         @if($errors->any())
@@ -30,28 +26,34 @@
         <x-message></x-message>
         @endif
 
-        <div class="flex items-center flex-wrap justify-between mt-8">
-            <div class="text-gray-400">({{ $books->count() }}) records found</div>
-
-            <div id="filterSection" class="hidden border border-slate-200 p-4 mt-4">
-                <div class="grid grid-col-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <div id='all' class="filterOption active" onclick="filter('all')">
-                        <span class="desc">All</span>
-                        <span class="ml-1 text-sm text-slate-600">
-                            ({{$books->count()}})
-                        </span>
-                    </div>
-                    @foreach($bookDomains as $bookDomain)
-
-                    <div id='{{$bookDomain->id}}' class="filterOption" onclick="filter('{{$bookDomain->id}}')">
-                        <span class="desc">{{$bookDomain->name}}</span>
-                        <span class="ml-1 text-sm text-slate-600">
-
-                        </span>
-                    </div>
-                    @endforeach
+        <div id="filterSection" class="border hidden border-slate-200 p-4 mt-4">
+            <div class="grid grid-col-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div id='all' class="filterOption active" onclick="filter('all')">
+                    <span class="desc">All</span>
+                    <span class="ml-1 text-sm text-slate-600">
+                        ({{$books->count()}})
+                    </span>
                 </div>
+                @foreach($bookDomains as $bookDomain)
+
+                <div id='{{$bookDomain->id}}' class="filterOption" onclick="filter('{{$bookDomain->id}}')">
+                    <span class="desc">{{$bookDomain->name}}</span>
+                    <span class="ml-1 text-sm text-slate-600">
+                    </span>
+                </div>
+                @endforeach
             </div>
+        </div>
+        <div class="flex items-center flex-wrap justify-between mt-8">
+            <div class="flex space-x-4 items-center">
+                <div class="text-gray-400">({{ $books->count() }}) records found</div>
+                @if($filtered)
+                <a href="{{route('librarian.books.index')}}" class="link text-xs"><i class="bi-x"></i>Clear Filter</a>
+                @endif
+            </div>
+
+
+
         </div>
         @php $sr=1; @endphp
         <div class="overflow-x-auto w-full">
@@ -139,6 +141,10 @@
                 form.submit();
             }
         })
+    }
+
+    function toggleFilterSection() {
+        $('#filterSection').slideToggle().delay(500);
     }
 </script>
 @endsection

@@ -19,7 +19,7 @@ class QRCodeController extends Controller
         $book_racks = BookRack::all();
         $classes = Clas::all();
         $teachers = Teacher::all();
-        return view('modules.library.assistant.qrcodes.index', compact('book_racks', 'classes', 'teachers'));
+        return view('assistant.qrcodes.index', compact('book_racks', 'classes', 'teachers'));
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class QRCodeController extends Controller
     {
         //
         $book_rack = BookRack::find($id);
-        $pdf = PDF::loadView('modules.library.assistant.qrcodes.books.preview', compact('book_rack'))->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('assistant.qrcodes.books.preview', compact('book_rack'))->setPaper('a4', 'portrait');
         $pdf->set_option("isPhpEnabled", true);
 
         $file = "QRCode.pdf";
@@ -38,7 +38,7 @@ class QRCodeController extends Controller
     {
         //
         $teachers = Teacher::all();
-        $pdf = PDF::loadView('modules.library.assistant.qrcodes.teachers.preview', compact('teachers'))->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('assistant.qrcodes.teachers.preview', compact('teachers'))->setPaper('a4', 'portrait');
         $pdf->set_option("isPhpEnabled", true);
 
         $file = "QRCode.pdf";
@@ -48,7 +48,7 @@ class QRCodeController extends Controller
     {
         //
         $clas = Clas::find($id);
-        $pdf = PDF::loadView('modules.library.assistant.qrcodes.students.preview', compact('clas'))->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('assistant.qrcodes.students.preview', compact('clas'))->setPaper('a4', 'portrait');
         $pdf->set_option("isPhpEnabled", true);
 
         $file = "QRCode.pdf";

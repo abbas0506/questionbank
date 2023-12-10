@@ -11,7 +11,6 @@
         </div>
         <!-- right sided current user info -->
         <div id="current-user-area" class="flex space-x-3 items-center justify-center relative">
-            <input type="checkbox" id='toggle-current-user-dropdown' hidden>
             <label for="toggle-current-user-dropdown" class="hidden md:flex items-center">
                 <div class="">{{Auth::user()->userable->name}}</div>
             </label>

@@ -17,7 +17,7 @@ class BookReturnPolicyController extends Controller
     {
         //
         $bookReturnPolicy = BookReturnPolicy::first();
-        return view('modules.library.librarian.return-policy.index', compact('bookReturnPolicy'));
+        return view('librarian.return-policy.index', compact('bookReturnPolicy'));
     }
 
     /**
@@ -51,7 +51,7 @@ class BookReturnPolicyController extends Controller
     {
         //
         // $book_return_policy = BookReturnPolicy::first();
-        return view('modules.library.librarian.return-policy.edit', compact('bookReturnPolicy'));
+        return view('librarian.return-policy.edit', compact('bookReturnPolicy'));
     }
 
     /**

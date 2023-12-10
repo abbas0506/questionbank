@@ -20,7 +20,7 @@ class BookIssuanceController extends Controller
     public function scan()
     {
         //
-        return view('modules.library.assistant.book-issuance.scan');
+        return view('assistant.book-issuance.scan');
     }
 
     /**
@@ -68,7 +68,7 @@ class BookIssuanceController extends Controller
                     $student = Student::where('cnic', session('student_ref'))->first();
                     if ($student) {
                         // all ok --- now issue
-                        return view('modules.library.assistant.book-issuance.confirm', compact('book', 'copy_no', 'student'));
+                        return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'student'));
                     } else {
                         $warning_message = "Stdudent reference - invalid";
                     }
@@ -80,7 +80,7 @@ class BookIssuanceController extends Controller
             $warning_message = "Book reference or student reference missing";
         }
         // if there exists warning
-        return view('modules.library.assistant.book-issuance.warning', compact('warning_message'));
+        return view('assistant.book-issuance.warning', compact('warning_message'));
     }
 
     /**

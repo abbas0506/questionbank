@@ -14,7 +14,7 @@ class BookRackController extends Controller
     {
         //
         $bookRacks = BookRack::all();
-        return view('modules.library.librarian.book-racks.index', compact('bookRacks'));
+        return view('librarian.book-racks.index', compact('bookRacks'));
     }
 
     /**
@@ -23,7 +23,7 @@ class BookRackController extends Controller
     public function create()
     {
         //
-        return view('modules.library.librarian.book-racks.create');
+        return view('librarian.book-racks.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class BookRackController extends Controller
     public function show(BookRack $BookRack)
     {
         //
-        return view('modules.library.librarian.book-racks.show', compact('BookRack'));
+        return view('librarian.book-racks.show', compact('BookRack'));
     }
 
     /**
@@ -60,7 +60,7 @@ class BookRackController extends Controller
     {
         //
         $bookRack = BookRack::find($id);
-        return view('modules.library.librarian.book-racks.edit', compact('bookRack'));
+        return view('librarian.book-racks.edit', compact('bookRack'));
     }
 
     /**

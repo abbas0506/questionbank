@@ -27,12 +27,13 @@ use App\Http\Controllers\library\assistant\BookReturnController;
 use App\Http\Controllers\library\assistant\ClassController as AssistantClassController;
 use App\Http\Controllers\library\assistant\LibrayAssistantController;
 use App\Http\Controllers\library\assistant\QRCodeController;
-use App\Http\Controllers\library\librarian\BookController as InchargeBookController;
+use App\Http\Controllers\library\librarian\BookController as LibrarianBookController;
 use App\Http\Controllers\library\librarian\BookDomainController;
-use App\Http\Controllers\library\librarian\BookRackController as InchargeBookRackController;
+use App\Http\Controllers\library\librarian\BookRackController as LibrarianBookRackController;
 use App\Http\Controllers\library\librarian\BookReturnPolicyController;
 use App\Http\Controllers\library\librarian\LibrayInchargeController;
-
+use App\Http\Controllers\principal\PrincipalController;
+use App\Http\Controllers\principal\TeacherEvaluationController;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -91,6 +92,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
     Route::resource('groups', GroupController::class);
 });
 
+Route::group(['prefix' => 'principal', 'as' => 'principal.', 'middleware' => ['role:principal']], function () {
+    Route::get('/', [PrincipalController::class, 'index']);
+    Route::resource('teacher-evaluation', TeacherEvaluationController::class);
+    Route::get('teacher-evaluation-add/{teacher}', [TeacherEvaluationController::class, 'add'])->name('teacher-evaluation.add');
+});
+
 Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], function () {
     Route::get('/', [DepController::class, 'index']);
     Route::view('change/password', 'dep.change_password');
@@ -116,10 +123,11 @@ Route::group(['prefix' => 'dep', 'as' => 'dep.', 'middleware' => ['role:dep']], 
 
 Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['role:librarian']], function () {
     Route::get('/', [LibrayInchargeController::class, 'index']);
-    Route::resource('books', InchargeBookController::class);
+    Route::resource('books', LibrarianBookController::class);
     Route::resource('book-domains', BookDomainController::class);
-    Route::resource('book-racks', InchargeBookRackController::class);
+    Route::resource('book-racks', LibrarianBookRackController::class);
     Route::resource('book-return-policy', BookReturnPolicyController::class);
+    Route::get('book/search', [LibrarianBookController::class, 'search'])->name('books.search');
 });
 
 Route::group(['prefix' => 'assistant', 'as' => 'library.assistant.', 'middleware' => ['role:assistant']], function () {

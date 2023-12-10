@@ -16,7 +16,7 @@ class TeacherController extends Controller
     {
         //
         $teachers = Teacher::all();
-        return view("modules.library.assistant.teachers.index", compact('teachers'));
+        return view("assistant.teachers.index", compact('teachers'));
     }
 
     /**

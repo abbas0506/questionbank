@@ -39,7 +39,7 @@ class ClassController extends Controller
     {
         //
         $clas = Clas::find($id);
-        return view("modules.library.assistant.classes.show", compact('clas'));
+        return view("assistant.classes.show", compact('clas'));
     }
 
     /**

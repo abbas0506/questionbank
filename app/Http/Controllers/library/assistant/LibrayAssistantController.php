@@ -18,7 +18,7 @@ class LibrayAssistantController extends Controller
         //
         $user = Auth::user();
         $books = Book::all();
-        return view('modules.library.assistant.index', compact('user', 'books'));
+        return view('assistant.index', compact('user', 'books'));
     }
 
     /**
