@@ -32,6 +32,7 @@ use App\Http\Controllers\librarian\BookDomainController;
 use App\Http\Controllers\librarian\BookRackController as LibrarianBookRackController;
 use App\Http\Controllers\librarian\BookReturnPolicyController;
 use App\Http\Controllers\librarian\LibrayInchargeController;
+use App\Http\Controllers\librarian\QrCodeController as LibrarianQrCodeController;
 use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
 use FontLib\Table\Type\cmap;
@@ -128,6 +129,9 @@ Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['r
     Route::resource('book-racks', LibrarianBookRackController::class);
     Route::resource('book-return-policy', BookReturnPolicyController::class);
     Route::get('book/search', [LibrarianBookController::class, 'search'])->name('books.search');
+    Route::resource('qrcodes', LibrarianQrCodeController::class);
+    Route::post('generate-qr', [LibrarianQrCodeController::class, 'generateQr'])->name('generate-qr');
+    Route::get('previw-qr', [LibrarianQrCodeController::class, 'previewQr'])->name('preview-qr');
 });
 
 Route::group(['prefix' => 'assistant', 'as' => 'library.assistant.', 'middleware' => ['role:assistant']], function () {

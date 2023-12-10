@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center p-2">
+                <a href="{{route('librarian.qrcodes.index')}}" class="flex items-center p-2">
                     <i class="bi bi-qr-code"></i>
                     <span class="ml-3">QR Codes</span>
                 </a>

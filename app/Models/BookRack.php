@@ -12,6 +12,11 @@ class BookRack extends Model
         'label',
     ];
 
+    public function domain()
+    {
+        return $this->belongsTo(BookRack::class, 'book_domain_id');
+    }
+
     public function books()
     {
         return $this->hasMany(Book::class);

@@ -16,7 +16,7 @@ class QRCodeController extends Controller
 
     public function index()
     {
-        $book_racks = BookRack::all();
+        $book_racks = BookRack::has('books')->get();
         $classes = Clas::all();
         $teachers = Teacher::all();
         return view('assistant.qrcodes.index', compact('book_racks', 'classes', 'teachers'));
