@@ -10,15 +10,21 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('librarian.books.index')}}" class="flex items-center p-2">
+                    <i class="bi bi-book"></i>
+                    <span class="ml-3">Books</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('librarian.book-domains.index')}}" class="flex items-center p-2">
                     <i class="bi-diagram-3"></i>
-                    <span class="ml-3">Book Domain</span>
+                    <span class="ml-3">Domains</span>
                 </a>
             </li>
             <li>
                 <a href="{{route('librarian.book-racks.index')}}" class="flex items-center p-2">
                     <i class="bi bi-hdd-rack"></i>
-                    <span class="ml-3">Book Racks</span>
+                    <span class="ml-3">Racks</span>
                 </a>
             </li>
             <li>
@@ -29,21 +35,16 @@
             </li>
 
             <li>
-                <a href="" class="flex items-center p-2">
+                <a href="#" class="flex items-center p-2">
                     <i class="bi bi-person-slash"></i>
                     <span class="ml-3">Block Readers</span>
                 </a>
             </li>
-            <li>
-                <a href="{{route('librarian.books.index')}}" class="flex items-center p-2">
-                    <i class="bi bi-book"></i>
-                    <span class="ml-3">Manage Books</span>
-                </a>
-            </li>
+
             <li>
                 <a href="{{route('librarian.qrcodes.index')}}" class="flex items-center p-2">
                     <i class="bi bi-qr-code"></i>
-                    <span class="ml-3">QR Codes</span>
+                    <span class="ml-3">Generate QR</span>
                 </a>
             </li>
 

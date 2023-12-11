@@ -64,7 +64,7 @@ $roman = config('global.romans');
                 <table class="w-full">
                     <tbody>
                         <tr class="text-xs">
-                            <td class="text-right">Printed on {{ now()->format('d-M-Y')}}</td>
+                            <td class="text-left">Printed on {{ now()->format('d-M-Y')}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -83,9 +83,9 @@ $roman = config('global.romans');
                         @if($i%$numOfQrPerRow==0)<tr class="text-sm">@endif
 
                             <td class="py-2">
-                                <div class="">
+                                <div class="text-left">
                                     <div>{!! DNS2D::getBarcodeHTML($book->reference()."-".$copy_sr, 'QRCODE',4,4) !!}</div>
-                                    <span class="text-xs pr-5">{{$book->reference()}}-{{$copy_sr}}</span>
+                                    <span class="text-xs pl-5">{{$book->reference()}}-{{$copy_sr}}</span>
                                 </div>
                             </td>
                             @if($i%$numOfQrPerRow==$numOfQrPerRow-1)

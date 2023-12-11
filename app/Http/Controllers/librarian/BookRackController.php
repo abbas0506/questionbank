@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\librarian;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use App\Models\BookRack;
 use Exception;
 use Illuminate\Http\Request;
@@ -13,8 +14,9 @@ class BookRackController extends Controller
     public function index()
     {
         //
-        $bookRacks = BookRack::all();
-        return view('librarian.book-racks.index', compact('bookRacks'));
+        $bookRacks = BookRack::has('books')->get();
+        $books = Book::all();
+        return view('librarian.book-racks.index', compact('bookRacks', 'books'));
     }
 
     /**
@@ -50,7 +52,8 @@ class BookRackController extends Controller
     public function show(BookRack $BookRack)
     {
         //
-        return view('librarian.book-racks.show', compact('BookRack'));
+        $bookRack = $BookRack;
+        return view('librarian.book-racks.show', compact('bookRack'));
     }
 
     /**

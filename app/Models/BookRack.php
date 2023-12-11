@@ -21,4 +21,10 @@ class BookRack extends Model
     {
         return $this->hasMany(Book::class);
     }
+    public function rangeOfQr()
+    {
+        $from =  $this->books->first()->serial();
+        $to =  $this->books->last()->serial();
+        return $from . ' - ' . $to;
+    }
 }

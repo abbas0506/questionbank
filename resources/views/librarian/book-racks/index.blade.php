@@ -25,7 +25,7 @@
         <x-message></x-message>
         @endif
         <div class="flex flex-row items-center justify-between mt-8">
-            <div class="text-gray-400">({{ $bookRacks->count() }}) records found</div>
+            <div class="text-gray-400">Book Racks: ({{ $bookRacks->count() }}), Books: ({{$books->count()}}), Total Copies: ({{$books->sum('num_of_copies')}})</div>
 
             <a href="{{route('librarian.book-racks.create')}}" class="btn-teal rounded-sm">New</a>
 
@@ -36,22 +36,24 @@
                 <thead>
                     <tr class="border-b border-slate-200">
                         <th class="w-12">Sr</th>
-                        <th class="w-40">Name</th>
+                        <th class="w-16">Name</th>
                         <th class="w-16">Books</th>
-                        <th class="w-24">Action</th>
+                        <th class="w-16">Copies</th>
+                        <th class="w-32">Qr Range</th>
+                        <th class="w-16">Action</th>
                     </tr>
                 </thead>
                 <tbody>
 
-
                     @foreach($bookRacks as $bookRack)
                     <tr class="tr">
-
                         <td>{{$sr++}}</td>
                         <td>
                             <a href="{{route('librarian.book-racks.show', $bookRack)}}" class="link">{{$bookRack->label}}</a>
                         </td>
                         <td>{{$bookRack->books->count()}}</td>
+                        <td>{{$bookRack->books->sum('num_of_copies')}}</td>
+                        <td>{{$bookRack->rangeOfQr()}}</td>
                         <td>
                             <div class="flex items-center justify-center">
                                 <a href="{{route('librarian.book-racks.edit',$bookRack)}}"><i class="bx bx-pencil text-green-600"></i></a>

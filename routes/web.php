@@ -130,8 +130,14 @@ Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['r
     Route::resource('book-return-policy', BookReturnPolicyController::class);
     Route::get('book/search', [LibrarianBookController::class, 'search'])->name('books.search');
     Route::resource('qrcodes', LibrarianQrCodeController::class);
-    Route::post('generate-qr', [LibrarianQrCodeController::class, 'generateQr'])->name('generate-qr');
-    Route::get('previw-qr', [LibrarianQrCodeController::class, 'previewQr'])->name('preview-qr');
+
+    Route::get('qrcodes/books/preview/{rack}', [LibrarianQrCodeController::class, 'previewBooksQrByRack'])->name('qrcodes.books.preview');
+
+    Route::post('qr/range/create', [LibrarianQrCodeController::class, 'createRangeQr'])->name('qr.range.create');
+    Route::get('qr/range/preview', [LibrarianQrCodeController::class, 'previewRangeQr'])->name('qr.range.preview');
+
+    Route::post('qr/specific/create', [LibrarianQrCodeController::class, 'createSpecificQr'])->name('qr.specific.create');
+    Route::get('qr/specific/preview', [LibrarianQrCodeController::class, 'previewSpecificQr'])->name('qr.specific.preview');
 });
 
 Route::group(['prefix' => 'assistant', 'as' => 'library.assistant.', 'middleware' => ['role:assistant']], function () {
