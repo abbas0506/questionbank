@@ -65,7 +65,7 @@ $roman = config('global.romans');
                 <table class="w-full">
                     <tbody>
                         <tr class="text-xs">
-                            <td class="text-left">Class: {{ $bookRack->label}} </td>
+                            <td class="text-left">Rack: {{ $bookRack->label}} </td>
                             <td class="text-right">Printed on {{ now()->format('d-M-Y')}}</td>
                         </tr>
                     </tbody>
@@ -81,7 +81,7 @@ $roman = config('global.romans');
                         <th>Title</th>
                         <th>Author</th>
                         <th>Domain</th>
-                        <th>Copies</th>
+                        <th>#</th>
                         <th>Ref</th>
                     </tr>
                 </thead>
