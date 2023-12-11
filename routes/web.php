@@ -127,6 +127,7 @@ Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['r
     Route::resource('books', LibrarianBookController::class);
     Route::resource('book-domains', BookDomainController::class);
     Route::resource('book-racks', LibrarianBookRackController::class);
+    Route::get('book-racks/print/{rack}', [LibrarianBookRackController::class, 'print'])->name('book-racks.print');
     Route::resource('book-return-policy', BookReturnPolicyController::class);
     Route::get('book/search', [LibrarianBookController::class, 'search'])->name('books.search');
     Route::resource('qrcodes', LibrarianQrCodeController::class);

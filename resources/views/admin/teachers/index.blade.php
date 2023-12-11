@@ -38,6 +38,8 @@
                     <th>CNIC</th>
                     <th>Phone</th>
                     <th>Email</th>
+                    <th>Qualification</th>
+                    <th>Birth Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +54,13 @@
                     <td>{{$teacher->designation}}</td>
                     <td>{{$teacher->cnic}}</td>
                     <td>{{$teacher->phone}}</td>
-                    <td class="text-left pl-3">{{$teacher->email}}</td>
+                    <td class="text-left pl-3">{{$teacher->adress}}</td>
+                    <td class="text-left pl-3">{{$teacher->qualification}}</td>
+                    <td class="text-left pl-3">
+                        @if($teacher->dob)
+                        {{$teacher->dob->format('d/m/Y') }}
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

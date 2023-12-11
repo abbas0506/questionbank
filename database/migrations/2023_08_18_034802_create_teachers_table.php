@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('designation', 20)->nullable();
             $table->date('join_date')->nullable();
             $table->string('personal_no', 10)->unique();
+            $table->string('qualification')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('active')->default(1);
 
             // $table->unsignedBigInteger('user_id');

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Codes</title>
+    <title>List of Books</title>
     <link href="{{public_path('css/pdf_tw.css')}}" rel="stylesheet">
     <style>
         @page {
@@ -50,7 +50,7 @@ $roman = config('global.romans');
                 <table class="w-full">
                     <tbody>
                         <tr>
-                            <td class="text-center text-xl font-bold">QR Codes - Teachers </td>
+                            <td class="text-center text-xl font-bold">Books - {{$bookRack->label}} </td>
                         </tr>
                         <tr>
                             <td class="text-center text-sm">Govt. Higher Secondary School Chak Bedi, Pakpattan</td>
@@ -58,55 +58,48 @@ $roman = config('global.romans');
                     </tbody>
                 </table>
             </div>
+
+
             <!-- table header -->
             <div class="mt-8">
                 <table class="w-full">
                     <tbody>
                         <tr class="text-xs">
-                            <td class="text-left">{{ $teachers->count() }} Teachers </td>
+                            <td class="text-left">Class: {{ $bookRack->label}} </td>
                             <td class="text-right">Printed on {{ now()->format('d-M-Y')}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             @php
-            $i=0;
-            $numOfQrPerRow=6;
+            $i=1;
             @endphp
-
-            <table class="table-auto w-full mt-2">
+            <table class="table-auto border w-full mt-2">
+                <thead>
+                    <tr class="border text-sm">
+                        <th>Sr</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Domain</th>
+                        <th>Copies</th>
+                        <th>Ref</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    @foreach($teachers as $teacher)
-                    @if($i%$numOfQrPerRow==0)<tr class="text-sm">@endif
+                    @foreach($bookRack->books as $book)
+                    <tr class="text-xs border">
+                        <td>{{$i++}}</td>
+                        <td class="text-left">{{$book->title}}</td>
+                        <td>{{$book->author}}</td>
+                        <td>{{$book->domain->name}}</td>
+                        <td>{{$book->num_of_copies}}</td>
+                        <td>{{$book->reference()}}</td>
 
-                        <td class="py-2 text-left">
-                            <div>
-                                <div>{!! DNS2D::getBarcodeHTML($teacher->cnic, 'QRCODE',4,4) !!}</div>
-                                <span class="text-xs pl-1">{{$teacher->cnic}}</span>
-                            </div>
-                            <div class="mt-2 text-xs">
-                                {{$teacher->name}}
-                            </div>
-                        </td>
-                        @if($i%$numOfQrPerRow==$numOfQrPerRow-1)
-                    </tr>@endif
-                    @php $i++; @endphp
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
     </main>
-
-    <footer class="footer">
-        <div class="mt-8">
-            <table class="w-full">
-                <tbody>
-                    <tr class="text-xs">
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </footer>
 
     <script type="text/php">
         if (isset($pdf) ) {

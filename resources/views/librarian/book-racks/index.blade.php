@@ -56,6 +56,8 @@
                         <td>{{$bookRack->rangeOfQr()}}</td>
                         <td>
                             <div class="flex items-center justify-center">
+                                <a href="{{route('librarian.book-racks.print',$bookRack)}}"><i class="bx bx-printer text-slate-600"></i></a>
+                                <span class="text-slate-300 px-2">|</span>
                                 <a href="{{route('librarian.book-racks.edit',$bookRack)}}"><i class="bx bx-pencil text-green-600"></i></a>
                                 <span class="text-slate-300 px-2">|</span>
                                 <form action="{{route('librarian.book-racks.destroy',$bookRack)}}" method="post" onsubmit="return confirmDel(event)">

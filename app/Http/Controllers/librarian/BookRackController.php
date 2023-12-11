@@ -7,6 +7,8 @@ use App\Models\Book;
 use App\Models\BookRack;
 use Exception;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Str;
 
 class BookRackController extends Controller
 {
@@ -96,5 +98,15 @@ class BookRackController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
+    }
+
+    public function print($id)
+    {
+        $bookRack = BookRack::find($id);
+
+        $pdf = PDF::loadView('librarian.book-racks.preview', compact('bookRack'))->setPaper('a4', 'portrait');
+        $pdf->set_option("isPhpEnabled", true);
+        $file = Str::lower($bookRack->title) . "-list of books.pdf";
+        return $pdf->stream($file);
     }
 }

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             BookReturnPolicySeeder::class,
             BookRackSeeder::class,
             TeacherEvaluationItemSeeder::class,
-            // BookSeeder::class,
+            BookSeeder::class,
         ]);
     }
 }

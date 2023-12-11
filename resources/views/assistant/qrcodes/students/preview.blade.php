@@ -58,8 +58,6 @@ $roman = config('global.romans');
                     </tbody>
                 </table>
             </div>
-
-
             <!-- table header -->
             <div class="mt-8">
                 <table class="w-full">
@@ -71,34 +69,26 @@ $roman = config('global.romans');
                     </tbody>
                 </table>
             </div>
-            @php $i=1; @endphp
-
+            @php
+            $i=0;
+            $numOfQrPerRow=6;
+            @endphp
             <table class="table-auto w-full mt-2">
-                <thead>
-                    <tr style="background-color: #bbb;" class="border text-sm">
-                        <th>Sr</th>
-                        <th>Student</th>
-                        <th>Class</th>
-                        <th>Roll #</th>
-                        <th>QRCode</th>
-                    </tr>
-                </thead>
                 <tbody>
-                    @php $copy_sr=''; @endphp
                     @foreach($clas->students as $student)
-                    <tr class="border text-sm">
-                        <td>{{$i++}}</td>
-                        <td class="text-left pl-3">
-                            {{ $student->name }} s/o {{ $student->father }}
-                            <br>
-                            <span class="text-xs text-slate-600">{{$student->cnic}}</span>
+                    @if($i%$numOfQrPerRow==0)<tr class="text-sm">@endif
+                        <td class="py-2 text-left">
+                            <div>
+                                <div>{!! DNS2D::getBarcodeHTML($student->cnic, 'QRCODE',4,4) !!}</div>
+                                <span class="text-xs pl-1">{{$student->cnic}}</span>
+                            </div>
+                            <div class="mt-2 text-xs">
+                                {{ $clas->roman()}}({{$student->rollno}})
+                            </div>
                         </td>
-                        <td>{{ $student->clas->roman() }} </td>
-                        <td>{{ $student->rollno}}</td>
-                        <td class="w-20 p-2">
-                            {!! DNS2D::getBarcodeHTML($student->cnic, 'QRCODE',4,4) !!}
-                        </td>
-                    </tr>
+                        @if($i%$numOfQrPerRow==$numOfQrPerRow-1)
+                    </tr>@endif
+                    @php $i++; @endphp
                     @endforeach
                 </tbody>
             </table>

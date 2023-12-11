@@ -18,9 +18,15 @@ class Teacher extends Model
         'address',
         'designation',
         'join_date',
-        'personal_no'
+        'personal_no',
+        'qualification',
+        'image',
 
         //bise tag will be in separate model
+    ];
+    protected $casts = [
+        'dob' => 'date',
+        'join_date' => 'date',
     ];
 
     public function user()

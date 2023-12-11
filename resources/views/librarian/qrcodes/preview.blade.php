@@ -34,12 +34,8 @@
         }
     </style>
 </head>
-@php
-$roman = config('global.romans');
-@endphp
 
 <body>
-
     <main>
         <div class="container">
 
