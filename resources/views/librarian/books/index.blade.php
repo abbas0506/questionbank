@@ -51,9 +51,6 @@
                 <a href="{{route('librarian.books.index')}}" class="link text-xs"><i class="bi-x"></i>Clear Filter</a>
                 @endif
             </div>
-
-
-
         </div>
         @php $sr=1; @endphp
         <div class="overflow-x-auto w-full">
@@ -96,7 +93,6 @@
                                     <button><i class="bx bx-trash text-red-600"></i></button>
                                 </form>
                             </div>
-
                         </td>
                     </tr>
                     @endforeach

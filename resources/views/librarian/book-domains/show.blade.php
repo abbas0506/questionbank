@@ -53,6 +53,8 @@
                         <th class="w-16">Ref.</th>
                         <th class="w-24">Published</th>
                         <th class="w-24">Copies</th>
+                        <th class="w-24">Action</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -68,6 +70,17 @@
                         <td>{{$book->reference()}}</td>
                         <td>{{$book->publish_year}}</td>
                         <td>{{$book->num_of_copies}}</td>
+                        <td>
+                            <div class="flex items-center justify-center">
+                                <a href="{{route('librarian.books.edit',$book)}}"><i class="bx bx-pencil text-green-600"></i></a>
+                                <span class="text-slate-300 px-2">|</span>
+                                <form action="{{route('librarian.books.destroy',$book)}}" method="post" onsubmit="return confirmDel(event)">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button><i class="bx bx-trash text-red-600"></i></button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                     @endforeach
 
