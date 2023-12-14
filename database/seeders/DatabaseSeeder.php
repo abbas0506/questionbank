@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
             GradeSeeder::class,
             ClassSeeder::class,
             UserSeeder::class,
-            BookDomainSeeder::class,
+            // BookDomainSeeder::class,
             LibraryRuleSeeder::class,
-            BookRackSeeder::class,
+            // BookRackSeeder::class,
             TeacherEvaluationItemSeeder::class,
-            BookSeeder::class,
+            // BookSeeder::class,
         ]);
     }
 }
