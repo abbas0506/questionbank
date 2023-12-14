@@ -1,0 +1,12 @@
+insert into eschool.book_domains
+SELECT * from college.book_domains;
+
+insert into eschool.book_racks
+SELECT * from college.book_racks;
+
+insert into eschool.languages
+SELECT * from college.languages;
+
+insert into eschool.books
+select id, title, author, publish_year, num_of_copies, price, language_id, book_domain_id, book_rack_id,  assistant_id, created_at, updated_at from college.books;
+
