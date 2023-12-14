@@ -47,6 +47,10 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td>05.06.1978</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -55,12 +59,8 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>08.05.2009</td>
+                            <td>10.03.2014</td>
                         </tr>
                         <tr>
                             <td></td>

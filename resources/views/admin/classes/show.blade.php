@@ -32,10 +32,11 @@
         <table class="table-auto w-full">
             <thead>
                 <tr>
-                    <th>Roll No</th>
-                    <th>Name</th>
-                    <th>Father</th>
-                    <th>BForm</th>
+                    <th class="w-10">Roll No</th>
+                    <th class="w-40">Name</th>
+                    <th class="w-40">Father</th>
+                    <th class="w-24">BForm</th>
+                    <th class="w-16">Phone</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,7 @@
                     <td>{{$student->name}}</td>
                     <td>{{$student->father}}</td>
                     <td>{{$student->cnic}}</td>
+                    <td>{{$student->phone}}</td>
                 </tr>
                 @endforeach
             </tbody>

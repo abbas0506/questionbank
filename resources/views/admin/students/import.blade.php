@@ -8,7 +8,7 @@
         <a href="{{url('admin')}}">Cancel & Go Back</a>
     </div>
 
-    <div class="mt-12 w-1/2 mx-auto">
+    <div class="mt-12 w-4/5 mx-auto">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
@@ -32,18 +32,23 @@
                             <th>rollno</th>
                             <th>name</th>
                             <th>father</th>
+                            <th>dob</th>
                             <th>cnic</th>
+                            <th>phone</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>1</td>
+                            <td>Ali Hamza</td>
+                            <td>Sharif</td>
+                            <td>23.5.2003</td>
+                            <td>3640212345670</td>
+                            <td>03001234567</td>
 
                         </tr>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

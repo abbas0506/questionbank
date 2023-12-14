@@ -30,13 +30,13 @@
     @php $sr=1; @endphp
     <div class="overflow-x-auto w-full mt-12">
 
-        <table class="table-auto w-full">
+        <table class="table-fixed w-full">
             <thead>
                 <tr>
-                    <th>Sr</th>
-                    <th>Class</th>
-                    <th><i class="bi-people-fill"></i></th>
-                    <th>Import</th>
+                    <th class="w-12">Sr</th>
+                    <th class="w-40">Class</th>
+                    <th class="w-12"><i class="bi-people-fill"></i></th>
+                    <th class="w-12">Import</th>
                 </tr>
             </thead>
             <tbody>

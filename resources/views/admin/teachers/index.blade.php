@@ -31,26 +31,22 @@
     @endif
 
     <div class="overflow-x-auto w-full mt-8">
-
-        <table class="table-auto w-full">
+        @php $sr=1; @endphp
+        <table class="table-fixed w-full">
             <thead>
                 <tr>
-                    <th>Cnic</th>
-                    <th>Teacher Name</th>
-                    <th>Phone/email</th>
-                    <th>Actions</th>
+                    <th class="w-12">Cnic</th>
+                    <th class="w-36">Teacher</th>
+                    <th class="w-36">Phone/email</th>
+                    <th class="w-12">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($teachers as $teacher)
                 <tr class="tr text-sm">
-                    <td>
-                        <a href="{{route('admin.teachers.show', $teacher)}}" class="link">
-                            {{$teacher->cnic}}
-                        </a>
 
-                    </td>
-                    <td class="text-left pl-3 text-slate-800">{{$teacher->name}} <br><span class="text-xs text-slate-500">{{$teacher->designation}}, BPS {{$teacher->bps}}</span></td>
+                    <td>{{$sr++}}</td>
+                    <td class="text-left pl-3 text-slate-800"><a href="{{route('admin.teachers.show', $teacher)}}" class="link">{{$teacher->name}} </a><br><span class="text-xs text-slate-500">{{$teacher->designation}}, BPS {{$teacher->bps}}</span></td>
                     <td>{{$teacher->phone}}<br><span class="text-xs text-slate-500">{{$teacher->email}}</span></td>
                     <td>
                         <div class="flex items-center justify-center">
