@@ -20,11 +20,16 @@ class UserSeeder extends Seeder
         $teacher = Teacher::create([
             'name' => "Muhammad Abbas",
             'father' => "Muhammad Yousaf",
+            'dob' => '1978/06/05',
             'cnic' => "3530119663433",
             'phone' => "03000373004",
             'email' => "abbas.sscs@gmail.com",
             'designation' => 'SS(CS)',
+            'qualification' => 'MS in CS',
+            'bps' => 17,
             'personal_no' => "31282674",
+            'appointed_on' => "2009/05/08",
+            'joined_on' => "2014/03/10",
         ]);
 
         $user = User::create([
@@ -42,10 +47,15 @@ class UserSeeder extends Seeder
             'name' => "Atif Zohaib",
             'father' => "Ghulam Kibria Khan",
             'cnic' => "3610457786765",
+            'dob' => '1996/06/05',
             'phone' => "03045562621",
             'email' => "atifzohaibkhan@gmail.com",
+            'qualification' => 'MS in CS',
             'designation' => 'SSE(CS)',
+            'bps' => 16,
             'personal_no' => "31751791",
+            'appointed_on' => "2009/05/08",
+            'joined_on' => "2014/03/10",
         ]);
 
         $user = User::create([
@@ -63,11 +73,17 @@ class UserSeeder extends Seeder
         $teacher = Teacher::create([
             'name' => "Abdul Majeed",
             'father' => "Muhammad Yousaf",
+            'dob' => '1980/07/03',
             'cnic' => "3530119663434",
             'phone' => "03000373005",
             'email' => "majeed.sscs@gmail.com",
+            'qualification' => 'MA Economics',
             'designation' => 'SS(Eco)',
+            'bps' => 18,
             'personal_no' => "31282675",
+            'appointed_on' => "2009/05/08",
+            'joined_on' => "2014/03/10",
+
         ]);
         $user = User::create([
             'login_id' => $teacher->cnic,
@@ -82,11 +98,16 @@ class UserSeeder extends Seeder
         $teacher = Teacher::create([
             'name' => 'Muhammad Ittfaq',
             'father' => "Ghazi Muhammad",
+            'dob' => '1998/07/03',
             'cnic' => "3640291865395",
             'phone' => "03143661308",
             'email' => "muhammadittfaq007@gmail.com",
+            'qualification' => 'MA Urdu',
             'designation' => 'EST',
+            'bps' => 17,
             'personal_no' => "31561467",
+            'appointed_on' => "2009/05/08",
+            'joined_on' => "2014/03/10",
         ]);
         $user = User::create([
             'login_id' => $teacher->cnic,

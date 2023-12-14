@@ -18,8 +18,8 @@
             <i class="bx bx-search absolute top-2 right-2"></i>
         </div>
         <div class="flex space-x-3">
-            <a href="{{route('admin.teachers.create')}}" class="text-sm p-2 border hover:bg-teal-50">New <i class="bi bi-person-add text-teal-600"></i></a>
-            <a href="{{route('admin.teachers.import')}}" class="text-sm p-2 border hover:bg-teal-50">Import from Excel <i class="bi bi-file-earmark-excel text-teal-600"></i></a>
+            <a href="{{route('admin.teachers.create')}}" class="text-sm p-2 border hover:bg-teal-400">New <i class="bi bi-person-add text-teal-600"></i></a>
+            <a href="{{route('admin.teachers.import')}}" class="text-sm p-2 border hover:bg-teal-400">Import from Excel <i class="bi bi-file-earmark-excel text-teal-600"></i></a>
         </div>
     </div>
 
@@ -35,14 +35,9 @@
         <table class="table-auto w-full">
             <thead>
                 <tr>
-                    <th>Personal No</th>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>CNIC</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Qualification</th>
-                    <th>Birth Date</th>
+                    <th>Cnic</th>
+                    <th>Teacher Name</th>
+                    <th>Phone/email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -51,20 +46,12 @@
                 <tr class="tr text-sm">
                     <td>
                         <a href="{{route('admin.teachers.show', $teacher)}}" class="link">
-                            {{$teacher->personal_no}}
+                            {{$teacher->cnic}}
                         </a>
+
                     </td>
-                    <td class="text-left pl-3">{{$teacher->name}}</td>
-                    <td>{{$teacher->designation}}</td>
-                    <td>{{$teacher->cnic}}</td>
-                    <td>{{$teacher->phone}}</td>
-                    <td class="text-left pl-3">{{$teacher->adress}}</td>
-                    <td class="text-left pl-3">{{$teacher->qualification}}</td>
-                    <td class="text-left pl-3">
-                        @if($teacher->dob)
-                        {{$teacher->dob->format('d/m/Y') }}
-                        @endif
-                    </td>
+                    <td class="text-left pl-3 text-slate-800">{{$teacher->name}} <br><span class="text-xs text-slate-500">{{$teacher->designation}}, BPS {{$teacher->bps}}</span></td>
+                    <td>{{$teacher->phone}}<br><span class="text-xs text-slate-500">{{$teacher->email}}</span></td>
                     <td>
                         <div class="flex items-center justify-center">
                             <a href="{{route('admin.teachers.edit',$teacher)}}"><i class="bx bx-pencil text-green-600"></i></a>

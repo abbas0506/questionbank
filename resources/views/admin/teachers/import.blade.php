@@ -8,7 +8,7 @@
         <a href="{{url('admin')}}">Cancel & Go Back</a>
     </div>
 
-    <div class="mt-12 w-1/2 mx-auto">
+    <div class="mt-12">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
@@ -28,12 +28,21 @@
             <div class="body">
                 <table class="table-auto w-full">
                     <thead>
-                        <tr class="text-sm">
+                        <tr class="text-xs">
+                            <th>sr</th>
                             <th>name</th>
-                            <th>personal</th>
+                            <th>father</th>
+                            <th>dob</th>
                             <th>cnic</th>
                             <th>phone</th>
                             <th>email</th>
+                            <th>address</th>
+                            <th>qualification</th>
+                            <th>designation</th>
+                            <th>bps</th>
+                            <th>personal</th>
+                            <th>appointed_on</th>
+                            <th>joined_on</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +52,26 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

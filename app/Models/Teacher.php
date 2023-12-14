@@ -16,17 +16,20 @@ class Teacher extends Model
         'phone',
         'email',
         'address',
-        'designation',
-        'join_date',
-        'personal_no',
         'qualification',
+        'designation',
+        'bps',
+        'personal_no',
+        'appointed_on',
+        'joined_on',
         'image',
 
         //bise tag will be in separate model
     ];
     protected $casts = [
         'dob' => 'date',
-        'join_date' => 'date',
+        'appointed_on' => 'date',
+        'joined_on' => 'date',
     ];
 
     public function user()

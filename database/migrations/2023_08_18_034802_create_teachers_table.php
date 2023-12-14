@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('phone', 20)->nullable();
             $table->string('email', 50)->nullable();
             $table->string('address', 100)->nullable();
-            $table->string('designation', 20)->nullable();
-            $table->date('join_date')->nullable();
-            $table->string('personal_no', 10)->unique();
             $table->string('qualification')->nullable();
+            $table->string('designation', 20);
+            $table->unsignedTinyInteger('bps');
+            $table->string('personal_no', 10)->unique();
+            $table->date('appointed_on')->nullable();
+            $table->date('joined_on')->nullable();
             $table->string('image')->nullable();
             $table->boolean('active')->default(1);
 

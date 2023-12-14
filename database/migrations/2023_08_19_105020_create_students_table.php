@@ -16,10 +16,10 @@ return new class extends Migration
             // $table->string('user_id', 20);
             $table->string('name', 50);
             $table->string('father', 50);
+            $table->date('dob')->nullable();
             $table->string('cnic', 15)->unique();
             $table->string('phone', 16)->nullable();
             $table->string('address', 100)->nullable();
-            $table->date('dob')->nullable();
             $table->boolean('active')->default(1);
             $table->boolean('can_borrow_books')->default(1);
 
