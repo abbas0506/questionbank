@@ -17,7 +17,10 @@
             <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
             <i class="bx bx-search absolute top-2 right-2"></i>
         </div>
-        <a href="{{route('admin.teachers.import')}}" class="text-sm p-2 border hover:bg-teal-50">Import from Excel <i class="bi bi-file-earmark-excel text-teal-600"></i></a>
+        <div class="flex space-x-3">
+            <a href="{{route('admin.teachers.create')}}" class="text-sm p-2 border hover:bg-teal-50">New <i class="bi bi-person-add text-teal-600"></i></a>
+            <a href="{{route('admin.teachers.import')}}" class="text-sm p-2 border hover:bg-teal-50">Import from Excel <i class="bi bi-file-earmark-excel text-teal-600"></i></a>
+        </div>
     </div>
 
     <!-- page message -->
@@ -40,6 +43,7 @@
                     <th>Email</th>
                     <th>Qualification</th>
                     <th>Birth Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,6 +65,17 @@
                         {{$teacher->dob->format('d/m/Y') }}
                         @endif
                     </td>
+                    <td>
+                        <div class="flex items-center justify-center">
+                            <a href="{{route('admin.teachers.edit',$teacher)}}"><i class="bx bx-pencil text-green-600"></i></a>
+                            <span class="text-slate-300 px-2">|</span>
+                            <form action="{{route('admin.teachers.destroy',$teacher)}}" method="post" onsubmit="return confirmDel(event)">
+                                @csrf
+                                @method('DELETE')
+                                <button><i class="bx bx-trash text-red-600"></i></button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -70,9 +85,9 @@
 </div>
 
 <script type="text/javascript">
-    function delme(formid) {
-
-        event.preventDefault();
+    function confirmDel(event) {
+        event.preventDefault(); // prevent form submit
+        var form = event.target; // storing the form
 
         Swal.fire({
             title: 'Are you sure?',
@@ -84,10 +99,9 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                //submit corresponding form
-                $('#del_form' + formid).submit();
+                form.submit();
             }
-        });
+        })
     }
 
     function search(event) {
