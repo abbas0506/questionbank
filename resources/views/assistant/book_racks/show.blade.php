@@ -48,7 +48,7 @@
                     <td class="text-left">
                         <a href="{{route('library.assistant.books.show', $book)}}" class="link">{{$book->title}}</a>
                         <br>
-                        <span class="text-xs text-slate-600">{{$book->author}}</span>
+                        <span class="text-xs text-slate-600">{{$book->reference()}} @ {{$book->author}}</span>
                     </td>
                     <td>{{$book->domain->name}}</td>
                     <td>{{$book->publish_year}}</td>

@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Models\BookIssuance;
 use App\Models\BookReturnPolicy;
 use App\Models\Student;
+use App\Models\Teacher;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,12 +31,12 @@ class BookIssuanceController extends Controller
     {
         $request->validate([
             'book_ref' => 'required',
-            'student_ref' => 'required',
+            'reader_ref' => 'required',
         ]);
 
         session([
             'book_ref' => $request->book_ref,
-            'student_ref' => $request->student_ref,
+            'reader_ref' => $request->reader_ref,
         ]);
         return redirect()->route('library.assistant.book-issuance.confirm');
     }
@@ -47,7 +48,7 @@ class BookIssuanceController extends Controller
         $copy_no = '';
         $warning_message = '';
         // if request contains book_ref and student reference sent 
-        if (session('book_ref') && session('student_ref')) {
+        if (session('book_ref') && session('reader_ref')) {
             $book_ref_parts = explode('-', session('book_ref'));
 
             $rack_no = $book_ref_parts[0];
@@ -61,16 +62,22 @@ class BookIssuanceController extends Controller
                 if ($rack_no != $book->rack->label || $copy_no < 1 || $copy_no > $book->num_of_copies)
                     $warning_message = "Boof reference seems to be forged!";
                 elseif (BookIssuance::where('book_id', $book->id)->where('copy_no', $copy_no)->whereNull('return_date')->exists()) {
-                    //double availability
+                    //book has already been issued
                     $warning_message = "Requested book has already been issued!";
                 } else {
                     //book can be issued
-                    $student = Student::where('cnic', session('student_ref'))->first();
-                    if ($student) {
-                        // all ok --- now issue
-                        return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'student'));
+                    $reader = Student::where('cnic', session('reader_ref'))->first();
+                    if ($reader) {
+                        $reader_type = 'student';
+                        return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'reader', 'reader_type'));
                     } else {
-                        $warning_message = "Stdudent reference - invalid";
+                        $reader_type = 'teacher';
+                        $reader = Teacher::where('cnic', session('reader_ref'))->first();
+                        if ($reader) {
+                            return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'reader', 'reader_type'));
+                        } else {
+                            $warning_message = "Reader reference - invalid";
+                        }
                     }
                 }
             } else {

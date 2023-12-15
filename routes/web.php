@@ -33,6 +33,7 @@ use App\Http\Controllers\librarian\BookRackController as LibrarianBookRackContro
 use App\Http\Controllers\librarian\BookReturnPolicyController;
 use App\Http\Controllers\librarian\LibrayInchargeController;
 use App\Http\Controllers\librarian\QrCodeController as LibrarianQrCodeController;
+use App\Http\Controllers\librarian\LibraryRuleController;
 use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
 use FontLib\Table\Type\cmap;
@@ -129,6 +130,7 @@ Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['r
     Route::resource('book-racks', LibrarianBookRackController::class);
     Route::get('book-racks/print/{rack}', [LibrarianBookRackController::class, 'print'])->name('book-racks.print');
     Route::resource('book-return-policy', BookReturnPolicyController::class);
+    Route::resource('library-rules', LibraryRuleController::class);
     Route::get('book/search', [LibrarianBookController::class, 'search'])->name('books.search');
     Route::resource('qrcodes', LibrarianQrCodeController::class);
 

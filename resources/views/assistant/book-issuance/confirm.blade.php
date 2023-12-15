@@ -33,18 +33,15 @@
 
             <div class="p-5 border mt-6 relative">
                 <div class="absolute -top-1 -left-8"><i class="bi bi-person"></i></div>
-                <input type="hidden" name='reader_id' value="{{$student->id}}">
+                <input type="hidden" name='reader_id' value="{{$reader->id}}">
                 <div class="flex flex-wrap justify-between items-center">
-                    <div>
-                        <h2>{{$student->name}}</h2>
-                        <p>{{ $student->clas->roman()}} ({{$student->rollno}})</p>
-                    </div>
-                    <h3 class="w-24 text-red-800 text-center">Fine: Rs. 20</h3>
 
+                    <h3 class="w-24 text-red-800 text-center">Fine: Rs. 20</h3>
+                    <label for="">{{$reader->name}}</label>
                 </div>
 
-                <label for="" class="">Already in possession: {{$student->readings()->inPossession()->count()}} book(s) </label>
-                @if($student->readings()->inPossession()->exists())
+                <label for="" class="">Already in possession: {{$reader->readings()->inPossession()->count()}} book(s) </label>
+                @if($reader->readings()->inPossession()->exists())
                 <div>
                     @php $sr=1; @endphp
                     <table class="table-auto w-full mt-2 xs">
@@ -59,7 +56,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($student->readings()->inPossession()->get()->sortByDesc('created_at') as $book_issuance)
+                            @foreach($reader->readings()->inPossession()->get()->sortByDesc('created_at') as $book_issuance)
                             <tr class="tr">
                                 <td class="">{{$sr++}}</td>
                                 <td class="text-left">{{$book_issuance->book->title}}</td>

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\librarian;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\BookReturnPolicy;
+use App\Models\LibraryRule;
 use Exception;
 use Illuminate\Http\Request;
 
-class BookReturnPolicyController extends Controller
+class LibraryRuleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class BookReturnPolicyController extends Controller
     public function index()
     {
         //
-        $bookReturnPolicy = BookReturnPolicy::first();
-        return view('librarian.return-policy.index', compact('bookReturnPolicy'));
+        $libraryRules = LibraryRule::all();
+        return view('librarian.library-rules.index', compact('libraryRules'));
     }
 
     /**
@@ -39,7 +38,7 @@ class BookReturnPolicyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BookReturnPolicy $bookReturnPolicy)
+    public function show(string $id)
     {
         //
     }
@@ -47,26 +46,28 @@ class BookReturnPolicyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BookReturnPolicy $bookReturnPolicy)
+    public function edit(string $id)
     {
         //
-        // $book_return_policy = BookReturnPolicy::first();
-        return view('librarian.return-policy.edit', compact('bookReturnPolicy'));
+        $libraryRule = LibraryRule::find($id);
+        return view('librarian.library-rules.edit', compact('libraryRule'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BookReturnPolicy $bookReturnPolicy)
+    public function update(Request $request, string $id)
     {
         //
         $request->validate([
-            'max_days' => 'required|numeric|min:0',
-            'fine_per_day' => 'required|numeric|min:0',
+            'max_books' => 'required',
+            'max_days' => 'required',
+            'fine_per_day' => 'required',
         ]);
         try {
-            $bookReturnPolicy->update($request->all());
-            return redirect()->back()->with('success', 'Successfully updated');
+            $libraryRule = LibraryRule::find($id);
+            $libraryRule->update($request->all());
+            return redirect()->route('librarian.library-rules.index')->with('success', 'Successfully updated');
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
@@ -76,7 +77,7 @@ class BookReturnPolicyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BookReturnPolicy $bookReturnPolicy)
+    public function destroy(string $id)
     {
         //
     }

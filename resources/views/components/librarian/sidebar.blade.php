@@ -28,9 +28,9 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('librarian.book-return-policy.index')}}" class="flex items-center p-2">
+                <a href="{{route('librarian.library-rules.index')}}" class="flex items-center p-2">
                     <i class="bi bi-bookmark-check"></i>
-                    <span class="ml-3">Return Policy</span>
+                    <span class="ml-3">Library Rules</span>
                 </a>
             </li>
 
