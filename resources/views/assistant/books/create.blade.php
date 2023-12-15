@@ -37,10 +37,6 @@
                     <input type="text" name='author' class="custom-input" placeholder="Type here" value="">
                 </div>
 
-                <div class="col-span-3" hidden>
-                    <label>Introduction</label>
-                    <textarea name='introduction' class="custom-input" placeholder="Type here" value="" rows="2"></textarea>
-                </div>
                 <div>
                     <label>Publish Year</label>
                     <input type="number" name='publish_year' class="custom-input" placeholder="Type here" value="{{date('Y')}}" min="1900" max="{{date('Y')}}">

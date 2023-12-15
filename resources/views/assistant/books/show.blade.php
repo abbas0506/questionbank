@@ -12,11 +12,6 @@
 
         </div>
     </div>
-    <div class="mt-8">
-        <label for="">Introduction</label>
-        <p class="p-4 border border-dashed border-slate-200">{{$book->introduction}}</p>
-
-    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 mt-8">
 
