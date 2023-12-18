@@ -44,7 +44,7 @@
             <li>
                 <a href="{{route('librarian.qrcodes.index')}}" class="flex items-center p-2">
                     <i class="bi bi-qr-code"></i>
-                    <span class="ml-3">Generate QR</span>
+                    <span class="ml-3">Specific QR</span>
                 </a>
             </li>
 

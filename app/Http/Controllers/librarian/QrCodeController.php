@@ -75,9 +75,10 @@ class QrCodeController extends Controller
         $request->validate([
             'from' => 'required',
             'to' => 'required',
+            'book_rack_id' => 'required',
         ]);
         try {
-            $books = Book::whereBetween('id', [$request->from, $request->to])->get();
+            $books = Book::whereBetween('id', [$request->from, $request->to])->where('book_rack_id', $request->book_rack_id)->get();
             return redirect()->route('librarian.qr.range.preview')->with('books', $books);
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
@@ -86,6 +87,7 @@ class QrCodeController extends Controller
     }
     public function previewRangeQr()
     {
+
         if (session('books')) {
             $books = session('books');
             $pdf = PDF::loadView('librarian.qrcodes.preview', compact('books'))->setPaper('a4', 'portrait');

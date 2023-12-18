@@ -5,7 +5,7 @@
     <div class="bread-crumb">
         <a href="{{url('librarian')}}">Home</a>
         <div>/</div>
-        <div>Book Racks</div>
+        <a href="{{route('librarian.book-racks.index')}}">Book Racks</a>
         <div>/</div>
         <div>{{ $bookRack->label }}</div>
         <div>/</div>
@@ -25,35 +25,42 @@
     @endif
 
     <div class="flex items-center flex-wrap justify-between mt-8">
-        <div class="text-gray-400">({{ $bookRack->books->count() }}) records found</div>
-        <div id="filterSection" class="hidden border border-slate-200 p-4 mt-4">
-            <div class="grid grid-col-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <div id='all' class="filterOption active" onclick="filter('all')">
-                    <span class="desc">All</span>
-                    <span class="ml-1 text-sm text-slate-600">
-                        ({{$bookRack->books->count()}})
-                    </span>
-                </div>
-
-            </div>
+        <div class="flex items-center flex-wrap gap-4">
+            <form action="{{route('librarian.qr.range.create')}}" method="post" class="flex items-center flex-wrap gap-x-4">
+                @csrf
+                <input type="number" name='from' placeholder="From" value="{{$bookRack->books->first()->serial()}}" class="custom-input text-center w-16 lg:w-24 text-xs py-2">
+                <label>-</label>
+                <input type="number" name='to' placeholder="To" value="{{$bookRack->books->last()->serial()}}" class="custom-input text-center w-16 lg:w-24 text-xs py-2">
+                <button type="submit" class="btn-orange py-1"><i class="bi-qr-code"></i></button>
+                <input type="hidden" name="book_rack_id" value="{{$bookRack->id}}">
+            </form>
+        </div>
+        <div class="flex flex-wrap justify-center items-center space-x-2 w-32">
+            <a href="{{route('librarian.qrcodes.books.preview', $bookRack)}}" target="_blank"><i class="bi-qr-code text-blue-600"></i></a>
+            <label>({{ $bookRack->books->sum('num_of_copies') }})</label>
+            <label>|</label>
+            <a href="{{route('librarian.book-racks.print',$bookRack)}}" target="_blank"><i class="bi bi-printer text-slate-600"></i></a>
+            <label>({{ $bookRack->books->count() }})</label>
         </div>
     </div>
-    @php $sr=1; @endphp
-    <div class="overflow-x-auto w-full">
-        <table class="table-fixed w-full mt-1">
+    @php
+    $sr=1;
+    $runningSumOfCopies=0;
+    @endphp
+    <div class="overflow-x-auto w-full mt-3">
+        <table class="table-fixed w-full">
             <thead>
                 <tr class="border-b border-slate-200">
                     <th class="w-12">Sr</th>
                     <th class="w-40">Title/Author</th>
                     <th class="w-16">Ref.</th>
                     <th class="w-24">Copies</th>
-                    <th class="w-24">Published</th>
                     <th class="w-24">Action</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach($bookRack->books->sortByDesc('updated_at') as $book)
+                @foreach($bookRack->books as $book)
                 <tr class="tr">
 
                     <td>{{$sr++}}</td>
@@ -62,8 +69,10 @@
                         <span class="text-xs text-slate-600">{{$book->author}}</span>
                     </td>
                     <td>{{$book->reference()}}</td>
-                    <td>{{$book->num_of_copies}}</td>
-                    <td>{{$book->publish_year}}</td>
+                    @php
+                    $runningSumOfCopies+=$book->num_of_copies;
+                    @endphp
+                    <td>{{$book->num_of_copies}} <i class="bi-dash-lg"></i> <span>({{$runningSumOfCopies}})</span></td>
                     <td>
                         <div class="flex items-center justify-center">
                             <a href="{{route('librarian.books.edit',$book)}}"><i class="bx bx-pencil text-green-600"></i></a>

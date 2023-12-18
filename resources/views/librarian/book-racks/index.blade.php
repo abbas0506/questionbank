@@ -25,7 +25,7 @@
         <x-message></x-message>
         @endif
         <div class="flex flex-row items-center justify-between mt-8">
-            <div class="text-gray-400">Book Racks: ({{ $bookRacks->count() }}), Books: ({{$books->count()}}), Total Copies: ({{$books->sum('num_of_copies')}})</div>
+            <div class="text-gray-800 font-thin">Books: ({{$books->count()}}), Total Copies: ({{$books->sum('num_of_copies')}})</div>
 
             <a href="{{route('librarian.book-racks.create')}}" class="btn-teal rounded-sm">New</a>
 
@@ -36,10 +36,10 @@
                 <thead>
                     <tr class="border-b border-slate-200">
                         <th class="w-12">Sr</th>
-                        <th class="w-16">Name</th>
+                        <th class="w-24">Name</th>
                         <th class="w-16">Books</th>
                         <th class="w-16">Copies</th>
-                        <th class="w-32">Qr Range</th>
+                        <th class="w-16">QR</th>
                         <th class="w-16">Action</th>
                     </tr>
                 </thead>
@@ -53,10 +53,12 @@
                         </td>
                         <td>{{$bookRack->books->count()}}</td>
                         <td>{{$bookRack->books->sum('num_of_copies')}}</td>
-                        <td>{{$bookRack->rangeOfQr()}}</td>
+                        <td>
+                            <a href="{{route('librarian.qrcodes.books.preview', $bookRack)}}" target="_blank"><i class="bi-qr-code text-blue-600"></i></a>
+                        </td>
                         <td>
                             <div class="flex items-center justify-center">
-                                <a href="{{route('librarian.book-racks.print',$bookRack)}}"><i class="bx bx-printer text-slate-600"></i></a>
+                                <a href="{{route('librarian.book-racks.print',$bookRack)}}" target="_blank"><i class="bi bi-printer text-slate-600"></i></a>
                                 <span class="text-slate-300 px-2">|</span>
                                 <a href="{{route('librarian.book-racks.edit',$bookRack)}}"><i class="bx bx-pencil text-green-600"></i></a>
                                 <span class="text-slate-300 px-2">|</span>

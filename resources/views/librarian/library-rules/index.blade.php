@@ -38,7 +38,7 @@
                         <tr class="tr">
 
                             <td>{{$sr++}}</td>
-                            <td>@if($libraryRule->user_code==0) Teacher @else Student @endif</td>
+                            <td>@if($libraryRule->user_type=='App\Models\Student') Student @else Teacher @endif</td>
                             <td>{{$libraryRule->max_books}}</td>
                             <td>{{$libraryRule->max_days}}</td>
                             <td>{{$libraryRule->fine_per_day}}</td>
