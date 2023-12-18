@@ -127,4 +127,13 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function search()
+    {
+        return view('assistant.books.search');
+    }
+    public function postSearch(Request $request)
+    {
+        $books = Book::where('title', 'like', '%' . $request->searchby . '%')->get();
+        return redirect()->route('library.assistant.book.search')->with('books', $books);
+    }
 }

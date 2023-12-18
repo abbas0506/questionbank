@@ -34,10 +34,6 @@ class Teacher extends Model
 
     public function user()
     {
-        $this->morphOne(User::class, 'userable');
-    }
-    public function readings()
-    {
-        return $this->hasMany(BookIssuance::class, 'reader_id');
+        return $this->morphOne(User::class, 'userable');
     }
 }

@@ -36,6 +36,7 @@ use App\Http\Controllers\librarian\QrCodeController as LibrarianQrCodeController
 use App\Http\Controllers\librarian\LibraryRuleController;
 use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
+use App\Models\BookRack;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -129,7 +130,6 @@ Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['r
     Route::resource('book-domains', BookDomainController::class);
     Route::resource('book-racks', LibrarianBookRackController::class);
     Route::get('book-racks/print/{rack}', [LibrarianBookRackController::class, 'print'])->name('book-racks.print');
-    Route::resource('book-return-policy', BookReturnPolicyController::class);
     Route::resource('library-rules', LibraryRuleController::class);
     Route::get('book/search', [LibrarianBookController::class, 'search'])->name('books.search');
     Route::resource('qrcodes', LibrarianQrCodeController::class);
@@ -146,7 +146,10 @@ Route::group(['prefix' => 'librarian', 'as' => 'librarian.', 'middleware' => ['r
 Route::group(['prefix' => 'assistant', 'as' => 'library.assistant.', 'middleware' => ['role:assistant']], function () {
     Route::get('/', [LibrayAssistantController::class, 'index']);
     Route::resource('books', BookController::class)->except('delete');
-    Route::resource('book_racks', BookRackController::class)->only('show');
+    Route::resource('book-racks', BookRackController::class)->only('show');
+
+    Route::get('book/search', [BookController::class, 'search'])->name('book.search');
+    Route::post('book/search', [BookController::class, 'postSearch'])->name('book.search.post');
     Route::resource('classes', AssistantClassController::class)->only('show');
     Route::get('qrcodes', [QRCodeController::class, 'index'])->name('qrcodes.index');
 
@@ -154,6 +157,9 @@ Route::group(['prefix' => 'assistant', 'as' => 'library.assistant.', 'middleware
     Route::post('book-issuance/scan', [BookIssuanceController::class, 'postScan'])->name('book-issuance.scan.post');
     Route::get('book-issuance/confirm', [BookIssuanceController::class, 'confirm'])->name('book-issuance.confirm');
     Route::post('book-issuance/confirm', [BookIssuanceController::class, 'postConfirm'])->name('book-issuance.confirm.post');
+    Route::get('book-issuance/issued', [BookIssuanceController::class, 'issued'])->name('book-issuance.issued');
+    Route::get('book-issuance/delayed', [BookIssuanceController::class, 'delayed'])->name('book-issuance.delayed');
+    Route::get('book-issuance/default', [BookIssuanceController::class, 'default'])->name('book-issuance.default');
 
     Route::get('book-return/scan', [BookReturnController::class, 'scan'])->name('book-return.scan');
     Route::post('book-return/scan', [BookReturnController::class, 'postScan'])->name('book-return.scan.post');

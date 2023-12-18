@@ -12,21 +12,28 @@ class BookIssuance extends Model
     protected $fillable = [
         'book_id',
         'copy_no',
-        'reader_id',
-        'issue_date',
+        'user_id',  //reader
         'due_date',
         'return_date',
         'book_status', //return book status
+
+    ];
+
+    protected $casts = [
+        'due_date' => 'date',
+        'return_date' => 'date',
     ];
 
     public function book()
     {
         return $this->belongsTo(Book::class);
     }
-    public function reader()
+
+    public function user()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
+
     public function scopePending($query)
     {
         return $query->whereNull('return_date')->where('due_date', '<', today());
@@ -44,7 +51,7 @@ class BookIssuance extends Model
     public function fine()
     {
         $fine = 0;
-        $finePerDay = BookReturnPolicy::first()->fine_per_day;
+        $finePerDay = LibraryRule::first()->fine_per_day;
         if ($this->latency() > 0) {
             $fine = $this->latency() * $finePerDay;
         }
@@ -61,5 +68,9 @@ class BookIssuance extends Model
     public function scopeIssued($query)
     {
         return $query->whereNull('return_date');
+    }
+    public function today($query)
+    {
+        return $query->where('created_at', today());
     }
 }

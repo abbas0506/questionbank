@@ -30,7 +30,7 @@ class Student extends Model
 
     public function user()
     {
-        $this->morphOne(User::class, 'userable');
+        return $this->morphOne(User::class, 'userable');
     }
 
     public function clas()
@@ -40,9 +40,5 @@ class Student extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
-    }
-    public function readings()
-    {
-        return $this->hasMany(BookIssuance::class, 'reader_id');
     }
 }

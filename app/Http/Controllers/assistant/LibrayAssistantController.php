@@ -5,6 +5,7 @@ namespace App\Http\Controllers\assistant;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BookIssuance;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,10 @@ class LibrayAssistantController extends Controller
         //
         $user = Auth::user();
         $books = Book::all();
-        return view('assistant.index', compact('user', 'books'));
+        $bookIssuances = BookIssuance::whereNull('return_date')->get();
+        $defaulters_array = BookIssuance::whereNull('return_date')->where('due_date', '<', today())->pluck('user_id')->toArray();
+        $defaulters = User::whereIn('id', $defaulters_array)->get();
+        return view('assistant.index', compact('user', 'books', 'bookIssuances', 'defaulters'));
     }
 
     /**

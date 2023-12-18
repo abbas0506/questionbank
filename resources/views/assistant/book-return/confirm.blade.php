@@ -16,35 +16,34 @@
         <x-message></x-message>
         @endif
 
-        @if($book_issuance)
-        <form action="{{route('library.assistant.book-return.confirm.post',$book_issuance)}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        @if($bookIssuance)
+        <form action="{{route('library.assistant.book-return.confirm.post',$bookIssuance)}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             @method('PATCH')
-
-            <div class="p-5 border relative">
-
-                <!-- iff book exists -->
-                <input type="hidden" name='book_issuance_id' value="{{$book_issuance->id}}">
-                <h1>{{$book_issuance->book->title}}</h1>
-                <p class="text-slate-600 font-thin">{{$book_issuance->book->reference()}}-{{$book_issuance->copy_no}}</p>
-                <p>{{$book_issuance->book->author}}, {{$book_issuance->book->publish_year}}</p>
-                <p class="text-slate-600 font-thin">Issued On {{$book_issuance->created_at}}</p>
-                <div class="absolute -top-1 -left-8"><i class="bi bi-book"></i></div>
+            <input type="hidden" name="book_issuance_id" value="{{$bookIssuance->id}}">
+            <div class="flex flex-col md:flex-row bg-green-50">
+                <div class="w-24 flex justify-center items-center bg-green-100">
+                    <i class="bi bi-book"></i>
+                </div>
+                <div class="flex-1 p-5">
+                    <p>{{$bookIssuance->book->title}}</p>
+                    <label>{{$bookIssuance->book->author}}, {{$bookIssuance->book->publish_year}}</label>
+                    <label for="">Issued On {{$bookIssuance->created_at}}</label>
+                </div>
             </div>
-
-            <div class="p-5 border mt-6 relative">
-                <div class="absolute -top-1 -left-8"><i class="bi bi-person"></i></div>
-                <div class="flex flex-wrap justify-between items-center">
-                    <div>
-                        <h2>{{$book_issuance->reader->name}}</h2>
-                        <p>{{ $book_issuance->reader->clas->roman()}} ({{$book_issuance->reader->rollno}})</p>
-                    </div>
-                    <h3 class="w-24 text-red-800 text-center">
-                        @if($book_issuance->fine()>0)
-                        Fine: {{$book_issuance->fine()}}
+            <div class="flex flex-col md:flex-row bg-blue-50 mt-5">
+                <div class="w-24 flex justify-center items-center bg-blue-100">
+                    <i class="bi bi-person"></i>
+                </div>
+                <div class="flex-1 p-5">
+                    <p for="">{{$bookIssuance->user->userable->name}}</p>
+                    <label for="">
+                        @if($bookIssuance->user->userable_type=='App\Models\Student')
+                        {{$bookIssuance->user->userable->clas->roman()}} ({{$bookIssuance->user->userable->rollno}})
+                        @else
+                        {{$bookIssuance->user->userable->designation}}
                         @endif
-                    </h3>
-
+                    </label>
                 </div>
             </div>
 

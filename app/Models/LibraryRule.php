@@ -9,7 +9,7 @@ class LibraryRule extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_code',
+        'user_type',
         'max_books',
         'max_days',
         'fine_per_day',

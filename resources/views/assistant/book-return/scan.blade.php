@@ -39,7 +39,7 @@
     function validate(event) {
 
         var bookRef = $('#book_ref').val();
-        var bookRegex = /^[A-E][0-9]-[0-9]{5}-[0-9]{2}$/;
+        var bookRegex = /^[A-E][0-9]-[0-9]{4}-[0-9]{1,2}$/;
 
         if (!bookRegex.test(bookRef)) {
             event.preventDefault();

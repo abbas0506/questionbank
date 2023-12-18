@@ -49,11 +49,11 @@ class BookReturnController extends Controller
                     $warning_message = "Book reference seems to be forged!";
                 else {
                     // book ref correct, no forgery
-                    $book_issuance = BookIssuance::where('book_id', $book->id)
+                    $bookIssuance = BookIssuance::where('book_id', $book->id)
                         ->where('copy_no', $copy_no)
                         ->whereNull('return_date')->first();
-                    if ($book_issuance) {
-                        return view('assistant.book-return.confirm', compact('book_issuance'));
+                    if ($bookIssuance) {
+                        return view('assistant.book-return.confirm', compact('bookIssuance'));
                     } else {
                         $warning_message = "Book already in rack!";
                     }

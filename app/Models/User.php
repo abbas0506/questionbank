@@ -46,16 +46,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // public function profile()
-    // {
-    //     if ($this->user_type == 'teacher')
-    //         return $this->hasOne(Teacher::class, 'user_id', 'id');
-    //     else
-    //         return $this->hasOne(Student::class, 'user_id', 'id');
-    // }
-
     public function userable()
     {
         return $this->morphTo();
+    }
+
+    public function bookIssuances()
+    {
+        return $this->hasMany(BookIssuance::class);
     }
 }

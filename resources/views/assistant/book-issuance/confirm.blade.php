@@ -19,30 +19,37 @@
         <form action="{{route('library.assistant.book-issuance.confirm')}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
 
+            <input type="hidden" name='book_id' value="{{$book->id}}">
+            <input type="hidden" name='copy_no' value="{{$copy_no}}">
+            <input type="hidden" name='user_id' value="{{$reader->user->id}}">
 
-            <div class="p-5 border relative">
-                <input type="hidden" name='book_id' value="{{$book->id}}">
-                <input type="hidden" name='copy_no' value="{{$copy_no}}">
-                <div class="absolute -top-1 -left-8"><i class="bi bi-book"></i></div>
-
-                <h1>{{$book->title}}</h1>
-                <p class="text-slate-600 text-sm">{{$book->reference()}}-{{$copy_no}}</p>
-                <p>{{$book->author}}, {{$book->publish_year}}</p>
-
+            <div class="flex flex-col md:flex-row bg-green-50">
+                <div class="w-24 flex justify-center items-center bg-green-100">
+                    <i class="bi bi-book"></i>
+                </div>
+                <div class="flex-1 p-5">
+                    <p>{{$book->title}}</p>
+                    <label>{{$book->author}}, {{$book->publish_year}}</label>
+                </div>
             </div>
 
-            <div class="p-5 border mt-6 relative">
-                <div class="absolute -top-1 -left-8"><i class="bi bi-person"></i></div>
-                <input type="hidden" name='reader_id' value="{{$reader->id}}">
-                <div class="flex flex-wrap justify-between items-center">
-
-                    <h3 class="w-24 text-red-800 text-center">Fine: Rs. 20</h3>
-                    <label for="">{{$reader->name}}</label>
+            <div class="flex flex-col md:flex-row bg-blue-50 mt-5">
+                <div class="w-24 flex justify-center items-center bg-blue-100">
+                    <i class="bi bi-person"></i>
                 </div>
-
-                <label for="" class="">Already in possession: {{$reader->readings()->inPossession()->count()}} book(s) </label>
-                @if($reader->readings()->inPossession()->exists())
-                <div>
+                <div class="flex-1 p-5">
+                    <p for="">{{$reader->name}}</p>
+                    @if($reader->user->userable_type=='App\Models\Student')
+                    <label>{{$reader->clas->roman()}} ({{$reader->rollno}})</label>
+                    @else
+                    <label>{{$reader->designation}}</label>
+                    @endif
+                </div>
+            </div>
+            <div class="mt-6 relative">
+                <label for="">Already in possession: {{$reader->user->bookIssuances()->inPossession()->count()}} book(s) </label>
+                @if($reader->user->bookIssuances()->inPossession()->exists())
+                <div class="overflow-x-auto w-full ">
                     @php $sr=1; @endphp
                     <table class="table-auto w-full mt-2 xs">
                         <thead>
@@ -56,7 +63,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($reader->readings()->inPossession()->get()->sortByDesc('created_at') as $book_issuance)
+                            @foreach($reader->user->bookIssuances()->inPossession()->get()->sortByDesc('created_at') as $book_issuance)
                             <tr class="tr">
                                 <td class="">{{$sr++}}</td>
                                 <td class="text-left">{{$book_issuance->book->title}}</td>

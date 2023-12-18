@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('book_issuances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('reader_id');
             $table->unsignedSmallInteger('copy_no');
+            $table->unsignedBigInteger('user_id');
             $table->date('due_date');
             $table->date('return_date')->nullable();
             $table->boolean('book_status')->default(1);
 
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->foreign('reader_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

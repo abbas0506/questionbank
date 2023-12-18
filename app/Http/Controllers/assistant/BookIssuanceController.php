@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Book;
 use App\Models\BookIssuance;
 use App\Models\BookReturnPolicy;
+use App\Models\LibraryRule;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -31,12 +33,12 @@ class BookIssuanceController extends Controller
     {
         $request->validate([
             'book_ref' => 'required',
-            'reader_ref' => 'required',
+            'user_cnic' => 'required',
         ]);
 
         session([
             'book_ref' => $request->book_ref,
-            'reader_ref' => $request->reader_ref,
+            'user_cnic' => $request->user_cnic,
         ]);
         return redirect()->route('library.assistant.book-issuance.confirm');
     }
@@ -48,7 +50,7 @@ class BookIssuanceController extends Controller
         $copy_no = '';
         $warning_message = '';
         // if request contains book_ref and student reference sent 
-        if (session('book_ref') && session('reader_ref')) {
+        if (session('book_ref') && session('user_cnic')) {
             $book_ref_parts = explode('-', session('book_ref'));
 
             $rack_no = $book_ref_parts[0];
@@ -66,15 +68,13 @@ class BookIssuanceController extends Controller
                     $warning_message = "Requested book has already been issued!";
                 } else {
                     //book can be issued
-                    $reader = Student::where('cnic', session('reader_ref'))->first();
+                    $reader = Student::where('cnic', session('user_cnic'))->first();
                     if ($reader) {
-                        $reader_type = 'student';
-                        return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'reader', 'reader_type'));
+                        return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'reader'));
                     } else {
-                        $reader_type = 'teacher';
-                        $reader = Teacher::where('cnic', session('reader_ref'))->first();
+                        $reader = Teacher::where('cnic', session('user_cnic'))->first();
                         if ($reader) {
-                            return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'reader', 'reader_type'));
+                            return view('assistant.book-issuance.confirm', compact('book', 'copy_no', 'reader'));
                         } else {
                             $warning_message = "Reader reference - invalid";
                         }
@@ -99,12 +99,13 @@ class BookIssuanceController extends Controller
         $request->validate([
             'book_id' => 'required',
             'copy_no' => 'required',
-            'reader_id' => 'required',
+            'user_id' => 'required',
         ]);
-        // policy_days
-        $max_days = BookReturnPolicy::first()->max_days;
+        //
+        $user = User::find($request->user_id);
+        $libraryRule = LibraryRule::where('user_type', $user->userable_type)->first();
         $request->merge([
-            'due_date' => Carbon::now()->addDays($max_days)->format('Y/m/d'),
+            'due_date' => Carbon::now()->addDays($libraryRule->max_days)->format('Y/m/d'),
         ]);
         try {
             $bookIssuance = BookIssuance::create($request->all());
@@ -113,5 +114,31 @@ class BookIssuanceController extends Controller
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
         }
+    }
+
+    /* books that have been issued
+    *  but have not been returned
+    */
+    public function  issued()
+    {
+        $bookIssuances = BookIssuance::whereNull('return_date')->get();
+        return view('assistant.book-issuance.issued', compact('bookIssuances'));
+    }
+    /* books that have been issued
+    *  due time has been over
+    */
+    public function  delayed()
+    {
+        $bookIssuances = BookIssuance::whereNull('return_date')->where('due_date', '<', today())->get();
+        return view('assistant.book-issuance.delayed', compact('bookIssuances'));
+    }
+    /* defaulters list
+    *  due time has been over
+    */
+    public function  default()
+    {
+        $defaulters_array = BookIssuance::whereNull('return_date')->where('due_date', '<', today())->pluck('user_id')->toArray();
+        $defaulters = User::whereIn('id', $defaulters_array)->get();
+        return view('assistant.book-issuance.defaulters', compact('defaulters'));
     }
 }

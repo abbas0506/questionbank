@@ -24,7 +24,7 @@
                 </div>
                 <div class="relative mt-2">
                     <i class="bx bx-user absolute right-2 top-4"></i>
-                    <input type="text" id='reader_ref' name='reader_ref' class="custom-input" placeholder="Scan here" value="">
+                    <input type="text" id='user_cnic' name='user_cnic' class="custom-input" placeholder="Scan here" value="">
                 </div>
                 <div class="flex mt-4 float-right">
                     <button type="submit" class="btn-teal rounded px-4">Next</button>
@@ -42,8 +42,8 @@
         var bookRef = $('#book_ref').val();
         var bookRegex = /^[A-e][0-9]-[0-9]{4}-[0-9]{1,2}$/;
 
-        var readerRef = $('#reader_ref').val();
-        var readerRegex = /^[3][0-9]{12}$/;
+        var userCnic = $('#user_cnic').val();
+        var cnicRegex = /^[3][0-9]{12}$/;
 
         if (!bookRegex.test(bookRef)) {
             event.preventDefault();
@@ -56,7 +56,7 @@
 
             });
             return false;
-        } else if (!readerRegex.test(readerRef)) {
+        } else if (!cnicRegex.test(userCnic)) {
             event.preventDefault();
             Swal.fire({
                 title: "Student Ref?",

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('library_rules', function (Blueprint $table) {
             $table->id();
-            $table->boolean('user_code')->default(0); //0 for student, 1 for teacher
+            $table->string('user_type'); //0 for student, 1 for teacher
             $table->unsignedSmallInteger('max_books');
             $table->unsignedSmallInteger('max_days');
             $table->unsignedSmallInteger('fine_per_day')->default(10);
