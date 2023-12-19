@@ -8,7 +8,6 @@
 <x-assistant.sidebar></x-assistant.sidebar>
 @endsection
 
-
 @section('body')
 
 <div class="responsive-body">

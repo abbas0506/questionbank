@@ -18,6 +18,9 @@
 
             <form action="{{route('library.assistant.book-issuance.scan')}}" method='post' class="mt-4" onsubmit="return validate(event)">
                 @csrf
+
+                <div id="reader" width="600px"></div>
+
                 <div class="relative">
                     <i class="bx bx-book absolute right-2 top-4"></i>
                     <input type="text" id='book_ref' name='book_ref' class="custom-input" placeholder="Scan here" value="">
@@ -37,6 +40,41 @@
 @endsection
 @section('script')
 <script>
+    Html5Qrcode.getCameras().then(devices => {
+        /**
+         * devices would be an array of objects of type:
+         * { id: "id", label: "label" }
+         */
+        if (devices && devices.length) {
+            var cameraId = devices[0].id;
+            // .. use this to start scanning.
+            const html5QrCode = new Html5Qrcode( /* element id */ "reader");
+            html5QrCode.start(
+                    cameraId, {
+                        fps: 10, // Optional, frame per seconds for qr code scanning
+                        qrbox: {
+                            width: 250,
+                            height: 250
+                        } // Optional, if you want bounded box UI
+                    },
+                    (decodedText, decodedResult) => {
+                        // do something when code is read
+                        $('#book_ref').val(decodedText);
+                    },
+                    (errorMessage) => {
+                        // parse error, ignore it.
+                        console.log('error');
+                    })
+                .catch((err) => {
+                    // Start failed, handle it.
+                    console.log('camera not opened')
+                });
+
+        }
+    }).catch(err => {
+        // handle err
+    });
+
     function validate(event) {
 
         var bookRef = $('#book_ref').val();
