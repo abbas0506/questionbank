@@ -49,7 +49,11 @@
             var cameraId = devices[0].id;
             // .. use this to start scanning.
             const html5QrCode = new Html5Qrcode( /* element id */ "reader");
-            html5QrCode.start(
+            html5QrCode.start({
+                        facingMode: {
+                            exact: "environment"
+                        }
+                    },
                     cameraId, {
                         fps: 10, // Optional, frame per seconds for qr code scanning
                         qrbox: {
