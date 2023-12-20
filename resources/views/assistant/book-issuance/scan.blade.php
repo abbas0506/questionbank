@@ -18,10 +18,10 @@
 
             <form action="{{route('library.assistant.book-issuance.scan')}}" method='post' class="mt-4" onsubmit="return validate(event)">
                 @csrf
-
-                <div id="reader" width="600px"></div>
-
-                <div class="relative">
+                <!-- container for qrcode scanner -->
+                <div id="reader" class="w-64 md:w-80 mx-auto"></div>
+                <input type="text" hidden id='whereToInputQrCode' value="1">
+                <div class="relative mt-4">
                     <i class="bx bx-book absolute right-2 top-4"></i>
                     <input type="text" id='book_ref' name='book_ref' class="custom-input" placeholder="Scan here" value="">
                 </div>
@@ -39,46 +39,59 @@
 </div>
 @endsection
 @section('script')
-<script>
-    Html5Qrcode.getCameras().then(devices => {
-        /**
-         * devices would be an array of objects of type:
-         * { id: "id", label: "label" }
-         */
-        if (devices && devices.length) {
-            var cameraId = devices[0].id;
-            // .. use this to start scanning.
-            const html5QrCode = new Html5Qrcode( /* element id */ "reader");
-            html5QrCode.start(
-                    cameraId, {
-                        fps: 5, // Optional, frame per seconds for qr code scanning
-                        qrbox: {
-                            width: 250,
-                            height: 250
-                        },
-                        // Optional, if you want bounded box UI
-                        videoConstraints: {
-                            facingMode: {
-                                exact: "environment"
+<script type="module">
+    $(document).ready(function() {
+        Html5Qrcode.getCameras().then(devices => {
+            /**
+             * devices would be an array of objects of type:
+             * { id: "id", label: "label" }
+             */
+            if (devices && devices.length) {
+                var cameraId = devices[0].id;
+                // .. use this to start scanning.
+                const html5QrCode = new Html5Qrcode( /* element id */ "reader");
+                html5QrCode.start(
+                        cameraId, {
+                            fps: 4, // Optional, frame per seconds for qr code scanning
+                            qrbox: {
+                                width: 200,
+                                height: 200
+                            },
+                            // Optional, if you want bounded box UI
+                            videoConstraints: {
+                                facingMode: {
+                                    exact: "environment" //use back camera
+                                },
                             },
                         },
-                    },
-                    (decodedText, decodedResult) => {
-                        // do something when code is read
-                        $('#book_ref').val(decodedText);
-                    },
-                    (errorMessage) => {
-                        // parse error, ignore it.
-                        console.log('error');
-                    })
-                .catch((err) => {
-                    // Start failed, handle it.
-                    console.log('camera not opened')
-                });
+                        (decodedText, decodedResult) => {
+                            // do something when code is read
+                            if ($('#whereToInputQrCode').val() == 2)
+                                $('#user_cnic').val(decodedText);
+                            else
+                                $('#book_ref').val(decodedText);
+                        },
+                        (errorMessage) => {
+                            // parse error, ignore it.
+                            console.log('error');
+                        })
+                    .catch((err) => {
+                        // Start failed, handle it.
+                        console.log('camera not opened')
+                    });
 
-        }
-    }).catch(err => {
-        // handle err
+            }
+        }).catch(err => {
+            // handle err
+        });
+
+        $('#book_ref').focus(function() {
+            $('#whereToInputQrCode').val(1);
+
+        });
+        $('#user_cnic').focus(function() {
+            $('#whereToInputQrCode').val(2);
+        });
     });
 
     function validate(event) {
