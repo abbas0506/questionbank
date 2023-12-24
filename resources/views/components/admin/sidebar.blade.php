@@ -16,6 +16,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.subjects.index')}}" class="flex items-center p-2">
+                    <i class="bi-activity"></i>
+                    <span class="ml-3">Subjects</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.classes.index')}}" class="flex items-center p-2">
                     <i class="bi-people"></i>
                     <span class="ml-3">Classes</span>

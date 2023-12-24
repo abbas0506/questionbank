@@ -21,7 +21,9 @@
     <div class="flex flex-col gap-y-2 px-5 w-full h-full justify-center items-center">
         <div class="text-slate-200 text-3xl md:text-5xl text-center">We Build the Nation</div>
         <p class="md:w-1/2 text-slate-300 text-center">Welcome to our vibrant school community, where curiosity meets knowledge, and every student is encouraged to thrive academically, socially, and creatively. </p>
-        <button class="btn-orange mt-5">Click Here <i class="bi-arrow-right"></i></button>
+        <a href="">
+            <button class="btn-orange mt-5">Click Here <i class="bi-arrow-right"></i></button>
+        </a>
     </div>
 </div>
 

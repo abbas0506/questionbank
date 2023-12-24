@@ -5,8 +5,9 @@ use App\Http\Controllers\admin\ClassController;
 use App\Http\Controllers\admin\GradeController;
 use App\Http\Controllers\admin\GroupController;
 use App\Http\Controllers\admin\StudentController;
+use App\Http\Controllers\admin\SubjectController;
 use App\Http\Controllers\admin\TeacherController;
-
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\assistant\BookIssuanceController;
 use App\Http\Controllers\Dep\ApplicationController;
@@ -36,6 +37,10 @@ use App\Http\Controllers\librarian\QrCodeController as LibrarianQrCodeController
 use App\Http\Controllers\librarian\LibraryRuleController;
 use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
+use App\Http\Controllers\teacher\ChapterController;
+use App\Http\Controllers\teacher\GradeController as TeacherGradeController;
+use App\Http\Controllers\teacher\SubjectController as TeacherSubjectController;
+use App\Http\Controllers\teacher\TeacherController as TeacherTeacherController;
 use App\Models\BookRack;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +85,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
     Route::get('/', [AdminController::class, 'index']);
     Route::resource('grades', GradeController::class)->only('index');
     Route::resource('classes', ClassController::class);
+    Route::resource('subjects', SubjectController::class);
     Route::resource('students', StudentController::class);
     Route::resource('teachers', TeacherController::class);
 
@@ -169,4 +175,13 @@ Route::group(['prefix' => 'assistant', 'as' => 'library.assistant.', 'middleware
     Route::get('qrcodes/books/preview/{rack}', [QRCodeController::class, 'previewBooksQR'])->name('qrcodes.books.preview');
     Route::get('qrcodes/teachers/preview', [QRCodeController::class, 'previewTeachersQR'])->name('qrcodes.teachers.preview');
     Route::get('qrcodes/students/preview/{clas}', [QRCodeController::class, 'previewStudentsQR'])->name('qrcodes.students.preview');
+});
+
+Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:teacher']], function () {
+    Route::get('/', [TeacherTeacherController::class, 'index']);
+    Route::resource('chapters', ChapterController::class);
+    Route::get('chapter/create/{subject}', [ChapterController::class, 'createChapter'])->name('chapter.create');
+    Route::resource('grades', TeacherGradeController::class);
+    Route::resource('subjects', TeacherSubjectController::class);
+    Route::post('fetch/chapters', [AjaxController::class, 'fetchChapters'])->name('fetchChapters');
 });
