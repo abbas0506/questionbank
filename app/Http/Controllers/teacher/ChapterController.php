@@ -97,6 +97,8 @@ class ChapterController extends Controller
     public function edit(string $id)
     {
         //
+        $chapter = Chapter::find($id);
+        return view('teacher.chapters.edit', compact('chapter'));
     }
 
     /**
@@ -105,6 +107,17 @@ class ChapterController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        try {
+            $chapter = Chapter::find($id);
+            $chapter->update($request->all());
+            return redirect()->route('teacher.chapters.show', $chapter)->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**
@@ -113,5 +126,30 @@ class ChapterController extends Controller
     public function destroy(string $id)
     {
         //
+
+        try {
+            $chapter = Chapter::find($id);
+            $model = $chapter;
+            $chapter->delete();
+            return redirect()->route('teacher.subjects.show', $model->subject_id)->with('success', 'Successfully deleted!');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
+    }
+    public function viewQs($chapterId, $qtype)
+    {
+        $chapter = Chapter::find($chapterId);
+        if ($qtype == 1)
+            return view('teacher.questions.short.index', compact('chapter'));
+        if ($qtype == 3)
+            return view('teacher.questions.mcqs.index', compact('chapter'));
+    }
+    public function addQ($chapterId, $qtype)
+    {
+        $chapter = Chapter::find($chapterId);
+        if ($qtype == 1)
+            return view('teacher.questions.short.create', compact('chapter'));
+        if ($qtype == 3)
+            return view('teacher.questions.mcqs.create', compact('chapter'));
     }
 }

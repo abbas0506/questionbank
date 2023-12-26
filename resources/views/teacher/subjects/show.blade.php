@@ -26,7 +26,7 @@
         @if($subject->chapters->count()>0)
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 place-content-center">
 
-            @foreach($subject->chapters as $chapter)
+            @foreach($subject->chapters->sortBy('chapter_no') as $chapter)
             <a href="{{route('teacher.chapters.show', $chapter)}}" class="flex bg-sky-100 hover:bg-sky-300 h-16 justify-center items-center">{{$chapter->name}}</a>
             @endforeach
             <a href="{{route('teacher.chapter.create',$subject)}}" class="flex justify-center items-center h-16 border border-sky-200 hover:bg-sky-300">New Chapter +</a>

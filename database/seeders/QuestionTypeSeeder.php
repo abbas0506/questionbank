@@ -14,8 +14,8 @@ class QuestionTypeSeeder extends Seeder
     public function run(): void
     {
         //
-        QuestionType::create(['name' => 'MCQs']);
         QuestionType::create(['name' => 'Short']);
         QuestionType::create(['name' => 'Long']);
+        QuestionType::create(['name' => 'MCQs']);
     }
 }
