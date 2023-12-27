@@ -46,6 +46,7 @@ use App\Http\Controllers\teacher\ShortQuestionController;
 use App\Http\Controllers\teacher\SubjectController as TeacherSubjectController;
 use App\Http\Controllers\teacher\TeacherController as TeacherTeacherController;
 use App\Http\Controllers\teacher\TestController;
+use App\Http\Controllers\teacher\TestQuestionController;
 use App\Models\BookRack;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
@@ -199,8 +200,5 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::resource('tests', TestController::class);
     Route::get('test/annex/grade/{grade}', [TestController::class, 'annexGrade'])->name('tests.annex.grade');
     Route::get('test/annex/subject/{subject}', [TestController::class, 'annexSubject'])->name('tests.annex.subject');
-
-    // Route::post('fetch/chapters', [AjaxController::class, 'fetchChapters'])->name('fetchChapters');
-
-
+    Route::resource('test-questions', TestQuestionController::class);
 });

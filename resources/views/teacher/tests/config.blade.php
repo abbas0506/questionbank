@@ -16,31 +16,8 @@
         <x-message></x-message>
         @endif
 
-        <form action="{{route('teacher.tests.create')}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        <form action="{{route('teacher.tests.store')}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
-            <div class="flex flex-col gap-x-4 gap-y-2">
-                <input type="text" placeholder="Test Title" class="custom-input">
-                <div class="flex flex-col md:flex-row items-center gap-2">
-                    <div class="flex flex-col flex-1">
-                        <label for="">Test Date?</label>
-                        <input type="date" class="custom-input">
-                    </div>
-                    <div class="flex flex-col flex-1">
-                        <label for="">How many questions overall?</label>
-                        <input type="number" class="w-16 custom-input">
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-2">
-                    <input type="checkbox" class="custom-input w-6 h-6">
-                    <label>Questions form exercise only</label>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <input type="checkbox" class="custom-input w-6 h-6">
-                    <label>Most frequent questions only</label>
-                </div>
-            </div>
-            <div class="divider my-3"></div>
             <div class="grid grid-cols-4 sm:grid-cols-8 gap-2">
                 @foreach($grades as $grade)
                 @if($annexedGrade && $annexedGrade->id==$grade->id)
@@ -67,23 +44,44 @@
             <div class="flex flex-col gap-2">
                 @foreach($annexedSubject->chapters->sortBy('chapter_no') as $chapter)
                 <div class="flex items-center space-x-2">
-                    <input type="checkbox" class="custom-input w-6 h-6">
+                    <input type="checkbox" name='chapter_no_array[]' class="custom-input w-6 h-6" value="{{ $chapter->id }}">
                     <label>{{$chapter->chapter_no}}. {{$chapter->name}}</label>
                 </div>
                 @endforeach
             </div>
             <div class="divider my-3"></div>
+
+            <div class="flex flex-col gap-x-4 gap-y-2">
+                <label for="">Test Title</label>
+                <input type="text" name="title" placeholder="Test Title" class="custom-input">
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <div class="flex flex-col flex-1">
+                        <label for="">Test Date</label>
+                        <input type="date" id='test_date' name="test_date" class="custom-input" value="{{ date('Y-m-d') }}">
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <label for="">How many questions overall?</label>
+                        <input type="number" name="num_of_questions" value="1" min='1' class="w-16 custom-input">
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" name="exercise_only" class="custom-input w-6 h-6">
+                    <label>Questions form exercise only</label>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" name="frequent_only" class="custom-input w-6 h-6">
+                    <label>Most frequent questions only</label>
+                </div>
+            </div>
+            <div class="divider my-3"></div>
+            <input type="hidden" name="subject_id" value="{{ $annexedSubject->id }}">
             <div class="float-right">
-                <button type="submit" class="btn-teal rounded py-2 px-4">Next <i class="bi-arrow-right"></i></button>
+                <button type="submit" class="btn-teal rounded py-2 px-4" @disabled($annexedSubject->chapters->count()==0)>Next <i class="bi-arrow-right"></i></button>
             </div>
             @endif
         </form>
     </div>
 </div>
 
-@endsection
-@section('script')
-<script>
-
-</script>
 @endsection

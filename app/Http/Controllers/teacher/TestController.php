@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chapter;
 use App\Models\Grade;
 use App\Models\Subject;
+use App\Models\Test;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TestController extends Controller
 {
@@ -26,7 +30,7 @@ class TestController extends Controller
         $annexedGrade = '';
         $annexedSubject = '';
         $grades = Grade::where('id', '>', 8)->get();
-        return view('teacher.tests.create', compact('grades', 'annexedGrade', 'annexedSubject'));
+        return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
     }
 
     /**
@@ -35,6 +39,32 @@ class TestController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'test_date' => 'required',
+            'subject_id' => 'required|numeric',
+            'chapter_no_array' => 'required',
+        ]);
+
+        $request->merge([
+            'exercise_only' => ($request->exercise_only) ? 1 : 0,
+            'frequent_only' => ($request->frequent_only) ? 1 : 0,
+            'user_id' => Auth::user()->id,
+        ]);
+        try {
+            $test = Test::create($request->all());
+            $chapterNoArray = array();
+            $chapterNoArray = $request->chapter_no_array;
+            $chapters = Chapter::whereIn('chapter_no', $chapterNoArray)->get();
+            session([
+                'test' => $test,
+                'chapters' => $chapters,
+            ]);
+            return redirect()->route('teacher.test-questions.index');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**
@@ -74,7 +104,7 @@ class TestController extends Controller
         $annexedGrade = Grade::find($id);
         $annexedSubject = '';
         $grades = Grade::where('id', '>', 8)->get();
-        return view('teacher.tests.create', compact('grades', 'annexedGrade', 'annexedSubject'));
+        return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
     }
 
     public function annexSubject($id)
@@ -82,6 +112,6 @@ class TestController extends Controller
         $annexedSubject = Subject::find($id);
         $annexedGrade = $annexedSubject->grade;
         $grades = Grade::where('id', '>', 8)->get();
-        return view('teacher.tests.create', compact('grades', 'annexedGrade', 'annexedSubject'));
+        return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
     }
 }
