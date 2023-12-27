@@ -139,17 +139,25 @@ class ChapterController extends Controller
     public function viewQs($chapterId, $qtype)
     {
         $chapter = Chapter::find($chapterId);
-        if ($qtype == 1)
+        if ($qtype == 'short')
             return view('teacher.questions.short.index', compact('chapter'));
-        if ($qtype == 3)
+
+        if ($qtype == 'long')
+            return view('teacher.questions.long.index', compact('chapter'));
+
+        if ($qtype == 'mcq')
             return view('teacher.questions.mcqs.index', compact('chapter'));
     }
     public function addQ($chapterId, $qtype)
     {
         $chapter = Chapter::find($chapterId);
-        if ($qtype == 1)
+        if ($qtype == 'short')
             return view('teacher.questions.short.create', compact('chapter'));
-        if ($qtype == 3)
+
+        if ($qtype == 'long')
+            return view('teacher.questions.long.create', compact('chapter'));
+
+        if ($qtype == 'mcq')
             return view('teacher.questions.mcqs.create', compact('chapter'));
     }
 }

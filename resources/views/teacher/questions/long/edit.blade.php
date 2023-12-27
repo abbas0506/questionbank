@@ -2,10 +2,10 @@
 @section('page-content')
 
 <div class="container">
-    <h1>Edit Short Q</h1>
+    <h1>Edit Long Q</h1>
     <div class="bread-crumb">
         <div class="bread-crumb">
-            <a href="{{route('teacher.questions.view',[$chapter, 'short'])}}">Cancel & Go Back</a>
+            <a href="{{route('teacher.questions.view',[$question->chapter, 'long'])}}">Cancel & Go Back</a>
         </div>
     </div>
     <div class="md:w-3/4 mx-auto mt-12">
@@ -23,12 +23,12 @@
             </div>
             <div class="flex items-center space-x-4">
                 <div class="text-center">
-                    <label for="">Short</label>
+                    <label for="">Long</label>
                 </div>
             </div>
         </div>
 
-        <form action="{{route('teacher.short-questions.update', $question)}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        <form action="{{route('teacher.long-questions.update', $question)}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             @method('PATCH')
             <input type="text" name="question" class="custom-input py-2" placeholder="Question" value="{{$question->question}}">
@@ -52,6 +52,7 @@
                 <button type="submit" class="btn-teal rounded p-2 w-full">Update Now</button>
             </div>
         </form>
+
     </div>
 </div>
 @endsection

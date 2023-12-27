@@ -11,20 +11,20 @@
             </li>
             <li>
                 <a href="" class="flex items-center p-2">
-                    <i class="bi-activity"></i>
+                    <i class="bi-book"></i>
                     <span class="ml-3">My Subjects</span>
                 </a>
             </li>
             <li>
                 <a href="{{route('teacher.grades.index')}}" class="flex items-center p-2">
-                    <i class="bi-people"></i>
-                    <span class="ml-3">Donate Question</span>
+                    <i class="bi-question-circle"></i>
+                    <span class="ml-3">My Questions</span>
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center p-2">
-                    <i class="bi-person"></i>
-                    <span class="ml-3">Teachers</span>
+                <a href="{{route('teacher.tests.create')}}" class="flex items-center p-2">
+                    <i class="bi-file-text"></i>
+                    <span class="ml-3">My Tests</span>
                 </a>
             </li>
 

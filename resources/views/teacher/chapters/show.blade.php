@@ -39,15 +39,15 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-8">
-            <a href="{{route('teacher.questions.view',[$chapter,1])}}" class="pallet">
+            <a href="{{route('teacher.questions.view',[$chapter,'short'])}}" class="pallet">
                 <label for="">Short</label>
                 <h3 class="mt-1">{{$chapter->questions()->short()->count()}}</h3>
             </a>
-            <a href="{{route('teacher.questions.view',[$chapter,2])}}" class="pallet">
+            <a href="{{route('teacher.questions.view',[$chapter,'long'])}}" class="pallet">
                 <label for="">Long</label>
                 <h3 class="mt-1">{{$chapter->questions()->long()->count()}}</h3>
             </a>
-            <a href="{{route('teacher.questions.view',[$chapter,3])}}" class="pallet">
+            <a href="{{route('teacher.questions.view',[$chapter,'mcq'])}}" class="pallet">
                 <label for="">MCQs</label>
                 <h3 class="mt-1">{{$chapter->questions()->mcqs()->count()}}</h3>
             </a>

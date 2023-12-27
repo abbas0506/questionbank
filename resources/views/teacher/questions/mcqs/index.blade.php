@@ -6,9 +6,11 @@
     <div class="bread-crumb">
         <a href="/">Home</a>
         <div>/</div>
-        <a href="{{route('teacher.grades.index')}}">Grade Selection</a>
+        <a href="{{route('teacher.grades.show',$chapter->subject->grade)}}">{{$chapter->subject->grade->roman_name}}</a>
         <div>/</div>
-        <div>{{$chapter->subject->grade->roman_name}}</div>
+        <a href="{{route('teacher.subjects.show',$chapter->subject)}}">{{$chapter->subject->name}}</a>
+        <div>/</div>
+        <div>Ch. {{$chapter->chapter_no}}</div>
     </div>
     <div class="mt-12">
         <div class="flex justify-between items-center">
@@ -21,7 +23,7 @@
                     <h2>{{$chapter->questions()->mcqs()->count()}}</h2>
                     <label for="">MCQs</label>
                 </div>
-                <a href="{{route('teacher.questions.add', [$chapter,3])}}" class="btn-teal rounded px-3 py-2">New Q</a>
+                <a href="{{route('teacher.questions.add', [$chapter,'mcq'])}}" class="btn-teal rounded px-3 py-2">New Q</a>
             </div>
         </div>
 
@@ -38,8 +40,8 @@
                 <thead>
                     <tr>
                         <th class="w-8">Sr</th>
-                        <th class="w-64">Question</th>
-                        <th class="w-12">Approved</th>
+                        <th class="w-48">Question</th>
+                        <th class="w-24">Answer</th>
                         <th class="w-12">From Ex.</th>
                         <th class="w-12">f <sub>bise</sub></th>
                         <th class="w-12">Actions</th>
@@ -49,12 +51,12 @@
                     @foreach($chapter->questions()->mcqs()->get()->sortByDesc('updated_at') as $question)
                     <tr class="text-sm">
                         <td>{{$sr++}}</td>
-                        <td class="text-left">{{$question->question}}</td>
-                        <td>
-                            @if($question->is_approved)
-                            <i class="bi-check text-green-600"></i>
-                            @else
-                            <i class="bi-x text-slate-600"></i>
+                        <td class="text-left"><a href="{{route('teacher.mcqs.show',$question)}}">{{$question->question}}</a></td>
+                        <td class="text-left">
+                            @if($question->answer=='a') {{ $question->mcq->option_a }}
+                            @elseif($question->answer=='b') {{ $question->mcq->option_b }}
+                            @elseif($question->answer=='c') {{ $question->mcq->option_c }}
+                            @else {{ $question->option_d }}
                             @endif
                         </td>
                         <td>
@@ -67,11 +69,11 @@
                         <td>{{$question->bise_frequency}}</td>
                         <td class="text-xs">
                             <div class="flex justify-center items-center space-x-3">
-                                <a href="{{route('teacher.short-questions.edit', $question)}}">
+                                <a href="{{route('teacher.mcqs.edit', $question)}}">
                                     <i class="bi bi-pencil-square text-green-600"></i>
                                 </a>
                                 <span class="text-slate-400">|</span>
-                                <form action="{{route('teacher.short-questions.destroy',$question)}}" method="POST" onsubmit="return confirmDel(event)">
+                                <form action="{{route('teacher.mcqs.destroy',$question)}}" method="POST" onsubmit="return confirmDel(event)">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-transparent p-0 border-0">

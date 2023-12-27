@@ -39,11 +39,13 @@ use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
 use App\Http\Controllers\teacher\ChapterController;
 use App\Http\Controllers\teacher\GradeController as TeacherGradeController;
+use App\Http\Controllers\teacher\LongQuestionController;
 use App\Http\Controllers\teacher\McqController;
 use App\Http\Controllers\teacher\QuestionController;
 use App\Http\Controllers\teacher\ShortQuestionController;
 use App\Http\Controllers\teacher\SubjectController as TeacherSubjectController;
 use App\Http\Controllers\teacher\TeacherController as TeacherTeacherController;
+use App\Http\Controllers\teacher\TestController;
 use App\Models\BookRack;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
@@ -184,7 +186,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::get('/', [TeacherTeacherController::class, 'index']);
     Route::resource('chapters', ChapterController::class);
     Route::resource('short-questions', ShortQuestionController::class);
-    Route::resource('long-questions', ShortQuestionController::class);
+    Route::resource('long-questions', LongQuestionController::class);
     Route::resource('mcqs', McqController::class);
 
     Route::get('chapter/create/{subject}', [ChapterController::class, 'createChapter'])->name('chapter.create');
@@ -193,5 +195,12 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
 
     Route::resource('grades', TeacherGradeController::class);
     Route::resource('subjects', TeacherSubjectController::class);
-    Route::post('fetch/chapters', [AjaxController::class, 'fetchChapters'])->name('fetchChapters');
+
+    Route::resource('tests', TestController::class);
+    Route::get('test/annex/grade/{grade}', [TestController::class, 'annexGrade'])->name('tests.annex.grade');
+    Route::get('test/annex/subject/{subject}', [TestController::class, 'annexSubject'])->name('tests.annex.subject');
+
+    // Route::post('fetch/chapters', [AjaxController::class, 'fetchChapters'])->name('fetchChapters');
+
+
 });

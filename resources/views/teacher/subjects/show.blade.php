@@ -4,11 +4,14 @@
 <div class="container">
     <h1>Create Question</h1>
     <div class="bread-crumb">
-        <a href="{{url('teacher')}}">Home</a>
+        <a href="/">Home</a>
         <div>/</div>
-        <a href="{{route('teacher.grades.index')}}">Grade Selection</a>
+        <a href="{{route('teacher.grades.index')}}">Grades</a>
         <div>/</div>
-        <div>{{$subject->grade->roman_name}}</div>
+        <a href="{{route('teacher.grades.show',$subject->grade)}}">{{$subject->grade->roman_name}}</a>
+        <div>/</div>
+        <div>{{$subject->name}}</div>
+
     </div>
     <div class="md:w-3/4 mx-auto mt-24">
 

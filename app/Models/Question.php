@@ -17,24 +17,32 @@ class Question extends Model
         'bise_frequency',
         'is_from_exercise',
         'chapter_id',
-        'question_type_id',
+        'question_type',
+        'mcq_id',
         'user_id', //owner id
     ];
+
 
     public function chapter()
     {
         return $this->belongsTo(Chapter::class);
     }
+
+    public function mcq()
+    {
+        return $this->belongsTo(Mcq::class);
+    }
+
     public function scopeShort($query)
     {
-        return $query->where('question_type_id', 1);
+        return $query->where('question_type', 'short');
     }
     public function scopeLong($query)
     {
-        return $query->where('question_type_id', 2);
+        return $query->where('question_type', 'long');
     }
     public function scopeMcqs($query)
     {
-        return $query->where('question_type_id', 3);
+        return $query->where('question_type', 'mcq');
     }
 }

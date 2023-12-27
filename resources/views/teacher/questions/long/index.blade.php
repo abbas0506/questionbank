@@ -2,7 +2,7 @@
 @section('page-content')
 
 <div class="container">
-    <h1>Short Questions</h1>
+    <h1>Long Questions</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
         <div>/</div>
@@ -22,10 +22,10 @@
             </div>
             <div class="flex items-center space-x-4">
                 <div class="text-center">
-                    <h2>{{$chapter->questions()->short()->count()}}</h2>
-                    <label for="">Short</label>
+                    <h2>{{$chapter->questions()->long()->count()}}</h2>
+                    <label for="">Long</label>
                 </div>
-                <a href="{{route('teacher.questions.add', [$chapter,'short'])}}" class="btn-teal rounded px-3 py-2">New Q</a>
+                <a href="{{route('teacher.questions.add', [$chapter,'long'])}}" class="btn-teal rounded px-3 py-2">New Q</a>
             </div>
         </div>
 
@@ -50,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($chapter->questions()->short()->get()->sortByDesc('updated_at') as $question)
+                    @foreach($chapter->questions()->long()->get()->sortByDesc('updated_at') as $question)
                     <tr class="text-sm">
                         <td>{{$sr++}}</td>
                         <td class="text-left">{{$question->question}}</td>
@@ -65,11 +65,11 @@
                         <td>{{$question->bise_frequency}}</td>
                         <td class="text-xs">
                             <div class="flex justify-center items-center space-x-3">
-                                <a href="{{route('teacher.short-questions.edit', $question)}}">
+                                <a href="{{route('teacher.long-questions.edit', $question)}}">
                                     <i class="bi bi-pencil-square text-green-600"></i>
                                 </a>
                                 <span class="text-slate-400">|</span>
-                                <form action="{{route('teacher.short-questions.destroy',$question)}}" method="POST" onsubmit="return confirmDel(event)">
+                                <form action="{{route('teacher.long-questions.destroy',$question)}}" method="POST" onsubmit="return confirmDel(event)">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-transparent p-0 border-0">
@@ -85,42 +85,41 @@
             </table>
         </div>
     </div>
-</div>
-@endsection
-@section('script')
-<script type="text/javascript">
-    function search(event) {
-        var searchtext = event.target.value.toLowerCase();
-        var str = 0;
-        $('.tr').each(function() {
-            if (!(
-                    $(this).children().eq(1).prop('outerText').toLowerCase().includes(searchtext)
-                )) {
-                $(this).addClass('hidden');
-            } else {
-                $(this).removeClass('hidden');
-            }
-        });
-    }
+    @endsection
+    @section('script')
+    <script type="text/javascript">
+        function search(event) {
+            var searchtext = event.target.value.toLowerCase();
+            var str = 0;
+            $('.tr').each(function() {
+                if (!(
+                        $(this).children().eq(1).prop('outerText').toLowerCase().includes(searchtext)
+                    )) {
+                    $(this).addClass('hidden');
+                } else {
+                    $(this).removeClass('hidden');
+                }
+            });
+        }
 
-    function confirmDel(event) {
-        event.preventDefault(); // prevent form submit
-        var form = event.target; // storing the form
+        function confirmDel(event) {
+            event.preventDefault(); // prevent form submit
+            var form = event.target; // storing the form
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                form.submit();
-            }
-        })
-    }
-</script>
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    form.submit();
+                }
+            })
+        }
+    </script>
 
-@endsection
+    @endsection

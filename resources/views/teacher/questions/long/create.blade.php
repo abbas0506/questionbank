@@ -2,10 +2,10 @@
 @section('page-content')
 
 <div class="container">
-    <h1>New Short Q</h1>
+    <h1>New Long Q</h1>
     <div class="bread-crumb">
         <div class="bread-crumb">
-            <a href="{{route('teacher.questions.view',[$chapter, 'short'])}}">Cancel & Go Back</a>
+            <a href="{{route('teacher.questions.view',[$chapter, 'long'])}}">Cancel & Go Back</a>
         </div>
     </div>
     <div class="md:w-3/4 mx-auto mt-12">
@@ -23,13 +23,13 @@
             </div>
             <div class="flex items-center space-x-4">
                 <div class="text-center">
-                    <h2># {{$chapter->questions()->short()->count()+1}}</h2>
-                    <label for="">Short</label>
+                    <h2># {{$chapter->questions()->long()->count()+1}}</h2>
+                    <label for="">Long</label>
                 </div>
             </div>
         </div>
 
-        <form action="{{route('teacher.short-questions.store')}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        <form action="{{route('teacher.long-questions.store')}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             <input type="hidden" name="chapter_id" value="{{$chapter->id}}">
             <input type="text" name="question" class="custom-input py-2" rows="2" placeholder="Question">
@@ -53,7 +53,6 @@
                 <button type="submit" class="btn-teal rounded p-2 w-full">Create Now</button>
             </div>
         </form>
-
     </div>
 </div>
 @endsection

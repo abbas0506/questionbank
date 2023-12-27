@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-
             $table->string('question');
             $table->string('answer')->nullable();
             $table->unsignedInteger('marks');
@@ -21,12 +20,13 @@ return new class extends Migration
             $table->boolean('is_approved');
             $table->boolean('is_from_exercise');
             $table->unsignedBigInteger('chapter_id');
-            $table->unsignedBigInteger('question_type_id');
+            $table->string('question_type');
+            $table->unsignedBigInteger('mcq_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');
-            $table->foreign('question_type_id')->references('id')->on('question_types')->onDelete('cascade');
+            $table->foreign('mcq_id')->references('id')->on('mcqs')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

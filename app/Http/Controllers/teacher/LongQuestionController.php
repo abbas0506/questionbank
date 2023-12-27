@@ -8,7 +8,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ShortQuestionController extends Controller
+
+class LongQuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,14 +42,14 @@ class ShortQuestionController extends Controller
         ]);
 
         $request->merge([
-            'question_type' => 'short',
+            'question_type' => 'long',
             'is_from_exercise' => ($request->is_from_exercise) ? 1 : 0,
             'is_approved' => false,
             'user_id' => Auth::user()->id,
         ]);
         try {
             Question::create($request->all());
-            return redirect()->route('teacher.questions.view', [$request->chapter_id, 'short'])
+            return redirect()->route('teacher.questions.view', [$request->chapter_id, 'long'])
                 ->with([
                     'success' => 'Successfully created',
                 ]);
@@ -74,7 +75,7 @@ class ShortQuestionController extends Controller
     {
         //
         $question = Question::find($id);
-        return view('teacher.questions.short.edit', compact('question'));
+        return view('teacher.questions.long.edit', compact('question'));
     }
 
     /**
@@ -96,7 +97,7 @@ class ShortQuestionController extends Controller
         $question = Question::find($id);
         try {
             $question->update($request->all());
-            return redirect()->route('teacher.questions.view', [$question->chapter_id, 'short'])
+            return redirect()->route('teacher.questions.view', [$question->chapter_id, 'long'])
                 ->with([
                     'success' => 'Successfully updated',
                 ]);
