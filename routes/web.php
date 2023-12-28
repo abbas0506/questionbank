@@ -47,7 +47,9 @@ use App\Http\Controllers\teacher\SubjectController as TeacherSubjectController;
 use App\Http\Controllers\teacher\TeacherController as TeacherTeacherController;
 use App\Http\Controllers\teacher\TestController;
 use App\Http\Controllers\teacher\TestQuestionController;
+use App\Http\Controllers\teacher\TestQuestionPartController;
 use App\Models\BookRack;
+use App\Models\TestQuestionPart;
 use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -201,4 +203,6 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::get('test/annex/grade/{grade}', [TestController::class, 'annexGrade'])->name('tests.annex.grade');
     Route::get('test/annex/subject/{subject}', [TestController::class, 'annexSubject'])->name('tests.annex.subject');
     Route::resource('test-questions', TestQuestionController::class);
+    Route::get('test/questions/add/{questionType}', [TestQuestionController::class, 'add'])->name('tests.questions.add');
+    Route::resource('test.question.parts', TestQuestionPartController::class);
 });

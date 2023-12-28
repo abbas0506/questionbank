@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('test_id');
             $table->unsignedTinyInteger('question_no');
-            $table->unsignedTinyInteger('max_parts');
+            $table->string('question_type', 10);
             $table->unsignedTinyInteger('necessary_parts');
-            $table->unsignedTinyInteger('marks_each');
+
             $table->timestamps();
             $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
         });

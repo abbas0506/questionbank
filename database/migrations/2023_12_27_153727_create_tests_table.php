@@ -20,8 +20,6 @@ return new class extends Migration
             $table->boolean('exercise_only');
             $table->boolean('frequent_only');
             $table->unsignedBigInteger('subject_id');
-            $table->unsignedTinyInteger('num_of_questions'); //minutes
-
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');

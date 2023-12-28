@@ -16,19 +16,34 @@
         <x-message></x-message>
         @endif
 
-        <h2 class="text-center">{{ $test->title }}</h2>
-        <h3 class="text-sm text-center">{{$test->subject->grade->roman_name}}-{{$test->subject->name}}</h3>
-        <div class="divider my-1"></div>
-        @php $i=0; @endphp
-        <div class="divide-y">
-            @for($i=1; $i<=$test->num_of_questions; $i++) <div class='flex justify-between py-2'>
-                    <div>Q.{{$i}}</div>
-                    <a href="{{route('teacher.test-questions.create')}}"><i class="bx bx-pencil"></i></a>
-
+        <div class="flex justify-between items-center">
+            <div>
+                <label>{{$test->title}}</label>
+                <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-center">
+                    <h2>{{$test->questions->count()}}</h2>
+                    <label for="">Total Questions</label>
                 </div>
-                @endfor
+            </div>
         </div>
+        <div class="divider my-3"></div>
+        @if($test->questions->count()>0)
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 place-content-center">
 
+
+        </div>
+        @endif
+        <div class="divider my-8"></div>
+        <div class="flex flex-col justify-center items-center gap-4">
+            <i class="bi-plus-circle text-2xl text-slate-400"></i>
+            <div class="flex space-x-2">
+                <a href="{{route('teacher.tests.questions.add', 'short')}}" class="btn-teal rounded-full px-4 py-1 text-xs">Sort</a>
+                <a href="{{route('teacher.tests.questions.add', 'long')}}" class="btn-orange rounded-full px-4 py-1 text-xs">Long</a>
+                <a href="{{route('teacher.tests.questions.add', 'mcq')}}" class="btn-sky rounded-full px-4 py-1 text-xs">MCQs</a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

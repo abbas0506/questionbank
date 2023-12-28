@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('is_approved');
             $table->boolean('is_from_exercise');
             $table->unsignedBigInteger('chapter_id');
-            $table->string('question_type');
+            $table->string('question_type', 10);
             $table->unsignedBigInteger('mcq_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

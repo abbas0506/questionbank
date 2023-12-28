@@ -11,8 +11,11 @@ class TestQuestion extends Model
     protected $fillable = [
         'test_id',
         'question_no',
-        'max_parts',
+        'question_type',
         'necessary_parts',
-        'marks_each',
     ];
+    public function test()
+    {
+        return $this->belongsTo(Test::class);
+    }
 }

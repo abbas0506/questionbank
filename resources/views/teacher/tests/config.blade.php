@@ -54,17 +54,10 @@
             <div class="flex flex-col gap-x-4 gap-y-2">
                 <label for="">Test Title</label>
                 <input type="text" name="title" placeholder="Test Title" class="custom-input">
-                <div class="flex flex-col md:flex-row items-center gap-2">
-                    <div class="flex flex-col flex-1">
-                        <label for="">Test Date</label>
-                        <input type="date" id='test_date' name="test_date" class="custom-input" value="{{ date('Y-m-d') }}">
-                    </div>
-                    <div class="flex flex-col flex-1">
-                        <label for="">How many questions overall?</label>
-                        <input type="number" name="num_of_questions" value="1" min='1' class="w-16 custom-input">
-                    </div>
+                <div class="md:w-2/3">
+                    <label for="">Test Date</label>
+                    <input type="date" id='test_date' name="test_date" class="custom-input" value="{{ date('Y-m-d') }}">
                 </div>
-
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" name="exercise_only" class="custom-input w-6 h-6">
                     <label>Questions form exercise only</label>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\teacher;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TestQuestionController extends Controller
+class TestQuestionPartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,22 +13,14 @@ class TestQuestionController extends Controller
     public function index()
     {
         //
-        if (session('test')) {
-            $test = session('test');
-            return view('teacher.tests.questions.index', compact('test'));
-        } else
-            echo 'Invalid direct access!';
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function add($questionType)
+    public function create()
     {
         //
-        $test = session('test');
-        $chapters = session('chapters');
-        return view('teacher.tests.questions.create', compact('test', 'chapters', 'questionType'));
     }
 
     /**
@@ -37,7 +29,6 @@ class TestQuestionController extends Controller
     public function store(Request $request)
     {
         //
-
     }
 
     /**

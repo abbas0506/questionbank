@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\FuncCall;
 
 class Test extends Model
 {
@@ -16,7 +17,6 @@ class Test extends Model
         'exercise_only',
         'frequent_only',
         'subject_id',
-        'num_of_questions',
         'user_id',
     ];
     public function  subject()
@@ -26,5 +26,9 @@ class Test extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function questions()
+    {
+        return $this->hasMany(TestQuestion::class);
     }
 }

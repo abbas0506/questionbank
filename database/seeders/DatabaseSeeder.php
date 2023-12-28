@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             TeacherEvaluationItemSeeder::class,
             // BookSeeder::class,
             SubjectSeeder::class,
+            ChapterSeeder::class,
+            QuestionSeeder::class,
         ]);
     }
 }
