@@ -29,9 +29,10 @@
             </div>
         </div>
         <div class="divider my-3"></div>
-        <form action="{{route('teacher.test.question.parts.store')}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        <form action="{{route('teacher.test-questions.store')}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             <input type="hidden" name="test_id" value="{{$test->id}}">
+            <input type="hidden" name="question_no" value="{{$test->questions->count()+1}}">
             <input type="hidden" name="question_type" value="{{$questionType}}">
             <div class="flex items-baseline space-x-4">
                 <label for="">Question Type :</label>
@@ -44,14 +45,14 @@
             @foreach($chapters as $chapter)
             <div class="flex items-baseline justify-between space-x-4">
                 <label for="">{{$chapter->chapter_no}}. &nbsp {{$chapter->name}}</label>
-                <input type="hidden" name='chapter_id[]' value="1">
-                <input type="number" name='necessary_parts[]' class="custom-input w-16 h-8 text-center px-0" value="0">
+                <input type="hidden" name='chapter_id_array[]' value="{{$chapter->id}}">
+                <input type="number" name='num_of_parts_array[]' class="custom-input w-16 h-8 text-center px-0" value="0">
             </div>
             @endforeach
             <div class="divider my-3"></div>
             <div class="flex items-baseline justify-between space-x-4">
                 <label for="">How many parts / question to answer at least?</label>
-                <input type="number" class="custom-input w-16 h-8 text-center px-0" value="0">
+                <input type="number" name='necessary_parts' class="custom-input w-16 h-8 text-center px-0" value="0">
             </div>
             <div class="divider my-3"></div>
             <div class="text-right">

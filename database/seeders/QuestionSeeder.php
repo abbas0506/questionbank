@@ -542,5 +542,197 @@ class QuestionSeeder extends Seeder
             'mcq_id' => null,
             'user_id' => 1, //owner id
         ]);
+        Question::create([
+            'question' => 'Explain the main components of computer in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain the main components of computer in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain the types of printers in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain the types of impact printers in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain the types of non-impact printer in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain ring topology in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain star topology in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain bus topology in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain any three topologies in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain how star topolgy works. Also give its pros and cons',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain client-server model in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain network models in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Explain peer-to-peer model in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Discuss LAN components in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Discuss LAN protocols in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+        Question::create([
+            'question' => 'Discuss guided media in detail',
+            'answer' => '',
+            'question_type' => 'long',
+            'marks' => '8',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
     }
 }

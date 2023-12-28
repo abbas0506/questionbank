@@ -18,4 +18,8 @@ class TestQuestion extends Model
     {
         return $this->belongsTo(Test::class);
     }
+    public function parts()
+    {
+        return $this->hasMany(TestQuestionPart::class);
+    }
 }

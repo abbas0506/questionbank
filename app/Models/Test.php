@@ -19,7 +19,7 @@ class Test extends Model
         'subject_id',
         'user_id',
     ];
-    public function  subject()
+    public function subject()
     {
         return $this->belongsTo(Subject::class);
     }
@@ -29,6 +29,24 @@ class Test extends Model
     }
     public function questions()
     {
-        return $this->hasMany(TestQuestion::class);
+        return $this->hasMany(TestQuestion::class, 'test_id');
+    }
+    public function parts()
+    {
+        return $this->hasManyThrough(TestQuestionPart::class, TestQuestion::class);
+    }
+    public function totalMarks()
+    {
+        $testQuestions = $this->questions;
+        $sumOfMarks = 0;
+        foreach ($this->questions as $testQuestion) {
+            if ($testQuestion->question_type == 'mcq')
+                $sumOfMarks += $testQuestion->necessary_parts;
+            elseif ($testQuestion->question_type == 'short')
+                $sumOfMarks += $testQuestion->necessary_parts * 2;
+            else
+                $sumOfMarks += $testQuestion->parts->sum('marks');
+        }
+        return $sumOfMarks;
     }
 }

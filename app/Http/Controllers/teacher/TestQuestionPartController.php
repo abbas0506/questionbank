@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\TestQuestionPart;
+use Exception;
 use Illuminate\Http\Request;
 
 class TestQuestionPartController extends Controller
@@ -45,6 +47,8 @@ class TestQuestionPartController extends Controller
     public function edit(string $id)
     {
         //
+        $testQuestionPart = TestQuestionPart::find($id);
+        return view('teacher.tests.questions.edit', compact('testQuestionPart'));
     }
 
     /**
@@ -53,6 +57,21 @@ class TestQuestionPartController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'marks' => 'required|numeric',
+        ]);
+
+        $testQuestionPart = TestQuestionPart::find($id);
+        try {
+            $testQuestionPart->update($request->all());
+            return redirect()->route('teacher.test-questions.index')
+                ->with([
+                    'success' => 'Successfully updated',
+                ]);
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**

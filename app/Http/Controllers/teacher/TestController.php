@@ -57,8 +57,9 @@ class TestController extends Controller
             $chapterNoArray = $request->chapter_no_array;
             $chapters = Chapter::whereIn('chapter_no', $chapterNoArray)->get();
             session([
-                'test' => $test,
-                'chapters' => $chapters,
+                'testId' => $test->id,
+                // 'chapters' => $chapters,
+                'chapterNoArray' => $chapterNoArray,
             ]);
             return redirect()->route('teacher.test-questions.index');
         } catch (Exception $e) {
