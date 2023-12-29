@@ -27,8 +27,17 @@
                     <label>{{$test->totalMarks()}}</label>
                 </div>
                 <div class="flex items-center">
-                    <label>Expected Time:</label>
-                    <label>{{$test->totalMarks()*1.5}} min</label>
+                    <label>Suggested Time:</label>
+                    <div class="flex items-center space-x-2">
+                        @if($test->duration>0)
+                        <label>{{$test->duration}}</label>
+                        @else
+                        <label>{{$test->totalMarks()*1.5}} min</label>
+                        @endif
+                        <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -36,20 +45,38 @@
         @if($test->questions->count()>0)
         <div class="flex flex-col gap-2 mt-3">
             @foreach($test->questions as $testQuestion)
-            @if($testQuestion->question_type!='long')
+
+            @if($testQuestion->question_type=='mcq')
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
                     <h3>Answer any {{$testQuestion->necessary_parts}} questions</h3>
                 </div>
-                @php
-                if($testQuestion->question_type=='mcq')
-                $marksEach=1;
-                if($testQuestion->question_type=='short')
-                $marksEach=2;
-                @endphp
                 <div class="text-sm">
-                    {{$testQuestion->necessary_parts}}x{{$marksEach}}={{$testQuestion->necessary_parts*$marksEach}}
+                    {{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts}}
+                </div>
+            </div>
+            <ol class="list-[lower-roman] list-outside text-sm pl-6">
+                @foreach($testQuestion->parts as $part)
+                <li>
+                    {{$part->question->question}}
+                    <div class="grid grid-cols-1 md:grid-cols-4">
+                        <div>a. {{$part->question->mcq->option_a}}</div>
+                        <div>b. {{$part->question->mcq->option_b}}</div>
+                        <div>c. {{$part->question->mcq->option_c}}</div>
+                        <div>d. {{$part->question->mcq->option_d}}</div>
+                    </div>
+                </li>
+                @endforeach
+            </ol>
+            @elseif($testQuestion->question_type=='short')
+            <div class="flex items-center justify-between">
+                <div class="flex items-baseline space-x-1">
+                    <h3>Q.{{$testQuestion->question_no}}</h3>
+                    <h3>Answer any {{$testQuestion->necessary_parts}} questions</h3>
+                </div>
+                <div class="text-sm">
+                    {{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}
                 </div>
             </div>
             <ol class="list-[lower-roman] list-outside text-sm pl-6">
@@ -66,14 +93,14 @@
                 <div class="text-sm">
                 </div>
             </div>
-            <ol class="list-[lower-roman] list-outside text-sm pl-6">
+            <ol class="list-[lower-alpha] list-outside text-sm pl-6">
                 @foreach($testQuestion->parts as $part)
                 <li class="my-1">
                     <div class="flex justify-between">
                         <div>{{$part->question->question}}</div>
                         <div class="flex items-center space-x-2">
                             <div>{{$part->marks}}</div>
-                            <a href="{{route('teacher.question-parts.edit',$part)}}" class="btn-sky rounded-full px-1 py-0 m-0"><i class="bx bx-pencil text-xs"></i></a>
+                            <a href="{{route('teacher.question-parts.edit',$part)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
                         </div>
                     </div>
                 </li>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Mcq;
 use App\Models\Question;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -732,6 +733,423 @@ class QuestionSeeder extends Seeder
             'is_from_exercise' => 1,
             'chapter_id' => 3,
             'mcq_id' => null,
+            'user_id' => 1, //owner id
+        ]);
+
+        $mcq = Mcq::create([
+            'option_a' => 'window',
+            'option_b' => 'scanner',
+            'option_c' => 'printer',
+            'option_d' => 'plotter',
+        ]);
+        Question::create([
+            'question' => '... is an example of software',
+            'answer' => 'a',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'software',
+            'option_b' => 'harware',
+            'option_c' => 'window',
+            'option_d' => 'network',
+        ]);
+        Question::create([
+            'question' => 'Physical parts of computer are called ...',
+            'answer' => 'a',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'driver',
+            'option_b' => 'operating system',
+            'option_c' => 'utility program',
+            'option_d' => 'all',
+        ]);
+        Question::create([
+            'question' => '... is an example of system software',
+            'answer' => 'd',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'software',
+            'option_b' => 'hardware',
+            'option_c' => 'printer',
+            'option_d' => 'plotter',
+        ]);
+        Question::create([
+            'question' => 'A set of instructions refers to ...',
+            'answer' => 'a',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'Information Technology',
+            'option_b' => 'scanner',
+            'option_c' => 'printer',
+            'option_d' => 'plotter',
+        ]);
+        Question::create([
+            'question' => 'IT stands for',
+            'answer' => 'a',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'window',
+            'option_b' => 'IT',
+            'option_c' => 'printer',
+            'option_d' => 'plotter',
+        ]);
+        Question::create([
+            'question' => '... has converted world into global village',
+            'answer' => 'b',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'laser printer',
+            'option_b' => 'dot matrix',
+            'option_c' => 'inkjet printer',
+            'option_d' => 'thermal printer',
+        ]);
+        Question::create([
+            'question' => '... is an example of impact printer',
+            'answer' => 'b',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'software',
+            'option_b' => 'scanner',
+            'option_c' => 'printer',
+            'option_d' => 'plotter',
+        ]);
+        Question::create([
+            'question' => 'SDLC is a way to produce ...',
+            'answer' => 'a',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'scanner',
+            'option_b' => 'CRT',
+            'option_c' => 'flat panel display',
+            'option_d' => 'plotter',
+        ]);
+        Question::create([
+            'question' => 'LCD is an example of ...',
+            'answer' => 'c',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 1,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+
+        $mcq = Mcq::create([
+            'option_a' => 'network',
+            'option_b' => 'toplogy',
+            'option_c' => 'LAN',
+            'option_d' => 'Wifi',
+        ]);
+        Question::create([
+            'question' => 'Physical layout of network is called ...',
+            'answer' => 'b',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+
+        $mcq = Mcq::create([
+            'option_a' => 'ring',
+            'option_b' => 'star',
+            'option_c' => 'mesh',
+            'option_d' => 'bus',
+        ]);
+        Question::create([
+            'question' => 'The most common topology is ...',
+            'answer' => 'b',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'ring',
+            'option_b' => 'star',
+            'option_c' => 'mesh',
+            'option_d' => 'bus',
+        ]);
+        Question::create([
+            'question' => 'Which toplogy requires hub?',
+            'answer' => 'b',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'ring',
+            'option_b' => 'star',
+            'option_c' => 'mesh',
+            'option_d' => 'bus',
+        ]);
+        Question::create([
+            'question' => 'Termainals are used in ...',
+            'answer' => 'd',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'ring',
+            'option_b' => 'star',
+            'option_c' => 'mesh',
+            'option_d' => 'bus',
+        ]);
+        Question::create([
+            'question' => 'The term backbone is associated to ...',
+            'answer' => 'd',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 2,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'router',
+            'option_b' => 'bridge',
+            'option_c' => 'NIC',
+            'option_d' => 'http',
+        ]);
+        Question::create([
+            'question' => 'Which is not a component of LAN? ',
+            'answer' => 'd',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'LAN',
+            'option_b' => 'MAN',
+            'option_c' => 'WAN',
+            'option_d' => 'VAN',
+        ]);
+        Question::create([
+            'question' => 'Which covers countrywide area? ',
+            'answer' => 'c',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'LAN',
+            'option_b' => 'MAN',
+            'option_c' => 'WAN',
+            'option_d' => 'VAN',
+        ]);
+        Question::create([
+            'question' => 'Which is not a LAN protocol? ',
+            'answer' => 'd',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'router',
+            'option_b' => 'bridge',
+            'option_c' => 'NIC',
+            'option_d' => 'gateway',
+        ]);
+        Question::create([
+            'question' => 'Which device etends a LAN?',
+            'answer' => 'b',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'router',
+            'option_b' => 'bridge',
+            'option_c' => 'NIC',
+            'option_d' => 'http',
+        ]);
+        Question::create([
+            'question' => 'Which device tells data packets the best route?',
+            'answer' => 'a',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'router',
+            'option_b' => 'bridge',
+            'option_c' => 'NIC',
+            'option_d' => 'gateway',
+        ]);
+        Question::create([
+            'question' => ' ... ensures communication between two different procols. ',
+            'answer' => 'd',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'text',
+            'option_b' => 'packets',
+            'option_c' => 'words',
+            'option_d' => 'bytes',
+        ]);
+        Question::create([
+            'question' => 'Message is broken into ... ',
+            'answer' => 'b',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'LAN',
+            'option_b' => 'WAN',
+            'option_c' => 'MAN',
+            'option_d' => 'VAN',
+        ]);
+        Question::create([
+            'question' => 'Which covers citywide network? ',
+            'answer' => 'c',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
+            'user_id' => 1, //owner id
+        ]);
+        $mcq = Mcq::create([
+            'option_a' => 'protocol',
+            'option_b' => 'software',
+            'option_c' => 'program',
+            'option_d' => 'hardware',
+        ]);
+        Question::create([
+            'question' => 'Set of rules for communication refers to ... ',
+            'answer' => 'a',
+            'question_type' => 'mcq',
+            'marks' => '1',
+            'is_approved' => 1,
+            'bise_frequency' => 3,
+            'is_from_exercise' => 1,
+            'chapter_id' => 3,
+            'mcq_id' => $mcq->id,
             'user_id' => 1, //owner id
         ]);
     }

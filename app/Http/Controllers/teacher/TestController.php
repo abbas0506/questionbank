@@ -82,6 +82,8 @@ class TestController extends Controller
     public function edit(string $id)
     {
         //
+        $test = Test::find($id);
+        return view('teacher.tests.edit', compact('test'));
     }
 
     /**
@@ -90,6 +92,18 @@ class TestController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'duration' => 'required|numeric',
+        ]);
+        try {
+            $test = Test::find($id);
+            $test->update($request->all());
+            return redirect()->route('teacher.test-questions.index', $test)->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**

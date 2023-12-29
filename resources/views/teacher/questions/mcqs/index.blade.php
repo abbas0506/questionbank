@@ -56,7 +56,7 @@
                             @if($question->answer=='a') {{ $question->mcq->option_a }}
                             @elseif($question->answer=='b') {{ $question->mcq->option_b }}
                             @elseif($question->answer=='c') {{ $question->mcq->option_c }}
-                            @else {{ $question->option_d }}
+                            @else {{ $question->mcq->option_d }}
                             @endif
                         </td>
                         <td>
