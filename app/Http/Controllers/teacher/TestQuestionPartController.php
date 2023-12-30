@@ -64,7 +64,7 @@ class TestQuestionPartController extends Controller
         $testQuestionPart = TestQuestionPart::find($id);
         try {
             $testQuestionPart->update($request->all());
-            return redirect()->route('teacher.test-questions.index')
+            return redirect()->route('teacher.tests.show')
                 ->with([
                     'success' => 'Successfully updated',
                 ]);

@@ -200,9 +200,11 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::resource('subjects', TeacherSubjectController::class);
 
     Route::resource('tests', TestController::class);
+    Route::get('test/{test}/pdf/grid/{rows}/{cols}', [TestController::class, 'pdf'])->name('tests.pdf');
+
     Route::get('test/annex/grade/{grade}', [TestController::class, 'annexGrade'])->name('tests.annex.grade');
     Route::get('test/annex/subject/{subject}', [TestController::class, 'annexSubject'])->name('tests.annex.subject');
     Route::resource('test-questions', TestQuestionController::class);
-    Route::get('test/questions/add/{questionType}', [TestQuestionController::class, 'add'])->name('tests.questions.add');
+    Route::get('test/questions/add/{test}/{questionType}', [TestQuestionController::class, 'add'])->name('tests.questions.add');
     Route::resource('question-parts', TestQuestionPartController::class);
 });

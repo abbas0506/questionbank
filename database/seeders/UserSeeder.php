@@ -129,33 +129,28 @@ class UserSeeder extends Seeder
         $user->assignRole('assistant');
 
         // assistant 2
-        $assistant = Assistant::create(['name' => 'Aman Ullah']);
+        $guest = Teacher::create(
+            [
+                'name' => 'The Squad',
+                'father' => "-",
+                'dob' => '1998/07/03',
+                'cnic' => "3530100000001",
+                'phone' => "03000000000",
+                'email' => "squad@treat.com",
+                'qualification' => 'MA Urdu',
+                'designation' => 'EST',
+                'bps' => 17,
+                'personal_no' => "3000000",
+                'appointed_on' => "2009/05/08",
+                'joined_on' => "2014/03/10",
+            ]
+        );
         $user = User::create([
-            'login_id' => 'aman',
+            'login_id' => 'squad',
             'password' => Hash::make('password'),
-            'userable_id' => $assistant->id,
-            'userable_type' => 'App\Models\Assistant',
+            'userable_id' => $guest->id,
+            'userable_type' => 'App\Models\Teacher',
         ]);
-        $user->assignRole('assistant');
-
-        // assistant 3
-        $assistant = Assistant::create(['name' => 'Abc']);
-        $user = User::create([
-            'login_id' => 'abc',
-            'password' => Hash::make('password'),
-            'userable_id' => $assistant->id,
-            'userable_type' => 'App\Models\Assistant',
-        ]);
-        $user->assignRole('assistant');
-
-        // assistant 4
-        $assistant = Assistant::create(['name' => 'Xyz']);
-        $user = User::create([
-            'login_id' => 'xyz',
-            'password' => Hash::make('password'),
-            'userable_id' => $assistant->id,
-            'userable_type' => 'App\Models\Assistant',
-        ]);
-        $user->assignRole('assistant');
+        $user->assignRole('teacher');
     }
 }

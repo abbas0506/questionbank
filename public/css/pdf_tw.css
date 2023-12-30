@@ -5,8 +5,9 @@
 
 body {
     margin: 0;
-    /* font-family: Helvetica, sans-serif; */
-    font-family: "Times New Roman", Times, serif, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+    /* font-family: "Times New Roman", Times, serif, sans-serif; */
 }
 
 img {
@@ -48,6 +49,29 @@ tr.border td {
     border: solid thin #333;
 }
 
+ol,
+ul,
+ol li,
+ul li {
+    margin: 0px;
+    padding: 0px;
+}
+ol.list-horizontal li,
+ul.list-horizontal li {
+    display: inline-block;
+}
+ol.lower-roman {
+    list-style-type: lower-roman;
+}
+ol.lower-alpha {
+    list-style-type: lower-alpha;
+}
+.w-1-2 {
+    width: 48%;
+}
+.w-1-4 {
+    width: 24%;
+}
 b,
 strong {
     font-weight: bolder;
@@ -2957,6 +2981,10 @@ sup {
 .text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
+}
+.text-xxs {
+    font-size: 0.5rem;
+    line-height: 0.75rem;
 }
 .text-sm {
     font-size: 0.875rem;

@@ -14,7 +14,7 @@ class GradeController extends Controller
     public function index()
     {
         //
-        $grades = Grade::all();
+        $grades = Grade::where('id', '>', 8)->get();
         return view('teacher.grades.index', compact('grades'));
     }
 

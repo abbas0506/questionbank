@@ -9,16 +9,16 @@
                     <span class="ml-3">Home</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="" class="flex items-center p-2">
                     <i class="bi-book"></i>
-                    <span class="ml-3">My Subjects</span>
+                    <span class="ml-3">Subjects</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="{{route('teacher.grades.index')}}" class="flex items-center p-2">
                     <i class="bi-question-circle"></i>
-                    <span class="ml-3">My Questions</span>
+                    <span class="ml-3">Q. Bank</span>
                 </a>
             </li>
             <li>

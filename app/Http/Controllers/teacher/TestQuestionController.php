@@ -21,21 +21,17 @@ class TestQuestionController extends Controller
     public function index()
     {
         //
-        if (session('testId')) {
-            $test = Test::find(session('testId'));
-            return view('teacher.tests.questions.index', compact('test'));
-        } else
-            echo 'Invalid direct access!';
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function add($questionType)
+    public function add($testId, $questionType)
     {
         //
-        if (session('testId') && session('chapterNoArray')) {
-            $test = Test::find(session('testId'));
+        if (session('chapterNoArray')) {
+            $test = Test::find($testId);
             $chapters = Chapter::whereIn('id', session('chapterNoArray'))->get();
             return view('teacher.tests.questions.create', compact('test', 'chapters', 'questionType'));
         } else {
@@ -89,7 +85,7 @@ class TestQuestionController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('teacher.test-questions.index')->with('success', 'Question successfully added!');
+            return redirect()->route('teacher.tests.show', $request->test_id)->with('success', 'Question successfully added!');
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());

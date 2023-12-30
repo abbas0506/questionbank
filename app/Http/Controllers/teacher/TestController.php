@@ -10,6 +10,7 @@ use App\Models\Test;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class TestController extends Controller
 {
@@ -57,11 +58,11 @@ class TestController extends Controller
             $chapterNoArray = $request->chapter_no_array;
             $chapters = Chapter::whereIn('chapter_no', $chapterNoArray)->get();
             session([
-                'testId' => $test->id,
+                // 'testId' => $test->id,
                 // 'chapters' => $chapters,
                 'chapterNoArray' => $chapterNoArray,
             ]);
-            return redirect()->route('teacher.test-questions.index');
+            return redirect()->route('teacher.tests.show', $test);
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
@@ -74,6 +75,8 @@ class TestController extends Controller
     public function show(string $id)
     {
         //
+        $test = Test::find($id);
+        return view('teacher.tests.show', compact('test'));
     }
 
     /**
@@ -99,7 +102,7 @@ class TestController extends Controller
         try {
             $test = Test::find($id);
             $test->update($request->all());
-            return redirect()->route('teacher.test-questions.index', $test)->with('success', 'Successfully updated');
+            return redirect()->route('teacher.tests.show', $test)->with('success', 'Successfully updated');
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
@@ -128,5 +131,13 @@ class TestController extends Controller
         $annexedGrade = $annexedSubject->grade;
         $grades = Grade::where('id', '>', 8)->get();
         return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
+    }
+    public function pdf($id, $rows, $cols)
+    {
+        $test = Test::find($id);
+        $pdf = PDF::loadView('teacher.tests.pdf', compact('test', 'rows', 'cols'))->setPaper('a4', 'portrait');
+        $pdf->set_option("isPhpEnabled", true);
+        $file = "test.pdf";
+        return $pdf->stream($file);
     }
 }
