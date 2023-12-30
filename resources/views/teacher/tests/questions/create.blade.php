@@ -16,23 +16,21 @@
         <x-message></x-message>
         @endif
 
-        <div class="flex justify-between items-center">
-            <div>
-                <label>{{$test->title}}</label>
-                <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
-            </div>
-            <div class="text-center w-16">
-                <h2>{{ucwords($questionType)}}</h2>
-                <label for="">Q. Type</label>
-            </div>
+        <div>
+            <label>{{$test->title}}</label>
+            <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
         </div>
+
         <div class="divider my-3"></div>
         <form action="{{route('teacher.test-questions.store')}}" method='post' onsubmit="return validate(event)">
             @csrf
             <input type="hidden" name="test_id" value="{{$test->id}}">
             <input type="hidden" name="question_no" value="{{$test->questions->count()+1}}">
             <input type="hidden" name="question_type" value="{{$questionType}}">
-            <label>Question # {{$test->questions->count()+1}}</label>
+            <div class="flex justify-between items-center">
+                <label>Question # {{$test->questions->count()+1}}</label>
+                <h2 class="w-16 text-center">{{ucwords($questionType)}}</h2>
+            </div>
             <div class="divider my-3"></div>
             <h3>Please mention chapter wise distribution of parts / questions.</h3>
 
@@ -67,7 +65,8 @@
         var sumOfParts = 0;
         $('.num-of-parts').each(function() {
             if ($(this).val() == '')
-                $(this).addClass('border-red-500');
+                // $(this).addClass('border-red-500');
+                $(this).val(0)
             else if ($.isNumeric($(this).val())) {
                 if ($(this).val() < 0 || $(this).val() > 100)
                     $(this).addClass('border-red-500');
@@ -75,7 +74,7 @@
                     // correct value, add and clear if any previous error
                     sumOfParts += parseInt($(this).val());
                     $('#total_parts').html(sumOfParts);
-                    $('#necessary_parts').val(sumOfParts);
+                    $('#necessary_parts').val(Math.ceil(2 / 3 * sumOfParts));
                     // clear error
                     if ($(this).hasClass('border-red-500'))
                         $(this).removeClass('border-red-500');

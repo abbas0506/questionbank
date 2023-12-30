@@ -17,6 +17,7 @@
         <x-message></x-message>
         @endif
 
+        @if($test->questions->count()>0)
         <div class="collapsible">
             <div class="head mt-8">
                 <div class="flex items-center w-full">
@@ -155,6 +156,7 @@
             </div>
         </div>
         <div class="divider my-3"></div>
+        @endif
         <div class="flex justify-between mt-4">
             <div>
                 <label>{{$test->title}}</label>
@@ -165,6 +167,8 @@
                     <label>Max marks:</label>
                     <label>{{$test->totalMarks()}}</label>
                 </div>
+                <!-- can edit only if some question exists -->
+                @if($test->questions->count()>0)
                 <div class="flex items-center">
                     <label>Suggested Time:</label>
                     <div class="flex items-center space-x-2">
@@ -175,9 +179,8 @@
                         @endif
                         <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
                     </div>
-
-
                 </div>
+                @endif
             </div>
         </div>
         <div class="divider my-3"></div>
