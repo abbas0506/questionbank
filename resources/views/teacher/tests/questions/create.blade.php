@@ -61,27 +61,60 @@
 @endsection
 @section('script')
 <script type="module">
-    $('.num-of-parts').change(function() {
-        var sumOfParts = 0;
-        $('.num-of-parts').each(function() {
-            if ($(this).val() == '')
-                // $(this).addClass('border-red-500');
-                $(this).val(0)
-            else if ($.isNumeric($(this).val())) {
-                if ($(this).val() < 0 || $(this).val() > 100)
-                    $(this).addClass('border-red-500');
-                else {
-                    // correct value, add and clear if any previous error
+    $(document).ready(function() {
+        $('.num-of-parts').change(function() {
+            var sumOfParts = 0;
+            var currentInput = $(this).val();
+            // remove spaces from around
+            currentInput = $.trim(currentInput);
+            if ($.isNumeric(currentInput)) {
+                $('.num-of-parts').each(function() {
+                    // update fields
                     sumOfParts += parseInt($(this).val());
                     $('#total_parts').html(sumOfParts);
                     $('#necessary_parts').val(Math.ceil(2 / 3 * sumOfParts));
-                    // clear error
-                    if ($(this).hasClass('border-red-500'))
-                        $(this).removeClass('border-red-500');
-                }
+                });
+                //clear previous error if any
+                if ($(this).hasClass('border-red-500'))
+                    $(this).removeClass('border-red-500');
             } else {
-                $(this).addClass('border-red-500');
+                if (currentInput == '')
+                    $(this).val(0)
+                else {
+                    $(this).addClass('border-red-500');
+                    // $('#necessary_parts').val(0);
+                    $('#total_parts').html('');
+                }
             }
+        });
+
+        $('form').submit(function(event) {
+            var validated = true;
+            var numOfNecessaryParts = $('#necessary_parts').val();
+
+            if ($('#total_parts').html() == '')
+                validated = false
+            else if ($.isNumeric(numOfNecessaryParts)) {
+                var totalParts = parseInt($('#total_parts').html())
+                if (numOfNecessaryParts <= 0 || numOfNecessaryParts > totalParts)
+                    validated = false
+            } else {
+                validated = false
+            }
+
+            if (!validated) {
+                event.preventDefault();
+                Swal.fire({
+                    title: "Warning",
+                    text: "Review number of parts carefully!",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    timer: 1500
+
+                });
+
+            }
+            return validated;
         });
     });
 </script>

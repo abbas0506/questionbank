@@ -164,18 +164,18 @@
             </div>
             <div class="flex flex-col justify-center">
                 <div class="flex items-center">
-                    <label>Max marks:</label>
+                    <label>Max marks: &nbsp</label>
                     <label>{{$test->totalMarks()}}</label>
                 </div>
                 <!-- can edit only if some question exists -->
                 @if($test->questions->count()>0)
                 <div class="flex items-center">
-                    <label>Suggested Time:</label>
+                    <label>Suggested Time: &nbsp</label>
                     <div class="flex items-center space-x-2">
                         @if($test->duration>0)
-                        <label>{{$test->duration}}</label>
+                        <label>{{$test->duration}}min</label>
                         @else
-                        <label>{{$test->totalMarks()*1.5}} min</label>
+                        <label>{{round($test->totalMarks()*1.5,0)}}min</label>
                         @endif
                         <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
                     </div>
@@ -187,8 +187,9 @@
         @if($test->questions->count()>0)
         <div class="flex flex-col gap-2 mt-3">
             @foreach($test->questions as $testQuestion)
-
-            @if($testQuestion->question_type=='mcq')
+            <!-- MCQ case -->
+            @switch($testQuestion->question_type)
+            @case('mcq')
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
@@ -211,7 +212,8 @@
                 </li>
                 @endforeach
             </ol>
-            @elseif($testQuestion->question_type=='short')
+            @break
+            @case('short')
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
@@ -226,6 +228,19 @@
                 <li>{{$part->question->question}}</li>
                 @endforeach
             </ol>
+            @break
+            @case('long')
+            @if($testQuestion->parts->count()==1)
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-1">
+                    <h3>Q.{{$testQuestion->question_no}}</h3>
+                    <p class="text-sm ml-1">{{$testQuestion->parts->first()->question->question}}</p>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <p class="text-sm">{{$testQuestion->parts->first()->marks}}</p>
+                    <a href="{{route('teacher.question-parts.edit',$testQuestion->parts->first())}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
+                </div>
+            </div>
             @else
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline space-x-1">
@@ -249,12 +264,20 @@
 
                 @endforeach
             </ol>
+            <!-- long single option check ends -->
             @endif
+            @endswitch
+            <!--looping test questions ends -->
             @endforeach
         </div>
-
+        @else
+        <div class="h-full flex flex-col justify-center items-center">
+            <h3>Currently test is empty!</h3>
+            <label for="">Please select one of the following options to add question</label>
+        </div>
         @endif
-        <div class="divider my-8"></div>
+        <!-- bottom options to add question: short, long, MCQ -->
+        <div class="divider my-3"></div>
         <div class="flex flex-col justify-center items-center gap-4">
             <i class="bi-plus-circle text-2xl text-slate-400"></i>
             <div class="flex space-x-2">
