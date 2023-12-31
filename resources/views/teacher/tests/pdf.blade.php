@@ -52,20 +52,36 @@ $roman = config('global.romans');
                 @endphp
                 <tbody>
                     @for($i=1; $i<=$rows;$i++) <tr>
-                        @for($j=1; $j<=$cols;$j++) <td class='p-2'>
+                        @for($j=1; $j<=$cols;$j++) <td class='px-2'>
                             <table class="w-full">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="w-16"></th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center text-md font-bold">{{$test->title}} </td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">{{$test->subject->grade->roman_name}} - {{$test->subject->name}}
+                                        <td class="text-left">
+                                            <p class="m-0 p-0 font-bold">{{$test->title}}</p>
+                                            <p class="m-0 p-0">{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</p>
+                                        </td>
+                                        <td class="text-right">
+                                            <ul class="list-horizontal">
+                                                <li>Roll #</li>
+                                                <li style="border-style:solid; border-width:0px 0px 0.5px 0px; width:32px"></li>
+                                            </ul>
+                                        </td>
                                     </tr>
+
                                 </tbody>
                             </table>
-
+                            <div style="border-style:solid; border-width:0px 0px 0.5px 0px;"></div>
                             @if($test->questions->count()>0)
-                            <table class="table-auto mt-3 w-full">
+                            <table class="table-auto w-full">
                                 <thead>
                                     <tr>
                                         <th class=""></th>
