@@ -1,12 +1,9 @@
 @extends('layouts.basic')
 
 @section('body')
-<div class="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-100 to-blue-400">
-
-    <div class="flex flex-col items-center w-full px-5 md:w-1/3">
-
+<div class="flex flex-col items-center justify-center h-screen bg-gray-800/50 px-5 md:px-0">
+    <div class="flex flex-col items-center w-full p-5 md:w-1/3 bg-white relative">
         <div class="w-full mt-4">
-
             <!-- page message -->
             @if($errors->any())
             <x-message :errors='$errors'></x-message>
@@ -16,20 +13,13 @@
 
             <!-- authenticated -->
             <div class="text-center">
-                <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>
+                <i class="bi bi-person-fill-check text-6xl text-sky-600"></i>
             </div>
-            <h1 class="text-center text-slate-800 mt-8">Welcome {{Auth::user()->userable->name}}</h1>
+            <h1 class="text-center text-slate-800 mt-4">Welcome {{Auth::user()->userable->name}}</h1>
 
             <form action="{{route('login.as')}}" method='post' class="w-full mt-8" onsubmit="return validate(event)">
                 @csrf
-
-                @if(Auth::user()->roles->count()>1)
-                <div>Please select a role for this session</div>
-                @else
-                <label for="">You will proceed as</label>
-                @endif
-
-                <select id="role" name="role" class="custom-input  px-4 py-3 w-full mt-3 bg-transparent" onchange="loadDepartments()">
+                <select id="role" name="role" class="custom-input  px-4 w-full bg-transparent" onchange="loadDepartments()">
                     @foreach(Auth::user()->roles as $role)
                     <option value="{{$role->name}}" class="">{{ucfirst($role->name)}}</option>
                     @endforeach

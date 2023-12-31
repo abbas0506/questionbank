@@ -1,16 +1,14 @@
 @extends('layouts.basic')
 
 @section('body')
-<div class="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-100 to-blue-400">
-
-    <div class="flex flex-col items-center w-full px-5 md:w-1/3">
-
+<div class="flex flex-col items-center justify-center h-screen bg-gray-800/50 px-5 md:px-0">
+    <div class="flex flex-col items-center w-full p-5 md:w-1/3 bg-white relative ">
+        <a href="/" class="absolute top-1 right-2"><i class="bi-x text-black"></i></a>
         <!-- <img class="w-full" alt="logo" src="{{asset('/images/logo/logo.png')}}"> -->
-        <h1 class="text-lg md:text-6xl text-indigo-900 mt-4">eSchool</h1>
-        <p class="text-xs">Govt Higher Secondary School Chak Bedi</p>
+        <h1 class="text-lg md:text-4xl text-indigo-900">eSchool</h1>
+        <p class="text-xs text-center">Govt Higher Secondary School Chak Bedi</p>
         <p class="text-xs">Distt. Pakpattan</p>
         <div class="w-full mt-4">
-
             <!-- page message -->
             @if($errors->any())
             <x-message :errors='$errors'></x-message>
@@ -23,8 +21,6 @@
                 <div class="flex flex-col w-full items-start">
                     <div class="flex items-center w-full relative">
                         <i class="bi bi-person absolute left-2 text-slate-600"></i>
-                        <!-- <input type="text" id="email" name="email" class="w-full custom-input px-8" placeholder="Type your email here"> -->
-                        <!-- <input type="text" id="user_id" name="user_id" class="w-full custom-input px-8" placeholder="Login id"> -->
                         <input type="text" id="login_id" name="login_id" class="w-full custom-input px-8" placeholder="Login id">
                     </div>
                     <div class="flex items-center w-full mt-3 relative">

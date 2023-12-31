@@ -58,16 +58,55 @@
         <!-- middle panel  -->
         <div class="md:col-span-2">
             <!-- update news  -->
-            <div class="p-4 bg-red-50">
-                <h2>Important Features of ES V5.0 </h2>
-                <ul class="list-disc pl-4 text-sm">
-                    <li><u>Responsive</u> - app is easy to use on small screens as well </li>
-                    <li><u>Single login</u> - for all of your authorized departments.</li>
-                    <li><u>Dashboard</u> - provides you quick access to your profile info, passowrd change option and other needful pages like config for once, course allcation, printable etc. </li>
-                    <li><u>Page navigation</u> - links help you to navigate across pages. (highlighted in blue color)</li>
-                    <li><u>Award lists</u> - are available in .xlsx and .pdf formats. Pdf version consists of 30 students per page. </li>
-                    <li><u>Upcoming</u> - soon you will be able to see results submission progress of all the teachers of your department, course profile (by whom the course is being taught) and teacher profile (list of allocated courses and workload in credit hours)</li>
-                </ul>
+            <div class="p-4 bg-white">
+                @if(Auth::user()->tests->count()>0)
+                <h2>Recent Tests </h2>
+                <div class="overflow-x w-full">
+                    <table class="table-fixed xs">
+                        <thead>
+                            <tr>
+                                <th class="w-10">Sr</th>
+                                <th class="w-64">Title</th>
+                                <th class="w-24">Date</th>
+                                <th class="w-24">Ans Key</th>
+                                <th class="w-24">Actions</th>
+                            </tr>
+                        <tbody>
+                            @php $sr=1; @endphp
+                            @foreach(Auth::user()->tests as $test)
+                            <tr>
+                                <td>{{$sr++}}</td>
+                                <td class="text-left">
+                                    <a href="{{route('teacher.tests.show',$test)}}" class="link">{{$test->title}}</a>
+                                    <br>
+                                    <label>{{$test->subject->grade->roman_name}}-{{$test->subject->name}}</label>
+                                </td>
+                                <td>{{$test->test_date->format('d/m/Y')}}</td>
+                                <td><a href="{{route('teacher.tests.show',$test)}}"><i class="bi-file-pdf text-red-400 hover:text-red-600"></i></a></td>
+                                <td>
+                                    <div class="flex items-center justify-center space-x-2 text-xs">
+                                        <a href="{{route('teacher.tests.show',$test)}}"><i class="bi-printer"></i></a>
+                                        <span class="text-slate-300">|</span>
+                                        <form action="{{route('teacher.tests.destroy',$test)}}" method="post" onsubmit="return confirmDel(event)">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button><i class="bx bx-trash text-red-600"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        </thead>
+                    </table>
+                </div>
+                @else
+                <div class="h-full flex flex-col justify-center items-center">
+                    <h3>Currently no test found!</h3>
+                    <label for="">Start Now</label>
+                </div>
+                @endif
             </div>
 
         </div>
@@ -100,4 +139,27 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    function confirmDel(event) {
+        event.preventDefault(); // prevent form submit
+        var form = event.target; // storing the form
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                form.submit();
+            }
+        })
+    }
+</script>
+
 @endsection

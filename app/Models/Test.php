@@ -19,6 +19,11 @@ class Test extends Model
         'subject_id',
         'user_id',
     ];
+    protected $casts = [
+        'test_date' => 'date',
+
+    ];
+
     public function subject()
     {
         return $this->belongsTo(Subject::class);

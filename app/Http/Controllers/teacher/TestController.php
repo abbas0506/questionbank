@@ -20,6 +20,8 @@ class TestController extends Controller
     public function index()
     {
         //
+        $tests = Test::all();
+        return view('teacher.tests.index', compact('tests'));
     }
 
     /**
@@ -115,6 +117,13 @@ class TestController extends Controller
     public function destroy(string $id)
     {
         //
+        $test = Test::find($id);
+        try {
+            $test->delete();
+            return redirect()->back()->with('success', 'Successfully removed!');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 
     public function annexGrade($id)

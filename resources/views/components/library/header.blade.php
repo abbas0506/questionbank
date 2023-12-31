@@ -14,7 +14,7 @@
                 <div class="">{{Auth::user()->userable->name}}</div>
             </label>
 
-            <a href="{{url('signout')}}"><i class="bi bi-power"></i></a>
+            <a href="{{url('signout')}}" class="flex items-center justify-center bg-orange-100 w-8 h-8 rounded-full"><i class="bi bi-power"></i></a>
             <span id='menu' class="flex md:hidden">
                 <i class="bi bi-three-dots-vertical"></i>
             </span>
