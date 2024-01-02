@@ -10,6 +10,8 @@ use App\Models\User;
 use Carbon\Exceptions\EndLessPeriodException;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -48,10 +50,20 @@ class TeacherController extends Controller
             'bps' => 'required',
         ]);
 
+        DB::beginTransaction();
         try {
-            Teacher::create($request->all());
+            $teacher = Teacher::create($request->all());
+            $user = User::create([
+                'login_id' => $teacher->cnic,
+                'password' => Hash::make('password'),
+                'userable_id' => $teacher->id,
+                'userable_type' => 'App\Models\Teacher',
+            ]);
+            $user->assignRole('teacher');
+            DB::commit();
             return redirect()->route('admin.teachers.index')->with('success', 'Successfully created');
         } catch (Exception $e) {
+            DB::rollback();
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
         }
