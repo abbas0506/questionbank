@@ -47,10 +47,11 @@ class ShortQuestionController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         try {
-            Question::create($request->all());
-            return redirect()->route('teacher.questions.view', [$request->chapter_id, 'short'])
+            $question = Question::create($request->all());
+            return redirect()->back()
                 ->with([
                     'success' => 'Successfully created',
+                    'isFromExercise' => $question->is_from_exercise,
                 ]);
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
@@ -86,7 +87,6 @@ class ShortQuestionController extends Controller
         $request->validate([
             'question' => 'required',
             'answer' => 'nullable',
-            'marks' => 'required|numeric|min:0',
             'bise_frequency' => 'required|numeric|min:0',
         ]);
 

@@ -15,9 +15,9 @@
         <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2">
             @foreach($grades as $cell)
             @if($cell->id==$grade->id)
-            <a href="{{route('teacher.grades.show', $cell)}}" class="flex bg-orange-300 h-8 justify-center items-center">{{$cell->roman_name}}</a>
+            <a href="{{route('teacher.grades.show', $cell)}}" class="flex bg-teal-300 h-8 justify-center items-center">{{$cell->roman_name}}</a>
             @else
-            <a href="{{route('teacher.grades.show', $cell)}}" class="flex bg-orange-100 h-8 justify-center items-center">{{$cell->roman_name}}</a>
+            <a href="{{route('teacher.grades.show', $cell)}}" class="flex bg-teal-100 hover:bg-teal-300 h-8 justify-center items-center">{{$cell->roman_name}}</a>
             @endif
             @endforeach
         </div>

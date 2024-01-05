@@ -40,7 +40,7 @@ class GradeController extends Controller
     public function show(string $id)
     {
         //
-        $grades = Grade::all();
+        $grades = Grade::where('id', '>', 8)->get();
         $grade = Grade::find($id);
         return view('teacher.grades.show', compact('grades', 'grade'));
     }

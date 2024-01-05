@@ -48,10 +48,11 @@ class LongQuestionController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         try {
-            Question::create($request->all());
-            return redirect()->route('teacher.questions.view', [$request->chapter_id, 'long'])
+            $question = Question::create($request->all());
+            return redirect()->back()
                 ->with([
                     'success' => 'Successfully created',
+                    'isFromExercise' => $question->is_from_exercise,
                 ]);
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());

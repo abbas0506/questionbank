@@ -12,7 +12,9 @@
         <div>/</div>
         <a href="{{route('teacher.subjects.show',$chapter->subject)}}">{{$chapter->subject->name}}</a>
         <div>/</div>
-        <div>Ch.{{$chapter->chapter_no}}</div>
+        <a href="{{route('teacher.chapters.show',$chapter)}}">Ch.{{$chapter->chapter_no}}</a>
+        <div>/</div>
+        <div>Long</div>
     </div>
     <div class="mt-12">
         <div class="flex justify-between items-center">

@@ -29,7 +29,11 @@
         <form action="{{route('teacher.mcqs.update', $question)}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             @method('PATCH')
-            <input type="text" name="question" class="custom-input py-2" placeholder="Question" value="{{$question->question}}">
+            <div class="flex items-center gap-2">
+                <input type="checkbox" id='is_from_exercise' name='is_from_exercise' class="w-6 h-6 chk bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1' @checked($question->is_from_exercise==1)>
+                <label for="">From Exercise?</label>
+            </div>
+            <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question">{{$question->question}}</textarea>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 mt-3 p-4 border">
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" name='answer_a' class="answer w-6 h-6 bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200 ml-3" value='1' @checked($question->answer=='a')>
@@ -48,23 +52,13 @@
                     <input type="text" name='option_d' class="flex-1 custom-input" placeholder="d." value="{{$question->mcq->option_d}}">
                 </div>
             </div>
-            <div class="flex flex-wrap items-center justify-between mt-2 gap-2">
-                <div>
-                    <label for="">Marks</label>
-                    <input type="text" name="marks" value="{{$question->marks}}" class="custom-input w-16 text-center ml-3 py-0">
-                </div>
-                <div>
-                    <label for="">From Exercise?</label>
-                    <input type="checkbox" id='is_from_exercise' name='is_from_exercise' class="w-6 h-6 chk bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200 ml-3" value='1' @checked($question->is_from_exercise)>
-                </div>
-                <div>
-                    <label for="">Bise Frequency</label>
-                    <input type="text" name="bise_frequency" value="{{$question->bise_frequency}}" class="custom-input w-16 text-center ml-3 py-0">
-                </div>
+            <div class="flex items-center justify-between mt-2">
+                <label for="">Bise Frequency</label>
+                <input type="text" name="bise_frequency" value="{{$question->bise_frequency}}" class="custom-input w-16 text-center ml-3 py-0">
             </div>
-
-            <div class="mt-4">
-                <button type="submit" class="btn-teal rounded p-2 w-full">Update Now</button>
+            <div class="divider my-3"></div>
+            <div class="flex justify-end">
+                <button type="submit" class="btn-teal rounded p-2">Update Now</button>
             </div>
         </form>
 

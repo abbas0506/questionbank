@@ -1,10 +1,12 @@
 @extends('layouts.basic')
 
 @section('body')
-<div class="flex flex-col items-center justify-center h-screen bg-gray-800/50 px-5 md:px-0">
-    <div class="flex flex-col items-center w-full p-5 md:w-1/3 bg-white relative ">
+<div class="flex flex-col items-center justify-center h-screen bg-gray-800/50 px-5">
+    <div class="flex flex-col items-center w-full p-8 md:w-1/3 bg-white relative ">
         <a href="/" class="absolute top-1 right-2"><i class="bi-x text-black"></i></a>
-        <!-- <img class="w-full" alt="logo" src="{{asset('/images/logo/logo.png')}}"> -->
+
+        <img class="w-48 mt-8" alt="logo" src="{{asset('images/logo/school_logo.png')}}">
+        <!-- <img alt="logo" src="{{asset('/images/logo/school_logo.png')}}" class="w-48 mt-8"> -->
         <h1 class="text-lg md:text-4xl text-indigo-900">eSchool</h1>
         <p class="text-xs text-center">Govt Higher Secondary School Chak Bedi</p>
         <p class="text-xs">Distt. Pakpattan</p>

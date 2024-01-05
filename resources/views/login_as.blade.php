@@ -1,8 +1,10 @@
 @extends('layouts.basic')
 
 @section('body')
-<div class="flex flex-col items-center justify-center h-screen bg-gray-800/50 px-5 md:px-0">
-    <div class="flex flex-col items-center w-full p-5 md:w-1/3 bg-white relative">
+<div class="flex flex-col items-center justify-center h-screen bg-gray-800/50 px-5">
+    <div class="flex flex-col items-center w-full p-8 md:w-1/3 bg-white relative">
+
+        <a href="{{url('signout')}}" class="absolute top-2 right-2"><i class="bi-x text-sm"></i></a>
         <div class="w-full mt-4">
             <!-- page message -->
             @if($errors->any())
@@ -13,7 +15,7 @@
 
             <!-- authenticated -->
             <div class="text-center">
-                <i class="bi bi-person-fill-check text-6xl text-sky-600"></i>
+                <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>
             </div>
             <h1 class="text-center text-slate-800 mt-4">Welcome {{Auth::user()->userable->name}}</h1>
 
@@ -24,9 +26,9 @@
                     <option value="{{$role->name}}" class="">{{ucfirst($role->name)}}</option>
                     @endforeach
                 </select>
-                <div class="flex items-center space-x-4 mt-6">
-                    <a href="{{url('signout')}}" class="flex flex-1 btn-orange justify-center py-2">Singout</a>
-                    <button type="submit" class="flex flex-1 btn-indigo justify-center py-2">Proceed <i class="bx bx-right-arrow-alt bx-fade-right text-lg"></i></button>
+                <div class="flex items-center space-x-4 mt-3">
+                    <!-- <a href="{{url('signout')}}" class="flex flex-1 btn-orange justify-center py-2">Singout</a> -->
+                    <button type="submit" class="flex flex-1 btn-indigo justify-center py-2">Proceed</button>
                 </div>
 
             </form>

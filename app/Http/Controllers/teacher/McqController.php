@@ -76,9 +76,10 @@ class McqController extends Controller
 
             ]);
             DB::commit();
-            return redirect()->route('teacher.questions.view', [$request->chapter_id, 'mcq'])
+            return redirect()->back()
                 ->with([
                     'success' => 'Successfully created',
+                    'isFromExercise' => $question->is_from_exercise,
                 ]);
         } catch (Exception $e) {
             Db::rollBack();
@@ -118,7 +119,6 @@ class McqController extends Controller
 
             'question' => 'required',
             'answer' => 'nullable',
-            'marks' => 'required|numeric|min:0',
             'bise_frequency' => 'required|numeric|min:0',
             'option_a' => 'required',
             'option_b' => 'required',
@@ -146,7 +146,6 @@ class McqController extends Controller
             $question->update([
                 'question' => $request->question,
                 'answer' => $answer,
-                'marks' => $request->marks,
                 'bise_frequency' => $request->bise_frequency,
                 'is_from_exercise' => ($request->is_from_exercise) ? 1 : 0,
             ]);
