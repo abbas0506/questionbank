@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>MCQs</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
@@ -16,7 +16,7 @@
         <div>/</div>
         <div>MCQs</div>
     </div>
-    <div class="mt-12">
+    <div class="content-section">
         <div class="flex justify-between items-center">
             <div>
                 <label>{{$chapter->subject->grade->roman_name}} - {{$chapter->subject->name}}</label>
@@ -25,16 +25,23 @@
             <a href="{{route('teacher.chapters.mcq.create', $chapter)}}" class="btn-teal">New +</a>
         </div>
 
+        <div class="divider my-5"></div>
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
         @else
         <x-message></x-message>
         @endif
-        <label for="">{{$chapter->questions()->mcqs()->count()}} long questions found</label>
+        <div class="flex flex-wrap justify-between items-end mt-5">
+            <div class="flex relative">
+                <input type="text" id='searchby' placeholder="Search ..." class="custom-search" oninput="search(event)">
+                <i class="bx bx-search absolute top-2 right-2"></i>
+            </div>
+            <label>({{$chapter->questions()->mcqs()->count()}}) records found</label>
+        </div>
         @php $sr=1; @endphp
-        <div class="overflow-x-auto">
-            <table class="table-fixed w-full mt-1 text-sm">
+        <div class="overflow-x-auto mt-4">
+            <table class="table-fixed w-full text-sm">
                 <thead>
                     <tr>
                         <th class="w-8">Sr</th>
@@ -47,7 +54,7 @@
                 </thead>
                 <tbody>
                     @foreach($chapter->questions()->mcqs()->get()->sortByDesc('updated_at') as $question)
-                    <tr class="text-sm">
+                    <tr class="tr text-sm">
                         <td>{{$sr++}}</td>
                         <td class="text-left"><a href="{{route('teacher.chapters.mcq.show',[$chapter, $question])}}">{{$question->question}}</a></td>
                         <td class="text-left">
@@ -87,41 +94,42 @@
             </table>
         </div>
     </div>
-    @endsection
-    @section('script')
-    <script type="text/javascript">
-        function search(event) {
-            var searchtext = event.target.value.toLowerCase();
-            var str = 0;
-            $('.tr').each(function() {
-                if (!(
-                        $(this).children().eq(1).prop('outerText').toLowerCase().includes(searchtext)
-                    )) {
-                    $(this).addClass('hidden');
-                } else {
-                    $(this).removeClass('hidden');
-                }
-            });
-        }
+</div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    function search(event) {
+        var searchtext = event.target.value.toLowerCase();
+        var str = 0;
+        $('.tr').each(function() {
+            if (!(
+                    $(this).children().eq(1).prop('outerText').toLowerCase().includes(searchtext)
+                )) {
+                $(this).addClass('hidden');
+            } else {
+                $(this).removeClass('hidden');
+            }
+        });
+    }
 
-        function confirmDel(event) {
-            event.preventDefault(); // prevent form submit
-            var form = event.target; // storing the form
+    function confirmDel(event) {
+        event.preventDefault(); // prevent form submit
+        var form = event.target; // storing the form
 
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value) {
-                    form.submit();
-                }
-            })
-        }
-    </script>
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                form.submit();
+            }
+        })
+    }
+</script>
 
-    @endsection
+@endsection

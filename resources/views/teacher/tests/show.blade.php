@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>Test Draft</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
@@ -9,7 +9,7 @@
         <div>Draft</div>
     </div>
 
-    <div class="md:w-3/4 mx-auto mt-12">
+    <div class="content-section">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>

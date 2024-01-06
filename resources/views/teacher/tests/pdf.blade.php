@@ -40,7 +40,7 @@ $roman = config('global.romans');
 
 <body>
     <main>
-        <div class="container">
+        <div class="custom-container">
             <!-- <div class="relative">
                 <div class="absolute"><img alt="logo" src="{{public_path('/images/logo/school_logo.png')}}" class="w-16"></div>
             </div> -->

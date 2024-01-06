@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('page-content')
-<div class="container">
+<div class="custom-container">
     <div class="flex flex-col md:flex-row items-center">
         <div class="flex-1">
             <h2>{{ $student->name }}</h2>

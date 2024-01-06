@@ -1,6 +1,6 @@
 @extends('layouts.librarian')
 @section('page-content')
-<div class="container">
+<div class="custom-container">
     <div class="flex items-center">
         <div class="w-5/6">
             <h2>New Book</h2>

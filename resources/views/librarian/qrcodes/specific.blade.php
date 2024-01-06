@@ -16,7 +16,7 @@
 
 <body>
     <main>
-        <div class="container">
+        <div class="custom-container">
             <div class="text-left">
                 <div>{!! DNS2D::getBarcodeHTML($specificQr, 'QRCODE',4,4) !!}</div>
                 <span class="text-xs pl-5">{{$specificQr}}</span>

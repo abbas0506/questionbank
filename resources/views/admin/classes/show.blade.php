@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>{{$clas->roman()}}</h1>
     <div class="bread-crumb">
         <a href="{{url('admin')}}">Home</a>

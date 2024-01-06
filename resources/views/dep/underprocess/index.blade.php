@@ -1,7 +1,7 @@
 @extends('layouts.dep')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>Under Process</h1>
     <div class="bread-crumb">
         <a href="{{route('dep.applications.index')}}">Applications</a>

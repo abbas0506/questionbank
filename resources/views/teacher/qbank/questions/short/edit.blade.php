@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>Edit Short Q</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
@@ -18,7 +18,7 @@
         <div>/</div>
         <div>Edit</div>
     </div>
-    <div class="md:w-3/4 mx-auto mt-12">
+    <div class="content-section">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
@@ -37,25 +37,27 @@
                 </div>
             </div>
         </div>
+        <div class="divider my-5"></div>
+        <div class="md:w-3/4 mx-auto mt-8">
+            <form action="{{route('teacher.chapters.short.update', [$chapter, $question])}}" method='post' class="mt-8" onsubmit="return validate(event)">
+                @csrf
+                @method('PATCH')
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id='is_from_exercise' name='is_from_exercise' class="w-6 h-6 chk bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1' @checked($question->is_from_exercise==1)>
+                    <label for="">From Exercise?</label>
+                </div>
+                <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question">{{$question->question}}</textarea>
+                <div class="flex items-center justify-between mt-2">
+                    <label for="">Bise Frequency</label>
+                    <input type="text" name="bise_frequency" value="{{$question->bise_frequency}}" class="custom-input w-16 text-center ml-3 py-0">
+                </div>
+                <div class="divider my-3"></div>
+                <div class="flex justify-end">
+                    <button type="submit" class="btn-teal">Update Now</button>
+                </div>
 
-        <form action="{{route('teacher.chapters.short.update', [$chapter, $question])}}" method='post' class="mt-8" onsubmit="return validate(event)">
-            @csrf
-            @method('PATCH')
-            <div class="flex items-center gap-2">
-                <input type="checkbox" id='is_from_exercise' name='is_from_exercise' class="w-6 h-6 chk bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1' @checked($question->is_from_exercise==1)>
-                <label for="">From Exercise?</label>
-            </div>
-            <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question">{{$question->question}}</textarea>
-            <div class="flex items-center justify-between mt-2">
-                <label for="">Bise Frequency</label>
-                <input type="text" name="bise_frequency" value="{{$question->bise_frequency}}" class="custom-input w-16 text-center ml-3 py-0">
-            </div>
-            <div class="divider my-3"></div>
-            <div class="flex justify-end">
-                <button type="submit" class="btn-teal">Update Now</button>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 @endsection

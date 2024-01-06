@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>Long Questions</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
@@ -16,7 +16,7 @@
         <div>/</div>
         <div>Long</div>
     </div>
-    <div class="mt-12">
+    <div class="content-section">
         <div class="flex justify-between items-center">
             <div>
                 <label>{{$chapter->subject->grade->roman_name}} - {{$chapter->subject->name}}</label>
@@ -25,16 +25,25 @@
             <a href="{{route('teacher.chapters.long.create', $chapter)}}" class="btn-teal">New +</a>
         </div>
 
+        <div class="divider my-5"></div>
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
         @else
         <x-message></x-message>
         @endif
-        <label for="">{{$chapter->questions()->long()->count()}} long questions found</label>
+
         @php $sr=1; @endphp
-        <div class="overflow-x-auto">
-            <table class="table-fixed w-full mt-1 text-sm">
+
+        <div class="flex flex-wrap justify-between items-end mt-5">
+            <div class="flex relative">
+                <input type="text" id='searchby' placeholder="Search ..." class="custom-search" oninput="search(event)">
+                <i class="bx bx-search absolute top-2 right-2"></i>
+            </div>
+            <label>({{$chapter->questions()->long()->count()}}) records found</label>
+        </div>
+        <div class="overflow-x-auto mt-4">
+            <table class="table-fixed w-full text-sm">
                 <thead>
                     <tr>
                         <th class="w-8">Sr</th>
@@ -47,7 +56,7 @@
                 </thead>
                 <tbody>
                     @foreach($chapter->questions()->long()->get()->sortByDesc('updated_at') as $question)
-                    <tr class="text-sm">
+                    <tr class="tr text-sm">
                         <td>{{$sr++}}</td>
                         <td class="text-left">{{$question->question}}</td>
                         <td>{{$question->marks}}</td>

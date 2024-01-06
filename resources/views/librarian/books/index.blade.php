@@ -1,6 +1,6 @@
 @extends('layouts.librarian')
 @section('page-content')
-<div class="container">
+<div class="custom-container">
     <h2>Books</h2>
     <div class="bread-crumb">
         <a href="{{url('librarian')}}">Home</a>

@@ -5,9 +5,6 @@
                 <img alt="logo" src="{{asset('images/logo/app_logo.png')}}" class="w-10 h-10">
             </a>
             <div class="text-base md:text-xl font-semibold ml-4">eSchool</div>
-            <div class="px-1 md:px-4">|</div>
-            <div>Teacher</div>
-
         </div>
         <!-- right sided current user info -->
         <div id="current-user-area" class="flex space-x-3 items-center justify-center relative">

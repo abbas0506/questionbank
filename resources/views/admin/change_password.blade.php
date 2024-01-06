@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h2>Change Password</h2>
     <div class="bread-crumb">
         <a href="/">Home</a>

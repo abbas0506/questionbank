@@ -1,7 +1,7 @@
 @extends('layouts.dep')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>Objection</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>

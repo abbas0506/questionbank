@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>Subjects</h1>
     <div class="bread-crumb">
         <a href="{{url('admin')}}">Home</a>
@@ -12,7 +12,7 @@
     </div>
 
 
-    <div class="md:w-3/4 mx-auto mt-12">
+    <div class="content-section">
         <div class="flex items-center flex-wrap justify-between">
             <!-- search -->
             <div class="flex relative w-full md:w-1/3">

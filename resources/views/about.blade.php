@@ -29,7 +29,7 @@
     </div>
 </section>
 <section class="facts section-bg" data-aos="fade-up">
-    <div class="container">
+    <div class="custom-container">
 
         <div class="row counters">
 
@@ -60,7 +60,7 @@
 
 <!-- testimonial section -->
 <section class="testimonials" data-aos="fade-up">
-    <div class="container">
+    <div class="custom-container">
 
         <div class="section-title">
             <h2>Tetstimonials</h2>

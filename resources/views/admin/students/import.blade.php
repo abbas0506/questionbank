@@ -2,7 +2,7 @@
 @section('page-content')
 
 
-<div class="container">
+<div class="custom-container">
     <h2>Import Students to {{ $clas->roman() }}</h2>
     <div class="bread-crumb">
         <a href="{{url('admin')}}">Cancel & Go Back</a>

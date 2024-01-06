@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('page-content')
 
-<div class="container">
+<div class="custom-container">
     <h1>Teacher Evaluation</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>

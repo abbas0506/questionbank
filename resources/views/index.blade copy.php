@@ -158,7 +158,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="custom-container">
         <div class="flex flex-col-reverse md:flex-row mt-8 w-full justify-between">
             <div class="custom-cell w-1/2">
                 <img src="{{asset('images/library/library-1.png')}}" alt="" class="w-3/4">
@@ -172,7 +172,7 @@
 
         </div>
     </div>
-    <div class="container">
+    <div class="custom-container">
         <div class="flex flex-col md:flex-row mt-8 w-full justify-between">
             <div class="w-full p-5 md:w-1/2">
                 <h2 class="text-2xl text-slate-800">Moral Care</h2>
@@ -189,7 +189,7 @@
 </section>
 
 <section id='events' class="mt-24 px-4 md:px-24">
-    <!-- <div class="container"> -->
+    <!-- <div class="custom-container"> -->
     <div class="section-title">
         <h2 class="text-4xl text-slate-800 text-center">Recent Events</h2>
         <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>

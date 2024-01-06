@@ -44,7 +44,7 @@ $roman = config('global.romans');
     </footer>
 
     <main>
-        <div class="container">
+        <div class="custom-container">
 
             <div class="w-1/2 mx-auto">
                 <div class="relative">

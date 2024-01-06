@@ -8,7 +8,7 @@
         <div>/</div>
         <div>New Test</div>
     </div>
-    <div class="md:w-3/4 mx-auto mt-12">
+    <div class="content-section">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
