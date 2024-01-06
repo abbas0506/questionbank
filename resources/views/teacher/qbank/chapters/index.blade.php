@@ -36,12 +36,12 @@
             <div class="flex justify-between items-center p-3 bg-sky-100 hover:bg-sky-300">
                 <a href="{{route('teacher.subjects.chapters.show', [$subject, $chapter])}}" class="flex-1">{{$chapter->chapter_no}}. {{$chapter->name}}</a>
                 @if($chapter->questions->count()>0)
-                <a href="{{route('teacher.subjects.chapters.edit', [$subject, $chapter])}}" class=""><i class="bx bx-pencil">e</i></a>
+                <a href="{{route('teacher.subjects.chapters.edit', [$subject, $chapter])}}" class=""><i class="bx bx-pencil"></i></a>
                 @else
                 <form action="{{route('teacher.subjects.chapters.destroy',[$subject, $chapter])}}" method="post" class="flex justify-center items-center rounded-full w-6 h-6 bg-orange-50" onsubmit="return confirmDel(event)">
                     @csrf
                     @method('DELETE')
-                    <button><i class="bi-x text-red-600"></i>x</button>
+                    <button><i class="bi-x text-red-600"></i></button>
                 </form>
                 @endif
             </div>
