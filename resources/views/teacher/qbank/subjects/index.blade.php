@@ -22,21 +22,22 @@
         </div>
 
         @if($grade->subjects->count()>0)
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-60 text-sm mt-3">
             @foreach($grade->subjects as $subject)
-            @if($subject->chapters->count()>0)
-            <a href="{{route('teacher.subjects.chapters.index', $subject)}}" class="flex bg-sky-100 justify-start items-center p-3">{{$subject->name}} </a>
-            @else
-            <div class="flex items-center w-full bg-sky-100 p-3">
-                <a href="{{route('teacher.subjects.chapters.index', $subject)}}" class="flex flex-1">{{$subject->name}}</a>
-                <form action="{{route('teacher.grades.subjects.destroy',[$grade, $subject])}}" method="post" class="flex justify-center items-center rounded-full w-6 h-6 bg-orange-50" onsubmit="return confirmDel(event)">
+
+            <div class="flex items-center justify-between w-full bg-sky-100 ">
+                <a href="{{route('teacher.subjects.chapters.index', $subject)}}" class="flex flex-1 items-center p-3"><i class="bx bx-book mr-2"></i>{{$subject->name}} <span class="text-gray-600 text-xs ml-1">({{$subject->questions->count()}})</span></a>
+                @if($subject->questions->count()>0)
+                <a href="{{route('teacher.grades.subjects.edit', [$grade, $subject])}}" class="w-8 text-center"><i class="bx bx-pencil text-gray-500 hover:text-gray-600 text-xs"></i></a>
+                @else
+                <form action="{{route('teacher.grades.subjects.destroy',[$grade, $subject])}}" method="post" class="w-8 text-center" onsubmit="return confirmDel(event)">
                     @csrf
                     @method('DELETE')
                     <button><i class="bi-x text-red-600"></i></button>
                 </form>
+                @endif
             </div>
 
-            @endif
             @endforeach
             <a href="{{route('teacher.grades.subjects.create',$grade)}}" class="flex justify-center items-center border border-sky-200 hover:bg-sky-300 p-3">New Subject +</a>
         </div>

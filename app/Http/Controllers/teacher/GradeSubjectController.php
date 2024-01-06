@@ -74,17 +74,43 @@ class GradeSubjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($gradeId, $subjectId)
     {
         //
+        $grade = Grade::find($gradeId);
+        $subject = Subject::find($subjectId);
+        return view('teacher.qbank.subjects.edit', compact('grade', 'subject'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $gradeId, $subjectId)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $exists = Subject::where('name', $request->name)
+            ->where('grade_id', $gradeId)
+            ->where('id', '<>', $subjectId)
+            ->count();
+        if ($exists)
+            return redirect()->back()->with('warning', 'Already eixsts!');
+        else {
+            try {
+                $subject = Subject::find($subjectId);
+                $subject->update($request->all());
+                return redirect()->route('teacher.grades.subjects.index', $gradeId)
+                    ->with([
+                        'success' => 'Successfully updated',
+                    ]);
+            } catch (Exception $e) {
+                return redirect()->back()->withErrors($e->getMessage());
+                // something went wrong
+            }
+        }
     }
 
     /**
