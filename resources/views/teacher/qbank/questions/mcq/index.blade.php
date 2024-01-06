@@ -49,7 +49,7 @@
                     @foreach($chapter->questions()->mcqs()->get()->sortByDesc('updated_at') as $question)
                     <tr class="text-sm">
                         <td>{{$sr++}}</td>
-                        <td class="text-left"><a href="{{route('teacher.chapters.mcq.show',[$chapter, $question])}}" class="link">{{$question->question}}</a></td>
+                        <td class="text-left"><a href="{{route('teacher.chapters.mcq.show',[$chapter, $question])}}">{{$question->question}}</a></td>
                         <td class="text-left">
                             @if($question->answer=='a') {{ $question->mcq->option_a }}
                             @elseif($question->answer=='b') {{ $question->mcq->option_b }}
