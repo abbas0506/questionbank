@@ -33,12 +33,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 place-content-center">
 
             @foreach($subject->chapters->sortBy('chapter_no') as $chapter)
-            <div class="flex justify-between items-center p-3 bg-sky-100 hover:bg-sky-300">
-                <a href="{{route('teacher.subjects.chapters.show', [$subject, $chapter])}}" class="flex-1">{{$chapter->chapter_no}}. {{$chapter->name}}</a>
+            <div class="flex justify-between items-center bg-sky-100 hover:bg-sky-300 text-gray-600 text-sm">
+                <a href="{{route('teacher.subjects.chapters.show', [$subject, $chapter])}}" class="flex-1 p-3">{{$chapter->chapter_no}}. {{$chapter->name}}</a>
                 @if($chapter->questions->count()>0)
-                <a href="{{route('teacher.subjects.chapters.edit', [$subject, $chapter])}}" class=""><i class="bx bx-pencil"></i></a>
+                <a href="{{route('teacher.subjects.chapters.edit', [$subject, $chapter])}}" class="w-8 text-center text-gray-500 hover:text-gray-600"><i class="bx bx-pencil"></i></a>
                 @else
-                <form action="{{route('teacher.subjects.chapters.destroy',[$subject, $chapter])}}" method="post" class="flex justify-center items-center rounded-full w-6 h-6 bg-orange-50" onsubmit="return confirmDel(event)">
+                <form action="{{route('teacher.subjects.chapters.destroy',[$subject, $chapter])}}" method="post" class="w-8 text-center" onsubmit="return confirmDel(event)">
                     @csrf
                     @method('DELETE')
                     <button><i class="bi-x text-red-600"></i></button>
@@ -46,7 +46,7 @@
                 @endif
             </div>
             @endforeach
-            <a href="{{route('teacher.subjects.chapters.create',$subject)}}" class="flex justify-start items-center p-3 border border-sky-200 hover:bg-sky-300">New Chapter +</a>
+            <a href="{{route('teacher.subjects.chapters.create',$subject)}}" class="flex justify-start items-center p-3 border border-sky-200 hover:bg-sky-300 text-gray-600 hover:text-gray-800 text-sm">New Chapter +</a>
         </div>
         @else
         <div class="grid place-content-center h-32 text-center">
