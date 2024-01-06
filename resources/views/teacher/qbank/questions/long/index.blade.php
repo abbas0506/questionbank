@@ -2,19 +2,19 @@
 @section('page-content')
 
 <div class="container">
-    <h1>Short Questions</h1>
+    <h1>Long Questions</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
         <div>/</div>
-        <a href="{{route('teacher.grades.index')}}">Grades</a>
+        <a href="{{route('teacher.qbank.index')}}">Q.bank</a>
         <div>/</div>
-        <a href="{{route('teacher.chapters.show',$chapter)}}">{{$chapter->subject->grade->roman_name}}</a>
+        <a href="{{route('teacher.grades.subjects.index',$chapter->subject->grade)}}">{{$chapter->subject->grade->roman_name}}</a>
         <div>/</div>
-        <a href="{{route('teacher.subjects.show',$chapter->subject)}}">{{$chapter->subject->name}}</a>
+        <a href="{{route('teacher.subjects.chapters.index',$chapter->subject)}}">{{$chapter->subject->name}}</a>
         <div>/</div>
-        <a href="{{route('teacher.chapters.show',$chapter)}}">Ch.{{$chapter->chapter_no}}</a>
+        <a href="{{route('teacher.subjects.chapters.show',[$chapter->subject, $chapter])}}">Ch.{{$chapter->chapter_no}}</a>
         <div>/</div>
-        <div>Short</div>
+        <div>Long</div>
     </div>
     <div class="mt-12">
         <div class="flex justify-between items-center">
@@ -22,13 +22,7 @@
                 <label>{{$chapter->subject->grade->roman_name}} - {{$chapter->subject->name}}</label>
                 <h2>Ch. # {{$chapter->chapter_no}} | {{$chapter->name}}</h2>
             </div>
-            <div class="flex items-center space-x-4">
-                <div class="text-center">
-                    <h2>{{$chapter->questions()->short()->count()}}</h2>
-                    <label for="">Short</label>
-                </div>
-                <a href="{{route('teacher.questions.add', [$chapter,'short'])}}" class="btn-teal rounded px-3 py-2">New Q</a>
-            </div>
+            <a href="{{route('teacher.chapters.long.create', $chapter)}}" class="btn-teal">New +</a>
         </div>
 
         <!-- page message -->
@@ -37,10 +31,10 @@
         @else
         <x-message></x-message>
         @endif
-
+        <label for="">{{$chapter->questions()->long()->count()}} long questions found</label>
         @php $sr=1; @endphp
         <div class="overflow-x-auto">
-            <table class="table-fixed w-full mt-8 text-sm">
+            <table class="table-fixed w-full mt-1 text-sm">
                 <thead>
                     <tr>
                         <th class="w-8">Sr</th>
@@ -52,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($chapter->questions()->short()->get()->sortByDesc('updated_at') as $question)
+                    @foreach($chapter->questions()->long()->get()->sortByDesc('updated_at') as $question)
                     <tr class="text-sm">
                         <td>{{$sr++}}</td>
                         <td class="text-left">{{$question->question}}</td>
@@ -67,11 +61,11 @@
                         <td>{{$question->bise_frequency}}</td>
                         <td class="text-xs">
                             <div class="flex justify-center items-center space-x-3">
-                                <a href="{{route('teacher.short-questions.edit', $question)}}">
+                                <a href="{{route('teacher.chapters.long.edit', [$chapter, $question])}}">
                                     <i class="bi bi-pencil-square text-green-600"></i>
                                 </a>
                                 <span class="text-slate-400">|</span>
-                                <form action="{{route('teacher.short-questions.destroy',$question)}}" method="POST" onsubmit="return confirmDel(event)">
+                                <form action="{{route('teacher.chapters.long.destroy',[$chapter, $question])}}" method="POST" onsubmit="return confirmDel(event)">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-transparent p-0 border-0">

@@ -16,7 +16,7 @@
                 </a>
             </li> -->
             <li>
-                <a href="{{route('teacher.grades.index')}}" class="flex items-center p-2">
+                <a href="{{route('teacher.qbank.index')}}" class="flex items-center p-2">
                     <i class="bi-question-circle"></i>
                     <span class="ml-3">Q. Bank</span>
                 </a>

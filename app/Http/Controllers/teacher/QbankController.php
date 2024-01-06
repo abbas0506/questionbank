@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use Illuminate\Http\Request;
 
-class GradeController extends Controller
+class QbankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class GradeController extends Controller
     {
         //
         $grades = Grade::where('id', '>', 8)->get();
-        return view('teacher.grades.index', compact('grades'));
+        return view('teacher.qbank.index', compact('grades'));
     }
 
     /**
@@ -40,9 +40,6 @@ class GradeController extends Controller
     public function show(string $id)
     {
         //
-        $grades = Grade::where('id', '>', 8)->get();
-        $grade = Grade::find($id);
-        return view('teacher.grades.show', compact('grades', 'grade'));
     }
 
     /**

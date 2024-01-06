@@ -4,7 +4,19 @@
 <div class="container">
     <h1>New MCQ</h1>
     <div class="bread-crumb">
-        <a href="{{route('teacher.questions.view',[$chapter, 'mcq'])}}">Cancel & Go Back</a>
+        <a href="/">Home</a>
+        <div>/</div>
+        <a href="{{route('teacher.qbank.index')}}">Q.bank</a>
+        <div>/</div>
+        <a href="{{route('teacher.grades.subjects.index',$chapter->subject->grade)}}">{{$chapter->subject->grade->roman_name}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.subjects.chapters.index',$chapter->subject)}}">{{$chapter->subject->name}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.subjects.chapters.show',[$chapter->subject, $chapter])}}">Ch.{{$chapter->chapter_no}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.chapters.mcq.index',$chapter)}}">MCQ</a>
+        <div>/</div>
+        <div>New</div>
     </div>
     <div class="md:w-3/4 mx-auto mt-12">
 
@@ -27,10 +39,8 @@
         @else
         <x-message></x-message>
         @endif
-        <form action="{{route('teacher.mcqs.store')}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        <form action="{{route('teacher.chapters.mcq.store', $chapter)}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
-            <input type="hidden" name="chapter_id" value="{{$chapter->id}}">
-            <input type="hidden" name="marks" value="1">
             <div class="flex items-center gap-2">
                 @php
                 $isFromExercise=session('isFromExercise');

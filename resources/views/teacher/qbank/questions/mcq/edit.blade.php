@@ -4,7 +4,19 @@
 <div class="container">
     <h1>Edit MCQ</h1>
     <div class="bread-crumb">
-        <a href="{{route('teacher.questions.view',[$question->chapter, 'mcq'])}}">Cancel & Go Back</a>
+        <a href="/">Home</a>
+        <div>/</div>
+        <a href="{{route('teacher.qbank.index')}}">Q.bank</a>
+        <div>/</div>
+        <a href="{{route('teacher.grades.subjects.index',$chapter->subject->grade)}}">{{$chapter->subject->grade->roman_name}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.subjects.chapters.index',$chapter->subject)}}">{{$chapter->subject->name}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.subjects.chapters.show',[$chapter->subject, $chapter])}}">Ch.{{$chapter->chapter_no}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.chapters.mcq.index',$chapter)}}">MCQs</a>
+        <div>/</div>
+        <div>Edit</div>
     </div>
     <div class="md:w-3/4 mx-auto mt-12">
         <!-- page message -->
@@ -26,7 +38,7 @@
             </div>
         </div>
 
-        <form action="{{route('teacher.mcqs.update', $question)}}" method='post' class="mt-4" onsubmit="return validate(event)">
+        <form action="{{route('teacher.chapters.mcq.update', [$chapter, $question])}}" method='post' class="mt-4" onsubmit="return validate(event)">
             @csrf
             @method('PATCH')
             <div class="flex items-center gap-2">

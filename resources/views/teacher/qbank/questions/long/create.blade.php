@@ -2,11 +2,21 @@
 @section('page-content')
 
 <div class="container">
-    <h1>New Short Q</h1>
+    <h1>New Long Q.</h1>
     <div class="bread-crumb">
-        <div class="bread-crumb">
-            <a href="{{route('teacher.questions.view',[$chapter, 'short'])}}">Cancel & Go Back</a>
-        </div>
+        <a href="/">Home</a>
+        <div>/</div>
+        <a href="{{route('teacher.qbank.index')}}">Q.bank</a>
+        <div>/</div>
+        <a href="{{route('teacher.grades.subjects.index',$chapter->subject->grade)}}">{{$chapter->subject->grade->roman_name}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.subjects.chapters.index',$chapter->subject)}}">{{$chapter->subject->name}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.subjects.chapters.show',[$chapter->subject, $chapter])}}">Ch.{{$chapter->chapter_no}}</a>
+        <div>/</div>
+        <a href="{{route('teacher.chapters.long.index',$chapter)}}">Long</a>
+        <div>/</div>
+        <div>New</div>
     </div>
 
     <div class="md:w-3/4 mx-auto mt-12">
@@ -19,7 +29,7 @@
             <div class="flex items-center space-x-4">
                 <div class="text-center">
                     <h2># {{$chapter->questions()->long()->count()+1}}</h2>
-                    <label for="">Short</label>
+                    <label for="">long</label>
                 </div>
             </div>
         </div>
@@ -30,10 +40,8 @@
         @else
         <x-message></x-message>
         @endif
-        <form action="{{route('teacher.short-questions.store')}}" method='post' class="mt-8" onsubmit="return validate(event)">
+        <form action="{{route('teacher.chapters.long.store', $chapter)}}" method='post' class="mt-8" onsubmit="return validate(event)">
             @csrf
-            <input type="hidden" name="chapter_id" value="{{$chapter->id}}">
-            <input type="hidden" name="marks" value="2">
             <div class="flex items-center gap-2">
                 @php
                 $isFromExercise=session('isFromExercise');
@@ -44,12 +52,16 @@
             </div>
             <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question"></textarea>
             <div class="flex items-center justify-between mt-2">
+                <label for="">Marks</label>
+                <input type="text" name="marks" value="8" class="custom-input w-16 text-center ml-3 py-0">
+            </div>
+            <div class="flex items-center justify-between mt-2">
                 <label for="">Bise Frequency</label>
                 <input type="text" name="bise_frequency" value="2" class="custom-input w-16 text-center ml-3 py-0">
             </div>
             <div class="divider my-3"></div>
             <div class="flex justify-end">
-                <button type="submit" class="btn-teal rounded p-2">Create Now</button>
+                <button type="submit" class="btn-teal">Create Now</button>
             </div>
         </form>
     </div>

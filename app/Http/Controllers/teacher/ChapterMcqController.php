@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chapter;
 use App\Models\Mcq;
 use App\Models\Question;
 use Exception;
@@ -10,35 +11,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class McqController extends Controller
+class ChapterMcqController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($chapterId)
     {
         //
+        $chapter = Chapter::find($chapterId);
+        return view('teacher.qbank.questions.mcq.index', compact('chapter'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($chapterId)
     {
         //
+        $chapter = Chapter::find($chapterId);
+        return view('teacher.qbank.questions.mcq.create', compact('chapter'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $chapterId)
     {
         //
         $request->validate([
-            'chapter_id' => 'required',
             'question' => 'required',
-            'answer' => 'nullable',
-            'marks' => 'required|numeric|min:0',
             'bise_frequency' => 'required|numeric|min:0',
             'option_a' => 'required',
             'option_b' => 'required',
@@ -63,10 +65,10 @@ class McqController extends Controller
             if ($request->answer_d) $answer = 'd';
 
             $question = Question::create([
-                'chapter_id' => $request->chapter_id,
+                'chapter_id' => $chapterId,
                 'question' => $request->question,
                 'answer' => $answer,
-                'marks' => $request->marks,
+                'marks' => 1,
                 'bise_frequency' => $request->bise_frequency,
                 'is_from_exercise' => ($request->is_from_exercise) ? 1 : 0,
                 'is_approved' => false,
@@ -94,31 +96,28 @@ class McqController extends Controller
     public function show(string $id)
     {
         //
-        $question = Question::find($id);
-        echo $question->mcq->question->bise_frequency;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($chapterId, $questionId)
     {
         //
-        $question = Question::find($id);
-        return view('teacher.questions.mcqs.edit', compact('question'));
+        $chapter = Chapter::find($chapterId);
+        $question = Question::find($questionId);
+        return view('teacher.qbank.questions.mcq.edit', compact('chapter', 'question'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $chapterId, $questionId)
     {
         //
-
         $request->validate([
 
             'question' => 'required',
-            'answer' => 'nullable',
             'bise_frequency' => 'required|numeric|min:0',
             'option_a' => 'required',
             'option_b' => 'required',
@@ -126,7 +125,7 @@ class McqController extends Controller
             'option_d' => 'required',
         ]);
 
-        $question = Question::find($id);
+        $question = Question::find($questionId);
         DB::beginTransaction();
         try {
 
@@ -150,7 +149,7 @@ class McqController extends Controller
                 'is_from_exercise' => ($request->is_from_exercise) ? 1 : 0,
             ]);
             DB::commit();
-            return redirect()->route('teacher.questions.view', [$question->chapter_id, 'mcq'])
+            return redirect()->route('teacher.chapters.mcq.index', $chapterId)
                 ->with([
                     'success' => 'Successfully updated',
                 ]);
@@ -164,18 +163,14 @@ class McqController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($chapterId, $questionId)
     {
         //
-        DB::beginTransaction();
         try {
-            $question = Question::find($id);
-            $question->mcq->delete();
+            $question = Question::find($questionId);
             $question->delete();
-            DB::commit();
-            return redirect()->back()->with('success', 'Successfully deleted!');
+            return redirect()->route('teacher.chapters.mcq.index', $chapterId)->with('success', 'Successfully deleted!');
         } catch (Exception $e) {
-            DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
         }
     }
