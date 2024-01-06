@@ -93,9 +93,12 @@ class ChapterMcqController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($chapterId, $questionId)
     {
         //
+        $chapter = Chapter::find($chapterId);
+        $question = Question::find($questionId);
+        return view('teacher.qbank.questions.mcq.show', compact('chapter', 'question'));
     }
 
     /**
