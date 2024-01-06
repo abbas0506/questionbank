@@ -62,7 +62,7 @@
                         <td class="text-xs">
                             <div class="flex justify-center items-center space-x-3">
                                 <a href="{{route('teacher.chapters.short.edit', [$chapter, $question])}}">
-                                    <i class="bi bi-pencil-square text-green-600">
+                                    <i class="bi bi-pencil-square text-green-600"></i>
                                 </a>
                                 <span class="text-slate-400">|</span>
                                 <form action="{{route('teacher.chapters.short.destroy',[$chapter, $question])}}" method="POST" onsubmit="return confirmDel(event)">

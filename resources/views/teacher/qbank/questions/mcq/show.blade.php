@@ -35,14 +35,14 @@
         <!-- <div class="divider my-3"></div> -->
         <div class="flex flex-col mt-3">
             <div class="p-5 mt-2 border border-slate-200">
-                <h2 class="mb-5">{{$question->question}}</h2>
+                <p class="mb-5">{{$question->question}}</p>
                 <div class="divider my-2"></div>
-                <!-- <h2 class="">Ans.</h2> -->
-                <ol class="list-[lower-alpha] pl-5 mt-2">
-                    <li @if($question->answer=='a') class='text-green-700 font-semibold' @endif> {{$question->mcq->option_a}}</li>
-                    <li @if($question->answer=='b') class='text-green-700 font-semibold' @endif> {{$question->mcq->option_b}}</li>
-                    <li @if($question->answer=='c') class='text-green-700 font-semibold' @endif> {{$question->mcq->option_c}}</li>
-                    <li @if($question->answer=='d') class='text-green-700 font-semibold' @endif> {{$question->mcq->option_d}}</li>
+                <h2 class="">Ans.</h2>
+                <ol class="list-[lower-alpha] pl-12 mt-2 text-slate-600">
+                    <li @if($question->answer=='a') class='text-blue-700 font-semibold' @endif> {{$question->mcq->option_a}}</li>
+                    <li @if($question->answer=='b') class='text-blue-700 font-semibold' @endif> {{$question->mcq->option_b}}</li>
+                    <li @if($question->answer=='c') class='text-blue-700 font-semibold' @endif> {{$question->mcq->option_c}}</li>
+                    <li @if($question->answer=='d') class='text-blue-700 font-semibold' @endif> {{$question->mcq->option_d}}</li>
                 </ol>
             </div>
             <div class="flex flex-wrap justify-between items-center gap-2 mt-3">

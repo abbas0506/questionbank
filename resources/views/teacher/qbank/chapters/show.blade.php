@@ -22,30 +22,30 @@
         <x-message></x-message>
         @endif
 
-        <div class="flex justify-between items-center">
+        <div class="flex flex-wrap justify-between items-center">
             <div>
                 <label>{{$chapter->subject->grade->roman_name}} - {{$chapter->subject->name}}</label>
                 <h2>Ch. # {{$chapter->chapter_no}} | {{$chapter->name}}</h2>
             </div>
-            <div class=" flex flex-col justify-center items-center w-24">
+            <div class=" flex flex-col justify-center items-center">
                 <h2>{{$chapter->questions->count()}}</h2>
-                <label for="">Questions</label>
+                <label for="">Total Questions</label>
             </div>
 
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-8">
             <a href="{{route('teacher.chapters.short.index', $chapter)}}" class="pallet">
+                <h1 class="text-3xl">{{$chapter->questions()->short()->count()}}</h1>
                 <label for="">Short</label>
-                <h3 class="mt-1">{{$chapter->questions()->short()->count()}}</h3>
             </a>
             <a href="{{route('teacher.chapters.long.index', $chapter)}}" class="pallet">
+                <h1 class="text-3xl">{{$chapter->questions()->long()->count()}}</h1>
                 <label for="">Long</label>
-                <h3 class="mt-1">{{$chapter->questions()->long()->count()}}</h3>
             </a>
             <a href="{{route('teacher.chapters.mcq.index', $chapter)}}" class="pallet">
+                <h1 class="text-3xl">{{$chapter->questions()->mcqs()->count()}}</h1>
                 <label for="">MCQs</label>
-                <h3 class="mt-1">{{$chapter->questions()->mcqs()->count()}}</h3>
             </a>
         </div>
 
