@@ -15,47 +15,48 @@
         <div>Chapters</div>
 
     </div>
-    <div class="md:w-3/4 mx-auto mt-24">
+    <div class="content-section">
 
-        <label for="">{{$subject->grade->roman_name}}</label>
-        <h2>{{$subject->name}}</h2>
+        <h2>{{$subject->grade->roman_name}}-{{$subject->name}}</h2>
+        <label>Please select a chapter from following</label>
         <div class="divider my-3"></div>
-        <div class="w-full">
-            <!-- page message -->
-            @if($errors->any())
-            <x-message :errors='$errors'></x-message>
-            @else
-            <x-message></x-message>
-            @endif
-        </div>
-
-        @if($subject->chapters->count()>0)
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 place-content-center">
-
-            @foreach($subject->chapters->sortBy('chapter_no') as $chapter)
-            <div class="flex justify-between items-center bg-sky-100 hover:bg-sky-300 text-gray-600 text-sm">
-                <a href="{{route('teacher.subjects.chapters.show', [$subject, $chapter])}}" class="flex-1 p-3">{{$chapter->chapter_no}}. {{$chapter->name}} <span class="text-xs text-gray-600">({{$chapter->questions->count()}})</span></a>
-                @if($chapter->questions->count()>0)
-                <a href="{{route('teacher.subjects.chapters.edit', [$subject, $chapter])}}" class="w-8 text-center text-gray-500 hover:text-gray-600"><i class="bx bx-pencil"></i></a>
+        <div class="md:w-3/4 mx-auto py-8">
+            <div class="w-full">
+                <!-- page message -->
+                @if($errors->any())
+                <x-message :errors='$errors'></x-message>
                 @else
-                <form action="{{route('teacher.subjects.chapters.destroy',[$subject, $chapter])}}" method="post" class="w-8 text-center" onsubmit="return confirmDel(event)">
-                    @csrf
-                    @method('DELETE')
-                    <button><i class="bi-x text-red-600"></i></button>
-                </form>
+                <x-message></x-message>
                 @endif
             </div>
-            @endforeach
-            <a href="{{route('teacher.subjects.chapters.create',$subject)}}" class="flex justify-start items-center p-3 border border-sky-200 hover:bg-sky-300 text-gray-600 hover:text-gray-800 text-sm">New Chapter +</a>
-        </div>
-        @else
-        <div class="grid place-content-center h-32 text-center">
-            <p class="text-slate-500">Currently no chapter found</p>
-            <a href="{{route('teacher.subjects.chapters.create',$subject)}}" class="link"><i class="bi-plus-circle"></i>Click here to start</a>
 
-        </div>
-        @endif
+            @if($subject->chapters->count()>0)
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 place-content-center">
 
+                @foreach($subject->chapters->sortBy('chapter_no') as $chapter)
+                <div class="flex justify-between items-center bg-sky-100 hover:bg-sky-300 text-gray-600 text-sm">
+                    <a href="{{route('teacher.subjects.chapters.show', [$subject, $chapter])}}" class="flex-1 p-3">{{$chapter->chapter_no}}. {{$chapter->name}} <span class="text-xs text-gray-600">({{$chapter->questions->count()}})</span></a>
+                    @if($chapter->questions->count()>0)
+                    <a href="{{route('teacher.subjects.chapters.edit', [$subject, $chapter])}}" class="w-8 text-center text-gray-500 hover:text-gray-600"><i class="bx bx-pencil"></i></a>
+                    @else
+                    <form action="{{route('teacher.subjects.chapters.destroy',[$subject, $chapter])}}" method="post" class="w-8 text-center" onsubmit="return confirmDel(event)">
+                        @csrf
+                        @method('DELETE')
+                        <button><i class="bi-x text-red-600"></i></button>
+                    </form>
+                    @endif
+                </div>
+                @endforeach
+                <a href="{{route('teacher.subjects.chapters.create',$subject)}}" class="flex justify-start items-center p-3 border border-sky-200 hover:bg-sky-300 text-gray-600 hover:text-gray-800 text-sm">New Chapter +</a>
+            </div>
+            @else
+            <div class="grid place-content-center h-32 text-center">
+                <p class="text-slate-500">Currently no chapter found</p>
+                <a href="{{route('teacher.subjects.chapters.create',$subject)}}" class="link"><i class="bi-plus-circle"></i>Click here to start</a>
+
+            </div>
+            @endif
+        </div>
     </div>
 </div>
 @endsection

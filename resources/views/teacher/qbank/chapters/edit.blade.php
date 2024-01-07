@@ -17,32 +17,36 @@
     </div>
 
 
-    <div class="flex flex-col h-80 justify-center items-center w-full md:w-1/2 mx-auto">
+    <div class="content-section">
+        <label for="">Please fill in the name of subject and submit</label>
+        <div class="divider my-3"></div>
 
-        <div class="w-full">
-            <!-- page message -->
-            @if($errors->any())
-            <x-message :errors='$errors'></x-message>
-            @else
-            <x-message></x-message>
-            @endif
+        <div class="flex flex-col justify-center items-center w-full md:w-1/2 mx-auto">
+
+            <div class="w-full">
+                <!-- page message -->
+                @if($errors->any())
+                <x-message :errors='$errors'></x-message>
+                @else
+                <x-message></x-message>
+                @endif
+            </div>
+            <form action="{{route('teacher.subjects.chapters.update',[$subject, $chapter])}}" method='post' class="w-full mt-4" onsubmit="return validate(event)">
+                @csrf
+                @method('PATCH')
+                <div class="flex flex-row items-center space-x-2">
+                    <label class="">Ch #</label>
+                    <h2>{{$chapter->chapter_no}}</h2>
+                </div>
+                <div class="flex flex-col mt-1">
+                    <label class="">Title</label>
+                    <input type="text" name='name' class="custom-input py-2" placeholder="Chapter title" value="{{$chapter->name}}">
+                </div>
+                <div class="my-4">
+                    <button type="submmit" class="btn-teal rounded px-4 py-2">Update</button>
+                </div>
+            </form>
         </div>
-        <form action="{{route('teacher.subjects.chapters.update',[$subject, $chapter])}}" method='post' class="w-full mt-4" onsubmit="return validate(event)">
-            @csrf
-            @method('PATCH')
-            <div class="flex flex-row items-center space-x-2">
-                <label class="">Ch #</label>
-                <h2>{{$chapter->chapter_no}}</h2>
-            </div>
-            <div class="flex flex-col mt-1">
-                <label class="">Title</label>
-                <input type="text" name='name' class="custom-input py-2" placeholder="Chapter title" value="{{$chapter->name}}">
-            </div>
-            <div class="mt-4">
-                <button type="submmit" class="btn-teal rounded px-4 py-2">Update</button>
-            </div>
-        </form>
-
     </div>
 </div>
 @endsection
