@@ -59,10 +59,11 @@
         @apply p-4 md:p-12 min-w-full bg-white;
     }
     .custom-container {
-        @apply p-4 md:p-8 w-full;
+        @apply p-5 md:p-8 md:pt-5 w-full;
     }
     .content-section {
-        @apply mt-4 p-4 md:p-8 bg-white;
+        /* @apply mt-4 p-4 md:p-8 bg-white; */
+        @apply mt-5 p-5 md:p-8 md:pt-5  bg-white;
     }
     .bread-crumb {
         @apply flex flex-wrap items-center space-x-1 text-sm;

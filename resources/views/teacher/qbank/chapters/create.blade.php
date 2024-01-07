@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.teacher')
 @section('page-content')
 <div class="custom-container">
     <h2>New Chapter</h2>
