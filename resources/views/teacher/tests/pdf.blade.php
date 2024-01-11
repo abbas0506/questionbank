@@ -54,32 +54,27 @@ $roman = config('global.romans');
                     @for($i=1; $i<=$rows;$i++) <tr>
                         @for($j=1; $j<=$cols;$j++) <td class='px-2'>
                             <table class="w-full">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th class="w-16"></th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td></td>
+                                        <td colspan="2" class="text-center font-bold m-0 p-0">{{$test->title}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-left">
-                                            <p class="m-0 p-0 font-bold">{{$test->title}}</p>
-                                            <p class="m-0 p-0">{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</p>
+                                        <td colspan="2" class="m-0 p-0">{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div style="border-style:solid; border-width:0px 0px 0.5px 0px;"></div>
                                         </td>
-                                        <td class="text-right">
-                                            <ul class="list-horizontal">
-                                                <li>Roll #</li>
-                                                <li style="border-style:solid; border-width:0px 0px 0.5px 0px; width:32px"></li>
-                                            </ul>
-                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Marks: {{$test->totalMarks()}}, Time: {{$test->duration}}min</td>
+                                        <td class="text-right">Roll # ____</td>
                                     </tr>
 
                                 </tbody>
                             </table>
                             <div style="border-style:solid; border-width:0px 0px 0.5px 0px;"></div>
+
                             @if($test->questions->count()>0)
                             <table class="table-auto w-full">
                                 <thead>
@@ -171,7 +166,6 @@ $roman = config('global.romans');
                             @endfor
                             </tr>
                             @endfor
-
                 </tbody>
             </table>
 
