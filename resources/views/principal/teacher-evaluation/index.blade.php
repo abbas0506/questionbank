@@ -21,7 +21,7 @@
     <!-- search -->
     <div class="flex items-center justify-between mt-12">
         <div class="flex relative w-full md:w-1/3">
-            <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
+            <input type="text" id='searchby' placeholder="Search ..." class="custom-search w-full" oninput="search(event)">
             <i class="bx bx-search absolute top-3 right-2"></i>
         </div>
 

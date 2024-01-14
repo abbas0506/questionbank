@@ -16,7 +16,7 @@
         <div class="flex items-center flex-wrap justify-between mt-8">
             <!-- search -->
             <div class="flex relative w-full md:w-1/3">
-                <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
+                <input type="text" id='searchby' placeholder="Search ..." class="custom-search w-full" oninput="search(event)">
                 <i class="bx bx-search absolute top-2 right-2"></i>
             </div>
             <h1 class="text-green-600  text-4xl">{{$bookDomain->books->count()}}</h1>

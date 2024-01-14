@@ -14,7 +14,7 @@
     <!-- search -->
     <div class="flex justify-between w-full mt-12">
         <div class="relative md:w-1/3">
-            <input type="text" id='searchby' placeholder="Search ..." class="search-indigo w-full" oninput="search(event)">
+            <input type="text" id='searchby' placeholder="Search ..." class="custom-search w-full" oninput="search(event)">
             <i class="bx bx-search absolute top-2 right-2"></i>
         </div>
         <a href="{{route('dep.groups.print',$group)}}" target='_blank' class="flex justify-center items-center btn-teal py-0"><i class="bi-printer"></i></a>
