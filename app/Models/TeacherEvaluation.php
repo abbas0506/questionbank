@@ -13,6 +13,7 @@ class TeacherEvaluation extends Model
         'teacher_id',
         'evaluation_marks',
         'weight',
+        'month',
     ];
     public function teacherEvaluationItem()
     {
@@ -21,5 +22,13 @@ class TeacherEvaluation extends Model
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+    public function score()
+    {
+        return $this->weight * $this->evaluation_marks;
+    }
+    public function scopeMonth($query, $m)
+    {
+        return $query->where('month', $m);
     }
 }

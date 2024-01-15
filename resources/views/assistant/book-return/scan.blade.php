@@ -35,7 +35,50 @@
 </div>
 @endsection
 @section('script')
-<script>
+<script type="module">
+    $(document).ready(function() {
+        Html5Qrcode.getCameras().then(devices => {
+            /**
+             * devices would be an array of objects of type:
+             * { id: "id", label: "label" }
+             */
+            if (devices && devices.length) {
+                var cameraId = devices[0].id;
+                // .. use this to start scanning.
+                const html5QrCode = new Html5Qrcode( /* element id */ "reader");
+                html5QrCode.start(
+                        cameraId, {
+                            fps: 4, // Optional, frame per seconds for qr code scanning
+                            qrbox: {
+                                width: 200,
+                                height: 200
+                            },
+                            // Optional, if you want bounded box UI
+                            videoConstraints: {
+                                facingMode: {
+                                    exact: "environment" //use back camera
+                                },
+                            },
+                        },
+                        (decodedText, decodedResult) => {
+                            // do something when code is read
+                            $('#book_ref').val(decodedText);
+                        },
+                        (errorMessage) => {
+                            // parse error, ignore it.
+                            console.log('error');
+                        })
+                    .catch((err) => {
+                        // Start failed, handle it.
+                        console.log('camera not opened')
+                    });
+
+            }
+        }).catch(err => {
+            // handle err
+        });
+    });
+
     function validate(event) {
 
         var bookRef = $('#book_ref').val();

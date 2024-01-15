@@ -18,38 +18,33 @@ class TeacherEvaluationController extends Controller
     public function index()
     {
         //
-        $teachers = Teacher::all();
-        $teacherEvaluationItems = TeacherEvaluationItem::all();
-        return view('principal.teacher-evaluation.index', compact('teachers', 'teacherEvaluationItems'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($teacherId)
     {
         //
-
-        // $teacherEvaluationItems = TeacherEvaluationItem::all();
-        // return view('principal.teacher-evaluation.create', compact('teacherEvaluationItems'));
+        $teacher = Teacher::find($teacherId);
+        $teacherEvaluationItems = TeacherEvaluationItem::all();
+        return view('principal.teachers.evaluation.create', compact('teacherEvaluationItems', 'teacher'));
     }
     public function add($teacherId)
     {
         //
-        $teacherEvaluationItems = TeacherEvaluationItem::all();
-        return view('principal.teacher-evaluation.create', compact('teacherEvaluationItems', 'teacherId'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $teacherId)
     {
         //
         $request->validate([
-            'teacher_id' => 'required',
             'teacher_evaluation_item_id_array' => 'required',
             'evaluation_marks_array' => 'required',
+            'month' => 'required',
         ]);
 
         $marks = array();
@@ -64,14 +59,15 @@ class TeacherEvaluationController extends Controller
                 foreach ($evaluationItemIds as $evaluationItemId) {
                     //register students for this course
                     TeacherEvaluation::create([
-                        'teacher_id' => $request->teacher_id,
+                        'teacher_id' => $teacherId,
                         'teacher_evaluation_item_id' => $evaluationItemId,
                         'evaluation_marks' => $marks[$i++],
+                        'month' => $request->month,
                     ]);
                 }
             }
             DB::commit();
-            return redirect()->route('principal.teacher-evaluation.index')->with('success', 'Teacher evaluation successful');
+            return redirect()->route('principal.teachers.index')->with('success', 'Teacher evaluation successful');
         } catch (Exception $ex) {
             DB::rollBack();
             return redirect()->back()->withErrors($ex->getMessage());

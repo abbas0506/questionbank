@@ -10,30 +10,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('principal.teacher-evaluation.index')}}" class="flex items-center p-2">
-                    <i class="bi-activity"></i>
-                    <span class="ml-3">Teacher Evaluation</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('admin.classes.index')}}" class="flex items-center p-2">
-                    <i class="bi-people"></i>
-                    <span class="ml-3">Classes</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('admin.teachers.index')}}" class="flex items-center p-2">
+                <a href="{{route('principal.teachers.index')}}" class="flex items-center p-2">
                     <i class="bi-person"></i>
                     <span class="ml-3">Teachers</span>
                 </a>
             </li>
-            <li>
-                <a href="" class="flex items-center p-2">
-                    <i class="bi bi-search"></i>
-                    <span class="ml-3">Search Student</span>
-                </a>
-            </li>
-
         </ul>
     </div>
 </aside>

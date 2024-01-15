@@ -36,4 +36,14 @@ class Teacher extends Model
     {
         return $this->morphOne(User::class, 'userable');
     }
+    public function evaluations()
+    {
+        return $this->hasMany(TeacherEvaluation::class);
+    }
+    public function evaluationScore()
+    {
+        return $this->evaluations->sum(function ($query) {
+            return $query->score();
+        });
+    }
 }

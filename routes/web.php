@@ -36,6 +36,7 @@ use App\Http\Controllers\librarian\LibrayInchargeController;
 use App\Http\Controllers\librarian\QrCodeController as LibrarianQrCodeController;
 use App\Http\Controllers\librarian\LibraryRuleController;
 use App\Http\Controllers\principal\PrincipalController;
+use App\Http\Controllers\principal\TeacherController as PrincipalTeacherController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
 use App\Http\Controllers\teacher\ChapterController;
 use App\Http\Controllers\teacher\ChapterLongController;
@@ -117,7 +118,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
 
 Route::group(['prefix' => 'principal', 'as' => 'principal.', 'middleware' => ['role:principal']], function () {
     Route::get('/', [PrincipalController::class, 'index']);
-    Route::resource('teacher-evaluation', TeacherEvaluationController::class);
+    Route::get('teachers', [PrincipalTeacherController::class, 'index'])->name('teachers.index');
+    Route::resource('teachers.evaluation', TeacherEvaluationController::class);
     Route::get('teacher-evaluation-add/{teacher}', [TeacherEvaluationController::class, 'add'])->name('teacher-evaluation.add');
 });
 
