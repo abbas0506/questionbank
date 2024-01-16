@@ -20,7 +20,7 @@
 
             <form action="{{route('library.assistant.book-return.scan')}}" method='post' class="mt-4" onsubmit="return validate(event)">
                 @csrf
-
+                <div id="reader" class="w-64 md:w-80 mx-auto"></div>
                 <div class="relative">
                     <i class="bx bx-book absolute right-2 top-4"></i>
                     <input type="text" id='book_ref' name='book_ref' class="custom-input" placeholder="Scan here" value="">
@@ -62,7 +62,8 @@
                         },
                         (decodedText, decodedResult) => {
                             // do something when code is read
-                            $('#book_ref').val(decodedText);
+                            // $('#book_ref').val(decodedText);
+                            console.log(decodedText);
                         },
                         (errorMessage) => {
                             // parse error, ignore it.
@@ -77,6 +78,8 @@
         }).catch(err => {
             // handle err
         });
+
+
     });
 
     function validate(event) {

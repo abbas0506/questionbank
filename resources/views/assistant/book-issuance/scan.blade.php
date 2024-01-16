@@ -60,7 +60,8 @@
                             // Optional, if you want bounded box UI
                             videoConstraints: {
                                 facingMode: {
-                                    exact: "environment" //use back camera
+                                    exact: "environment", //use back camera
+                                    // exact: "user" //use front camera
                                 },
                             },
                         },
