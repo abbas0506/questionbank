@@ -25,10 +25,10 @@
                 <i class="bi bi-person-circle text-green-600"></i>
             </div>
         </a>
-        <a href="" class="pallet-box">
+        <a href="{{route('teacher.tests.index')}}" class="pallet-box">
             <div class="flex-1">
                 <div class="title">My Tests</div>
-                <div class="h2"></div>
+                <div class="h2">{{ Auth::user()->tests->count() }}</div>
             </div>
             <div class="ico bg-indigo-100">
                 <i class="bi bi-person-workspace text-indigo-400"></i>

@@ -35,6 +35,10 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-8">
+            <a href="{{route('teacher.chapters.mcq.index', $chapter)}}" class="pallet">
+                <h1 class="text-3xl">{{$chapter->questions()->mcqs()->count()}}</h1>
+                <label for="">MCQs</label>
+            </a>
             <a href="{{route('teacher.chapters.short.index', $chapter)}}" class="pallet">
                 <h1 class="text-3xl">{{$chapter->questions()->short()->count()}}</h1>
                 <label for="">Short</label>
@@ -42,10 +46,6 @@
             <a href="{{route('teacher.chapters.long.index', $chapter)}}" class="pallet">
                 <h1 class="text-3xl">{{$chapter->questions()->long()->count()}}</h1>
                 <label for="">Long</label>
-            </a>
-            <a href="{{route('teacher.chapters.mcq.index', $chapter)}}" class="pallet">
-                <h1 class="text-3xl">{{$chapter->questions()->mcqs()->count()}}</h1>
-                <label for="">MCQs</label>
             </a>
         </div>
 

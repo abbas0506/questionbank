@@ -22,9 +22,9 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('teacher.tests.index')}}" class="flex items-center p-2">
+                <a href="{{route('teacher.tests.create')}}" class="flex items-center p-2">
                     <i class="bi-file-text"></i>
-                    <span class="ml-3">My Tests</span>
+                    <span class="ml-3">Create Test</span>
                 </a>
             </li>
 
