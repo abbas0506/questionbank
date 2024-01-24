@@ -17,6 +17,27 @@
         <x-message></x-message>
         @endif
 
+
+        <div class="flex justify-between mt-4">
+            <div>
+                <label>{{$test->title}}</label>
+                <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
+            </div>
+            <div class="flex flex-col justify-center">
+                <div class="flex items-center">
+                    <label>Max marks: &nbsp</label>
+                    <label>{{$test->totalMarks()}}</label>
+                </div>
+                <!-- can edit only if some question exists -->
+                @if($test->questions->count()>0)
+                <div class="flex items-center">
+                    <label>Suggested Time: &nbsp</label>
+                    <label>{{$test->getDuration()}}</label>
+                </div>
+                @endif
+            </div>
+        </div>
+        <div class="divider my-3"></div>
         @if($test->questions->count()>0)
         <div class="collapsible">
             <div class="head mt-8">
@@ -30,10 +51,9 @@
             <div class="body">
                 <!-- 2nd grid starts here -->
 
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 bg-white">
+                <div class="flex flex-wrap gap-4 bg-white">
                     <!-- grid 1x1  -->
-                    <a href="{{route('teacher.tests.pdf.create',$test)}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <!-- <a href="{{route('teacher.tests.pdf',[$test,1,1])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank"> -->
+                    <a href="{{route('teacher.tests.pdf',[$test,1,1])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
                         <div class="grid grid-cols-1 w-16">
                             <div class="h-24 border"></div>
                         </div>
@@ -157,132 +177,46 @@
             </div>
         </div>
         <div class="divider my-3"></div>
-        @endif
-        <div class="flex justify-between mt-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2">
             <div>
-                <label>{{$test->title}}</label>
-                <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
+                <label for="">Page Orientation</label>
+                <select name="page_orientation" id="" class="w-full custom-input">
+                    <option value="portrait">Portrait</option>
+                    <option value="landscape">Landscape</option>
+                </select>
             </div>
-            <div class="flex flex-col justify-center">
-                <div class="flex items-center">
-                    <label>Max marks: &nbsp</label>
-                    <label>{{$test->totalMarks()}}</label>
-                </div>
-                <!-- can edit only if some question exists -->
-                @if($test->questions->count()>0)
-                <div class="flex items-center">
-                    <label>Suggested Time: &nbsp</label>
-                    <div class="flex items-center space-x-2">
-                        <label>{{$test->getDuration()}}</label>
-                        <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
-                    </div>
-                </div>
-                @endif
+            <div>
+                <label for="">Page Size</label>
+                <select name="page_size" id="" class="w-full custom-input">
+                    <option value="a4">A4</option>
+                    <option value="legal">Legal</option>
+                </select>
+            </div>
+            <div>
+                <label for="">Font Size</label>
+                <select name="font_size" id="" class="w-full custom-input">
+                    <option value="text-base">Normal</option>
+                    <option value="text-sm">Medium</option>
+                    <option value="text-xs">Small</option>
+                    <option value="text-xxs">Extra Small</option>
+                </select>
             </div>
         </div>
         <div class="divider my-3"></div>
-        @if($test->questions->count()>0)
-        <div class="flex flex-col gap-2 mt-3">
-            @foreach($test->questions as $testQuestion)
-            <!-- MCQ case -->
-            @switch($testQuestion->question_type)
-            @case('mcq')
-            <div class="flex items-center justify-between">
-                <div class="flex items-baseline space-x-1">
-                    <h3>Q.{{$testQuestion->question_no}}</h3>
-                    <h3>Answer any {{$testQuestion->necessary_parts}} questions</h3>
-                </div>
-                <div class="text-sm">
-                    {{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts}}
-                </div>
+        <div class="flex gap-x-4 gap-y-2 items-center">
+            <h2>How many rows x colums?</h2>
+            <div>
+                <!-- <label for="">How Many Rows?</label> -->
+                <input type="number" name="rows" id="" min=1 class="custom-input w-12">
             </div>
-            <ol class="list-[lower-roman] list-outside text-sm pl-6">
-                @foreach($testQuestion->parts as $part)
-                <li>
-                    {{$part->question->question}}
-                    <div class="grid grid-cols-1 md:grid-cols-4">
-                        <div>a. {{$part->question->mcq->option_a}}</div>
-                        <div>b. {{$part->question->mcq->option_b}}</div>
-                        <div>c. {{$part->question->mcq->option_c}}</div>
-                        <div>d. {{$part->question->mcq->option_d}}</div>
-                    </div>
-                </li>
-                @endforeach
-            </ol>
-            @break
-            @case('short')
-            <div class="flex items-center justify-between">
-                <div class="flex items-baseline space-x-1">
-                    <h3>Q.{{$testQuestion->question_no}}</h3>
-                    <h3>Answer any {{$testQuestion->necessary_parts}} questions</h3>
-                </div>
-                <div class="text-sm">
-                    {{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}
-                </div>
+            <div>x</div>
+            <div>
+                <!-- <label for="">How Many Rows?</label> -->
+                <input type="number" name="cols" id="" min=1 class="custom-input w-12">
             </div>
-            <ol class="list-[lower-roman] list-outside text-sm pl-6">
-                @foreach($testQuestion->parts as $part)
-                <li>{{$part->question->question}}</li>
-                @endforeach
-            </ol>
-            @break
-            @case('long')
-            @if($testQuestion->parts->count()==1)
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-1">
-                    <h3>Q.{{$testQuestion->question_no}}</h3>
-                    <p class="text-sm ml-1">{{$testQuestion->parts->first()->question->question}}</p>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <p class="text-sm">{{$testQuestion->parts->first()->marks}}</p>
-                    <a href="{{route('teacher.question-parts.edit',$testQuestion->parts->first())}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
-                </div>
-            </div>
-            @else
-            <div class="flex items-center justify-between">
-                <div class="flex items-baseline space-x-1">
-                    <h3>Q.{{$testQuestion->question_no}}</h3>
-                    <h3>Answer the following</h3>
-                </div>
-                <div class="text-sm">
-                </div>
-            </div>
-            <ol class="list-[lower-alpha] list-outside text-sm pl-6">
-                @foreach($testQuestion->parts as $part)
-                <li class="my-1">
-                    <div class="flex justify-between">
-                        <div>{{$part->question->question}}</div>
-                        <div class="flex items-center space-x-2">
-                            <div>{{$part->marks}}</div>
-                            <a href="{{route('teacher.question-parts.edit',$part)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
-                        </div>
-                    </div>
-                </li>
-
-                @endforeach
-            </ol>
-            <!-- long single option check ends -->
-            @endif
-            @endswitch
-            <!--looping test questions ends -->
-            @endforeach
-        </div>
-        @else
-        <div class="h-full flex flex-col justify-center items-center">
-            <h3>Currently test is empty!</h3>
-            <label for="">Please select one of the following options to add question</label>
         </div>
         @endif
-        <!-- bottom options to add question: short, long, MCQ -->
-        <div class="divider my-3"></div>
-        <div class="flex flex-col justify-center items-center gap-4">
-            <i class="bi-plus-circle text-2xl text-slate-400"></i>
-            <div class="flex space-x-2">
-                <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="btn-teal rounded-full px-4 py-1 text-xs">MCQs</a>
-                <a href="{{route('teacher.tests.questions.add', [$test, 'short'])}}" class="btn-orange rounded-full px-4 py-1 text-xs">Short</a>
-                <a href="{{route('teacher.tests.questions.add', [$test, 'long'])}}" class="btn-sky rounded-full px-4 py-1 text-xs">Long</a>
-            </div>
-        </div>
+
     </div>
 </div>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.teacher')
 @section('page-content')
-<div class="container bg-slate-100">
+<div class="custom-container">
     <!--welcome  -->
     <div class="flex items-center">
         <div class="flex-1">
@@ -61,7 +61,7 @@
             <div class="p-4 bg-white">
                 @if(Auth::user()->tests->count()>0)
                 <h2>Recent Tests </h2>
-                <div class="overflow-x w-full">
+                <div class="overflow-x-auto w-full">
                     <table class="table-fixed xs">
                         <thead>
                             <tr>

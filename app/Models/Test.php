@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Expr\FuncCall;
 
+use function PHPUnit\Framework\returnSelf;
+
 class Test extends Model
 {
     use HasFactory;
@@ -53,5 +55,20 @@ class Test extends Model
                 $sumOfMarks += $testQuestion->parts->sum('marks');
         }
         return $sumOfMarks;
+    }
+    public function getDuration()
+    {
+        $duration = 0;
+        if ($this->duration)
+            $duration = $this->duration;
+        else
+            $duration = round($this->totalMarks() * 1.5, 0);
+        // if duration greater exceeds 59 minutes, then convert into hr min format
+        if ($duration > 59) {
+            $hr = round($duration / 60, 0);
+            $min = $duration % 60;
+            return $hr . "hr " . $min . "min";
+        } else
+            return $duration . "min";
     }
 }

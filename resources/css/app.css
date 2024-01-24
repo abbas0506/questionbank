@@ -49,6 +49,33 @@
     label {
         @apply text-sm text-slate-600;
     }
+    /* header */
+    header {
+        @apply w-full fixed top-0 z-20 bg-white text-slate-700 shadow;
+    }
+    header .current-user-dropdown {
+        @apply flex flex-col absolute w-48 top-12 right-8 z-20 bg-white font-thin drop-shadow-xl hidden;
+    }
+    header .current-user-dropdown a:hover {
+        @apply text-orange-700;
+    }
+
+    aside {
+        @apply fixed top-16 z-10 md:flex flex-col w-60 -translate-x-60 md:translate-x-0 h-full px-4 text-slate-300 transition-all duration-500 ease-in-out;
+    }
+    aside {
+        @apply bg-gradient-to-b from-cyan-800 to-cyan-500;
+    }
+
+    aside li:hover {
+        @apply text-orange-400;
+    }
+    aside.shown {
+        @apply translate-x-0;
+    }
+    button:disabled {
+        @apply cursor-not-allowed opacity-25;
+    }
 }
 
 @layer components {
@@ -146,30 +173,6 @@
         @apply flex-shrink-0 w-2 h-2 rounded-full bg-indigo-500;
     }
 
-    /* header */
-    header {
-        @apply w-full fixed top-0 z-20 bg-white text-slate-700 shadow;
-    }
-    header .current-user-dropdown {
-        @apply flex flex-col absolute w-48 top-12 right-8 z-20 bg-white font-thin drop-shadow-xl hidden;
-    }
-    header .current-user-dropdown a:hover {
-        @apply text-orange-700;
-    }
-    aside {
-        @apply fixed top-16 z-10 hidden md:flex flex-col w-60 h-full px-4 overflow-auto text-slate-300;
-    }
-    aside {
-        @apply bg-gradient-to-b from-cyan-800 to-cyan-500;
-    }
-
-    aside li:hover {
-        @apply text-orange-400;
-    }
-
-    button:disabled {
-        @apply cursor-not-allowed opacity-25;
-    }
     .zoom-sm {
         @apply scale-110 transition-all duration-500 ease-in-out;
     }
@@ -191,8 +194,6 @@
         @apply bg-green-100;
     }
 
-    .collapsible-group {
-    }
     .collapsible {
         @apply flex flex-col mb-4;
     }

@@ -141,6 +141,12 @@ class TestController extends Controller
         $grades = Grade::where('id', '>', 8)->get();
         return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
     }
+    public function print($testId)
+    {
+
+        $test = Test::find($testId);
+        return view('teacher.tests.print', compact('test'));
+    }
     public function pdf($id, $rows, $cols)
     {
         $test = Test::find($id);
@@ -148,5 +154,9 @@ class TestController extends Controller
         $pdf->set_option("isPhpEnabled", true);
         $file = "test.pdf";
         return $pdf->stream($file);
+    }
+    public function  generateCustomizedPdf(Request $request, $testId)
+    {
+        echo $request->page_orientation;
     }
 }

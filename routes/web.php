@@ -53,6 +53,7 @@ use App\Http\Controllers\teacher\SubjectChapterController;
 use App\Http\Controllers\teacher\SubjectController as TeacherSubjectController;
 use App\Http\Controllers\teacher\TeacherController as TeacherTeacherController;
 use App\Http\Controllers\teacher\TestController;
+use App\Http\Controllers\teacher\TestPdfController;
 use App\Http\Controllers\teacher\TestQuestionController;
 use App\Http\Controllers\teacher\TestQuestionPartController;
 use App\Models\BookRack;
@@ -203,6 +204,10 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::resource('qbank/chapters.mcq', ChapterMcqController::class);
 
     Route::resource('tests', TestController::class);
+    Route::resource('tests.pdf', TestPdfController::class);
+
+    Route::get('test/{test}/print', [TestController::class, 'print'])->name('tests.print');
+
     Route::get('test/{test}/pdf/grid/{rows}/{cols}', [TestController::class, 'pdf'])->name('tests.pdf');
 
     Route::get('test/annex/grade/{grade}', [TestController::class, 'annexGrade'])->name('tests.annex.grade');

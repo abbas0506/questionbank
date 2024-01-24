@@ -36,7 +36,6 @@
 </head>
 @php
 $roman = config('global.romans');
-$font='text-xs';
 @endphp
 
 <body>
@@ -45,7 +44,7 @@ $font='text-xs';
             <!-- <div class="relative">
                 <div class="absolute"><img alt="logo" src="{{public_path('/images/logo/school_logo.png')}}" class="w-8"></div>
             </div> -->
-            <table class="{{$font}} w-full">
+            <table class="{{$fontSize}} w-full">
 
                 @php
                 $i=1;
