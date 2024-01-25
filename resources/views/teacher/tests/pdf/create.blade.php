@@ -38,189 +38,106 @@
             </div>
         </div>
         <div class="divider my-3"></div>
+        <p class="w-full md:w-3/4 md:text-center mx-auto mb-3 text-sm text-gray-600">Do you know that a careful selction of the following options can save your printing cost by more than 50%. Choose the most appropriate options and optimize your printing cost.</p>
         @if($test->questions->count()>0)
-        <div class="collapsible">
-            <div class="head mt-8">
-                <div class="flex items-center w-full">
-                    <i class="bx bxs-chevron-down"></i>
-                    <label class="flex-1 ml-3">Click here to see print options</label>
-                    <span class="bi-printer"></span>
-                </div>
-            </div>
-
-            <div class="body">
-                <!-- 2nd grid starts here -->
-
-                <div class="flex flex-wrap gap-4 bg-white">
-                    <!-- grid 1x1  -->
-                    <a href="{{route('teacher.tests.pdf',[$test,1,1])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-1 w-16">
-                            <div class="h-24 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 1x2 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,1,2])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-2 w-16">
-                            <div class="h-24 border"></div>
-                            <div class="h-24 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 1x3 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,1,3])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-3 w-16">
-                            <div class="h-24 border"></div>
-                            <div class="h-24 border"></div>
-                            <div class="h-24 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 2x1 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,2,1])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-1 w-16">
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 2x2 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,2,2])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-2 w-16">
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 2x3 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,2,3])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-3 w-16">
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                            <div class="h-12 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 3x1 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,3,1])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-1 w-16">
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 3x2 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,3,2])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-2 w-16">
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                        </div>
-                    </a>
-
-                    <!-- grid 3x3 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,3,3])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-3 w-16">
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                            <div class="h-8 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 4x1 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,4,1])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-1 w-16">
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 4x2 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,4,2])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-2 w-16">
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                        </div>
-                    </a>
-                    <!-- grid 4x3 -->
-                    <a href="{{route('teacher.tests.pdf',[$test,4,3])}}" class="bg-slate-50 hover:bg-slate-100" target="_blank">
-                        <div class="grid grid-cols-3 w-16">
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                            <div class="h-6 border"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="divider my-3"></div>
         <form action="{{route('teacher.tests.pdf.store',$test)}}" method="post">
             @csrf
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2">
-                <div>
-                    <label for="">Page Orientation</label>
-                    <select name="page_orientation" id="" class="w-full custom-input">
-                        <option value="portrait">Portrait</option>
-                        <option value="landscape">Landscape</option>
-                    </select>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-orange-50 rounded p-4">
+                    <h3 class="pb-4">Page Size</h3>
+                    <div class="flex justify-center items-start gap-x-4">
+                        <div class="w-16 h-20 flex justify-center items-center bg-orange-100 border  border-gray-400 relative">
+                            <input type="checkbox" name="page_size" value="a4" class="absolute top-1 left-1 page-size" checked>
+                            <div class="text-xs">A4</div>
+                        </div>
+                        <div class="w-16 h-24 flex justify-center items-center bg-orange-100 border border-gray-400 relative">
+                            <input type="checkbox" name="page_size" value="legal" class="absolute top-1 left-1 page-size">
+                            <div class="text-xs">Legal</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for="">Page Size</label>
-                    <select name="page_size" id="" class="w-full custom-input">
-                        <option value="a4">A4</option>
-                        <option value="legal">Legal</option>
-                    </select>
+                <div class="bg-emerald-50 rounded p-4">
+                    <h3 class="pb-4">Page Orientation</h3>
+                    <div class="flex justify-center items-start gap-x-4">
+                        <div class="w-16 h-20 flex justify-center items-center bg-green-100 border border-gray-400 relative">
+                            <input type="checkbox" name="page_orientation" value="portrait" class="absolute top-1 left-1 page-orientation" checked>
+                            <div class="text-xs">Portrait</div>
+                        </div>
+                        <div class="w-24 h-16 flex justify-center items-center bg-green-100 border border-gray-400 relative">
+                            <input type="checkbox" name="page_orientation" value="landscape" class="absolute top-1 left-1 page-orientation">
+                            <div class="text-xs">Landscape</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for="">Font Size</label>
-                    <select name="font_size" id="" class="w-full custom-input">
-                        <option value="text-base">Normal</option>
-                        <option value="text-sm">Medium</option>
-                        <option value="text-xs">Small</option>
-                        <option value="text-xxs">Extra Small</option>
-                    </select>
+
+                <div class="bg-orange-50 rounded p-4">
+                    <h3 class="pb-4">Font Size</h3>
+                    <div class="flex justify-center gap-x-4">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" name="font_size" value="text-base" class="font-size">
+                                <div class="text-base">Normal</div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" name="font_size" value="text-sm" class="font-size">
+                                <div class="text-sm">Medium</div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" name="font_size" value="text-xs" class="font-size" checked>
+                                <div class="text-xs">Small</div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" name="font_size" value="text-xxs" class="font-size">
+                                <div class="text-xxs">Extra Small</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 60 25 852 0000 -->
+                <div class="bg-emerald-50 rounded p-4">
+                    <h3 class="">Question Papers Per Page</h3>
+                    <div class="flex flex-col md:flex-row-reverse items-center">
+                        <div class="flex flex-col items-center justify-center p-2 w-36">
+                            <p class="text-xs">For example</p>
+                            <div class="grid grid-cols-3 w-24">
+                                <div class="h-8 border"></div>
+                                <div class="h-8 border"></div>
+                                <div class="h-8 border"></div>
+                                <div class="h-8 border"></div>
+                                <div class="h-8 border"></div>
+                                <div class="h-8 border"></div>
+                            </div>
+                            <p class="text-xs">3x2</p>
+                        </div>
+                        <div class="flex flex-1 justify-center items-center gap-x-4">
+                            <input type="number" name="cols" id="" value="1" min=1 max=6 class="custom-input w-16" required>
+                            <div>x</div>
+                            <input type="number" name="rows" id="" value="2" min=1 max=6 class="custom-input w-16" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="md:col-span-2 text-center">
+                    <button type="submit" class="btn-green">Generate PDF</button>
                 </div>
             </div>
-            <div class="divider my-3"></div>
-            <div class="flex gap-x-4 gap-y-2 items-center">
-                <h2>How many rows x colums?</h2>
-                <div>
-                    <!-- <label for="">How Many Rows?</label> -->
-                    <input type="number" name="rows" id="" min=1 class="custom-input w-12">
-                </div>
-                <div>x</div>
-                <div>
-                    <!-- <label for="">How Many Rows?</label> -->
-                    <input type="number" name="cols" id="" min=1 class="custom-input w-12">
-                </div>
-            </div>
-            <button type="submit" class="btn-green">Generate PDF</button>
         </form>
         @endif
 
     </div>
 </div>
+@endsection
+@section('script')
+<script type="module">
+    $('.page-size').change(function() {
+        $('.page-size').not(this).prop('checked', false);
+    });
+    $('.page-orientation').change(function() {
+        $('.page-orientation').not(this).prop('checked', false);
+    });
+    $('.font-size').change(function() {
+        $('.font-size').not(this).prop('checked', false);
+    });
+</script>
 @endsection
