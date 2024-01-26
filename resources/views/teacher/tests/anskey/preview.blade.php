@@ -42,11 +42,11 @@ $roman = config('global.romans');
 
 <body>
     <main>
-        <div class="custom-container">
+        <div class="custom-container text-xs">
             <!-- <div class="relative">
                 <div class="absolute"><img alt="logo" src="{{public_path('/images/logo/school_logo.png')}}" class="w-8"></div>
             </div> -->
-            <table class="text-sm w-full">
+            <table class="w-full">
                 <tbody>
                     <tr>
                         <td colspan="2" class="text-center m-0 p-0">{{$test->title}}</td>
@@ -68,7 +68,7 @@ $roman = config('global.romans');
             <div style="border-style:solid; border-width:0px 0px 0.5px 0px;"></div>
 
             @if($test->questions->count()>0)
-            <table class="table-auto text-sm w-full">
+            <table class="table-auto w-full">
                 <thead>
                     <tr>
                         <th class=""></th>
