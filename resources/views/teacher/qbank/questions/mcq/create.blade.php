@@ -50,40 +50,52 @@
                     <label for="">From Exercise?</label>
 
                 </div>
-                <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question"></textarea>
+                <textarea type="text" id='question' name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question"></textarea>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 mt-3  bg-slate-100 p-4">
                     <div class="flex items-center space-x-2">
                         <input type="checkbox" name='answer_a' class="answer w-6 h-6 bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1' checked>
-                        <input type="text" name='option_a' class="custom-input" placeholder="a.">
+                        <input type="text" name='option_a' class="custom-input choice" placeholder="a.">
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="checkbox" name='answer_b' class="answer w-6 h-6 bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1'>
-                        <input type="text" name='option_b' class="custom-input" placeholder="b.">
+                        <input type="text" name='option_b' class="custom-input choice" placeholder="b.">
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="checkbox" name='answer_c' class="answer w-6 h-6 bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1'>
-                        <input type="text" name='option_c' class="custom-input" placeholder="c.">
+                        <input type="text" name='option_c' class="custom-input choice" placeholder="c.">
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="checkbox" name='answer_d' class="answer w-6 h-6 bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1'>
-                        <input type="text" name='option_d' class="custom-input" placeholder="d.">
+                        <input type="text" name='option_d' class="custom-input choice" placeholder="d.">
                     </div>
                 </div>
                 <div class="flex items-center justify-between mt-2">
                     <label for="">Bise Frequency</label>
-                    <input type="text" name="bise_frequency" value="2" class="custom-input w-16 text-center ml-3 py-0">
+                    <input type="text" name="bise_frequency" value="1" class="custom-input w-16 text-center ml-3 py-0">
                 </div>
                 <div class="divider my-3"></div>
                 <div class="mt-4 text-right">
                     <button type="submit" class="btn-teal">Create Now</button>
                 </div>
             </form>
+            <div class="divider my-3"></div>
+            <span id="math" class="text-left no-line-break"></span>
         </div>
     </div>
 </div>
 @endsection
 @section('script')
 <script type="module">
+    $('#question').bind('input propertychange', function() {
+        $('#math').html($('#question').val());
+        MathJax.typeset();
+    });
+    $('.choice').bind('input propertychange', function() {
+        $('#math').html($(this).val());
+        MathJax.typeset();
+    });
+
+
     $('.answer').change(function() {
         $('.answer').not(this).prop('checked', false);
         $(this).prop('checked', true)

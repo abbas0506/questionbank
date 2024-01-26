@@ -46,7 +46,7 @@
                     <input type="checkbox" id='is_from_exercise' name='is_from_exercise' class="w-6 h-6 chk bg-blue-100 border-blue-300 text-blue-500 focus:ring-blue-200" value='1' @checked($question->is_from_exercise==1)>
                     <label for="">From Exercise?</label>
                 </div>
-                <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question">{{$question->question}}</textarea>
+                <textarea type="text" id='question' name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question">{{$question->question}}</textarea>
                 <div class="flex items-center justify-between mt-2">
                     <label for="">Marks</label>
                     <input type="text" name="marks" value="{{$question->marks}}" class="custom-input w-16 text-center ml-3 py-0">
@@ -64,4 +64,12 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="module">
+    $('#question').bind('input propertychange', function() {
+        $('#math').html($('#question').val());
+        MathJax.typeset();
+    });
+</script>
 @endsection

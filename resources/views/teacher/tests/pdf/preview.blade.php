@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Generated Paper</title>
     <link href="{{public_path('css/pdf_tw.css')}}" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         @page {
             margin: 30px 30px 30px 30px;

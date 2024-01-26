@@ -50,20 +50,27 @@
                     <label for="">From Exercise?</label>
 
                 </div>
-
-                <a href="{{route('teacher.qbank.advance.questions.short.create', $chapter)}}">Advance</a>
-
-                <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question"></textarea>
+                <textarea type="text" id='question' name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question"></textarea>
                 <div class="flex items-center justify-between mt-2">
                     <label for="">Bise Frequency</label>
-                    <input type="text" name="bise_frequency" value="2" class="custom-input w-16 text-center ml-3 py-0">
+                    <input type="text" name="bise_frequency" value="1" class="custom-input w-16 text-center ml-3 py-0">
                 </div>
                 <div class="divider my-3"></div>
                 <div class="flex justify-end">
                     <button type="submit" class="btn-teal">Create Now</button>
                 </div>
             </form>
+            <div class="divider my-3"></div>
+            <span id="math" class="text-left no-line-break"></span>
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="module">
+    $('#question').bind('input propertychange', function() {
+        $('#math').html($('#question').val());
+        MathJax.typeset();
+    });
+</script>
 @endsection
