@@ -2,7 +2,7 @@
 @section('page-content')
 
 <div class="custom-container">
-    <h1>New Short Q.</h1>
+    <h1>New Advance Short Q.</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
         <div>/</div>
@@ -50,10 +50,7 @@
                     <label for="">From Exercise?</label>
 
                 </div>
-
-                <a href="{{route('teacher.qbank.advance.questions.short.create', $chapter)}}">Advance</a>
-
-                <textarea type="text" name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question"></textarea>
+                <textarea type="text" id='question' name="question" class="custom-input py-2 mt-2" rows='1' placeholder="Question" onchange="displayMarkdown()"></textarea>
                 <div class="flex items-center justify-between mt-2">
                     <label for="">Bise Frequency</label>
                     <input type="text" name="bise_frequency" value="2" class="custom-input w-16 text-center ml-3 py-0">
@@ -64,6 +61,16 @@
                 </div>
             </form>
         </div>
+        <div class="divider my-3"></div>
+        <span id="math" class="text-left no-line-break"></span>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="module">
+    $('#question').bind('input propertychange', function() {
+        $('#math').html($('#question').val());
+        MathJax.typeset();
+    });
+</script>
 @endsection

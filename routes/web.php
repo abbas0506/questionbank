@@ -38,6 +38,7 @@ use App\Http\Controllers\librarian\LibraryRuleController;
 use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherController as PrincipalTeacherController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
+use App\Http\Controllers\teacher\AdvanceShortController;
 use App\Http\Controllers\teacher\ChapterController;
 use App\Http\Controllers\teacher\ChapterLongController;
 use App\Http\Controllers\teacher\ChapterMcqController;
@@ -205,6 +206,9 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
 
     Route::resource('tests', TestController::class);
     Route::resource('tests.pdf', TestPdfController::class);
+
+    Route::get('qbank/advance/chapters/{ch}/short/create', [AdvanceShortController::class, 'create'])->name('qbank.advance.questions.short.create');
+
 
     Route::get('test/annex/grade/{grade}', [TestController::class, 'annexGrade'])->name('tests.annex.grade');
     Route::get('test/annex/subject/{subject}', [TestController::class, 'annexSubject'])->name('tests.annex.subject');

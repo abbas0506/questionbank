@@ -407,4 +407,9 @@
     .testimonials .swiper-pagination .swiper-pagination-bullet-active {
         background-color: #68a4c4;
     }
+
+    /* for mathjax */
+    .no-line-break {
+        white-space: nowrap;
+    }
 }
