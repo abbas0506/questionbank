@@ -211,5 +211,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::get('test/annex/subject/{subject}', [TestController::class, 'annexSubject'])->name('tests.annex.subject');
     Route::resource('test-questions', TestQuestionController::class);
     Route::get('test/questions/add/{test}/{questionType}', [TestQuestionController::class, 'add'])->name('tests.questions.add');
+    Route::get('test/{test}/questions/{q}/refresh',);
     Route::resource('question-parts', TestQuestionPartController::class);
+    Route::get('test/questions/{part}/refresh', [TestQuestionPartController::class, 'refresh'])->name('tests.questions.parts.refresh');
 });

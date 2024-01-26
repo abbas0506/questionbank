@@ -65,7 +65,7 @@
             <ol class="list-[lower-roman] list-outside text-sm pl-6">
                 @foreach($testQuestion->parts as $part)
                 <li>
-                    {{$part->question->question}}
+                    {{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a>
                     <div class="grid grid-cols-1 md:grid-cols-4">
                         <div>a. {{$part->question->mcq->option_a}}</div>
                         <div>b. {{$part->question->mcq->option_b}}</div>
@@ -88,7 +88,7 @@
             </div>
             <ol class="list-[lower-roman] list-outside text-sm pl-6">
                 @foreach($testQuestion->parts as $part)
-                <li>{{$part->question->question}}</li>
+                <li>{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
                 @endforeach
             </ol>
             @break
@@ -117,7 +117,7 @@
                 @foreach($testQuestion->parts as $part)
                 <li class="my-1">
                     <div class="flex justify-between">
-                        <div>{{$part->question->question}}</div>
+                        <div>{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></div>
                         <div class="flex items-center space-x-2">
                             <div>{{$part->marks}}</div>
                             <a href="{{route('teacher.question-parts.edit',$part)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>

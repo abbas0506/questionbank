@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\Question;
+use App\Models\TestQuestion;
 use App\Models\TestQuestionPart;
 use Exception;
 use Illuminate\Http\Request;
@@ -80,5 +82,25 @@ class TestQuestionPartController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function refresh($testQuestionPartId)
+    {
+        $testQuestionPart = TestQuestionPart::find($testQuestionPartId);
+        $alreadyIncludedQuestionIds = $testQuestionPart->testQuestion->test->parts->pluck('question_id');
+        $replacingQuestion = Question::where('chapter_id', $testQuestionPart->question->chapter_id)
+            ->where('question_type', $testQuestionPart->testQuestion->question_type)
+            ->whereNotIn('id', $alreadyIncludedQuestionIds)
+            ->get()
+            ->random(1)
+            ->first();
+
+        try {
+            $testQuestionPart->update([
+                'question_id' => $replacingQuestion->id,
+            ]);
+            return redirect()->back();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
     }
 }
