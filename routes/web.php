@@ -39,6 +39,7 @@ use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherController as PrincipalTeacherController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
 use App\Http\Controllers\teacher\AdvanceShortController;
+use App\Http\Controllers\teacher\AnswerKeyController;
 use App\Http\Controllers\teacher\ChapterController;
 use App\Http\Controllers\teacher\ChapterLongController;
 use App\Http\Controllers\teacher\ChapterMcqController;
@@ -214,4 +215,6 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::get('test/{test}/questions/{q}/refresh',);
     Route::resource('question-parts', TestQuestionPartController::class);
     Route::get('test/questions/{part}/refresh', [TestQuestionPartController::class, 'refresh'])->name('tests.questions.parts.refresh');
+    Route::get('tests/{test}/anskey', [AnswerKeyController::class, 'show'])->name('tests.anskey.show');
+    Route::get('tests/{test}/anskey/pdf', [AnswerKeyController::class, 'pdf'])->name('tests.anskey.pdf');
 });

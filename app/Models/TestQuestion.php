@@ -22,4 +22,8 @@ class TestQuestion extends Model
     {
         return $this->hasMany(TestQuestionPart::class);
     }
+    public function scopeMcqs($query)
+    {
+        return $query->where('question_type', 'mcq');
+    }
 }

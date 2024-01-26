@@ -61,15 +61,15 @@
             <div class="p-4 bg-white">
                 @if(Auth::user()->tests->count()>0)
                 <h2>Recent Tests </h2>
-                <div class="overflow-x-auto w-full">
+                <div class="overflow-x w-full mt-3">
                     <table class="table-fixed xs">
                         <thead>
                             <tr>
                                 <th class="w-10">Sr</th>
                                 <th class="w-64">Title</th>
-                                <th class="w-24">Date</th>
-                                <th class="w-24">Ans Key</th>
-                                <th class="w-24">Actions</th>
+                                <th class="w-32">Date</th>
+                                <th class="w-20">Q.Paper</th>
+                                <th class="w-20">Ans Key</th>
                             </tr>
                         <tbody>
                             @php $sr=1; @endphp
@@ -82,19 +82,8 @@
                                     <label>{{$test->subject->grade->roman_name}}-{{$test->subject->name}}</label>
                                 </td>
                                 <td>{{$test->test_date->format('d/m/Y')}}</td>
-                                <td><a href="{{route('teacher.tests.show',$test)}}"><i class="bi-file-pdf text-red-400 hover:text-red-600"></i></a></td>
-                                <td>
-                                    <div class="flex items-center justify-center space-x-2 text-xs">
-                                        <a href="{{route('teacher.tests.show',$test)}}"><i class="bi-printer"></i></a>
-                                        <span class="text-slate-300">|</span>
-                                        <form action="{{route('teacher.tests.destroy',$test)}}" method="post" onsubmit="return confirmDel(event)">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button><i class="bx bx-trash text-red-600"></i></button>
-                                        </form>
-                                    </div>
-                                </td>
-
+                                <td><a href="{{route('teacher.tests.show',$test)}}"><i class="bi-printer"></i></a></td>
+                                <td><a href="{{route('teacher.tests.anskey.show',$test)}}"><i class="bi-file-pdf text-red-400 hover:text-red-600"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>

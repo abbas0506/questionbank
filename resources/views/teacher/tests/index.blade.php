@@ -50,7 +50,7 @@
                             <label class="text-xs">{{$test->subject->grade->roman_name}}-{{$test->subject->name}}</label>
                         </td>
                         <td>{{$test->test_date->format('d/m/Y')}}</td>
-                        <td><a href="{{route('teacher.tests.show',$test)}}"><i class="bi-file-pdf text-red-400 hover:text-red-600"></i></a></td>
+                        <td><a href="{{route('teacher.tests.anskey.show',$test)}}"><i class="bi-file-pdf text-red-400 hover:text-red-600"></i></a></td>
                         <td>
                             <div class="flex items-center justify-center space-x-2">
                                 <a href="{{route('teacher.tests.show',$test)}}"><i class="bi-printer"></i></a>
