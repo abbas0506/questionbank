@@ -99,7 +99,7 @@ $roman = config('global.romans');
                                                 @foreach($testQuestion->parts as $part)
                                                 <li>
                                                     {{$part->question->question}}
-                                                    <ol class="list-horizontal lower-alpha">
+                                                    <ol class="list-horizontal lower-alpha pt-1">
                                                         <li class="text-left w-1-4">a. {{$part->question->mcq->option_a}}</li>
                                                         <li class="text-left w-1-4">b. {{$part->question->mcq->option_b}}</li>
                                                         <li class="text-left w-1-4">c. {{$part->question->mcq->option_c}}</li>
