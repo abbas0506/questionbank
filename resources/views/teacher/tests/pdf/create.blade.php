@@ -60,11 +60,11 @@
                     <h3 class="pb-4">Page Orientation</h3>
                     <div class="flex justify-center items-start gap-x-4">
                         <div class="w-16 h-20 flex justify-center items-center bg-green-100 border border-gray-400 relative">
-                            <input type="checkbox" name="page_orientation" value="portrait" class="absolute top-1 left-1 page-orientation" checked>
+                            <input type="checkbox" name="page_orientation" value="portrait" class="absolute top-1 left-1 page-orientation">
                             <div class="text-xs">Portrait</div>
                         </div>
                         <div class="w-24 h-16 flex justify-center items-center bg-green-100 border border-gray-400 relative">
-                            <input type="checkbox" name="page_orientation" value="landscape" class="absolute top-1 left-1 page-orientation">
+                            <input type="checkbox" name="page_orientation" value="landscape" class="absolute top-1 left-1 page-orientation" checked>
                             <div class="text-xs">Landscape</div>
                         </div>
                     </div>
@@ -111,9 +111,9 @@
                             <p class="text-xs">3x2</p>
                         </div>
                         <div class="flex flex-1 justify-center items-center gap-x-4">
-                            <input type="number" name="cols" id="" value="1" min=1 max=6 class="custom-input w-16" required>
+                            <input type="number" name="cols" id="" value="2" min=1 max=6 class="custom-input w-16" required>
                             <div>x</div>
-                            <input type="number" name="rows" id="" value="2" min=1 max=6 class="custom-input w-16" required>
+                            <input type="number" name="rows" id="" value="1" min=1 max=6 class="custom-input w-16" required>
                         </div>
                     </div>
 

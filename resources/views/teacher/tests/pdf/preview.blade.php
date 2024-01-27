@@ -11,7 +11,7 @@
 
     <style>
         @page {
-            margin: 30px 30px 30px 30px;
+            margin: 30px 50px 30px 50px;
         }
 
         .footer {
@@ -54,7 +54,8 @@ $roman = config('global.romans');
                 @endphp
                 <tbody>
                     @for($i=1; $i<=$rows;$i++) <tr>
-                        @for($j=1; $j<=$cols;$j++) <td class='px-8'>
+                        @for($j=1; $j<=$cols;$j++) @php $questionNo=1; @endphp <td class='@if($j!=1) pl-8 @endif'>
+
                             <table class="w-full">
                                 <tbody>
                                     <tr>
@@ -77,7 +78,7 @@ $roman = config('global.romans');
                             </table>
                             <div style="border-style:solid; border-width:0px 0px 0.5px 0px;"></div>
 
-                            @if($test->questions->count()>0)
+                            @if($test->has('questions'))
                             <table class="table-auto w-full">
                                 <thead>
                                     <tr>
@@ -86,14 +87,19 @@ $roman = config('global.romans');
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($test->questions as $testQuestion)
-                                    @if($testQuestion->question_type=='mcq')
+                                    @foreach($test->questions()->mcqs()->get() as $testQuestion)
                                     <tr>
-                                        <td class="text-left font-bold">Q.{{$testQuestion->question_no}} Answer any {{$testQuestion->necessary_parts}} questions</td>
+                                        <td class="text-left font-bold">Q.{{$questionNo++}} Encircle the correct option.
+                                            @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                                            All questions are compulsory
+                                            @else
+                                            Answer any {{$testQuestion->necessary_parts}} questions
+                                            @endif
+                                        </td>
                                         <td>{{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts}}</td>
                                     </tr>
 
-                                    <tr style="border-style:dotted; border-width:0px 0px 1px 0px;">
+                                    <tr>
                                         <td colspan="2" class="text-left">
                                             <ol class="lower-roman ml-4">
                                                 @foreach($testQuestion->parts as $part)
@@ -110,9 +116,23 @@ $roman = config('global.romans');
                                             </ol>
                                         </td>
                                     </tr>
-                                    @elseif($testQuestion->question_type=='short')
+                                    @endforeach
+                                    @if($test->questions()->mcqs()->count()*$test->questions()->short()->count())
+                                    <tr style="border-style:dotted; border-width:0px 0px 1px 0px;">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    @endif
+                                    <!-- SHORT Questions -->
+                                    @foreach($test->questions()->short()->get() as $testQuestion)
+
                                     <tr>
-                                        <td class="text-left font-bold">Q.{{$testQuestion->question_no}} Answer any {{$testQuestion->necessary_parts}} questions</td>
+                                        <td class="text-left font-bold">Q.{{$questionNo}} Answer the following questions.
+                                            @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                                            All questions are compulsory
+                                            @else
+                                            (any {{$testQuestion->necessary_parts}} questions)
+                                            @endif
+                                        </td>
                                         <td>{{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}</td>
                                     </tr>
 
@@ -125,14 +145,17 @@ $roman = config('global.romans');
                                             </ol>
                                         </td>
                                     </tr>
-                                    @else
-                                    <!-- long question -->
+                                    @endforeach
+
+                                    <!-- LONG Question -->
+                                    @foreach($test->questions()->long()->get() as $testQuestion)
+
                                     @if($testQuestion->parts->count()==1)
                                     <tr>
                                         <td class="text-left" colspan="2">
 
                                             <ul class="list-horizontal w-full font-bold">
-                                                <li style='width:90%'>Q.{{$testQuestion->question_no}} {{$testQuestion->parts->first()->question->question}}</li>
+                                                <li style='width:90%'>Q.{{$questionNo}} {{$testQuestion->parts->first()->question->question}}</li>
                                                 <li class="w-4 text-right">{{$testQuestion->parts->first()->marks}}</li>
                                             </ul>
 
@@ -157,7 +180,6 @@ $roman = config('global.romans');
 
                                         </td>
                                     </tr>
-                                    @endif
                                     @endif
                                     @endforeach
                                 </tbody>

@@ -41,7 +41,7 @@
                     </tr>
                 <tbody>
                     @php $sr=1; @endphp
-                    @foreach(Auth::user()->tests as $test)
+                    @foreach(Auth::user()->tests->sortByDesc('id') as $test)
                     <tr class="tr">
                         <td>{{$sr++}}</td>
                         <td class="text-left">

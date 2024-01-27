@@ -17,6 +17,7 @@
         <x-message></x-message>
         @endif
 
+        <!-- show print button only if test has some questions -->
         @if($test->questions->count()>0)
         <div class="flex justify-end w-full">
             <div class="flex w-12 h-12 items-center justify-center rounded-full bg-orange-100 hover:bg-orange-200">
@@ -35,7 +36,7 @@
                     <label>{{$test->totalMarks()}}</label>
                 </div>
                 <!-- can edit only if some question exists -->
-                @if($test->questions->count()>0)
+                @if($test->has('questions'))
                 <div class="flex items-center">
                     <label>Suggested Time: &nbsp</label>
                     <div class="flex items-center space-x-2">
@@ -47,16 +48,19 @@
             </div>
         </div>
         <div class="divider my-3"></div>
-        @if($test->questions->count()>0)
+        @if($test->has('questions'))
         <div class="flex flex-col gap-2 mt-3">
-            @foreach($test->questions as $testQuestion)
-            <!-- MCQ case -->
-            @switch($testQuestion->question_type)
-            @case('mcq')
+            <!-- MCQs -->
+            @foreach($test->questions()->mcqs()->get() as $testQuestion)
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
-                    <h3>Answer any {{$testQuestion->necessary_parts}} questions</h3>
+                    <h3>Encircle the correct option. &nbsp</h3>
+                    @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                    <p class="text-xs">(all questions are compulsory)</p>
+                    @else
+                    <p class="text-xs">(any {{$testQuestion->necessary_parts}} questions)</p>
+                    @endif
                 </div>
                 <div class="text-sm">
                     {{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts}}
@@ -75,12 +79,19 @@
                 </li>
                 @endforeach
             </ol>
-            @break
-            @case('short')
+            @endforeach
+
+            <!-- SHORT Questions -->
+            @foreach($test->questions()->short()->get() as $testQuestion)
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
-                    <h3>Answer any {{$testQuestion->necessary_parts}} questions</h3>
+                    <h3> Answer the following. &nbsp</h3>
+                    @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                    <p class="text-xs">(all questions are compulsory)</p>
+                    @else
+                    <p class="text-xs">(any {{$testQuestion->necessary_parts}} questions)</p>
+                    @endif
                 </div>
                 <div class="text-sm">
                     {{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}
@@ -91,9 +102,13 @@
                 <li>{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
                 @endforeach
             </ol>
-            @break
-            @case('long')
+            @endforeach
+
+            <!-- LONG Questions -->
+            @foreach($test->questions()->long()->get() as $testQuestion)
+
             @if($testQuestion->parts->count()==1)
+            <!-- if long question is compact i.e not splitted  -->
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
@@ -105,6 +120,7 @@
                 </div>
             </div>
             @else
+            <!-- if long question splits -->
             <div class="flex items-center justify-between">
                 <div class="flex items-baseline space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
@@ -124,19 +140,17 @@
                         </div>
                     </div>
                 </li>
-
                 @endforeach
             </ol>
-            <!-- long single option check ends -->
+            <!-- long question ends -->
             @endif
-            @endswitch
             <!--looping test questions ends -->
             @endforeach
         </div>
         @else
         <div class="h-full flex flex-col justify-center items-center">
             <h3>Currently test is empty!</h3>
-            <label for="">Please select one of the following options to add question</label>
+            <label for="">Please click on any of the following question types to start</label>
         </div>
         @endif
         <!-- bottom options to add question: short, long, MCQ -->

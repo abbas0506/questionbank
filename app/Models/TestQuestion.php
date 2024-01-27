@@ -26,4 +26,12 @@ class TestQuestion extends Model
     {
         return $query->where('question_type', 'mcq');
     }
+    public function scopeShort($query)
+    {
+        return $query->where('question_type', 'short');
+    }
+    public function scopeLong($query)
+    {
+        return $query->where('question_type', 'long');
+    }
 }

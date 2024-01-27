@@ -59,7 +59,7 @@
 
                 <div class="flex flex-col gap-x-4 gap-y-2">
                     <label for="">Test Title</label>
-                    <input type="text" name="title" placeholder="Test Title" class="custom-input">
+                    <input type="text" name="title" value='Sample Test' placeholder="Test Title" class="custom-input">
                     <div class="md:w-2/3">
                         <label for="">Test Date</label>
                         <input type="date" id='test_date' name="test_date" class="custom-input" value="{{ date('Y-m-d') }}">

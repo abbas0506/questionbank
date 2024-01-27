@@ -2977,22 +2977,22 @@ sup {
 .text-justify {
     text-align: justify;
 }
-
-.text-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
-}
 .text-xxs {
     font-size: 0.5rem;
+    line-height: 0.6rem;
+}
+.text-xs {
+    font-size: 0.65rem;
     line-height: 0.75rem;
 }
+
 .text-sm {
-    font-size: 0.875rem;
-    /* line-height: 1.25rem; */
+    font-size: 0.75rem;
+    line-height: 0.85rem;
 }
 .text-base {
-    font-size: 1rem;
-    /* line-height: 1.5rem; */
+    font-size: 0.9rem;
+    line-height: 1.5rem;
 }
 .text-lg {
     font-size: 1.125rem;
