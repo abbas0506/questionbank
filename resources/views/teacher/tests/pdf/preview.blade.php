@@ -126,7 +126,7 @@ $roman = config('global.romans');
                                     @foreach($test->questions()->short()->get() as $testQuestion)
 
                                     <tr>
-                                        <td class="text-left font-bold">Q.{{$questionNo}} Answer the following questions.
+                                        <td class="text-left font-bold">Q.{{$questionNo}} Answer the following.
                                             @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
                                             All questions are compulsory
                                             @else
