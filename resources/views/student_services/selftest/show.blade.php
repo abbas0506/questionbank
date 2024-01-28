@@ -31,14 +31,16 @@ $sr=1;
     </div>
 
 </div>
-<div class="flex flex-col justify-center items-center bg-white pt-16 overflow-auto">
+<div class="flex flex-col justify-center items-center pt-16 overflow-auto">
 
     <div class="md:w-2/3 mx-auto flex flex-col gap-y-6 px-8">
 
         @foreach($questions as $question)
-        <div class="flex items-start gap-x-2">
-            <h2 class="w-16">Q.{{$sr++}}</h2>
-            <div>
+        <div class="flex items-start justify-start gap-x-2">
+            <div class="w-12 font-semibold">
+                Q.{{$sr++}}
+            </div>
+            <div class="flex-1">
                 <p class="font-semibold text-sm text-gray-800">{{$question->question}}</p>
                 <div id='ans' class="answer flex flex-col mt-2 text-gray-600">
                     <div class="flex space-x-3 items-center">
