@@ -37,8 +37,8 @@ $sr=1;
 
         @foreach($questions as $question)
         <div class="flex items-start justify-start gap-x-2">
-            <div class="w-12 font-semibold">
-                Q.{{$sr++}}
+            <div class="w-12">
+                <p class="font-semibold text-sm text-gray-800">Q.{{$sr++}}</p>
             </div>
             <div class="flex-1">
                 <p class="font-semibold text-sm text-gray-800">{{$question->question}}</p>
