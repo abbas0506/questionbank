@@ -39,7 +39,7 @@ $sr=1;
         <div class="flex items-start gap-x-2">
             <h2 class="w-16">Q.{{$sr++}}</h2>
             <div>
-                <h2>{{$question->question}}</h2>
+                <p class="font-semibold text-gray-800">{{$question->question}}</p>
                 <div id='ans' class="answer flex flex-col mt-2 text-gray-600">
                     <div class="flex space-x-3 items-center">
                         <input type="radio" class="option @if($question->answer=='a') correct @endif">

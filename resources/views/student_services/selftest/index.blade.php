@@ -21,7 +21,7 @@
     <div class="flex flex-col w-full h-full justify-center items-center">
         <div class="text-gray-900 text-3xl md:text-4xl text-center">Self Test</div>
         <h2 class="mt-4">Select your grade</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 mt-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
             @foreach($grades as $grade)
             <a href="{{route('student.services.selftest.subjects', $grade)}}" class="flex justify-center items-center btn-orange rounded-full h-16 w-16 ring-1 ring-offset-2">{{$grade->roman_name}}</a>
             @endforeach
