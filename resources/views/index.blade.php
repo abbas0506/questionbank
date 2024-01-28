@@ -29,7 +29,7 @@
 
 <!-- features section -->
 <section id='features' class="mt-24 px-4 md:px-24">
-    <h2 class="text-4xl text-center">We Provide</h2>
+    <h2 class="text-4xl text-center">Our Distinction</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
         <div class="feature-box hover:border-pink-300 hover:bg-pink-50">
             <div class="flex items-center justify-center bg-pink-100 rounded-full w-16 h-16">
@@ -88,7 +88,7 @@
                 <img src="{{url('images/sports/trophy.png')}}" alt="sat" class="">
             </div>
             <div class="flex flex-col flex-1">
-                <h2 class="text-xl">Our Distinction</h2>
+                <h2 class="text-xl">Achievements</h2>
                 <p class="leading-relaxed">
                     Thanks to Almighty Allah, for blessing us with the honour of wining All Punjab Qirat Competition and Division Level Hockey Tournament.
                 </p>

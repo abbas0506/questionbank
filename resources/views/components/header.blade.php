@@ -15,8 +15,9 @@
                 </li>
                 <li><a href="#" class="nav-item">About</a></li>
                 <li><a href="#" class="nav-item">Faculty</a></li>
-                <li><a href="#" class="nav-item">Services</a></li>
-                <li><a href="#" class="nav-item">Blogs</a></li>
+                <li><a href="#" class="nav-item">Alumni</a></li>
+                <li><a href="#" class="nav-item">Gallary</a></li>
+                <li><a href="{{url('student/services')}}" class="nav-item">Student Services</a></li>
                 <li><a href="#" class="nav-item">Contact Us</a></li>
                 <li><a href="{{url('login')}}" class="nav-item">Login</a></li>
             </ul>
