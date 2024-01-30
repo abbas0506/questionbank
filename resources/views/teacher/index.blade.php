@@ -61,7 +61,7 @@
             <div class="p-4 bg-white">
                 @if(Auth::user()->tests->count()>0)
                 <h2>Recent Tests </h2>
-                <div class="overflow-x w-full mt-3">
+                <div class="overflow-x-auto w-full mt-3">
                     <table class="table-fixed xs">
                         <thead>
                             <tr>

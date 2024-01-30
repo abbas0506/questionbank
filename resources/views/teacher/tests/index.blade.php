@@ -29,7 +29,7 @@
             <a href="{{route('teacher.tests.create')}}" class="btn-teal rounded-sm">New</a>
         </div>
         @php $sr=1; @endphp
-        <div class="overflow-x w-full mt-3">
+        <div class="overflow-x-auto w-full mt-3">
             <table class="table-fixed w-full">
                 <thead>
                     <tr>
