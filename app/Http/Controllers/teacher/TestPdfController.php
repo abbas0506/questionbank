@@ -93,7 +93,7 @@ class TestPdfController extends Controller
         $res = Http::post('https://app.gleedu.com/api/latex/', [
             'text' => $doc,
         ]);
-        return $res->json();
+        return $res;
     }
 
     /**
