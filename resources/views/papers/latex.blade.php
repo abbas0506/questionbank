@@ -4,6 +4,7 @@
 
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
+\usepackage{amsmath}
 \begin{document}
 
 \begin{center}
