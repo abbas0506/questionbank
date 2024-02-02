@@ -8,7 +8,7 @@
 \usepackage{amsmath}
 \usepackage{adjustbox}
 \usepackage{multicol}
-\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm,{{$orientation }}]{geometry}
 
 \begin{document}
 \begin{multicols}{2}
