@@ -7,6 +7,7 @@ use App\Models\Test;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class TestPdfController extends Controller
 {
@@ -52,48 +53,28 @@ class TestPdfController extends Controller
     public function show(string $id)
     {
         $test = Test::find($id);
-        $questions = "";
-        foreach ($test->questions as $question) {
-            if ($question->question_type == "mcq") {
-                foreach($question->mcqs()->get() as $q){
-                    foreach($q->parts as $part){
-                        $questions .= "\n\question {$part->question->question}";
-                        $questions .= "\n\begin{oneparchoices}";
-                        $questions .= "\n\choice {$part->question->mcq->option_a}";
-                        $questions .= "\n\choice {$part->question->mcq->option_b}";
-                        $questions .= "\n\choice {$part->question->mcq->option_c}";
-                        $questions .= "\n\choice {$part->question->mcq->option_d}";
-                        $questions .= "\n\end{oneparchoices}";
-                    }
-                }
-            } else {
-                $questions .= "\n\begin{oneparchoices}";
-            }
+        $data = view('papers.latex', compact('test'))->render();
+        // remove file if exist
+        // if (Storage::disk('local')->exists('test.tex')) {
+        //     Storage::disk('local')->delete('test.tex');
+        // }
+        // Storage::disk('local')->put('test.tex', $data);
+        // return $data;
+        try{
+            $res = Http::post('https://app.gleedu.com/api/latex/', [
+                'text' => $data
+            ]);
+            $data =  base64_decode($res->json()['data']);
+            $filename = 'test.pdf';
+            return response()->make($data, 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="'.$filename.'"'
+            ]);
+        } catch (\Exception $e) {
+            // Handle the exception (e.g., log the error)
+            // You can also retrieve more details about the error by examining $e
+            return $e->getMessage();
         }
-        $doc = "\documentclass{exam}
-        \begin{document}
-
-        \begin{center}
-        \fbox{\fbox{\parbox{5.5in}{\centering
-        Answer the questions in the spaces provided. If you run out of room
-        for an answer, continue on the back of the page.}}}
-        \end{center}
-        
-        \vspace{5mm}
-        \makebox[0.75\textwidth]{Name and section:\enspace\hrulefill}
-        
-        \vspace{5mm}
-        \makebox[0.75\textwidth]{Instructor’s name:\enspace\hrulefill}
-        
-        \begin{questions}
-        $questions
-        \end{questions}
-        \end{document}";
-
-        $res = Http::post('https://app.gleedu.com/api/latex/', [
-            'text' => $doc,
-        ]);
-        return $res;
     }
 
     /**
