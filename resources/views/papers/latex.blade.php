@@ -37,6 +37,7 @@ for an answer, continue on the back of the page.}}}
                     \end{oneparchoices}
             @endforeach
         @endforeach
+        \end{parts}
     @elseif ($tetQuestion->question_type == "short")
         \question
         \begin{parts}
@@ -46,6 +47,8 @@ for an answer, continue on the back of the page.}}}
                 {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
             @endforeach
         @endforeach
+        
+        \end{parts}
     @elseif ($tetQuestion->question_type == "long")
         \question
         \begin{parts}
@@ -55,6 +58,8 @@ for an answer, continue on the back of the page.}}}
                 {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
             @endforeach
         @endforeach
+        
+        \end{parts}
     @endif
 @endforeach
 \end{parts}
