@@ -53,7 +53,10 @@ class TestPdfController extends Controller
     public function show(string $testId, string $id)
     {
         $test = Test::findOrFail($testId);
-        $data = view('papers.latex', compact('test'))->render();
+        if($test->questions->count() == 0){
+            return redirect()->route('teacher.tests.show', $testId)->with('error', 'No questions found');
+        }
+        $data = view('papers.latex2', compact('test'))->render();
         if (Storage::disk('local')->exists('test.tex')) {
             Storage::disk('local')->delete('test.tex');
         }

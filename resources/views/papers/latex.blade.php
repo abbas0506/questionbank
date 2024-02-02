@@ -1,6 +1,7 @@
 \documentclass[a4paper]{exam}
 \renewcommand{\thepartno}{\arabic{partno}}
-\qformat{Question \thequestion \dotfill \thepoints}
+\qformat{\thequestiontitle \dotfill \thepoints}
+
 
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
@@ -20,15 +21,13 @@ for an answer, continue on the back of the page.}}}
 Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
 \vspace{2mm}
 \hrule
-{{-- \makebox[0.75\textwidth]{Name and section:\enspace\hrulefill} --}}
-
 \vspace{5mm}
-{{-- \makebox[0.75\textwidth]{Instructor’s name:\enspace\hrulefill} --}}
+
 
 \begin{questions}
 @foreach ($test->questions as $tetQuestion)
     @if ($tetQuestion->question_type == "mcq")
-        \question[{{$tetQuestion->mcqs()->count()}}]
+        \titledquestion{Encircle the correct option. Answer any 3 questions}[{{$tetQuestion->mcqs()->count()}}]
         \begin{parts}
         @foreach($tetQuestion->mcqs()->get() as $qeuestion)
             @foreach($qeuestion->parts as $part)
