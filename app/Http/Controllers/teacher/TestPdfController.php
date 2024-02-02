@@ -54,16 +54,19 @@ class TestPdfController extends Controller
     {
         $test = Test::find($id);
         $data = view('papers.latex', compact('test'))->render();
-        // remove file if exist
-        // if (Storage::disk('local')->exists('test.tex')) {
-        //     Storage::disk('local')->delete('test.tex');
-        // }
-        // Storage::disk('local')->put('test.tex', $data);
+        if (Storage::disk('local')->exists('test.tex')) {
+            Storage::disk('local')->delete('test.tex');
+        }
+        Storage::disk('local')->put('test.tex', $data);
         // return $data;
         try{
             $res = Http::post('https://app.gleedu.com/api/latex/', [
                 'text' => $data
             ]);
+            $data =  $res->json();
+            if(!isset($data['data'])){
+                return "Error: ".$data;
+            }
             $data =  base64_decode($res->json()['data']);
             $filename = 'test.pdf';
             return response()->make($data, 200, [
