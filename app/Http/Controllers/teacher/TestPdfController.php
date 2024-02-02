@@ -50,9 +50,9 @@ class TestPdfController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $testId, string $id)
     {
-        $test = Test::find($id);
+        $test = Test::findOrFail($testId);
         $data = view('papers.latex', compact('test'))->render();
         if (Storage::disk('local')->exists('test.tex')) {
             Storage::disk('local')->delete('test.tex');

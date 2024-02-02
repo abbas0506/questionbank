@@ -19,24 +19,42 @@ for an answer, continue on the back of the page.}}}
 \makebox[0.75\textwidth]{Instructor’s name:\enspace\hrulefill}
 
 \begin{questions}
-\question
-\begin{parts}
-@foreach ($test->questions as $question)
-@if ($question->question_type == "mcq")
-@foreach($question->mcqs()->get() as $q)
-@foreach($q->parts as $part)
-    \part
-    {{-- {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\ --}}
-    {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
-        \begin{oneparchoices}
-            \choice {!! str_replace("&","\&",$part->question->mcq->option_a) !!}
-            \choice {!!str_replace("&","\&",$part->question->mcq->option_b)!!}
-            \choice {!!str_replace("&","\&",$part->question->mcq->option_c)!!}
-            \choice {!!str_replace("&","\&",$part->question->mcq->option_d)!!}
-        \end{oneparchoices}
-@endforeach
-@endforeach
-@endif
+@foreach ($test->questions as $tetQuestion)
+    @if ($tetQuestion->question_type == "mcq")
+        \question
+        \begin{parts}
+        @foreach($tetQuestion->mcqs()->get() as $qeuestion)
+            @foreach($qeuestion->parts as $part)
+                \part
+                {{-- {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\ --}}
+                {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
+                    \begin{oneparchoices}
+                        \choice {!! str_replace("&","\&",$part->question->mcq->option_a) !!}
+                        \choice {!!str_replace("&","\&",$part->question->mcq->option_b)!!}
+                        \choice {!!str_replace("&","\&",$part->question->mcq->option_c)!!}
+                        \choice {!!str_replace("&","\&",$part->question->mcq->option_d)!!}
+                    \end{oneparchoices}
+            @endforeach
+        @endforeach
+    @elseif ($tetQuestion->question_type == "short")
+        \question
+        \begin{parts}
+        @foreach($tetQuestion->short()->get() as $qeuestion)
+            @foreach($qeuestion->parts as $part)
+                \part
+                {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
+            @endforeach
+        @endforeach
+    @elseif ($tetQuestion->question_type == "long")
+        \question
+        \begin{parts}
+        @foreach($tetQuestion->long()->get() as $qeuestion)
+            @foreach($qeuestion->parts as $part)
+                \part
+                {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
+            @endforeach
+        @endforeach
+    @endif
 @endforeach
 \end{parts}
 
