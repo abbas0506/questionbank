@@ -20,7 +20,7 @@ for an answer, continue on the back of the page.}}}
 \makebox[0.75\textwidth]{Instructor’s name:\enspace\hrulefill}
 
 \begin{questions}
-@foreach ($test->questions() as $tetQuestion)
+@foreach ($test->questions as $tetQuestion)
     @if ($tetQuestion->question_type == "mcq")
         \question
         \begin{parts}
@@ -58,6 +58,7 @@ for an answer, continue on the back of the page.}}}
                 {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
             @endforeach
         @endforeach
+        
         \end{parts}
     @endif
 @endforeach
