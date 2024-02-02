@@ -5,6 +5,9 @@
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage{amsmath}
+\usepackage{adjustbox}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+
 \begin{document}
 
 \begin{center}
@@ -12,22 +15,24 @@
 Answer the questions in the spaces provided. If you run out of room
 for an answer, continue on the back of the page.}}}
 \end{center}
+\hrule
+\vspace{2mm}
+Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
+\vspace{2mm}
+\hrule
+{{-- \makebox[0.75\textwidth]{Name and section:\enspace\hrulefill} --}}
 
 \vspace{5mm}
-\makebox[0.75\textwidth]{Name and section:\enspace\hrulefill}
-
-\vspace{5mm}
-\makebox[0.75\textwidth]{Instructor’s name:\enspace\hrulefill}
+{{-- \makebox[0.75\textwidth]{Instructor’s name:\enspace\hrulefill} --}}
 
 \begin{questions}
 @foreach ($test->questions as $tetQuestion)
     @if ($tetQuestion->question_type == "mcq")
-        \question
+        \question[{{$tetQuestion->mcqs()->count()}}]
         \begin{parts}
         @foreach($tetQuestion->mcqs()->get() as $qeuestion)
             @foreach($qeuestion->parts as $part)
                 \part
-                {{-- {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\ --}}
                 {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
                     \begin{oneparchoices}
                         \choice {!! str_replace("&","\&",$part->question->mcq->option_a) !!}
