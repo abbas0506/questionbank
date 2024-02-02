@@ -82,7 +82,10 @@
                                     <label>{{$test->subject->grade->roman_name}}-{{$test->subject->name}}</label>
                                 </td>
                                 <td>{{$test->test_date->format('d/m/Y')}}</td>
-                                <td><a href="{{route('teacher.tests.show',$test)}}"><i class="bi-printer"></i></a></td>
+                                <td>
+                                    <a href="{{route('teacher.tests.show',$test)}}"><i class="bi-printer"></i></a>
+                                    <a href="{{route('teacher.tests.pdf.show',[$test,1])}}"><i class="bi-p-square-fill"></i></a>
+                                </td>
                                 <td><a href="{{route('teacher.tests.anskey.show',$test)}}"><i class="bi-file-pdf text-red-400 hover:text-red-600"></i></a></td>
                             </tr>
                             @endforeach
