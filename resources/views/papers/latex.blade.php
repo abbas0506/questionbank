@@ -62,7 +62,5 @@ for an answer, continue on the back of the page.}}}
         \end{parts}
     @endif
 @endforeach
-\end{parts}
-
 \end{questions}
 \end{document}
