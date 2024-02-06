@@ -30,10 +30,8 @@ class TestController extends Controller
     public function create()
     {
         //
-        $annexedGrade = '';
-        $annexedSubject = '';
         $grades = Grade::where('id', '>', 8)->get();
-        return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
+        return view('teacher.tests.enlist.grades', compact('grades'));
     }
 
     /**
@@ -128,17 +126,16 @@ class TestController extends Controller
 
     public function annexGrade($id)
     {
-        $annexedGrade = Grade::find($id);
-        $annexedSubject = '';
+        $selectedGrade = Grade::find($id);
         $grades = Grade::where('id', '>', 8)->get();
-        return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
+        return view('teacher.tests.enlist.subjects', compact('grades', 'selectedGrade'));
     }
 
     public function annexSubject($id)
     {
-        $annexedSubject = Subject::find($id);
-        $annexedGrade = $annexedSubject->grade;
+        $selectedSubject = Subject::find($id);
+        $selectedGrade = $selectedSubject->grade;
         $grades = Grade::where('id', '>', 8)->get();
-        return view('teacher.tests.config', compact('grades', 'annexedGrade', 'annexedSubject'));
+        return view('teacher.tests.enlist.chapters', compact('selectedGrade', 'selectedSubject'));
     }
 }

@@ -156,7 +156,8 @@
         <!-- bottom options to add question: short, long, MCQ -->
         <div class="divider my-3"></div>
         <div class="flex flex-col justify-center items-center gap-4">
-            <i class="bi-plus-circle text-2xl text-slate-400"></i>
+            <!-- <i class="bi-plus-circle text-2xl text-slate-400"></i> -->
+            <div class="text-slate-600 text-sm">Add Question</div>
             <div class="flex space-x-2">
                 <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="btn-teal rounded-full px-4 py-1 text-xs">MCQs</a>
                 <a href="{{route('teacher.tests.questions.add', [$test, 'short'])}}" class="btn-orange rounded-full px-4 py-1 text-xs">Short</a>

@@ -72,14 +72,14 @@
                                 <a href="{{route('teacher.chapters.short.edit', [$chapter, $question])}}">
                                     <i class="bi bi-pencil-square text-green-600"></i>
                                 </a>
-                                <span class="text-slate-400">|</span>
+                                {{-- <span class="text-slate-400">|</span>
                                 <form action="{{route('teacher.chapters.short.destroy',[$chapter, $question])}}" method="POST" onsubmit="return confirmDel(event)">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-transparent p-0 border-0">
                                         <i class="bi bi-trash3 text-red-600"></i>
                                     </button>
-                                </form>
+                                </form> --}}
                             </div>
 
                         </td>
