@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clas;
+use App\Models\Grade;
+use App\Models\Question;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -17,6 +20,8 @@ class AdminController extends Controller
         //
         $teachers = Teacher::all();
         $students = Student::all();
-        return view('admin.index', compact('students', 'teachers'));
+        $grades = Grade::where('id', '>', 8)->get();
+
+        return view('admin.index', compact('students', 'teachers', 'grades'));
     }
 }

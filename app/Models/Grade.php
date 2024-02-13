@@ -26,4 +26,8 @@ class Grade extends Model
     {
         return $this->hasManyThrough(Student::class, Clas::class);
     }
+    public function questions()
+    {
+        return Question::whereRelation('chapter.subject.grade', 'id', $this->id);
+    }
 }

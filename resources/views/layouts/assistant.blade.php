@@ -15,14 +15,15 @@
 </div>
 
 <script type="module">
-    $('#toggle-current-user-dropdown').click(function() {
-        $("#current-user-dropdown").toggle();
-    });
     $('#menu').click(function() {
-        $("#sidebar").toggle();
+        $("aside").toggleClass('shown');
     });
-    $('#cboSemesterId').change(function() {
-        $('#switchSemesterForm').submit();
-    });
+
+    $('.responsive-body').click(function(event) {
+        var box = $('#sidebar');
+        if (!box.is(event.target) && box.has(event.target).length === 0) {
+            box.removeClass('shown');
+        }
+    })
 </script>
 @endsection

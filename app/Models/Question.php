@@ -49,4 +49,8 @@ class Question extends Model
     {
         return $query->where('question_type', 'long');
     }
+    public function scopeToday($query)
+    {
+        return $query->whereDate('created_at', today());
+    }
 }

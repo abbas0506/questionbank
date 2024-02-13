@@ -58,16 +58,56 @@
         <!-- middle panel  -->
         <div class="md:col-span-2">
             <!-- update news  -->
-            <div class="p-4 bg-red-50">
-                <h2>Important Features of ES V5.0 </h2>
-                <ul class="list-disc pl-4 text-sm">
-                    <li><u>Responsive</u> - app is easy to use on small screens as well </li>
-                    <li><u>Single login</u> - for all of your authorized departments.</li>
-                    <li><u>Dashboard</u> - provides you quick access to your profile info, passowrd change option and other needful pages like config for once, course allcation, printable etc. </li>
-                    <li><u>Page navigation</u> - links help you to navigate across pages. (highlighted in blue color)</li>
-                    <li><u>Award lists</u> - are available in .xlsx and .pdf formats. Pdf version consists of 30 students per page. </li>
-                    <li><u>Upcoming</u> - soon you will be able to see results submission progress of all the teachers of your department, course profile (by whom the course is being taught) and teacher profile (list of allocated courses and workload in credit hours)</li>
-                </ul>
+            <div class="p-4 bg-white">
+                <h2>Most Recent</h2>
+                <div class="divider my-3 border-slate-200"></div>
+                <div class="grid grid-cols-4">
+                    @foreach($grades as $grade)
+                    <div>
+                        <h2>{{$grade->questions()->today()->count()}}</h2>
+                        <p>{{$grade->roman_name}}</p>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="divider my-3 border-slate-200"></div>
+                <div class="overflow-x-auto">
+                    <table class="table-fixed w-full">
+                        <thead>
+                            <tr class="">
+                                <th class="w-10">Sr</th>
+                                <th class="w-24">Subject</th>
+                                <th class='w-60'>Question</th>
+                                <th class='w-16'>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $sr=1;
+                            @endphp
+                            @foreach($grades as $grade)
+                            @foreach($grade->questions()->today()->get() as $question) <tr class="tr text-sm">
+                                <td>{{$sr++}}</td>
+                                <td class="text-left">
+                                    {{$question->chapter->subject->grade->roman_name}}
+                                    <br>
+                                    {{$question->chapter->subject->name}}
+                                </td>
+                                <td class="text-left">
+                                    <span class="font-semibold text-teal-700">{{$question->question_type}}</span>
+                                    <br>
+                                    {{$question->question}}
+                                </td>
+                                <td>
+                                    <a href=""><i class="bx bx-pencil"></i></a>
+                                </td>
+                            </tr>
+
+                            @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
 
         </div>
