@@ -18,8 +18,8 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         <a href="{{url('students')}}" class="pallet-box">
             <div class="flex-1">
-                <div class="title">Students</div>
-                <div class="h2">{{$students->count()}}</div>
+                <div class="title">Questions</div>
+                <div class="h2">{{App\Models\Question::all()->count()}}</div>
             </div>
             <div class="ico bg-green-100">
                 <i class="bi bi-person-circle text-green-600"></i>
