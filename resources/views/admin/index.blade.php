@@ -63,14 +63,14 @@
                 <div class="divider my-3 border-slate-200"></div>
                 <div class="grid grid-cols-4">
                     @foreach($grades as $grade)
-                    <div>
+                    <div class="text-center">
                         <h2>{{$grade->questions()->today()->count()}}</h2>
-                        <p>{{$grade->roman_name}}</p>
+                        <p class="text-sm text-slate-600">{{$grade->roman_name}}</p>
                     </div>
                     @endforeach
                 </div>
-                <div class="divider my-3 border-slate-200"></div>
-                <div class="overflow-x-auto">
+                <!-- <div class="divider my-3 border-slate-200"></div> -->
+                <div class="overflow-x-auto mt-4">
                     <table class="table-fixed w-full">
                         <thead>
                             <tr class="">
