@@ -34,9 +34,10 @@
             <form action="{{route('teacher.subjects.chapters.update',[$subject, $chapter])}}" method='post' class="w-full mt-4" onsubmit="return validate(event)">
                 @csrf
                 @method('PATCH')
-                <div class="flex flex-row items-center space-x-2">
+                <div class="flex flex-col">
                     <label class="">Ch #</label>
-                    <h2>{{$chapter->chapter_no}}</h2>
+                    <!-- <h2>{{$chapter->chapter_no}}</h2> -->
+                    <input type="number" name='chapter_no' class="custom-input py-2 w-24" placeholder="Chapter #" value="{{$chapter->chapter_no}}">
                 </div>
                 <div class="flex flex-col mt-1">
                     <label class="">Title</label>
