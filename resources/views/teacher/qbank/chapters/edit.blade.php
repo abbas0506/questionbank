@@ -39,7 +39,7 @@
                     <!-- <h2>{{$chapter->chapter_no}}</h2> -->
                     <input type="number" name='chapter_no' class="custom-input py-2 w-24" placeholder="Chapter #" value="{{$chapter->chapter_no}}">
                 </div>
-                <div class="flex flex-col mt-1">
+                <div class="flex flex-col mt-3">
                     <label class="">Title</label>
                     <input type="text" name='name' class="custom-input py-2" placeholder="Chapter title" value="{{$chapter->name}}">
                 </div>
