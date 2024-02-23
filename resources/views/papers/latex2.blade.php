@@ -9,7 +9,13 @@
 \usepackage{adjustbox}
 \usepackage{multicol}
 \usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm,{{$orientation }}]{geometry}
+\usepackage{polyglossia}
+\usepackage{fontspec}
 
+\setmainlanguage{english}
+\setotherlanguage{urdu}
+{{-- \setmainfont{JameelNooriNastaleeq.ttf}[Path=D:/] --}}
+\setmainfont{Times New Roman}
 \begin{document}
 \begin{multicols}{2}
 
@@ -34,12 +40,12 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     \begin{parts}
     @foreach($testQuestion->parts as $part)
         \part
-        {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
+        {!! Helper::parseTex($part->question->question) !!}\\
             \begin{oneparchoices}
-                \choice {!! str_replace("&","\&",$part->question->mcq->option_a) !!}
-                \choice {!!str_replace("&","\&",$part->question->mcq->option_b)!!}
-                \choice {!!str_replace("&","\&",$part->question->mcq->option_c)!!}
-                \choice {!!str_replace("&","\&",$part->question->mcq->option_d)!!}
+                \choice {!! Helper::parseTex($part->question->mcq->option_a) !!}
+                \choice {!! Helper::parseTex($part->question->mcq->option_b) !!}
+                \choice {!! Helper::parseTex($part->question->mcq->option_c) !!}
+                \choice {!! Helper::parseTex($part->question->mcq->option_d) !!}
             \end{oneparchoices}
     @endforeach
     \end{parts}
@@ -49,7 +55,7 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     \begin{parts}
     @foreach($testQuestion->parts as $part)
         \part
-        {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
+        {!! Helper::parseTex($part->question->question)!!}\\
     @endforeach
     \end{parts}
 @endforeach
@@ -58,7 +64,7 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     \begin{parts}
     @foreach($testQuestion->parts as $part)
         \part
-        {!! str_replace("&","\&",str_replace("_", "\_", $part->question->question))!!}\\
+        {!! Helper::parseTex($part->question->question)!!}\\
     @endforeach
     \end{parts}
 @endforeach

@@ -65,7 +65,8 @@ class TestPdfController extends Controller
         // return $data;
         try{
             $res = Http::post('https://app.gleedu.com/api/latex/', [
-                'text' => $data
+                'text' => $data,
+                'model' =>'bibtex',
             ]);
             $data =  $res->json();
             if(!isset($data['data'])){
