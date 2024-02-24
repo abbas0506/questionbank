@@ -18,6 +18,16 @@
 {{-- \begin{multicols}{{!!$columns!!}}
 @for($i = 1; $i <= $columns ; $i++) --}}
 
+
+\begin{center}
+\large{\uppercase{Superior Group Of College, Depalpur}}\\
+\small{Naveed Kot, Okara Road, Depalpur}\\
+\small{0444-4540355}
+\end{center}
+
+Subject :\textbf{ Biology II} \hfill Roll \# : \_\_\_\_\_\_\_\_\_ \hfill Name: \_\_\_\_\_\_\_\_\_\_\_
+\vspace{2mm}
+
 \hrule
 \vspace{2mm}
 Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
