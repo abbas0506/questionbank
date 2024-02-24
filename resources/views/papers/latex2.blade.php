@@ -1,4 +1,4 @@
-\documentclass[a4paper,9pt]{exam}
+\documentclass[a4paper]{exam}
 \renewcommand{\thepartno}{\arabic{partno}}
 \qformat{\thequestiontitle \dotfill \thepoints}
 \renewcommand\partshook{\hspace{2em}}
@@ -11,11 +11,10 @@
 \usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm,{{$orientation }}]{geometry}
 \usepackage{polyglossia}
 \usepackage{fontspec}
-
+\usepackage{bidi}
 \setmainlanguage{english}
 \setotherlanguage{urdu}
-{{-- \setmainfont{JameelNooriNastaleeq.ttf}[Path=D:/] --}}
-\setmainfont{Times New Roman}
+\setmainfont{Jameel Noori Nastaleeq.ttf}[Path=/var/www/suoni/public/latex/]
 \begin{document}
 \begin{multicols}{2}
 

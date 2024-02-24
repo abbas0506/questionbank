@@ -70,7 +70,7 @@ class TestPdfController extends Controller
             ]);
             $data =  $res->json();
             if(!isset($data['data'])){
-                return "Error: ".$data;
+                return "Error: ".$res->body();
             }
             $data =  base64_decode($res->json()['data']);
             $filename = 'test.pdf';
