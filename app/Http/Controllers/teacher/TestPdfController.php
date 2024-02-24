@@ -56,8 +56,10 @@ class TestPdfController extends Controller
         if($test->questions->count() == 0){
             return redirect()->route('teacher.tests.show', $testId)->with('error', 'No questions found');
         }
-        $orientation = 'landscape';
-        $data = view('papers.latex2', compact('test', 'orientation'))->render();
+        $orientation = 'portrait';
+        $pageSize = 'legalpaper'; // 'a4paper';
+        $columns = 2;
+        $data = view('papers.latex2', compact('test', 'orientation', 'pageSize','columns'))->render();
         if (Storage::disk('local')->exists('test.tex')) {
             Storage::disk('local')->delete('test.tex');
         }

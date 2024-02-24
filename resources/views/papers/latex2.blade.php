@@ -1,14 +1,13 @@
-\documentclass[a4paper]{exam}
+\documentclass[8pt,a4]{exam}
 \renewcommand{\thepartno}{\arabic{partno}}
 \qformat{\thequestiontitle \dotfill \thepoints}
 \renewcommand\partshook{\hspace{2em}}
-
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage{amsmath}
 \usepackage{adjustbox}
 \usepackage{multicol}
-\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm,{{$orientation }}]{geometry}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm,{{$orientation }},{{$pageSize}}]{geometry}
 \usepackage{polyglossia}
 \usepackage{fontspec}
 \usepackage{bidi}
@@ -16,19 +15,19 @@
 \setotherlanguage{urdu}
 \setmainfont{Jameel Noori Nastaleeq.ttf}[Path=/var/www/suoni/public/latex/]
 \begin{document}
-\begin{multicols}{2}
-\begin{questions}
-@for($i = 1; $i <= 2 ; $i++)
- 
-{{-- \hrule
+{{-- \begin{multicols}{{!!$columns!!}}
+@for($i = 1; $i <= $columns ; $i++) --}}
+
+\hrule
 \vspace{2mm}
 Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
 \vspace{2mm}
 \hrule
-\vspace{5mm} --}}
+\vspace{1mm}
+\begin{questions}
 
 @foreach($test->questions()->mcqs()->get() as $testQuestion)
-    \titledquestion{Encircle the correct option}[{{$testQuestion->mcqs()->count()}}]
+    \titledquestion{Encircle the correct option}[{{$testQuestion->parts->count()}}]
     @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
         All questions are compulsory
     @else
@@ -39,12 +38,12 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     
         @if(Helper::hasUrdu($part->question->question)) \begin{RTL} @endif
         \part
-        {!! Helper::parseTex($part->question->question) !!}\\
+        {!! Helper::parseTex($part->question->question, true) !!}\\
             \begin{oneparchoices}
-                \choice {!! Helper::parseTex($part->question->mcq->option_a) !!}
-                \choice {!! Helper::parseTex($part->question->mcq->option_b) !!}
-                \choice {!! Helper::parseTex($part->question->mcq->option_c) !!}
-                \choice {!! Helper::parseTex($part->question->mcq->option_d) !!}
+                \choice {!! Helper::parseAnswer($part->question->mcq->option_a) !!}
+                \choice {!! Helper::parseAnswer($part->question->mcq->option_b) !!}
+                \choice {!! Helper::parseAnswer($part->question->mcq->option_c) !!}
+                \choice {!! Helper::parseAnswer($part->question->mcq->option_d,true) !!}
             \end{oneparchoices}
         @if(Helper::hasUrdu($part->question->question)) \end{RTL} @endif
     @endforeach
@@ -56,7 +55,7 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     @foreach($testQuestion->parts as $part)
     @if(Helper::hasUrdu($part->question->question)) \begin{RTL} @endif
         \part
-        {!! Helper::parseTex($part->question->question)!!}\\
+        {!! Helper::parseTex($part->question->question)!!}
     @if(Helper::hasUrdu($part->question->question)) \end{RTL} @endif
     @endforeach
     \end{parts}
@@ -67,14 +66,15 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     @foreach($testQuestion->parts as $part)
         @if(Helper::hasUrdu($part->question->question)) \begin{RTL} @endif
         \part
-        {!! Helper::parseTex($part->question->question)!!}\\
+        {!! Helper::parseTex($part->question->question)!!}
         @if(Helper::hasUrdu($part->question->question)) \end{RTL} @endif
     @endforeach
     \end{parts}
 @endforeach
-\columnbreak
-
-@endfor
+{{-- @if($i < $columns) 
+    \columnbreak
+@endif --}}
 \end{questions}
-\end{multicols}
+{{-- @endfor
+\end{multicols} --}}
 \end{document}
