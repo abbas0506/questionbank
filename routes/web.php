@@ -78,13 +78,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return Helper::parseTex('This is & what the name of & if the creators \(\begin{bmatrix}
-    0 &  -7\\
-     3 &  2d\\
-    \end{bmatrix}=\begin{bmatrix}
-     a+c& a+2b \\
-    c-1 & 4d-6 \\
-    \end{bmatrix}\)');
     if (Auth::check()) {
         return redirect(session('role'));
     } else {

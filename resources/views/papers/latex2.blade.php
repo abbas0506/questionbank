@@ -17,8 +17,6 @@
 \setmainfont{Jameel Noori Nastaleeq.ttf}[Path=/var/www/suoni/public/latex/]
 \begin{document}
 \begin{multicols}{2}
-
-
 \begin{questions}
 @for($i = 1; $i <= 2 ; $i++)
  
@@ -38,6 +36,8 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     @endif
     \begin{parts}
     @foreach($testQuestion->parts as $part)
+    
+        @if(Helper::hasUrdu($part->question->question)) \begin{RTL} @endif
         \part
         {!! Helper::parseTex($part->question->question) !!}\\
             \begin{oneparchoices}
@@ -46,6 +46,7 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
                 \choice {!! Helper::parseTex($part->question->mcq->option_c) !!}
                 \choice {!! Helper::parseTex($part->question->mcq->option_d) !!}
             \end{oneparchoices}
+        @if(Helper::hasUrdu($part->question->question)) \end{RTL} @endif
     @endforeach
     \end{parts}
 @endforeach
@@ -53,8 +54,10 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
     \titledquestion{Q.2 Answer the following. (any 4 questions) }[8]
     \begin{parts}
     @foreach($testQuestion->parts as $part)
+    @if(Helper::hasUrdu($part->question->question)) \begin{RTL} @endif
         \part
         {!! Helper::parseTex($part->question->question)!!}\\
+    @if(Helper::hasUrdu($part->question->question)) \end{RTL} @endif
     @endforeach
     \end{parts}
 @endforeach
@@ -62,8 +65,10 @@ Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}}
 \titledquestion{Q.3 Answer the following. (any 2 questions) }[10]
     \begin{parts}
     @foreach($testQuestion->parts as $part)
+        @if(Helper::hasUrdu($part->question->question)) \begin{RTL} @endif
         \part
         {!! Helper::parseTex($part->question->question)!!}\\
+        @if(Helper::hasUrdu($part->question->question)) \end{RTL} @endif
     @endforeach
     \end{parts}
 @endforeach
