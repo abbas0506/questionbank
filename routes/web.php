@@ -78,15 +78,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    $text = "abc_def_123_ghi _____ \(\frac{[2NO]}{N_2]{N_2][O_2]{N_2]}\)";
-    $result = preg_replace_callback('/\\\\\(.*?\\\\\)|_/', function ($matches) {
-        if (strpos($matches[0], '\\(') === 0) {
-            return $matches[0];
-        } else {
-            return '\\_';
-        }
-    }, $text);
-    return $result;
     if (Auth::check()) {
         return redirect(session('role'));
     } else {
