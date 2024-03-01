@@ -10,6 +10,9 @@
         <h1 class="text-lg md:text-4xl text-indigo-900">eSchool</h1>
         <p class="text-xs text-center">Govt Higher Secondary School Chak Bedi</p>
         <p class="text-xs">Distt. Pakpattan</p>
+
+        <!-- temp -->
+
         <div class="w-full mt-4">
             <!-- page message -->
             @if($errors->any())

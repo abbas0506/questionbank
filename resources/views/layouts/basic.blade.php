@@ -12,7 +12,7 @@
     <!-- Styles -->
     @vite(['resources/js/app.js','resources/css/app.css'])
 
-    <script src="{{ asset('/fonts/bootstrap-icons/bootstrap-icons.min.css') }}"></script>
+    <!-- <script src="{{ asset('/fonts/bootstrap-icons/bootstrap-icons.min.css') }}"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
@@ -47,6 +47,7 @@
     <script type="module" src="{{asset('js/collapsible.js')}}"></script>
     <script type="module" src="{{asset('js/swiper.js')}}"></script>
     <script type="module" src="{{asset('js/testimonial.js')}}"></script>
+    <script type="module" src="{{asset('js/flowbite.min.js')}}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
