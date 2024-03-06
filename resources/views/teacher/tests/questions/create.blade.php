@@ -38,7 +38,7 @@
             <div class="flex items-baseline justify-between space-x-4">
                 <label for="">Ch #{{$chapter->chapter_no}}. &nbsp {{$chapter->name}}</label>
                 <input type="hidden" name='chapter_id_array[]' value="{{$chapter->id}}">
-                <input type="text" name='num_of_parts_array[]' class="num-of-parts custom-input w-16 h-8 text-center px-0" value="0">
+                <input type="text" name='num_of_parts_array[]' autocomplete="off" class="num-of-parts custom-input w-16 h-8 text-center px-0" value="0" oninput="syncNumOfParts()">
             </div>
             @endforeach
             <div class="divider my-3"></div>
@@ -62,30 +62,52 @@
 @section('script')
 <script type="module">
     $(document).ready(function() {
-        $('.num-of-parts').change(function() {
+        $('.num-of-parts').keyup(function() {
             var sumOfParts = 0;
-            var currentInput = $(this).val();
+            // var currentInput = $(this).val();
             // remove spaces from around
-            currentInput = $.trim(currentInput);
-            if ($.isNumeric(currentInput)) {
-                $('.num-of-parts').each(function() {
-                    // update fields
-                    sumOfParts += parseInt($(this).val());
+            // currentInput = $.trim(currentInput);
+            $('.num-of-parts').each(function() {
+
+                // alert($(this).val())
+                // cellvalue = $.trim(this.val());
+                if ($(this).val() == '') {
+                    sumOfParts += 0;
                     $('#total_parts').html(sumOfParts);
-                    $('#necessary_parts').val(Math.ceil(2 / 3 * sumOfParts));
-                });
-                //clear previous error if any
-                if ($(this).hasClass('border-red-500'))
-                    $(this).removeClass('border-red-500');
-            } else {
-                if (currentInput == '')
-                    $(this).val(0)
-                else {
-                    $(this).addClass('border-red-500');
-                    // $('#necessary_parts').val(0);
-                    $('#total_parts').html('');
+                    $('#necessary_parts').val(sumOfParts);
+                } else {
+                    if ($.isNumeric($(this).val())) {
+                        sumOfParts += parseInt($(this).val());
+                        $('#total_parts').html(sumOfParts);
+                        $('#necessary_parts').val(sumOfParts);
+                    } else {
+                        $(this).addClass('border-red-500');
+                        $('#total_parts').html('');
+                        $('#necessary_parts').val('');
+
+                    }
                 }
-            }
+
+                // if ($.isNumeric(currentInput)) {
+                //     $('.num-of-parts').each(function() {
+                //         // update fields
+                //         sumOfParts += parseInt($(this).val());
+                //         $('#total_parts').html(sumOfParts);
+                //         $('#necessary_parts').val(Math.ceil(2 / 3 * sumOfParts));
+                //     });
+                //     //clear previous error if any
+                //     if ($(this).hasClass('border-red-500'))
+                //         $(this).removeClass('border-red-500');
+                // } else {
+                //     // if (currentInput == '')
+                //     // $(this).val(0)
+                //     if (currentInput != '') {
+                //         $(this).addClass('border-red-500');
+                //         // $('#necessary_parts').val(0);
+                //         $('#total_parts').html('');
+                //     }
+                // }
+            });
         });
 
         $('form').submit(function(event) {
@@ -116,6 +138,10 @@
             }
             return validated;
         });
+
+        // $('.numOfParts').change(function() {
+
+        // })
     });
 </script>
 @endsection

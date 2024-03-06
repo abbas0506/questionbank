@@ -50,7 +50,7 @@
                 <div class="flex flex-col gap-2">
                     @foreach($annexedSubject->chapters->sortBy('chapter_no') as $chapter)
                     <div class="flex items-center space-x-2">
-                        <input type="checkbox" name='chapter_no_array[]' class="custom-input w-6 h-6" value="{{ $chapter->id }}">
+                        <input type="checkbox" name='chapter_no_array[]' class="custom-input w-4 h-4" value="{{ $chapter->id }}">
                         <label>{{$chapter->chapter_no}}. {{$chapter->name}}</label>
                     </div>
                     @endforeach

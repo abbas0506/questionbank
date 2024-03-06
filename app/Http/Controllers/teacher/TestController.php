@@ -41,13 +41,15 @@ class TestController extends Controller
     {
         //
         $request->validate([
-            'title' => 'required',
-            'test_date' => 'required',
+            // 'title' => 'required',
+            // 'test_date' => 'required',
             'subject_id' => 'required|numeric',
             'chapter_no_array' => 'required',
         ]);
 
         $request->merge([
+            'title' => 'Test Title',
+            'test_date' => date('Y/m/d'),
             'exercise_only' => ($request->exercise_only) ? 1 : 0,
             'frequent_only' => ($request->frequent_only) ? 1 : 0,
             'user_id' => Auth::user()->id,
