@@ -16,7 +16,6 @@
             <x-message></x-message>
             @endif
 
-
             <div class="border border-dotted border-slate-400 p-4">
                 <h1 class="text-slate-800">Welcome {{Auth::user()->userable->name}}</h1>
                 <p class="text-slate-600 text-sm">Dear user! please select one of the following roles and click on proceed button. You may also cancel and go back to home page as well</p>
@@ -29,7 +28,6 @@
                     @endforeach
                 </select>
                 <div class="flex items-center space-x-4 mt-3">
-                    <!-- <a href="{{url('signout')}}" class="flex flex-1 btn-orange justify-center py-2">Singout</a> -->
                     <button type="submit" class="flex flex-1 btn-indigo justify-center py-2">Proceed</button>
                 </div>
 
