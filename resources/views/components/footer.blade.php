@@ -22,7 +22,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 bg-slate-800 gap-6 md:gap-x-20 p-4 md:px-24 mt-12">
         <div>
             <h3 class="text-base text-orange-300">GHSSCB</h3>
-            <p class="text-sm text-slate-400">We are a model higher secondary school(government sector) in district Pakpattan, imparting education upto intermediate level</p>
+            <p class="text-sm text-slate-400">We are a public sector higher secondary school in district Pakpattan, imparting education upto intermediate level</p>
         </div>
         <div>
             <h3 class="text-base text-orange-300">Quick Links</h3>

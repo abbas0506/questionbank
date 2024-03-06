@@ -27,14 +27,6 @@
     </div>
 </div>
 
-<div class="flex flex-col md:flex-row justify-center md:items-center w-full mt-12 space-y-3 md:space-x-4">
-    <img src="{{url('images/mini/email-5.png')}}" alt="" class="w-16 -rotate-6">
-    <input type="text" placeholder="Enter your mailing address" class="w-full md:w-3/4 px-3 custom-input">
-    <button class="btn-teal py-2 px-4">Submit</button>
-
-</div>
-
-
 </section>
 <!-- footer -->
 <x-footer></x-footer>

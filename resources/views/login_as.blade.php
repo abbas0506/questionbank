@@ -1,11 +1,14 @@
 @extends('layouts.basic')
 
 @section('body')
-<div class="flex flex-col items-center justify-center h-screen bg-gray-800/50 px-5">
-    <div class="flex flex-col items-center w-full p-8 md:w-1/3 bg-white relative">
+<div class="flex flex-col items-center justify-center h-screen bg-white px-5">
+    <div class="flex flex-col justify-between items-center w-full  md:w-1/3 h-[90vh] p-8 border rounded-lg bg-slate-200 relative">
+        <!-- authenticated -->
+        <div class="text-center">
+            <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>
+        </div>
 
-        <a href="{{url('signout')}}" class="absolute top-2 right-2"><i class="bi-x text-sm"></i></a>
-        <div class="w-full mt-4">
+        <div class="w-full">
             <!-- page message -->
             @if($errors->any())
             <x-message :errors='$errors'></x-message>
@@ -13,12 +16,11 @@
             <x-message></x-message>
             @endif
 
-            <!-- authenticated -->
-            <div class="text-center">
-                <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>
-            </div>
-            <h1 class="text-center text-slate-800 mt-4">Welcome {{Auth::user()->userable->name}}</h1>
 
+            <div class="border border-dotted border-slate-400 p-4">
+                <h1 class="text-slate-800">Welcome {{Auth::user()->userable->name}}</h1>
+                <p class="text-slate-600 text-sm">Dear user! please select one of the following roles and click on proceed button. You may also cancel and go back to home page as well</p>
+            </div>
             <form action="{{route('login.as')}}" method='post' class="w-full mt-8" onsubmit="return validate(event)">
                 @csrf
                 <select id="role" name="role" class="custom-input  px-4 w-full bg-transparent" onchange="loadDepartments()">
@@ -34,6 +36,9 @@
             </form>
 
 
+        </div>
+        <div class="text-center text-sm">
+            <a href="{{url('signout')}}">Cancel & Go Back</a>
         </div>
 
     </div>
