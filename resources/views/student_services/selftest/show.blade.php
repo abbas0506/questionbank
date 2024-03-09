@@ -37,7 +37,7 @@ $sr=1;
 
         @foreach($questions as $question)
         <div class="flex flex-col items-start justify-start border border-dashed rounded  bg-white relative">
-            <p class="w-8 font-semibold text-xs text-center text-gray-800 bg-green-400">{{$sr++}}</p>
+            <p class="w-8 font-semibold text-xs text-center text-slate-100 bg-teal-600">{{$sr++}}</p>
             <div class="pt-4 pb-8 px-8 md:px-16 w-full">
                 <p class="font-semibold text-sm text-gray-800">{{$question->question}}</p>
                 <div class="divider my-4"></div>
