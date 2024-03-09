@@ -14,11 +14,11 @@
 </style>
 
 <div class="hero flex flex-col items-center justify-center h-screen bg-gray-800/50 p-5">
-    <div class="flex flex-col justify-between items-center w-full p-8 md:w-2/3 lg:w-1/3 h-[90vh] bg-white relative z-20 rounded">
+    <div class="flex flex-col justify-between items-center w-full md:w-2/3 lg:w-1/3 py-4 px-8 h-[90vh] bg-white relative z-20 rounded opacity-80">
         <div class="w-full">
             <img class="w-36 md:w-40 mx-auto" alt="logo" src="{{asset('images/logo/school_logo.png')}}">
         </div>
-        <div class="w-full sm:w-4/5">
+        <div class="w-full">
 
             <!-- page message -->
             @if($errors->any())
@@ -50,9 +50,8 @@
                 <a href="">Forgot Password?</a>
             </div>
         </div>
-        <div class="text-center">
-            <span class="text-slate-600 text-sm">Dont have an account?</span>
-            <a href="" class="font-bold ml-2">Signup</a>
+        <div class="text-center text-xs">
+            Dont have an account?<a href="" class="font-bold ml-2">Signup</a>
         </div>
     </div>
 

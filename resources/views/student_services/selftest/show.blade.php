@@ -24,7 +24,7 @@
 @php
 $sr=1;
 @endphp
-<div class="hero h-96 flex justify-center items-center overflow-auto">
+<div class="hero h-80 flex justify-center items-center overflow-auto">
     <div class="md:w-2/3 mx-auto text-center">
         <div class="text-4xl">Self Test</div>
         <h1>{{$subject->grade->roman_name}}-{{$subject->name}} </h1>
@@ -33,37 +33,38 @@ $sr=1;
 </div>
 <div class="flex flex-col justify-center items-center pt-16 overflow-auto">
 
-    <div class="md:w-2/3 mx-auto flex flex-col gap-y-6 px-8">
+    <div class="md:w-2/3 mx-auto flex flex-col gap-y-6 px-4">
 
         @foreach($questions as $question)
-        <div class="flex items-start justify-start gap-x-2">
-            <div class="w-12">
-                <p class="font-semibold text-sm text-gray-800">Q.{{$sr++}}</p>
-            </div>
-            <div class="flex-1">
+        <div class="flex flex-col items-start justify-start border border-dashed rounded  bg-white relative">
+            <p class="w-8 font-semibold text-xs text-center text-gray-800 bg-green-400">{{$sr++}}</p>
+            <div class="pt-4 pb-8 px-8 md:px-16 w-full">
                 <p class="font-semibold text-sm text-gray-800">{{$question->question}}</p>
-                <div id='ans' class="answer flex flex-col mt-2 text-gray-600">
+                <div class="divider my-4"></div>
+                <div id='ans' class="answer flex flex-col mt-4 text-gray-600 gap-y-2">
                     <div class="flex space-x-3 items-center">
-                        <input type="radio" class="option @if($question->answer=='a') correct @endif">
-                        <p class="@if($question->answer=='a') correct @endif">{{$question->mcq->option_a}}</p>
+                        <input type="radio" id='radioa-{{$question->id}}' class="option @if($question->answer=='a') correct @endif">
+                        <label for="radioa-{{$question->id}}" class="@if($question->answer=='a') correct @endif">{{$question->mcq->option_a}}</label>
                     </div>
                     <div class="flex space-x-3 items-center">
-                        <input type="radio" class="option @if($question->answer=='b') correct @endif">
-                        <p class="@if($question->answer=='b') correct @endif">{{$question->mcq->option_b}}</p>
+                        <input type="radio" id='radiob-{{$question->id}}' class="option @if($question->answer=='b') correct @endif">
+                        <label for="radiob-{{$question->id}}" class=" @if($question->answer=='b') correct @endif">{{$question->mcq->option_b}}</label>
                     </div>
                     <div class="flex space-x-3 items-center">
-                        <input type="radio" class="option @if($question->answer=='c') correct @endif">
-                        <p class="@if($question->answer=='c') correct @endif">{{$question->mcq->option_c}}</p>
+                        <input type="radio" id='radioc-{{$question->id}}' class="option @if($question->answer=='c') correct @endif">
+                        <label for="radioc-{{$question->id}}" class="@if($question->answer=='c') correct @endif">{{$question->mcq->option_c}}</label>
                     </div>
                     <div class="flex space-x-3 items-center">
-                        <input type="radio" class="option @if($question->answer=='d') correct @endif">
-                        <p class="@if($question->answer=='d') correct @endif">{{$question->mcq->option_d}}</p>
+                        <input type="radio" id="radiod-{{$question->id}}" class="option @if($question->answer=='d') correct @endif">
+                        <label for="radiod-{{$question->id}}" class="@if($question->answer=='d') correct @endif">{{$question->mcq->option_d}}</label>
                     </div>
                 </div>
+
             </div>
+
         </div>
         @endforeach
-        <div class="divider"></div>
+
         <div class="text-center mb-8">
             <button id='finishQuizButton' class="btn-teal px-4">Finish Quiz</button>
         </div>

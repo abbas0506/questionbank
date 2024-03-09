@@ -1,8 +1,20 @@
 @extends('layouts.basic')
 
 @section('body')
-<div class="flex flex-col items-center justify-center h-screen bg-white px-5">
-    <div class="flex flex-col justify-between items-center w-full  md:w-1/3 h-[90vh] p-8 border rounded-lg bg-slate-200 relative">
+<style>
+    .hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 50, 0.5)),
+        url("{{asset('/images/bg/office.png')}}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-clip: border-box;
+        position: relative;
+    }
+</style>
+<div class="hero flex flex-col items-center justify-center h-screen bg-white px-5">
+    <div class="flex flex-col justify-between items-center w-full  md:w-1/3 h-[90vh] px-8 py-3 border rounded-lg bg-slate-200 relative opacity-80">
         <!-- authenticated -->
         <div class="text-center">
             <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>
@@ -35,7 +47,7 @@
 
 
         </div>
-        <div class="text-center text-sm">
+        <div class="text-center text-xs">
             <a href="{{url('signout')}}">Cancel & Go Back</a>
         </div>
 
