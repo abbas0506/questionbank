@@ -21,12 +21,12 @@ class Subject extends Model
     {
         return $this->hasMany(Chapter::class);
     }
-    public function questions()
-    {
-        return $this->hasManyThrough(Question::class, Chapter::class);
-    }
     // public function questions()
     // {
-    //     return Question::whereRelation('chapter.subject', 'id', $this->id);
+    //     return $this->hasManyThrough(Question::class, Chapter::class);
     // }
+    public function questions()
+    {
+        return Question::whereRelation('chapter.subject', 'id', $this->id);
+    }
 }

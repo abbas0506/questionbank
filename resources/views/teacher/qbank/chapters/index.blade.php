@@ -35,7 +35,17 @@
 
                 @foreach($subject->chapters->sortBy('chapter_no') as $chapter)
                 <div class="flex justify-between items-center bg-sky-100 hover:bg-sky-300 text-gray-600 text-sm">
-                    <a href="{{route('teacher.subjects.chapters.show', [$subject, $chapter])}}" class="flex-1 p-3">{{$chapter->chapter_no}}. {{$chapter->name}} <span class="text-xs text-gray-600">({{$chapter->questions->count()}})</span> &nbsp <span class="text-xs text-slate-600">{{$chapter->questions()->today()->count()}} <i class="bi-arrow-up"></i></span></a>
+                    <a href="{{route('teacher.subjects.chapters.show', [$subject, $chapter])}}" class="flex-1 p-3">
+                        {{$chapter->chapter_no}}. {{$chapter->name}}
+
+                        @if($chapter->questions()->count())
+                        <span class="text-xs text-gray-600">({{$chapter->questions->count()}})</span>
+                        @endif
+
+                        @if($chapter->questions()->today()->count())
+                        <span class="text-xs text-slate-600 ml-2">{{$chapter->questions()->today()->count()}} <i class="bi-arrow-up"></i></span>
+                        @endif
+                    </a>
                     @if($chapter->questions->count()>0)
                     <a href="{{route('teacher.subjects.chapters.edit', [$subject, $chapter])}}" class="w-8 text-center text-gray-500 hover:text-gray-600"><i class="bx bx-pencil"></i></a>
                     @else

@@ -32,10 +32,14 @@
                 <div class="flex items-center justify-between w-full bg-sky-100 ">
                     <a href="{{route('teacher.subjects.chapters.index', $subject)}}" class="flex flex-1 items-center p-3">
                         <i class="bx bx-book mr-2"></i>{{$subject->name}}
-                        <span class="text-gray-600 text-xs ml-1">({{$subject->questions->count()}})</span>
+                        @if($subject->questions()->count())
+                        <span class="text-gray-600 text-xs ml-1">({{$subject->questions()->count()}})</span>
+                        @endif
+                        @if($subject->questions()->today()->count())
+                        <span class="text-gray-600 text-xs ml-3">{{$subject->questions()->today()->count()}} <i class="bi-arrow-up"></i></span>
+                        @endif
                     </a>
-                    @if($subject->questions->count()>0)
-
+                    @if($subject->questions()->count()>0)
                     <a href="{{route('teacher.grades.subjects.edit', [$grade, $subject])}}" class="w-8 text-center"><i class="bx bx-pencil text-gray-500 hover:text-gray-600 text-xs"></i></a>
                     @else
                     <form action="{{route('teacher.grades.subjects.destroy',[$grade, $subject])}}" method="post" class="w-8 text-center" onsubmit="return confirmDel(event)">
