@@ -14,7 +14,7 @@
     }
 </style>
 <div class="hero flex flex-col items-center justify-center h-screen bg-white px-5">
-    <div class="flex flex-col justify-between items-center w-full  md:w-1/3 h-[90vh] px-8 py-3 border rounded-lg bg-slate-200 relative opacity-80">
+    <div class="flex flex-col justify-between items-center w-full  md:w-1/3 h-[80vh] px-8 py-3 border rounded-lg bg-slate-200 relative opacity-80">
         <!-- authenticated -->
         <div class="text-center">
             <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>

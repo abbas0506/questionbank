@@ -14,7 +14,7 @@
 </style>
 
 <div class="hero flex flex-col items-center justify-center h-screen bg-gray-800/50 p-5">
-    <div class="flex flex-col justify-between items-center w-full md:w-2/3 lg:w-1/3 py-4 px-8 h-[90vh] bg-white relative z-20 rounded opacity-80">
+    <div class="flex flex-col justify-between items-center w-full md:w-2/3 lg:w-1/3 py-4 px-8 h-[80vh] bg-white relative z-20 rounded opacity-80">
         <div class="w-full">
             <img class="w-36 md:w-40 mx-auto" alt="logo" src="{{asset('images/logo/school_logo.png')}}">
         </div>
