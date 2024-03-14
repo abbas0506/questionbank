@@ -12,13 +12,11 @@
 
     .bi-ckeck-lg {
         color: green;
-        font-size: x-large;
         font-weight: bolder;
     }
 
     .bi-x {
         color: red;
-        font-size: x-large;
         font-weight: bolder;
     }
 
