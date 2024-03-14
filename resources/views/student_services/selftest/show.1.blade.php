@@ -6,41 +6,8 @@
 
 @section('body')
 <style>
-    .option label {
-        cursor: pointer;
-    }
-
-    .bi-ckeck-lg {
+    .answer.solved .correct {
         color: green;
-        font-size: x-large;
-        font-weight: bolder;
-    }
-
-    .bi-x {
-        color: red;
-        font-size: x-large;
-        font-weight: bolder;
-    }
-
-    .answer i {
-        display: none;
-    }
-
-    .answer.solved .accepted .bi-check-lg {
-        display: block;
-    }
-
-    .answer.solved .rejected .bi-x {
-        display: block;
-    }
-
-    .answer.solved .radio {
-        display: none;
-    }
-
-    .answer.solved .correct label {
-        background-color: #76D7C4;
-        color: white;
     }
 
     .hero {
@@ -77,31 +44,21 @@ $sr=1;
                 <p class="font-semibold text-sm text-gray-800">{{$question->question}}</p>
                 <div class="divider my-4"></div>
                 <div id='ans' class="answer flex flex-col mt-4 text-gray-600 gap-y-2">
-                    <div class="option flex space-x-3 items-center @if($question->answer=='a') correct @endif">
-                        <input type="radio" id='radioa-{{$question->id}}' class="radio">
-                        <label for="radioa-{{$question->id}}" class="">{{$question->mcq->option_a}}</label>
-                        <i class="bi-check-lg"></i>
-                        <i class="bi-x"></i>
+                    <div class="flex space-x-3 items-center">
+                        <input type="radio" id='radioa-{{$question->id}}' class="option @if($question->answer=='a') correct @endif">
+                        <label for="radioa-{{$question->id}}" class="@if($question->answer=='a') correct @endif hover:cursor-pointer">{{$question->mcq->option_a}}</label>
                     </div>
-
-                    <div class="option flex space-x-3 items-center @if($question->answer=='b') correct @endif">
-                        <input type="radio" id='radiob-{{$question->id}}' class="radio">
-                        <label for="radiob-{{$question->id}}" class="">{{$question->mcq->option_b}}</label>
-                        <i class="bi-check-lg"></i>
-                        <i class="bi-x"></i>
+                    <div class="flex space-x-3 items-center">
+                        <input type="radio" id='radiob-{{$question->id}}' class="option @if($question->answer=='b') correct @endif">
+                        <label for="radiob-{{$question->id}}" class=" @if($question->answer=='b') correct @endif hover:cursor-pointer">{{$question->mcq->option_b}}</label>
                     </div>
-
-                    <div class="option flex space-x-3 items-center @if($question->answer=='c') correct @endif">
-                        <input type="radio" id='radioc-{{$question->id}}' class="radio">
-                        <label for="radioc-{{$question->id}}" class="">{{$question->mcq->option_c}}</label>
-                        <i class="bi-check-lg"></i>
-                        <i class="bi-x"></i>
+                    <div class="flex space-x-3 items-center">
+                        <input type="radio" id='radioc-{{$question->id}}' class="option @if($question->answer=='c') correct @endif">
+                        <label for="radioc-{{$question->id}}" class="@if($question->answer=='c') correct @endif hover:cursor-pointer">{{$question->mcq->option_c}}</label>
                     </div>
-                    <div class="option flex space-x-3 items-center @if($question->answer=='d') correct @endif">
-                        <input type="radio" id="radiod-{{$question->id}}" class="radio">
-                        <label for="radiod-{{$question->id}}" class="">{{$question->mcq->option_d}}</label>
-                        <i class="bi-check-lg"></i>
-                        <i class="bi-x"></i>
+                    <div class="flex space-x-3 items-center">
+                        <input type="radio" id="radiod-{{$question->id}}" class="option @if($question->answer=='d') correct @endif">
+                        <label for="radiod-{{$question->id}}" class="@if($question->answer=='d') correct @endif hover:cursor-pointer">{{$question->mcq->option_d}}</label>
                     </div>
                 </div>
 
@@ -120,9 +77,9 @@ $sr=1;
 @endsection
 @section('script')
 <script type="module">
-    $('.radio').change(function() {
+    $('.option').change(function() {
         var selectedOption = $(this)
-        $(this).parent().parent().children().find('.radio').each(function() {
+        $(this).parent().parent().children().find('.option').each(function() {
             if ($(this) != selectedOption)
                 $(this).prop('checked', false);
         })
@@ -133,15 +90,13 @@ $sr=1;
         var correctAnswers = 0;
         var unAnswered = 20;
         $('.answer').each(function() {
-            $(this).children().find('.radio:checked').each(function() {
+            $(this).children().find('.option:checked').each(function() {
                 unAnswered -= 1
-                if ($(this).parent().hasClass('correct')) {
-                    $(this).parent().addClass('accepted')
+                if ($(this).hasClass('correct'))
                     correctAnswers += 1;
-                } else
-                    $(this).parent().addClass('rejected')
             })
         })
+        unAnswered = 0;
         if (unAnswered > 0) {
             Swal.fire({
                 icon: "warning",
