@@ -25,4 +25,8 @@ class Subject extends Model
     {
         return $this->hasManyThrough(Question::class, Chapter::class);
     }
+    // public function questions()
+    // {
+    //     return Question::whereRelation('chapter.subject', 'id', $this->id);
+    // }
 }
