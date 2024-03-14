@@ -30,7 +30,7 @@
                 @foreach($grade->subjects as $subject)
 
                 <div class="flex items-center justify-between w-full bg-sky-100 ">
-                    <a href="{{route('teacher.subjects.chapters.index', $subject)}}" class="flex flex-1 items-center p-3"><i class="bx bx-book mr-2"></i>{{$subject->name}} <span class="text-gray-600 text-xs ml-1">({{$subject->questions->count()}})</span></a>
+                    <a href="{{route('teacher.subjects.chapters.index', $subject)}}" class="flex flex-1 items-center p-3"><i class="bx bx-book mr-2"></i>{{$subject->name}} <span class="text-gray-600 text-xs ml-1">({{$subject->questions->count()}})</span> <span class="text-xs text-slate-600 ml-2">{{$subject->questions->where('created_at',today())->count()}} <i class="bi-arrow-up"></i></span></a>
                     @if($subject->questions->count()>0)
                     <a href="{{route('teacher.grades.subjects.edit', [$grade, $subject])}}" class="w-8 text-center"><i class="bx bx-pencil text-gray-500 hover:text-gray-600 text-xs"></i></a>
                     @else
