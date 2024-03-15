@@ -150,7 +150,7 @@
         <div class="h-full flex flex-col justify-center items-center py-4 gap-3">
             <i class="bi-emoji-neutral text-4xl"></i>
             <h3 class="text-red-600">Currently test is empty!</h3>
-            <label for="">Please click on any of the following question types to start</label>
+            <label for="">Use following buttons to add questions</label>
         </div>
         <div class="divider my-3"></div>
         @endif
@@ -168,9 +168,6 @@
                 <a href="{{route('teacher.tests.questions.add',[$test, 'long'])}}" class="flex justify-center items-center w-8 h-8 btn-red"><i class="bi-plus text-2xl"></i></a>
                 <div class="text-xs text-slate-600">Long</div>
             </div>
-            <!-- <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="btn-teal px-4 py-1 text-xs">Add MCQs</a>
-            <a href="{{route('teacher.tests.questions.add', [$test, 'short'])}}" class="btn-orange px-4 py-1 text-xs">Add Short</a>
-            <a href="{{route('teacher.tests.questions.add', [$test, 'long'])}}" class="btn-sky px-4 py-1 text-xs">Add Long</a> -->
         </div>
 
     </div>
