@@ -53,32 +53,32 @@ class TestPdfController extends Controller
     public function show(string $testId, string $id)
     {
         $test = Test::findOrFail($testId);
-        if($test->questions->count() == 0){
+        if ($test->questions->count() == 0) {
             return redirect()->route('teacher.tests.show', $testId)->with('error', 'No questions found');
         }
         $orientation = 'portrait';
         $pageSize = 'legalpaper'; // 'a4paper';
         $columns = 2;
-        $data = view('papers.latex2', compact('test', 'orientation', 'pageSize','columns'))->render();
+        $data = view('papers.latex3', compact('test', 'orientation', 'pageSize', 'columns'))->render();
         if (Storage::disk('local')->exists('test.tex')) {
             Storage::disk('local')->delete('test.tex');
         }
         Storage::disk('local')->put('test.tex', $data);
         // return $data;
-        try{
+        try {
             $res = Http::post('https://app.gleedu.com/api/latex/', [
                 'text' => $data,
-                'model' =>'bibtex',
+                'model' => 'bibtex',
             ]);
             $data =  $res->json();
-            if(!isset($data['data'])){
-                return "Error: ".$res->body();
+            if (!isset($data['data'])) {
+                return "Error: " . $res->body();
             }
             $data =  base64_decode($res->json()['data']);
             $filename = 'test.pdf';
             return response()->make($data, 200, [
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="'.$filename.'"'
+                'Content-Disposition' => 'inline; filename="' . $filename . '"'
             ]);
         } catch (\Exception $e) {
             // Handle the exception (e.g., log the error)
