@@ -155,7 +155,7 @@
         <div class="divider my-3"></div>
         @endif
         <!-- bottom options to add question: short, long, MCQ -->
-        <div class="flex justify-center gap-x-2 mt-5">
+        <div class="flex justify-center gap-x-2 mt-8">
             <div class="flex flex-col justify-center items-center">
                 <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="flex justify-center items-center w-8 h-8 btn-blue"><i class="bi-plus text-2xl"></i></a>
                 <div class="text-xs text-slate-600">MCQs</div>
