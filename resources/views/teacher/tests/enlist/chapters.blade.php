@@ -11,11 +11,11 @@
 
 
     <div class="flex relative mt-8">
-        <h1 class="bg-green-300 p-4 rounded-lg">{{$selectedGrade->roman_name}}-{{$selectedSubject->name}}</h1>
-        <div class="w-4 h-4 bg-green-300 rotate-45 absolute -bottom-1 left-4"></div>
+        <h1 class="bg-green-200 text-green-700 px-4 py-2 rounded-lg">{{$selectedGrade->roman_name}}-{{$selectedSubject->name}}</h1>
+        <div class="w-4 h-4 bg-green-200 rotate-45 absolute -bottom-1 left-4"></div>
     </div>
 
-    <div class="content-section rounded-lg">
+    <div class="content-section rounded-lg mt-2">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>

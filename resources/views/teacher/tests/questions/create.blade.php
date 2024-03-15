@@ -16,9 +16,9 @@
         <x-message></x-message>
         @endif
 
-        <div>
+        <div class="flex flex-col items-center">
+            <h2>{{$test->subject->name}} - {{$test->subject->grade->roman_name}}</h2>
             <label>{{$test->title}}</label>
-            <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
         </div>
 
         <div class="divider my-3"></div>
@@ -29,10 +29,10 @@
             <input type="hidden" name="question_type" value="{{$questionType}}">
             <div class="flex justify-between items-center">
                 <label>Question # {{$test->questions->count()+1}}</label>
-                <h2 class="w-16 text-center">{{ucwords($questionType)}}</h2>
+                <label class="w-16 text-center">{{ucwords($questionType)}}</label>
             </div>
             <div class="divider my-3"></div>
-            <h3>Please mention chapter wise distribution of parts / questions.</h3>
+            <h3>Chapter wise distribution of parts / questions.</h3>
 
             @foreach($chapters as $chapter)
             <div class="flex items-baseline justify-between space-x-4">
@@ -41,18 +41,18 @@
                 <input type="text" name='num_of_parts_array[]' autocomplete="off" class="num-of-parts custom-input w-16 h-8 text-center px-0" value="0" oninput="syncNumOfParts()">
             </div>
             @endforeach
-            <div class="divider my-3"></div>
-            <div class="flex items-baseline justify-between space-x-4">
-                <label class="font-bold">Total parts:</label>
-                <h3 id='total_parts' class="flex justify-center items-center bg-red-50 w-16 h-8 text-center px-0">0</h3>
+            <!-- <div class="divider my-3"></div> -->
+            <div class="flex items-baseline justify-between space-x-4 bg-green-50 text-green-600 my-3 border border-green-200">
+                <h3 class="text-green-600 pl-1">Total parts:</h3>
+                <h3 id='total_parts' class="flex justify-center items-center w-16 h-8 text-center px-0  text-green-600">0</h3>
             </div>
+            <!-- <div class="divider my-3"></div> -->
             <div class="flex items-baseline justify-between space-x-4">
-                <label for="">How many parts to attempt at least?</label>
+                <h3>How many to attempt? <span class="text-red-600">*</span></h3>
                 <input type="text" id='necessary_parts' name='necessary_parts' class="custom-input w-16 h-8 text-center px-0" value="0">
             </div>
-            <div class="divider my-3"></div>
             <div class="text-right">
-                <button type="submit" class="btn-teal rounded px-4">Save Now</button>
+                <button type="submit" class="btn-teal rounded px-4 mt-4">Save Now</button>
             </div>
         </form>
 
@@ -62,6 +62,9 @@
 @section('script')
 <script type="module">
     $(document).ready(function() {
+        $('.num-of-parts').click(function() {
+            $(this).select();
+        })
         $('.num-of-parts').keyup(function() {
             var sumOfParts = 0;
             // var currentInput = $(this).val();

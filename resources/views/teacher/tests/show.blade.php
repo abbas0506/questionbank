@@ -25,30 +25,28 @@
             </div>
         </div>
         @endif
-        <div class="flex justify-between mt-4">
-            <div>
-                <label>{{$test->title}}</label>
-                <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
-            </div>
-            <div class="flex flex-col justify-center">
-                <div class="flex items-center">
-                    <label>Max marks: &nbsp</label>
-                    <label>{{$test->totalMarks()}}</label>
-                </div>
-                <!-- can edit only if some question exists -->
-                @if($test->has('questions'))
-                <div class="flex items-center">
-                    <label>Suggested Time: &nbsp</label>
-                    <div class="flex items-center space-x-2">
-                        <label>{{$test->getDuration()}}</label>
-                        <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
-                    </div>
-                </div>
-                @endif
+
+        <div class="flex flex-col items-center">
+            <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
+            <div class="flex flex-row items-center space-x-3">
+                <label>{{$test->title}}</label> <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
             </div>
         </div>
+        @if($test->questions->count())
         <div class="divider my-3"></div>
-        @if($test->has('questions'))
+        <div class="flex flex-row justify-between items-center w-full">
+            <!-- can edit only if some question exists -->
+            <div class="flex items-center">
+                <label>Suggested Time: &nbsp</label>
+                <div class="flex items-center space-x-2">
+                    <label>{{$test->getDuration()}}</label>
+                    <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
+                </div>
+            </div>
+
+            <label>Max marks: {{$test->totalMarks()}}</label>
+        </div>
+        <div class="divider my-3"></div>
         <div class="flex flex-col gap-2 mt-3">
             <!-- MCQs -->
             @foreach($test->questions()->mcqs()->get() as $testQuestion)
@@ -83,8 +81,8 @@
 
             <!-- SHORT Questions -->
             @foreach($test->questions()->short()->get() as $testQuestion)
-            <div class="flex items-center justify-between">
-                <div class="flex items-baseline space-x-1">
+            <div class="flex items-center justify-between mt-3">
+                <div class="flex items-baseline space-x-1 ">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
                     <h3> Answer the following. &nbsp</h3>
                     @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
@@ -99,7 +97,7 @@
             </div>
             <ol class="list-[lower-roman] list-outside text-sm pl-6">
                 @foreach($testQuestion->parts as $part)
-                <li>{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
+                <li class="mt-2">{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
                 @endforeach
             </ol>
             @endforeach
@@ -109,7 +107,7 @@
 
             @if($testQuestion->parts->count()==1)
             <!-- if long question is compact i.e not splitted  -->
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between mt-3">
                 <div class="flex items-center space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
                     <p class="text-sm ml-1">{{$testQuestion->parts->first()->question->question}}</p>
@@ -121,7 +119,7 @@
             </div>
             @else
             <!-- if long question splits -->
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between mt-3">
                 <div class="flex items-baseline space-x-1">
                     <h3>Q.{{$testQuestion->question_no}}</h3>
                     <h3>Answer the following</h3>
@@ -131,7 +129,7 @@
             </div>
             <ol class="list-[lower-alpha] list-outside text-sm pl-6">
                 @foreach($testQuestion->parts as $part)
-                <li class="my-1">
+                <li class="mt-2">
                     <div class="flex justify-between">
                         <div>{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></div>
                         <div class="flex items-center space-x-2">
@@ -148,22 +146,33 @@
             @endforeach
         </div>
         @else
-        <div class="h-full flex flex-col justify-center items-center">
-            <h3>Currently test is empty!</h3>
+        <div class="divider my-3"></div>
+        <div class="h-full flex flex-col justify-center items-center py-4 gap-3">
+            <i class="bi-emoji-neutral text-4xl"></i>
+            <h3 class="text-red-600">Currently test is empty!</h3>
             <label for="">Please click on any of the following question types to start</label>
         </div>
+        <div class="divider my-3"></div>
         @endif
         <!-- bottom options to add question: short, long, MCQ -->
-        <div class="divider my-3"></div>
-        <div class="flex flex-col justify-center items-center gap-4">
-            <!-- <i class="bi-plus-circle text-2xl text-slate-400"></i> -->
-            <div class="text-slate-600 text-sm">Add Question</div>
-            <div class="flex space-x-2">
-                <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="btn-teal rounded-full px-4 py-1 text-xs">MCQs</a>
-                <a href="{{route('teacher.tests.questions.add', [$test, 'short'])}}" class="btn-orange rounded-full px-4 py-1 text-xs">Short</a>
-                <a href="{{route('teacher.tests.questions.add', [$test, 'long'])}}" class="btn-sky rounded-full px-4 py-1 text-xs">Long</a>
+        <div class="flex justify-center gap-x-2 mt-5">
+            <div class="flex flex-col justify-center items-center">
+                <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="flex justify-center items-center w-8 h-8 btn-blue"><i class="bi-plus text-2xl"></i></a>
+                <div class="text-xs text-slate-600">MCQs</div>
             </div>
+            <div class="flex flex-col justify-center items-center">
+                <a href="{{route('teacher.tests.questions.add',[$test, 'short'])}}" class="flex justify-center items-center w-8 h-8 btn-green"><i class="bi-plus text-2xl"></i></a>
+                <div class="text-xs text-slate-600">Short</div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <a href="{{route('teacher.tests.questions.add',[$test, 'long'])}}" class="flex justify-center items-center w-8 h-8 btn-red"><i class="bi-plus text-2xl"></i></a>
+                <div class="text-xs text-slate-600">Long</div>
+            </div>
+            <!-- <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="btn-teal px-4 py-1 text-xs">Add MCQs</a>
+            <a href="{{route('teacher.tests.questions.add', [$test, 'short'])}}" class="btn-orange px-4 py-1 text-xs">Add Short</a>
+            <a href="{{route('teacher.tests.questions.add', [$test, 'long'])}}" class="btn-sky px-4 py-1 text-xs">Add Long</a> -->
         </div>
+
     </div>
 </div>
 @endsection
