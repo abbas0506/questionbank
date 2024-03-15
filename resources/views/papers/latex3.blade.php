@@ -16,7 +16,7 @@
 \setmainfont{Jameel Noori Nastaleeq.ttf}[Path=/var/www/suoni/public/latex/]
 \begin{document}
 {{-- \begin{multicols}{{!!$columns!!}}
-@for($i = 1; $i <= $columns ; $i++) --}} \begin{center} \large{\uppercase{GHSS Chak Bedi, Pakpattan}}\\ \small{Naveed Kot, Okara Road, Depalpur}\\ \small {{$test->test_date->format('d/m/Y')}} \end{center} Subject :{{$test->subject->name}} \hfill Roll \# : \_\_\_\_\_\_\_\_\_ \hfill Name: \_\_\_\_\_\_\_\_\_\_\_ \vspace{2mm} \hrule \vspace{2mm} Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}} \vspace{2mm} \hrule \vspace{1mm} \begin{questions} @foreach($test->questions()->mcqs()->get() as $testQuestion)
+@for($i = 1; $i <= $columns ; $i++) --}} \begin{center} \large{\uppercase{GHSS Chak Bedi, Pakpattan}}\\ \small {{$test->test_date->format('d/m/Y')}} \end{center} Subject :{{$test->subject->name}} \hfill Roll \# : \_\_\_\_\_\_\_\_\_ \hfill Name: \_\_\_\_\_\_\_\_\_\_\_ \vspace{2mm} \hrule \vspace{2mm} Makrs : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}} \vspace{2mm} \hrule \vspace{1mm} \begin{questions} @foreach($test->questions()->mcqs()->get() as $testQuestion)
     \titledquestion{Encircle the correct option}[{{$testQuestion->parts->count()}}]
     @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
     All questions are compulsory
