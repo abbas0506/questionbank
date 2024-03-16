@@ -58,11 +58,20 @@ $roman = config('global.romans');
 
                             <table class="w-full">
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td colspan="2" class="text-center font-bold m-0 p-0">{{$test->title}}</td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
-                                        <td colspan="2" class="m-0 p-0">{{$test->subject->grade->roman_name}} - {{$test->subject->name}}, Dated: {{$test->test_date->format('d/m/Y')}}</td>
+                                        <td colspan="2" class="m-0 p-0 font-bold">Govt Higher Secondary School Chak Bedi</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2" class="m-0 p-0">Dated: {{$test->test_date->format('d/m/Y')}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-left">Subject: {{$test->subject->name}} - {{$test->subject->grade->roman_name}}</td>
+                                        <td class="text-right">Roll # ______</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -70,8 +79,8 @@ $roman = config('global.romans');
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="text-left">Marks: {{$test->totalMarks()}}, Time: {{$test->getDuration()}}</td>
-                                        <td class="text-right">Roll # ____</td>
+                                        <td class="text-left">Allowed Time: {{$test->getDuration()}}</td>
+                                        <td class="text-right">Max Marks: {{$test->totalMarks()}}</td>
                                     </tr>
 
                                 </tbody>

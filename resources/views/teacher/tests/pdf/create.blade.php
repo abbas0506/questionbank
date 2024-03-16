@@ -2,11 +2,13 @@
 @section('page-content')
 
 <div class="custom-container">
-    <h1>Test Draft</h1>
+    <h1>Print Setting</h1>
     <div class="bread-crumb">
         <a href="/">Home</a>
         <div>/</div>
         <div>Draft</div>
+        <div>/</div>
+        <div>Print Setting</div>
     </div>
 
     <div class="content-section">
@@ -18,27 +20,20 @@
         @endif
 
 
-        <div class="flex justify-between mt-4">
-            <div>
-                <label>{{$test->title}}</label>
-                <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
-            </div>
-            <div class="flex flex-col justify-center">
-                <div class="flex items-center">
-                    <label>Max marks: &nbsp</label>
-                    <label>{{$test->totalMarks()}}</label>
-                </div>
-                <!-- can edit only if some question exists -->
-                @if($test->questions->count()>0)
-                <div class="flex items-center">
-                    <label>Suggested Time: &nbsp</label>
-                    <label>{{$test->getDuration()}}</label>
-                </div>
-                @endif
-            </div>
+        <div class="flex flex-col items-center gap-y-2">
+            <h2>{{$test->subject->name}} - {{$test->subject->grade->roman_name}} </h2>
+            <label>{{$test->title}}</label>
+
+        </div>
+        @if($test->questions->count())
+        <div class="divider my-3"></div>
+        <div class="flex flex-row justify-between items-center w-full">
+            <label>Allowed Time: {{$test->getDuration()}}</label>
+            <label>Max marks: {{$test->totalMarks()}}</label>
         </div>
         <div class="divider my-3"></div>
         <p class="w-full md:w-3/4 md:text-center mx-auto mb-3 text-sm text-gray-600">Do you know that a careful selction of the following options can save your printing cost by more than 50%. Choose the most appropriate options and optimize your printing cost.</p>
+        @endif
         @if($test->questions->count()>0)
         <form action="{{route('teacher.tests.pdf.store',$test)}}" method="post">
             @csrf

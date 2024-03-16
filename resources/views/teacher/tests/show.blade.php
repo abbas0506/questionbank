@@ -27,8 +27,8 @@
         @endif
 
         <div class="flex flex-col items-center">
-            <h2>{{$test->subject->grade->roman_name}} - {{$test->subject->name}}</h2>
-            <div class="flex flex-row items-center space-x-3">
+            <h2>{{$test->subject->name}} - {{$test->subject->grade->roman_name}}</h2>
+            <div class="flex flex-row items-center space-x-3 mt-3">
                 <label>{{$test->title}}</label> <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
             </div>
         </div>
@@ -150,22 +150,22 @@
         <div class="h-full flex flex-col justify-center items-center py-4 gap-3">
             <i class="bi-emoji-neutral text-4xl"></i>
             <h3 class="text-red-600">Currently test is empty!</h3>
-            <label for="">Use following buttons to add questions</label>
+            <label class="text-center">Start adding questions by following button</label>
         </div>
         <div class="divider my-3"></div>
         @endif
         <!-- bottom options to add question: short, long, MCQ -->
         <div class="flex justify-center gap-x-2 mt-8">
             <div class="flex flex-col justify-center items-center">
-                <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="flex justify-center items-center w-8 h-8 btn-blue"><i class="bi-plus text-2xl"></i></a>
+                <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="flex justify-center items-center w-8 h-8 btn-blue rounded-sm"><i class="bi-plus text-2xl"></i></a>
                 <div class="text-xs text-slate-600">MCQs</div>
             </div>
             <div class="flex flex-col justify-center items-center">
-                <a href="{{route('teacher.tests.questions.add',[$test, 'short'])}}" class="flex justify-center items-center w-8 h-8 btn-green"><i class="bi-plus text-2xl"></i></a>
+                <a href="{{route('teacher.tests.questions.add',[$test, 'short'])}}" class="flex justify-center items-center w-8 h-8 btn-green rounded-e-sm"><i class="bi-plus text-2xl"></i></a>
                 <div class="text-xs text-slate-600">Short</div>
             </div>
             <div class="flex flex-col justify-center items-center">
-                <a href="{{route('teacher.tests.questions.add',[$test, 'long'])}}" class="flex justify-center items-center w-8 h-8 btn-red"><i class="bi-plus text-2xl"></i></a>
+                <a href="{{route('teacher.tests.questions.add',[$test, 'long'])}}" class="flex justify-center items-center w-8 h-8 btn-red rounded-sm"><i class="bi-plus text-2xl"></i></a>
                 <div class="text-xs text-slate-600">Long</div>
             </div>
         </div>
