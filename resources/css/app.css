@@ -343,12 +343,16 @@
     }
 
     .modal {
-        @apply top-0 left-0 hidden z-50;
+        @apply fixed -top-40 -left-40 z-10 transition-all duration-500 ease-in-out;
     }
     .modal.shown {
-        @apply absolute flex top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+        @apply flex top-[calc(70%)] left-1/2 md:left-[calc(50%+120px)] transform -translate-x-1/2 -translate-y-1/2;
     }
     /* hero */
+
+    #floating-modal.float {
+        @apply transform translate-x-36 transition-all;
+    }
     .feature-box {
         @apply flex flex-col justify-center items-center p-4 md:p-8 border border-transparent;
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\GroupController;
 use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\SubjectController;
 use App\Http\Controllers\admin\TeacherController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\assistant\BookIssuanceController;
@@ -119,6 +120,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
     Route::post('change/password', [AuthController::class, 'changePassword'])->name('change.password');
 
     Route::resource('groups', GroupController::class);
+    Route::resource('users', UserController::class);
 });
 
 Route::group(['prefix' => 'principal', 'as' => 'principal.', 'middleware' => ['role:principal']], function () {

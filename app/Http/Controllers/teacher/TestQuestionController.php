@@ -71,9 +71,12 @@ class TestQuestionController extends Controller
             $chapters = Chapter::whereIn('id', $chaperIds)->get();
 
             $i = 0;     //for iterating numOfparts
+
+
             foreach ($chapters as $chapter) {
                 $questions = Question::where('question_type', $request->question_type)
                     ->where('chapter_id', $chapter->id)
+                    ->where('bise_frequency', '>', 1)
                     ->get()
                     ->random($numOfParts[$i++]);
                 foreach ($questions as $question) {

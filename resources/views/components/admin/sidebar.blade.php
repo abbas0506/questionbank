@@ -33,12 +33,18 @@
                     <span class="ml-3">Teachers</span>
                 </a>
             </li>
-            <!-- <li>
+            <li>
                 <a href="" class="flex items-center p-2">
-                    <i class="bi bi-search"></i>
-                    <span class="ml-3">Search Student</span>
+                    <i class="bi bi-building-gear"></i>
+                    <span class="ml-3">Institutions Management</span>
                 </a>
-            </li> -->
+            </li>
+            <li>
+                <a href="{{route('admin.users.index')}}" class="flex items-center p-2">
+                    <i class="bi bi-person-gear"></i>
+                    <span class="ml-3">User Management</span>
+                </a>
+            </li>
 
         </ul>
     </div>

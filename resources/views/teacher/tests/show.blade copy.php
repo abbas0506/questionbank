@@ -9,7 +9,7 @@
         <div>Draft</div>
     </div>
 
-    <div class="content-section relative">
+    <div class="content-section">
         <!-- page message -->
         @if($errors->any())
         <x-message :errors='$errors'></x-message>
@@ -97,7 +97,7 @@
             </div>
             <ol class="list-[lower-roman] list-outside text-sm pl-6">
                 @foreach($testQuestion->parts as $part)
-                <li class="mt-2">{{$part->question->question}} {{$part->question->bise_frequency}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
+                <li class="mt-2">{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
                 @endforeach
             </ol>
             @endforeach
@@ -151,26 +151,10 @@
             <i class="bi-emoji-smile text-4xl"></i>
             <p class="text-center">Start adding questions</p>
         </div>
-        <!-- <div class="divider my-3"></div> -->
+        <div class="divider my-3"></div>
         @endif
-
-        <div id='add-question-btn' class="fixed right-4 bottom-4 h-16 w-16 flex  justify-center items-center rounded-full btn-green">
-            <i class="bi bi-plus-lg"></i>
-        </div>
-
-        <!-- modal showing question types -->
-        <div id='floating-modal' class="modal bg-gray-600">
-            <div class="flex p-4 rounded gap-x-6 text-green-400 text-sm relative">
-                <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="hover:text-slate-100">MCQs</a>
-                <a href="{{route('teacher.tests.questions.add',[$test, 'short'])}}" class="hover:text-slate-100">Short</a>
-                <a href="{{route('teacher.tests.questions.add',[$test, 'long'])}}" class="hover:text-slate-100">Long</a>
-
-                <button id='close-modal' class="absolute -top-1 right-0 "><i class="bi bi-x text-orange-300 hover:text-orange-400 text-sm"></i></button>
-            </div>
-        </div>
-
         <!-- bottom options to add question: short, long, MCQ -->
-        <!-- <div class="flex justify-center gap-x-2 mt-8">
+        <div class="flex justify-center gap-x-2 mt-8">
             <div class="flex flex-col justify-center items-center">
                 <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="flex justify-center items-center w-8 h-8 btn-blue rounded-sm"><i class="bi-plus text-2xl"></i></a>
                 <div class="text-xs text-slate-600">MCQs</div>
@@ -183,19 +167,8 @@
                 <a href="{{route('teacher.tests.questions.add',[$test, 'long'])}}" class="flex justify-center items-center w-8 h-8 btn-red rounded-sm"><i class="bi-plus text-2xl"></i></a>
                 <div class="text-xs text-slate-600">Long</div>
             </div>
-        </div> -->
+        </div>
 
     </div>
 </div>
-@endsection
-@section('script')
-<script type="module">
-    $('#close-modal').click(function() {
-        if ($('.modal').hasClass('shown'))
-            $('.modal').removeClass('shown');
-    });
-    $('#add-question-btn').click(function() {
-        $('.modal').addClass('shown');
-    });
-</script>
 @endsection
