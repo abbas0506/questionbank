@@ -18,9 +18,9 @@
     }
 </style>
 <div class="hero min-h-screen max-w-screen">
-    <div class="pt-24 flex flex-col w-full h-full justify-center items-center">
-        <div class="text-gray-900 text-3xl md:text-4xl text-center">Self Test</div>
-        <div class="border-y py-4 mt-6 text-2xl text-center text-slate-100">Grade {{$subject->grade->roman_name}}, {{$subject->name}}</div>
+    <div class="pt-40 flex flex-col w-full h-full justify-center items-center">
+        <div class="text-orange-200 text-3xl md:text-4xl text-center">Self Test</div>
+        <div class="border-y py-4 mt-6 text-xl text-center text-slate-100">Grade {{$subject->grade->roman_name}}, {{$subject->name}}</div>
         <h2 class="mt-4">Please choose a chapter</h2>
 
         <!-- page message -->
@@ -30,9 +30,9 @@
         <x-message></x-message>
         @endif
 
-        <form action="{{route('selftest.store')}}" method='post' onsubmit="return validate(event)">
+        <form id='start-test-form' action="{{route('selftest.store')}}" method='post' onsubmit="return validate(event)">
             @csrf
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-3 mt-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mt-8">
                 @foreach($chapters->sortBy('chapter_no') as $chapter)
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" id='chapter{{$chapter->chapter_no}}' name='chapter_id_array[]' class="custom-input w-4 h-4" value="{{ $chapter->id }}">
@@ -41,13 +41,36 @@
                 @endforeach
             </div>
             <input type="hidden" name='subject_id' value="{{$subject->id}}">
-            <div class="border-b border-orange-300 my-3"></div>
-            <div class="text-center">
-                <button type="submit" class="btn-teal rounded py-2 px-4" @disabled($chapters->count()==0)> Start Test <i class="bi-arrow-right"></i></button>
-            </div>
+            <div class="border-b border-slate-100 my-12"></div>
+            <!-- <div class=""> -->
+            <button type="submit" class="fixed bottom-6 right-6 w-12 h-12 rounded-full btn-teal flex justify-center items-center" @disabled($chapters->count()==0)> <i class="bi-caret-right"></i></button>
+            <!-- </div> -->
 
         </form>
     </div>
 </div>
 <x-footer></x-footer>
+@endsection
+@section('script')
+<script type="module">
+    $('document').ready(function() {
+        $('#start-test-form').submit(function(e) {
+            var anyChecked = 0
+            $('.custom-input').each(function() {
+                if ($(this).is(':checked'))
+                    anyChecked++;
+            })
+            if (anyChecked == 0) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Please select a chapter',
+                    showConfirmButton: false,
+                    timer: 1000,
+                })
+
+            }
+        })
+    })
+</script>
 @endsection

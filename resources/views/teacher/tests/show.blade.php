@@ -154,7 +154,7 @@
         <!-- <div class="divider my-3"></div> -->
         @endif
 
-        <div id='add-question-btn' class="fixed right-4 bottom-4 h-16 w-16 flex  justify-center items-center rounded-full btn-green">
+        <div id='add-question-btn' class="fixed right-6 bottom-6 h-14 w-14 flex  justify-center items-center rounded-full btn-green">
             <i class="bi bi-plus-lg"></i>
         </div>
 

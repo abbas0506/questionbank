@@ -55,12 +55,12 @@
 @php
 $sr=1;
 @endphp
-<div class="hero h-[75vh] flex flex-col justify-center items-center overflow-auto">
+<div class="hero h-[70vh] flex flex-col justify-center items-center overflow-auto">
     <!-- <div class="md:w-2/3 mx-auto text-center"> -->
-    <img src="{{asset('/images/mini/quiz-0.png')}}" alt="" width="200">
-    <!-- <div class="text-4xl">Self Test</div> -->
-    <h1>{{$subject->grade->roman_name}}-{{$subject->name}} </h1>
-    <h4>Max Marks: 20 </h4>
+    <!-- <img src="{{asset('/images/mini/quiz-0.png')}}" alt="" width="200"> -->
+    <div class="text-4xl text-orange-200">Self Test</div>
+    <h1 class="mt-4">{{$subject->name}} - {{$subject->grade->roman_name}}</h1>
+    <h4 class="mt-2">Max Marks: 20 </h4>
     <!-- </div> -->
 
 </div>
@@ -107,12 +107,9 @@ $sr=1;
 
         </div>
         @endforeach
-
-        <div class="text-center mb-8">
-            <button id='finishQuizButton' class="btn-teal px-4">Finish Quiz</button>
-        </div>
+        <button id='finishQuizButton' type="submit" class="fixed bottom-6 right-6 w-12 h-12 rounded-full btn-teal flex justify-center items-center"> <i class="bi-caret-right"></i></button>
     </div>
-    <x-footer></x-footer>
+    <div class="my-8"></div>
 </div>
 
 @endsection
