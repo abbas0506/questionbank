@@ -72,7 +72,7 @@ $sr=1;
         <div class="flex flex-col items-start justify-start border border-dashed rounded  bg-white relative">
             <p class="w-8 font-semibold text-xs text-center text-slate-100 bg-teal-600">{{$sr++}}</p>
             <div class="pt-4 pb-8 px-8 md:px-16 w-full">
-                <p class="font-semibold  text-gray-800">{{$question->question}}</p>
+                <p class="font-semibold text-base text-gray-800">{{$question->question}}</p>
                 <div class="divider my-4"></div>
                 <div id='ans' class="answer flex flex-col mt-4 text-gray-600 gap-y-2">
                     <div class="option flex space-x-3 items-center @if($question->answer=='a') correct @endif">
