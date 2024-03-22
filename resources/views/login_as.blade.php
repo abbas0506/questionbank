@@ -2,22 +2,23 @@
 
 @section('body')
 <style>
-    .hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 50, 0.5)),
-        url("{{asset('/images/bg/office.png')}}");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-clip: border-box;
-        position: relative;
+    .main::before {
+        background: url("{{asset('/images/bg/office.png')}}") no-repeat center center/cover;
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.8;
     }
 </style>
-<div class="hero flex flex-col items-center justify-center h-screen bg-white px-5">
-    <div class="flex flex-col justify-between items-center w-full  md:w-1/3 h-[80vh] px-8 py-3 border rounded-lg bg-slate-200 relative opacity-80">
+<div class="main flex flex-col items-center justify-center w-screen h-screen px-5 text-black">
+    <div class="flex flex-col justify-between items-center w-full  md:w-1/3 h-[80vh] px-8 py-3 rounded-lg backdrop-blur-2xl relative">
         <!-- authenticated -->
         <div class="text-center">
-            <i class="bi bi-person-fill-check text-8xl text-sky-600"></i>
+            <i class="bi bi-person-fill-check text-8xl text-teal-400"></i>
         </div>
 
         <div class="w-full">
@@ -29,12 +30,12 @@
             @endif
 
             <div class="border border-dotted border-slate-400 p-4">
-                <h1 class="text-slate-800">Welcome {{Auth::user()->userable->name}}</h1>
-                <p class="text-slate-600 text-sm">Dear user! please select one of the following roles and click on proceed button. You may also cancel and go back to home page as well</p>
+                <h1 class="text-slate-300">Welcome {{Auth::user()->userable->name}}</h1>
+                <p class="text-slate-400 text-sm">Dear user! please select one of the following roles and click on proceed button. You may also cancel and go back to home page as well</p>
             </div>
             <form action="{{route('login.as')}}" method='post' class="w-full mt-8" onsubmit="return validate(event)">
                 @csrf
-                <select id="role" name="role" class="custom-input  px-4 w-full bg-transparent" onchange="loadDepartments()">
+                <select id="role" name="role" class="custom-input  px-4 w-full text-white" onchange="loadDepartments()">
                     @foreach(Auth::user()->roles as $role)
                     <option value="{{$role->name}}" class="">{{ucfirst($role->name)}}</option>
                     @endforeach

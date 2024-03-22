@@ -1,4 +1,4 @@
-<div class="w-full mt-12">
+<div class="w-screen mt-12">
     <div class="flex flex-wrap justify-center gap-6">
         <a href="{{url('https://punjab.gov.pk/')}}">
             <img src="{{url('images/logo/govt.png')}}" alt="logo" target="_blank" class="w-12 h-12">

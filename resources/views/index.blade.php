@@ -6,18 +6,19 @@
 
 @section('body')
 <style>
-    .hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 50, 0.5)),
-        url("{{asset('/images/bg/office.png')}}");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-clip: border-box;
-        position: relative;
+    .main::before {
+        background: url("{{asset('/images/bg/office.png')}}") no-repeat center center/cover;
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.6;
     }
 </style>
-<div class="hero h-screen max-w-screen">
+<div class="main h-screen w-screen">
     <div class="flex flex-col gap-y-2 px-5 w-full h-full justify-center items-center">
         <div class="text-slate-200 text-3xl md:text-5xl text-center">We Build the Nation</div>
         <p class="md:w-1/2 text-slate-300 text-center">Welcome to our vibrant school community, where curiosity meets knowledge, and every student is encouraged to thrive academically, socially, and creatively. </p>
