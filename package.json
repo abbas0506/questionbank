@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "aos": "^2.3.4",
     "chartjs-plugin-outerlabels": "^2.0.0",
     "jquery": "^3.7.0"
   },

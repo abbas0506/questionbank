@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghss-cb</title>
+    <title>exam system</title>
     <link rel="icon" href="{{ asset('/images/logo/logo-light.png') }}">
     <!-- Fonts -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,6 +24,8 @@
 
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/swiper.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('/css/aos.css') }}"> -->
+    <!-- <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet"> -->
     <style>
         body {
             /* font-family: Nunito, sans-serif; */
@@ -38,11 +40,11 @@
     @yield('body')
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
-  CommonHTML: {
-    linebreaks: {automatic: false}
-  }
-});
-</script>
+            CommonHTML: {
+            linebreaks: {automatic: false}
+        }
+        });
+    </script>
     <script src="{{asset('js/sweetalert2@10.js')}}"></script>
     <script type="module" src="{{asset('js/collapsible.js')}}"></script>
     <script type="module" src="{{asset('js/swiper.js')}}"></script>
@@ -50,8 +52,6 @@
     <script type="module" src="{{asset('js/flowbite.min.js')}}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script> -->
     @yield('script')
     @yield('footer')
 </body>

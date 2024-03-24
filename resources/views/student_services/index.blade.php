@@ -5,31 +5,22 @@
 @endsection
 
 @section('body')
-<style>
-    .hero {
-        background-image: linear-gradient(rgba(0, 100, 100, 1.0),
-            rgba(128, 128, 128, 0)),
-        url("{{asset('/images/bg/exams1-01.svg')}}");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-clip: border-box;
-        position: relative;
-    }
-</style>
-<div class="hero h-screen max-w-screen">
-    <div class="flex flex-col gap-y-2 px-5 w-full h-full justify-center items-center">
-        <div class="text-gray-900 text-3xl md:text-4xl text-center">Become High Achiever</div>
-        <p class="md:w-1/2 text-gray-800 text-center">Do you know that you are the best mentor of your own self. Self testing lets you recognize your deficiencies and helps you become perfect to achieve high goals. <br>"Practice makes a man perfect".</p>
+
+<div class="flex flex-col h-screen w-max-screen gap-y-2 items-center">
+    <div class="flex justify-center items-end flex-1">
+        <img src="{{url(asset('/images/small/self-practice.jpg'))}}" alt="" class="w-[30rem]">
+    </div>
+    <div class="text-center flex flex-col  h-48 md:h-32">
+        <div class=" text-gray-900 text-3xl md:text-4xl text-center">"Practice makes a man perfect".</div>
+        <!-- <p class="md:w-1/2 text-gray-800 text-center">Do you know that you are the best mentor of your own self. Self testing lets you recognize your deficiencies and helps you become perfect to achieve high goals. <br></p> -->
         <a href="{{route('selftest.index')}}">
-            <button class="btn-orange mt-5">Start Test <i class="bi-arrow-right"></i></button>
+            <button class="btn-orange mt-5">Go Next <i class="bi-arrow-right"></i></button>
         </a>
     </div>
+
 </div>
 
 </section>
-<!-- footer -->
-<x-footer></x-footer>
 @endsection
 
 @section('script')

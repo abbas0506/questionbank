@@ -88,7 +88,7 @@ Route::get('/', function () {
 
 
 Route::view('about', 'about');
-Route::view('services', 'services');
+Route::view('services', 'services.index');
 Route::view('team', 'team');
 Route::view('blogs', 'blogs');
 Route::view('login', 'login');

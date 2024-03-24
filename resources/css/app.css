@@ -6,7 +6,7 @@
 
 @layer base {
     body {
-        @apply bg-slate-100;
+        @apply bg-white;
     }
     tr th {
         @apply px-2 text-sm text-gray-600 border bg-blue-50 text-center;
@@ -297,7 +297,7 @@
     }
 
     .sticky-header.scrolled-down {
-        @apply bg-white text-slate-800 h-16;
+        @apply bg-white text-slate-800 h-16 border-b;
     }
 
     .sticky-header.light {
@@ -313,7 +313,7 @@
     }
 
     .sticky-header .nav-item:hover {
-        @apply text-sky-300;
+        @apply text-blue-600;
     }
 
     /* responsive navbar on mobile screen */
@@ -373,7 +373,7 @@
     }
 
     .testimonials .testimonial-item .testimonial-img {
-        width: 120px;
+        width: 150px;
         border-radius: 50%;
         border: 4px solid #fff;
         margin: 0 auto;

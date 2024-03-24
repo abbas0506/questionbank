@@ -2,10 +2,8 @@
     <div class="flex justify-between items-center w-full">
         <a href="{{url('/')}}" class="flex text-xl font-bold items-center">
             <img src="{{asset('images/logo/app_logo_transparent.png')}}" alt="" class="w-8 md:w-12">
-            <div class="px-2">
-                <div class="app-title text-lg font-medium">GHSSCB</div>
-                <div class="app-subtitle text-xs font-thin hidden md:block">Govt Higher Secondary School Chak Bedi</div>
-            </div>
+            <div class="text-lg font-medium text-red-600">Exam System</div>
+
         </a>
         <nav id='navbar' class="navbar">
             <ul>
@@ -13,11 +11,10 @@
                     <i class="bi-x-lg text-xl text-orange-300 hover:-rotate-90 transition duration-500 ease-in-out"></i>
                 </li>
                 <li><a href="#" class="nav-item">About</a></li>
-                <li><a href="#" class="nav-item">Faculty</a></li>
-                <li><a href="#" class="nav-item">Alumni</a></li>
-                <li><a href="#" class="nav-item">Gallary</a></li>
-                <li><a href="{{url('student/services')}}" class="nav-item">Self Test</a></li>
+                <li><a href="{{url('services')}}" class="nav-item">Services</a></li>
+                <li><a href="#" class="nav-item">Features</a></li>
                 <li><a href="#" class="nav-item">Contact Us</a></li>
+                <li><a href="{{url('student/services')}}" class="nav-item">Self Test</a></li>
                 <li><a href="{{url('login')}}" class="nav-item">Login</a></li>
             </ul>
         </nav>
