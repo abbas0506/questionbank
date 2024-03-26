@@ -14,7 +14,7 @@
                 <li><a href="{{url('services')}}" class="nav-item">Services</a></li>
                 <li><a href="#" class="nav-item">Features</a></li>
                 <li><a href="#" class="nav-item">Contact Us</a></li>
-                <li><a href="{{url('student/services')}}" class="nav-item">Self Test</a></li>
+                <li><a href="{{route('selftest.index')}}" class="nav-item">Self Test</a></li>
                 <li><a href="{{url('login')}}" class="nav-item">Login</a></li>
             </ul>
         </nav>

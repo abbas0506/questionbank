@@ -55,24 +55,20 @@
 @php
 $sr=1;
 @endphp
-<div class="hero h-[70vh] flex flex-col justify-center items-center overflow-auto">
-    <!-- <div class="md:w-2/3 mx-auto text-center"> -->
-    <!-- <img src="{{asset('/images/mini/quiz-0.png')}}" alt="" width="200"> -->
-    <div class="text-4xl text-orange-200">Self Test</div>
-    <h1 class="mt-4">{{$subject->name}} - {{$subject->grade->roman_name}}</h1>
-    <h4 class="mt-2">Max Marks: 20 </h4>
-    <!-- </div> -->
+<div class="w-full md:w-2/3 mx-auto text-center mt-32 px-5">
 
-</div>
-<div class="flex flex-col justify-center items-center overflow-auto">
+    <h1 class="text-3xl">SELF TEST</h1>
+    <p class="text-slate-600 leading-relaxed mt-6">All questions are compulsory. Make sure that all questions have been attempted before you finish the test. After you finish the test, your score will display on the screen.</p>
+    <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
+    <h2 class="mt-6 text-red-600">Marks: 20 | Time: 20m </h2>
 
-    <div class="md:w-2/3 mx-auto flex flex-col gap-y-6 px-4">
-
+    <!-- questions -->
+    <div class="mx-auto flex flex-col gap-y-6 px-4 mt-8">
         @foreach($questions as $question)
-        <div class="flex flex-col items-start justify-start border border-dashed rounded  bg-white relative">
+        <div class="flex flex-col items-start justify-start border border-dashed rounded  bg-slate-50 relative">
             <p class="w-8 font-semibold text-xs text-center text-slate-100 bg-teal-600">{{$sr++}}</p>
             <div class="pt-4 pb-8 px-8 md:px-16 w-full">
-                <p class="font-semibold text-base text-gray-800">{{$question->question}}</p>
+                <p class="font-semibold text-base text-left text-gray-800">{{$question->question}}</p>
                 <div class="divider my-4"></div>
                 <div id='ans' class="answer flex flex-col mt-4 text-gray-600 gap-y-2">
                     <div class="option flex space-x-3 items-center @if($question->answer=='a') correct @endif">
@@ -111,7 +107,9 @@ $sr=1;
     </div>
     <div class="my-8"></div>
 </div>
-
+@endsection
+@section('footer')
+<x-footer></x-footer>
 @endsection
 @section('script')
 <script type="module">

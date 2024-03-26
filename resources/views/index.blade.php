@@ -36,8 +36,8 @@
     <div class="flex flex-col justify-center flex-1 px-5 md:pl-24 md:mt-24">
         <p class="text-teal-800 text-3xl md:text-5xl">Question Bank </p>
         <p class="text-slate-600 mt-3 text-md">50,000+ questions including short, long, MCQs have been taken from the exercises of textbooks and past papers, fully covering 9th to 12th classes.</p>
-        <a href="">
-            <button class="btn-orange mt-5">Go Free <i class="bi-arrow-right"></i></button>
+        <a href="{{url('services')}}" class="mt-5">
+            <button class="btn-teal">Go Free <i class="bi-arrow-right"></i></button>
         </a>
     </div>
 
@@ -51,10 +51,10 @@
 </section>
 
 <!-- features section -->
-<section id='features' class="mt-12 px-4 md:px-24" data-aos="fade-up" data-aos-duration="1500">
+<section id='features' class="mt-12 px-4 md:px-24" data-aos="fade-up" data-aos-duration="1000">
     <h2 class="text-3xl text-center">It is for you!</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-        <div class="feature-box hover:border-pink-300 hover:bg-pink-50" data-aos="fade-up" data-aos-duration="1500">
+        <div class="feature-box hover:border-pink-300 hover:bg-pink-50" data-aos="fade-up" data-aos-duration="1000">
             <div class="flex items-center justify-center bg-pink-100 rounded-full w-16 h-16">
                 <i class="bi-book text-2xl text-pink-400"></i>
             </div>
@@ -62,7 +62,7 @@
             <p class="text-sm text-center">Our online self-assessment tool helps you prepare for your exams in a very short time.</p>
         </div>
 
-        <div class="feature-box hover:border-orange-300 hover:bg-orange-50" data-aos="fade-up" data-aos-duration="1500">
+        <div class="feature-box hover:border-orange-300 hover:bg-orange-50" data-aos="fade-up" data-aos-duration="1000">
             <div class="flex items-center justify-center bg-orange-100 rounded-full w-16 h-16">
                 <i class="bi-laptop text-2xl text-orange-400"></i>
             </div>
@@ -70,7 +70,7 @@
             <p class="text-sm text-center">Our custom paper generation tool saves your time, effort and printing cost.</p>
         </div>
 
-        <div class="feature-box hover:border-cyan-200 hover:bg-cyan-50" data-aos="fade-up" data-aos-duration="1500">
+        <div class="feature-box hover:border-cyan-200 hover:bg-cyan-50" data-aos="fade-up" data-aos-duration="1000">
             <div class="flex items-center justify-center bg-cyan-100 rounded-full w-16 h-16">
                 <i class="bi bi-palette text-2xl text-cyan-400"></i>
             </div>
@@ -84,7 +84,7 @@
 <section class="mt-24 ">
     <div class="md:px-24">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div class="flex flex-col border border-green-200 bg-green-50" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine">
+            <div class="flex flex-col border border-green-200 bg-green-50" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
                 <!-- videos showing the paper generation -->
                 <div class="h-60 overflow-clip">
                     <img src="{{url('images/small/quiz.jpg')}}" alt="" class="tool-image w-full h-full skew-x-12 -transform -rotate-12 translate-x-6 -translate-y-12 scale-125">
@@ -103,7 +103,7 @@
 
                 </div>
             </div>
-            <div class="flex flex-col bg-orange-50 border border-orange-200" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine">
+            <div class="flex flex-col bg-orange-50 border border-orange-200" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
                 <!-- videos showing the paper generation -->
                 <div class="h-60 overflow-clip">
                     <img src="{{url('images/small/paper-gen.jpg')}}" alt="" class="tool-image w-full h-full skew-x-12 -transform -rotate-12 translate-x-6 scale-125 -translate-y-12">
@@ -125,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-blue-50 border border-blue-200" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine">
+            <div class="flex flex-col bg-blue-50 border border-blue-200" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
                 <!-- videos showing the paper generation -->
                 <div class="h-60 overflow-clip">
                     <img src="{{url('images/small/paper-gen.jpg')}}" alt="" class="tool-image w-full h-full skew-x-12 -transform -rotate-12 translate-x-6 scale-125 -translate-y-12">
@@ -151,7 +151,7 @@
 </section>
 
 <!-- testimonial section -->
-<section class="testimonials pt-0" data-aos="fade-up" data-aos-duration="1500">
+<section class="testimonials pt-0" data-aos="fade-up" data-aos-duration="1000">
     <div class="mt-24 px-4 md:px-16 md:w-3/4 mx-auto">
         <h2 class="text-3xl text-center">Our Team</h2>
         <p class="text-gray-600 text-center mt-8">

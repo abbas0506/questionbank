@@ -36,10 +36,12 @@ use App\Http\Controllers\librarian\BookReturnPolicyController;
 use App\Http\Controllers\librarian\LibrayInchargeController;
 use App\Http\Controllers\librarian\QrCodeController as LibrarianQrCodeController;
 use App\Http\Controllers\librarian\LibraryRuleController;
+use App\Http\Controllers\PaperGeneration\DemoPaperGenerationController;
+use App\Http\Controllers\PaperGeneration\PaidPaperGenerationController;
 use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherController as PrincipalTeacherController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
-use App\Http\Controllers\student_services\SelfTestController;
+use App\Http\Controllers\SelfTestController;
 use App\Http\Controllers\teacher\AdvanceShortController;
 use App\Http\Controllers\teacher\AnswerKeyController;
 use App\Http\Controllers\teacher\ChapterController;
@@ -223,8 +225,6 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::get('tests/{test}/anskey/pdf', [AnswerKeyController::class, 'pdf'])->name('tests.anskey.pdf');
 });
 
-Route::view('student/services', 'student_services.index');
-Route::get('student/services/selftest', [SelfTestController::class, 'index']);
-Route::get('student/services/selftest/{grade}/subjects', [SelfTestController::class, 'subjects'])->name('student.services.selftest.subjects');
-Route::get('student/services/selftest/grades/{subject}/chapters', [SelfTestController::class, 'chapters'])->name('student.services.selftest.chapters');
-Route::resource('student/services/selftest', SelfTestController::class);
+Route::resource('selftest', SelfTestController::class);
+Route::resource('papergeneration-demo', DemoPaperGenerationController::class);
+Route::resource('papergeneration-paid', PaidPaperGenerationController::class);

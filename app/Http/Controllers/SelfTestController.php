@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\student_services;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Chapter;
 use App\Models\Grade;
 use App\Models\Question;
 use App\Models\Subject;
-use App\Models\Test;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -20,7 +19,7 @@ class SelfTestController extends Controller
     {
         //
         $grades = Grade::where('id', '>', 8)->get();
-        return view('student_services.selftest.index', compact('grades'));
+        return view('services.selftest.index', compact('grades'));
     }
 
     /**
@@ -29,23 +28,7 @@ class SelfTestController extends Controller
     public function create()
     {
         //
-        $subjectId = session('subject_id');
-        $subject = Subject::find($subjectId);
 
-        $chapterIds = session('chapterIds');
-        $chapters = Chapter::whereIn('id', $chapterIds)->get();
-        $questions = collect();
-        foreach ($chapters as $chapter) {
-            $questionsFromThisChapter = Question::where('question_type', 'mcq')
-                ->where('chapter_id', $chapter->id)
-                ->get()
-                ->random(round(20 / sizeOf($chapterIds), 0));
-
-            foreach ($questionsFromThisChapter as $question)
-                $questions->add($question);
-        }
-        // echo $questions;
-        return view('student_services.selftest.show', compact('subject', 'questions'));
     }
 
     /**
@@ -65,11 +48,10 @@ class SelfTestController extends Controller
             $chapterIds = array();
             $chapterIds = $request->chapter_id_array;
             session([
-                'subject_id' => $request->subject_id,
                 'chapterIds' => $chapterIds,
 
             ]);
-            return redirect()->route('selftest.create');
+            return redirect()->route('selftest.show', $request->subject_id);
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
@@ -82,7 +64,22 @@ class SelfTestController extends Controller
     public function show(string $id)
     {
         //
+        $subject = Subject::find($id);
 
+        $chapterIds = session('chapterIds');
+        $chapters = Chapter::whereIn('id', $chapterIds)->get();
+        $questions = collect();
+        foreach ($chapters as $chapter) {
+            $questionsFromThisChapter = Question::where('question_type', 'mcq')
+                ->where('chapter_id', $chapter->id)
+                ->get()
+                ->random(round(20 / sizeOf($chapterIds), 0));
+
+            foreach ($questionsFromThisChapter as $question)
+                $questions->add($question);
+        }
+        // echo $questions;
+        return view('services.selftest.show', compact('subject', 'questions'));
     }
 
     /**
@@ -91,6 +88,11 @@ class SelfTestController extends Controller
     public function edit(string $id)
     {
         //
+        $subject = Subject::find($id);
+        $chapters = Chapter::where('subject_id', $id)
+            ->whereHas('questions')
+            ->get();
+        return view('services.selftest.edit', compact('chapters', 'subject'));
     }
 
     /**
@@ -107,21 +109,5 @@ class SelfTestController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-    public function subjects($gradeId)
-    {
-        $grade = Grade::find($gradeId);
-        $subjects = Subject::where('grade_id', $gradeId)
-            ->whereHas('chapters')
-            ->get();
-        return view('student_services.selftest.subjects', compact('subjects', 'grade'));
-    }
-    public function chapters($subjectId)
-    {
-        $subject = Subject::find($subjectId);
-        $chapters = Chapter::where('subject_id', $subjectId)
-            ->whereHas('questions')
-            ->get();
-        return view('student_services.selftest.chapters', compact('chapters', 'subject'));
     }
 };
