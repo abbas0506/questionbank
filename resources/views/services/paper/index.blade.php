@@ -11,6 +11,13 @@
     <p class="text-slate-600 leading-relaxed mt-6">Free version is bit limited, however, you can generate paper upto 20 marks without any other restriction. Try it and see how well we can save your time, effort and cost of paper. </p>
     <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
 
+    <!-- page message -->
+    @if($errors->any())
+    <x-message :errors='$errors'></x-message>
+    @else
+    <x-message></x-message>
+    @endif
+
     <h3 class="text-lg mt-8">Please tell us the grade and subject</h3>
     <div class="flex items-center justify-center gap-x-4 mt-5">
         @foreach($grades as $grade)
@@ -27,7 +34,7 @@
             Please select one of the following subjects
         </div>
         @foreach($grade->subjects as $subject)
-        <a href="{{route('papergeneration-demo.edit',$subject)}}" class="flex py-3 px-6 border-b">{{$subject->name}}</a>
+        <a href="{{route('papers.edit',$subject)}}" class="flex py-3 px-6 border-b">{{$subject->name}}</a>
         @endforeach
     </div>
     @endforeach

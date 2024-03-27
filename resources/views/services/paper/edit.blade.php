@@ -22,11 +22,11 @@
     @endif
 
     <div class="flex relative mt-8">
-        <h2 class="bg-green-200 text-green-700 px-4 py-2 rounded-md">Please select chapter(s) for test</h2>
+        <h2 class="bg-green-200 text-green-700 px-4 py-2 rounded-md">Please select chapter(s) for question paper</h2>
         <div class="w-4 h-4 bg-green-200 rotate-45 absolute -bottom-1 left-4"></div>
     </div>
     <!-- <h3 class="text-lg text-left mt-8"></h3> -->
-    <form id='start-test-form' action="{{route('papergeneration-demo.store')}}" method='post' onsubmit="return validate(event)">
+    <form id='start-test-form' action="{{route('papers.store')}}" method='post' onsubmit="return validate(event)">
         @csrf
         <div class="mt-2">
             @foreach($chapters->sortBy('chapter_no') as $chapter)

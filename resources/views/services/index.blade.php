@@ -27,7 +27,7 @@
             </div> -->
             <h3 class="text-lg">Paper Generation</h3>
             <p class="text-sm text-center mt-2">Highly flexible paper generation saves your time, effort and printing cost.</p>
-            <a href="{{route('papergeneration-demo.index')}}" class="text-sm rounded-full mt-4 btn-orange">Generate Now</a>
+            <a href="{{route('papers.index')}}" class="text-sm rounded-full mt-4 btn-orange">Go Free</a>
         </div>
 
         <div class="feature-box border-cyan-200 bg-cyan-50" data-aos="fade-up" data-aos-duration="1500">

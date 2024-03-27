@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PaperGeneration;
+namespace App\Http\Controllers\Demo\QuestionPaper;
 
 use App\Http\Controllers\Controller;
 use App\Models\Chapter;
@@ -9,13 +9,9 @@ use App\Models\Subject;
 use App\Models\Test;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DemoPaperGenerationController extends Controller
+class PaperController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //

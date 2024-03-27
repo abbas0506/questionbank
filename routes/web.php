@@ -29,6 +29,9 @@ use App\Http\Controllers\assistant\BookReturnController;
 use App\Http\Controllers\assistant\ClassController as AssistantClassController;
 use App\Http\Controllers\assistant\LibrayAssistantController;
 use App\Http\Controllers\assistant\QRCodeController;
+use App\Http\Controllers\Demo\QuestionPaper\PaperController;
+use App\Http\Controllers\Demo\QuestionPaper\PaperQuestionController;
+use App\Http\Controllers\Demo\QuestionPaper\PaperQuestionPartsController;
 use App\Http\Controllers\librarian\BookController as LibrarianBookController;
 use App\Http\Controllers\librarian\BookDomainController;
 use App\Http\Controllers\librarian\BookRackController as LibrarianBookRackController;
@@ -36,8 +39,6 @@ use App\Http\Controllers\librarian\BookReturnPolicyController;
 use App\Http\Controllers\librarian\LibrayInchargeController;
 use App\Http\Controllers\librarian\QrCodeController as LibrarianQrCodeController;
 use App\Http\Controllers\librarian\LibraryRuleController;
-use App\Http\Controllers\PaperGeneration\DemoPaperGenerationController;
-use App\Http\Controllers\PaperGeneration\PaidPaperGenerationController;
 use App\Http\Controllers\principal\PrincipalController;
 use App\Http\Controllers\principal\TeacherController as PrincipalTeacherController;
 use App\Http\Controllers\principal\TeacherEvaluationController;
@@ -226,5 +227,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
 });
 
 Route::resource('selftest', SelfTestController::class);
-Route::resource('papergeneration-demo', DemoPaperGenerationController::class);
-Route::resource('papergeneration-paid', PaidPaperGenerationController::class);
+Route::resource('papers', PaperController::class);
+// Route::resource('papergeneration-paid', PaidPaperGenerationController::class);
+Route::resource('papers.questions', PaperQuestionController::class);
+Route::get('paper-question-parts/{part}/refresh', [PaperQuestionPartsController::class, 'refresh'])->name('paper.question.parts.refresh');

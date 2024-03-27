@@ -1,5 +1,5 @@
 <header class="sticky-header" id='header'>
-    <div class="flex justify-between items-center w-full">
+    <div class="flex flex-wrap justify-between items-center w-full">
         <a href="{{url('/')}}" class="flex text-xl font-bold items-center">
             <img src="{{asset('images/logo/app_logo_transparent.png')}}" alt="" class="w-8 md:w-12">
             <div class="text-lg font-medium text-red-600">Exam System</div>

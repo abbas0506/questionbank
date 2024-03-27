@@ -26,7 +26,7 @@
         </div>
         <div>
             <h3 class="text-base text-orange-300">Quick Links</h3>
-            <div class="flex gap-x-4">
+            <div class="flex flex-wrap gap-x-4">
                 <a href="" class="text-slate-400 hover:text-slate-200 hover:underline-offset-2 hover:underline">About</a>
                 <a href="" class="text-slate-400 hover:text-slate-200 hover:underline-offset-2 hover:underline">Services</a>
                 <a href="" class="text-slate-400 hover:text-slate-200 hover:underline-offset-2 hover:underline">Features</a>

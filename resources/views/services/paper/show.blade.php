@@ -33,7 +33,7 @@
     <div class="flex flex-row justify-between items-center w-full">
         <!-- can edit only if some question exists -->
         <div class="flex items-center">
-            <label>Suggested Time: &nbsp</label>
+            <label>Time: &nbsp</label>
             <div class="flex items-center space-x-2">
                 <label>{{$test->getDuration()}}</label>
                 <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
@@ -60,10 +60,10 @@
                 {{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts}}
             </div>
         </div>
-        <ol class="list-[lower-roman] list-outside text-sm pl-6">
+        <ol class="list-[lower-roman] list-outside text-sm pl-6 text-left">
             @foreach($testQuestion->parts as $part)
             <li>
-                {{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a>
+                {{$part->question->question}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a>
                 <div class="grid grid-cols-1 md:grid-cols-4">
                     <div>a. {{$part->question->mcq->option_a}}</div>
                     <div>b. {{$part->question->mcq->option_b}}</div>
@@ -91,9 +91,9 @@
                 {{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}
             </div>
         </div>
-        <ol class="list-[lower-roman] list-outside text-sm pl-6">
+        <ol class="list-[lower-roman] list-outside text-sm text-left pl-6">
             @foreach($testQuestion->parts as $part)
-            <li class="mt-2">{{$part->question->question}} {{$part->question->bise_frequency}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
+            <li class="mt-2">{{$part->question->question}} {{$part->question->bise_frequency}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
             @endforeach
         </ol>
         @endforeach
@@ -127,7 +127,7 @@
             @foreach($testQuestion->parts as $part)
             <li class="mt-2">
                 <div class="flex justify-between">
-                    <div>{{$part->question->question}} <a href="{{route('teacher.tests.questions.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></div>
+                    <div>{{$part->question->question}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></div>
                     <div class="flex items-center space-x-2">
                         <div>{{$part->marks}}</div>
                         <a href="{{route('teacher.question-parts.edit',$part)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
@@ -150,16 +150,16 @@
     <!-- <div class="divider my-3"></div> -->
     @endif
 
-    <div id='add-question-btn' class="fixed right-6 bottom-6 h-14 w-14 flex  justify-center items-center rounded-full btn-green">
+    <div id='add-question-btn' class="fixed right-6 bottom-6 h-14 w-14 flex  justify-center items-center rounded-full btn-green hover:cursor-pointer">
         <i class="bi bi-plus-lg"></i>
     </div>
 
     <!-- modal showing question types -->
     <div id='floating-modal' class="modal bg-gray-600 rounded w-1/2 md:w-1/4">
         <div class="flex flex-col  p-5 rounded gap-4 text-green-400 text-sm w-full relative">
-            <a href="{{route('teacher.tests.questions.add',[$test, 'mcq'])}}" class="hover:text-slate-100">MCQ</a>
-            <a href="{{route('teacher.tests.questions.add',[$test, 'short'])}}" class="hover:text-slate-100">Short</a>
-            <a href="{{route('teacher.tests.questions.add',[$test, 'long'])}}" class="hover:text-slate-100">Long</a>
+            <a href="{{route('papers.questions.edit',[$test, 'mcq'])}}" class="hover:text-slate-100">MCQ</a>
+            <a href="{{route('papers.questions.edit',[$test, 'short'])}}" class="hover:text-slate-100">Short</a>
+            <a href="{{route('papers.questions.edit',[$test, 'long'])}}" class="hover:text-slate-100">Long</a>
 
             <button id='close-modal' class="absolute -top-4 -right-4 flex justify-center items-center rounded-full border border-slate-50 bg-gray-600  w-6 h-6"><i class="bi bi-x text-orange-300 hover:text-orange-400 text-base"></i></button>
         </div>
