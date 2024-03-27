@@ -43,36 +43,63 @@
         <label>Max marks: {{$test->totalMarks()}}</label>
     </div>
     <div class="divider my-3"></div>
+
     <div class="flex flex-col gap-2 mt-3">
         <!-- MCQs -->
+        @php
+        $roman=new Roman;
+        $i=1;
+        @endphp
+
+        <!-- MCQs -->
+
         @foreach($test->questions()->mcqs()->get() as $testQuestion)
-        <div class="flex items-center justify-between">
-            <div class="flex items-baseline space-x-1">
-                <h3>Q.{{$testQuestion->question_no}}</h3>
-                <h3>Encircle the correct option. &nbsp</h3>
-                @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                <p class="text-xs">(all questions are compulsory)</p>
-                @else
-                <p class="text-xs">(any {{$testQuestion->necessary_parts}} questions)</p>
-                @endif
-            </div>
-            <div class="text-sm">
-                {{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts}}
-            </div>
-        </div>
-        <ol class="list-[lower-roman] list-outside text-sm pl-6 text-left">
-            @foreach($testQuestion->parts as $part)
-            <li>
-                {{$part->question->question}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a>
-                <div class="grid grid-cols-1 md:grid-cols-4">
-                    <div>a. {{$part->question->mcq->option_a}}</div>
-                    <div>b. {{$part->question->mcq->option_b}}</div>
-                    <div>c. {{$part->question->mcq->option_c}}</div>
-                    <div>d. {{$part->question->mcq->option_d}}</div>
+        <div class="border mt-12">
+            <div class="flex flex-col md:flex-row items-start md:items-center border-b p-3">
+                <h2 class="w-12">Q.{{$testQuestion->question_no}}</h2>
+                <div class="flex flex-1 space-x-2 text-base">
+                    <h2>Encircle the correct option. &nbsp
+                        @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                        <span>All questions are compulsory.</span>
+                        @else
+                        <span>Any {{$testQuestion->necessary_parts}} questions.</span>
+                        @endif
+                        <span>{{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts*1}}
+                        </span>
+                    </h2>
                 </div>
-            </li>
+                <div class="flex items-center justify-end space-x-3 py-1 px-2 border border-green-200 rounded bg-green-50">
+                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
+                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-green-600"><i class="bi-arrow-repeat"></i></a>
+                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return confirmDel(event)">
+                        @csrf
+                        @method('DELETE')
+                        <button><i class="bx bx-trash text-red-600"></i></button>
+                    </form>
+                </div>
+            </div>
+
+
+            @foreach($testQuestion->parts as $part)
+            <div class="flex">
+                <div class="w-12">{{Str::lower($roman->filter($i++))}}</div>
+                <div class="flex-1 text-left">{{$part->question->question}}</div>
+            </div>
             @endforeach
-        </ol>
+            <ol class="list-[lower-roman] list-outside text-sm pl-6 text-left">
+                @foreach($testQuestion->parts as $part)
+                <li>
+                    {{$part->question->question}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a>
+                    <div class="grid grid-cols-1 md:grid-cols-4">
+                        <div>a. {{$part->question->mcq->option_a}}</div>
+                        <div>b. {{$part->question->mcq->option_b}}</div>
+                        <div>c. {{$part->question->mcq->option_c}}</div>
+                        <div>d. {{$part->question->mcq->option_d}}</div>
+                    </div>
+                </li>
+                @endforeach
+            </ol>
+        </div>
         @endforeach
 
         <!-- SHORT Questions -->
@@ -166,6 +193,9 @@
     </div>
 
 </div>
+@endsection
+@section('footer')
+<x-footer></x-footer>
 @endsection
 @section('script')
 <script type="module">

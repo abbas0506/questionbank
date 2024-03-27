@@ -230,4 +230,6 @@ Route::resource('selftest', SelfTestController::class);
 Route::resource('papers', PaperController::class);
 // Route::resource('papergeneration-paid', PaidPaperGenerationController::class);
 Route::resource('papers.questions', PaperQuestionController::class);
+Route::resource('paper-questions', PaperQuestionController::class);
+Route::get('paper-question/{question}/refresh', [PaperQuestionPartsController::class, 'refresh'])->name('paper.question.refresh');
 Route::get('paper-question-parts/{part}/refresh', [PaperQuestionPartsController::class, 'refresh'])->name('paper.question.parts.refresh');
