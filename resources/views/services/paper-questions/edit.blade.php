@@ -135,9 +135,6 @@
             return validated;
         });
 
-        // $('.numOfParts').change(function() {
-
-        // })
     });
 </script>
 @endsection

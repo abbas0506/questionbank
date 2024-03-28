@@ -64,6 +64,14 @@ class PaperQuestionPartsController extends Controller
     public function destroy(string $id)
     {
         //
+        $model = TestQuestionPart::findOrFail($id);
+        try {
+            $model->delete();
+            return redirect()->back()->with('success', 'Successfully deleted');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
     public function refresh($testQuestionPartId)
     {

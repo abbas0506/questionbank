@@ -228,8 +228,10 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
 
 Route::resource('selftest', SelfTestController::class);
 Route::resource('papers', PaperController::class);
-// Route::resource('papergeneration-paid', PaidPaperGenerationController::class);
 Route::resource('papers.questions', PaperQuestionController::class);
 Route::resource('paper-questions', PaperQuestionController::class);
+Route::resource('paper-question-parts', PaperQuestionPartsController::class);
+
 Route::get('paper-question/{question}/refresh', [PaperQuestionPartsController::class, 'refresh'])->name('paper.question.refresh');
 Route::get('paper-question-parts/{part}/refresh', [PaperQuestionPartsController::class, 'refresh'])->name('paper.question.parts.refresh');
+Route::resource('question-paper.pdf', TestPdfController::class);

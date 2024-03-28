@@ -441,4 +441,43 @@
     .no-line-break {
         white-space: nowrap;
     }
+
+    .question {
+        @apply rounded text-left mt-6 text-slate-600;
+    }
+    .question .head {
+        @apply flex flex-wrap md:items-center font-semibold py-2 border-y text-teal-500;
+    }
+
+    .question .sr {
+        @apply w-8 md:w-12  text-center;
+    }
+    .question .title {
+        @apply flex flex-1 items-center;
+    }
+    .question .sub {
+        @apply flex items-center py-2;
+    }
+    .question:not(.mcq) .sub {
+        @apply border-b;
+    }
+    .question .head .statement,
+    .question .sub .statement {
+        @apply flex-1;
+    }
+    .question .action {
+        @apply flex justify-center items-center space-x-2;
+    }
+    .question .choices {
+        @apply grid grid-cols-1 md:grid-cols-4 gap-2 pl-8  bg-slate-100 text-sm md:py-4;
+    }
+    .question .choice {
+        @apply flex items-center space-x-2;
+    }
+    .question .choice .desc {
+        @apply flex-1;
+    }
+    .question .bi-arrow-repeat {
+        @apply text-green-600;
+    }
 }

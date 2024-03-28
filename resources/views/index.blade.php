@@ -33,7 +33,7 @@
 </style>
 
 <section id='hero' class="flex flex-col-reverse md:flex-row w-screen h-screen overflow-x-clip">
-    <div class="flex flex-col justify-center flex-1 px-5 md:pl-24 md:mt-24">
+    <div class="flex flex-col justify-start md:justify-center flex-1 px-5 md:pl-24 mt-8 md:mt-24">
         <p class="text-teal-800 text-3xl md:text-5xl">Question Bank </p>
         <p class="text-slate-600 mt-3 text-md">50,000+ questions including short, long, MCQs have been taken from the exercises of textbooks and past papers, fully covering 9th to 12th classes.</p>
         <a href="{{url('services')}}" class="mt-5">
@@ -42,7 +42,7 @@
     </div>
 
     <div class="relative flex flex-col md:flex-row justify-center items-center flex-1">
-        <div class="hero-image mt-24 md:mt-0">
+        <div class="hero-image mt-16 md:mt-0">
         </div>
         <div class="absolute bottom-0 -z-10 border-slate-100 border-[200px] scale-[250%] rounded-full -skew-x-[20deg] transform">
         </div>

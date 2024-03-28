@@ -127,5 +127,13 @@ class PaperQuestionController extends Controller
     public function destroy(string $id)
     {
         //
+        $model = TestQuestion::findOrFail($id);
+        try {
+            $model->delete();
+            return redirect()->back()->with('success', 'Successfully deleted');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 }

@@ -18,7 +18,7 @@
     @if($test->questions->count()>0)
     <div class="flex justify-end w-full">
         <div class="flex w-12 h-12 items-center justify-center rounded-full bg-orange-100 hover:bg-orange-200">
-            <a href="{{route('teacher.tests.pdf.create',$test)}}"><i class="bi-printer"></i></a>
+            <a href="{{route('question-paper.pdf.create',$test)}}"><i class="bi-printer"></i></a>
         </div>
     </div>
     @endif
@@ -45,32 +45,31 @@
     <div class="divider my-3"></div>
 
     <div class="flex flex-col gap-2 mt-3">
-        <!-- MCQs -->
         @php
         $roman=new Roman;
-        $i=1;
+        $questionSr=1;
         @endphp
 
         <!-- MCQs -->
-
         @foreach($test->questions()->mcqs()->get() as $testQuestion)
-        <div class="border mt-12">
-            <div class="flex flex-col md:flex-row items-start md:items-center border-b p-3">
-                <h2 class="w-12">Q.{{$testQuestion->question_no}}</h2>
-                <div class="flex flex-1 space-x-2 text-base">
-                    <h2>Encircle the correct option. &nbsp
-                        @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                        <span>All questions are compulsory.</span>
-                        @else
-                        <span>Any {{$testQuestion->necessary_parts}} questions.</span>
-                        @endif
-                        <span>{{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts*1}}
-                        </span>
-                    </h2>
+        @php
+        $i=1;
+        @endphp
+        <div class="question mcq">
+            <div class="head">
+                <div class="sr">Q.{{$questionSr++}}</div>
+                <div class="statement">
+                    Encircle the correct option.
+                    @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                    <span>All questions are compulsory.</span>
+                    @else
+                    <span>Any {{$testQuestion->necessary_parts}} questions.</span>
+                    @endif
+                    <span>{{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts*1}}</span>
                 </div>
-                <div class="flex items-center justify-end space-x-3 py-1 px-2 border border-green-200 rounded bg-green-50">
+                <div class="action border border-green-200 rounded bg-green-50">
                     <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
-                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-green-600"><i class="bi-arrow-repeat"></i></a>
+                    <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
                     <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return confirmDel(event)">
                         @csrf
                         @method('DELETE')
@@ -78,51 +77,135 @@
                     </form>
                 </div>
             </div>
-
-
-            @foreach($testQuestion->parts as $part)
-            <div class="flex">
-                <div class="w-12">{{Str::lower($roman->filter($i++))}}</div>
-                <div class="flex-1 text-left">{{$part->question->question}}</div>
-            </div>
-            @endforeach
-            <ol class="list-[lower-roman] list-outside text-sm pl-6 text-left">
+            <div class="body">
                 @foreach($testQuestion->parts as $part)
-                <li>
-                    {{$part->question->question}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a>
-                    <div class="grid grid-cols-1 md:grid-cols-4">
-                        <div>a. {{$part->question->mcq->option_a}}</div>
-                        <div>b. {{$part->question->mcq->option_b}}</div>
-                        <div>c. {{$part->question->mcq->option_c}}</div>
-                        <div>d. {{$part->question->mcq->option_d}}</div>
+                <div class="sub">
+                    <div class="sr">{{Str::lower($roman->filter($i++))}}</div>
+                    <div class="statement">{{$part->question->question}}</div>
+                    <div class="action">
+                        <a href="{{route('paper.question.parts.refresh',$part)}}"><i class="bi-arrow-repeat"></i></a>
+                        <form action="{{route('paper-question-parts.destroy',$part)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button><i class="bx bx-trash text-red-600"></i></button>
+                        </form>
                     </div>
-                </li>
+                </div>
+                <div class="choices">
+                    <div class="choice">
+                        <div class="sr">a.</div>
+                        <div class="desc">{{$part->question->mcq->option_a}}</div>
+                    </div>
+                    <div class="choice">
+                        <div class="sr">b.</div>
+                        <div class="desc">{{$part->question->mcq->option_b}}</div>
+                    </div>
+                    <div class="choice">
+                        <div class="sr">c.</div>
+                        <div class="desc">{{$part->question->mcq->option_c}}</div>
+                    </div>
+                    <div class="choice">
+                        <div class="sr">d.</div>
+                        <div class="desc">{{$part->question->mcq->option_d}}</div>
+                    </div>
+
+                </div>
                 @endforeach
-            </ol>
+            </div>
         </div>
         @endforeach
 
-        <!-- SHORT Questions -->
+
+        <!-- Short -->
         @foreach($test->questions()->short()->get() as $testQuestion)
-        <div class="flex items-center justify-between mt-3">
-            <div class="flex items-baseline space-x-1 ">
-                <h3>Q.{{$testQuestion->question_no}}</h3>
-                <h3> Answer the following. &nbsp</h3>
-                @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                <p class="text-xs">(all questions are compulsory)</p>
-                @else
-                <p class="text-xs">(any {{$testQuestion->necessary_parts}} questions)</p>
-                @endif
+        @php
+        $i=1;
+        @endphp
+        <div class="question">
+            <div class="head">
+                <div class="sr">Q.{{$questionSr++}}</div>
+                <div class="statement">
+                    Answer the following.
+                    @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                    <span>All questions are compulsory.</span>
+                    @else
+                    <span>Any {{$testQuestion->necessary_parts}} questions.</span>
+                    @endif
+                    <span>{{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}</span>
+                </div>
+                <div class="action border border-green-200 rounded bg-green-50">
+                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
+                    <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
+                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return delme(event)">
+                        @csrf
+                        @method('DELETE')
+                        <button><i class="bx bx-trash text-red-600"></i></button>
+                    </form>
+                </div>
             </div>
-            <div class="text-sm">
-                {{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}
+            <div class="body">
+                @foreach($testQuestion->parts as $part)
+                <div class="sub">
+                    <div class="sr">{{Str::lower($roman->filter($i++))}}</div>
+                    <div class="statement">{{$part->question->question}}</div>
+                    <div class="action">
+                        <a href="{{route('paper.question.parts.refresh',$part)}}"><i class="bi-arrow-repeat"></i></a>
+                        <form id='formDel{{$part->id}}' action="{{route('paper-question-parts.destroy',$part)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"><i class="bx bx-trash text-red-600 show-confirm"></i></button>
+                        </form>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
-        <ol class="list-[lower-roman] list-outside text-sm text-left pl-6">
-            @foreach($testQuestion->parts as $part)
-            <li class="mt-2">{{$part->question->question}} {{$part->question->bise_frequency}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></li>
-            @endforeach
-        </ol>
+        @endforeach
+
+        <!-- Long -->
+        @foreach($test->questions()->long()->get() as $testQuestion)
+        @php
+        $i=1;
+        @endphp
+        <div class="question">
+            <div class="head">
+                <div class="sr">Q.{{$questionSr++}}</div>
+                <div class="statement">
+                    Answer the following.
+                    @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                    <span>All questions are compulsory.</span>
+                    @else
+                    <span>Any {{$testQuestion->necessary_parts}} questions.</span>
+                    @endif
+                    <span>{{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}</span>
+                </div>
+                <div class="action border border-green-200 rounded bg-green-50">
+                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
+                    <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
+                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return delme(event)">
+                        @csrf
+                        @method('DELETE')
+                        <button><i class="bx bx-trash text-red-600"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="body">
+                @foreach($testQuestion->parts as $part)
+                <div class="sub">
+                    <div class="sr">{{Str::lower($roman->filter($i++))}}</div>
+                    <div class="statement">{{$part->question->question}}</div>
+                    <div class="action">
+                        <a href="{{route('paper.question.parts.refresh',$part)}}"><i class="bi-arrow-repeat"></i></a>
+                        <form id='formDel{{$part->id}}' action="{{route('paper-question-parts.destroy',$part)}}" method="post" onsubmit="return confirmSubQuestionRemoval(event)">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"><i class="bx bx-trash text-red-600"></i></button>
+                        </form>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
         @endforeach
 
         <!-- LONG Questions -->
@@ -169,14 +252,15 @@
         @endforeach
     </div>
     @else
+    <!-- Empty Test -->
     <div class="divider my-3"></div>
     <div class="h-full flex flex-col justify-center items-center py-4 gap-3">
         <i class="bi-emoji-smile text-4xl"></i>
         <p class="text-center">Start adding questions</p>
     </div>
-    <!-- <div class="divider my-3"></div> -->
     @endif
 
+    <!-- Add Question Button -->
     <div id='add-question-btn' class="fixed right-6 bottom-6 h-14 w-14 flex  justify-center items-center rounded-full btn-green hover:cursor-pointer">
         <i class="bi bi-plus-lg"></i>
     </div>
@@ -205,6 +289,48 @@
     });
     $('#add-question-btn').click(function() {
         $('.modal').addClass('shown');
+    });
+
+    // $('form').submit(function(event) {
+
+    //     var confirmed = false;
+    //     Swal.fire({
+    //         title: 'Are you sure?',
+    //         text: "You won't be able to revert this!",
+    //         type: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes, delete it!'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             //submit corresponding form
+    //             confirmed = true;
+    //         }
+    //     });
+    //     if (!confirmed) event.preventDefault()
+    //     return confirmed;
+    // });
+
+
+    $('.show-confirm').click(function(event) {
+        var form = $(this).closest("form");
+        // var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                //submit corresponding form
+                form.submit();
+            }
+        });
     });
 </script>
 @endsection

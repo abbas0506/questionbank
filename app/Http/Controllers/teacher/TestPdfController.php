@@ -26,7 +26,7 @@ class TestPdfController extends Controller
     {
         //
         $test = Test::find($testId);
-        return view('teacher.tests.pdf.create', compact('test'));
+        return view('pdf.create', compact('test'));
     }
 
     /**
