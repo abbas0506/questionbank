@@ -128,6 +128,17 @@ class PaperQuestionController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'necessary_parts' => 'required',
+        ]);
+        try {
+            $testQuestion = TestQuestion::find($id);
+            $testQuestion->update($request->all());
+            return redirect()->back()->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**

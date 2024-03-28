@@ -11,7 +11,7 @@
     <p class="text-slate-600 leading-relaxed mt-6">Free version is bit limited, however, you can generate paper upto 20 marks without any other restriction. Try it and see how well we can save your time, effort and cost of paper. </p>
     <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
 
-    <h2 class="text-lg my-8">{{$test->subject->name}} - {{$test->subject->grade->roman_name}}</h2>
+    <h2 class="text-lg my-8">{{$testQuestion->test->subject->name}} - {{$testQuestion->test->subject->grade->roman_name}}</h2>
 
     <!-- page message -->
     @if($errors->any())
@@ -21,11 +21,11 @@
     @endif
 
     <div class="divider mt-3"></div>
+
+    <div class="divider my-3"></div>
     <form action="{{route('paper-questions.update',$testQuestion)}}" method='post' onsubmit="return validate(event)">
         @csrf
 
-
-        <div class="divider my-3"></div>
         <div class="flex items-baseline justify-between space-x-4">
             <h3>How many compulsory out of <span id='total_parts'></span>? <span class="text-red-600">*</span></h3>
             <input type="number" name="necessary_parts" value="{{$testQuestion->necessary_parts}}" min='0' max='{{$testQuestion->necessary_parts}}'>
@@ -35,7 +35,7 @@
         <button type="submit" class="fixed right-6 bottom-6 h-12 w-12 flex  justify-center items-center rounded-full bg-teal-400 hover:bg-teal-600"><i class="bi bi-caret-right"></i></button>
 
     </form>
-    <a href="{{route('papers.show',$test)}}" class="btn-sky float-left my-6"><i class="bi-arrow-left"></i> Go back </a>
+    <a href="{{route('papers.show',$testQuestion->test)}}" class="btn-sky float-left my-6"><i class="bi-arrow-left"></i> Go back </a>
 
 </div>
 </div>

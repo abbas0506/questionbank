@@ -210,7 +210,7 @@
                     @else
                     <span>Answer any {{SpellNumber::value($testQuestion->necessary_parts)->toLetters()}} questions.</span>
                     @endif
-
+                    <span>{{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}</span>
                 </div>
                 <div class="action border border-green-200 rounded bg-green-50">
                     <a modal-id='{{$testQuestion->id}}' class="show-modal text-cyan-600"><i class="bx bx-pencil"></i></a>
@@ -254,6 +254,48 @@
         </div>
         @endforeach
 
+        <!-- LONG Questions -->
+        @foreach($test->questions()->long()->get() as $testQuestion)
+
+        @if($testQuestion->parts->count()==1)
+        <!-- if long question is compact i.e not splitted  -->
+        <div class="flex items-center justify-between mt-3">
+            <div class="flex items-center space-x-1">
+                <h3>Q.{{$testQuestion->question_no}}</h3>
+                <p class="text-sm ml-1">{{$testQuestion->parts->first()->question->question}}</p>
+            </div>
+            <div class="flex items-center space-x-1">
+                <p class="text-sm">{{$testQuestion->parts->first()->marks}}</p>
+                <a href="{{route('teacher.question-parts.edit',$testQuestion->parts->first())}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
+            </div>
+        </div>
+        @else
+        <!-- if long question splits -->
+        <div class="flex items-center justify-between mt-3">
+            <div class="flex items-baseline space-x-1">
+                <h3>Q.{{$testQuestion->question_no}}</h3>
+                <h3>Answer the following</h3>
+            </div>
+            <div class="text-sm">
+            </div>
+        </div>
+        <ol class="list-[lower-alpha] list-outside text-sm pl-6">
+            @foreach($testQuestion->parts as $part)
+            <li class="mt-2">
+                <div class="flex justify-between">
+                    <div>{{$part->question->question}} <a href="{{route('paper.question.parts.refresh',$part)}}" class="ml-2"><i class="bi-arrow-repeat"></i></a></div>
+                    <div class="flex items-center space-x-2">
+                        <div>{{$part->marks}}</div>
+                        <a href="{{route('teacher.question-parts.edit',$part)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
+                    </div>
+                </div>
+            </li>
+            @endforeach
+        </ol>
+        <!-- long question ends -->
+        @endif
+        <!--looping test questions ends -->
+        @endforeach
     </div>
     @else
     <!-- Empty Test -->
