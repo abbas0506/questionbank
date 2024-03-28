@@ -22,7 +22,7 @@
     @endif
 
     <div class="flex relative mt-8">
-        <h2 class="bg-green-200 text-green-700 px-4 py-2 rounded-md">Please select chapter(s) for question paper</h2>
+        <p class="bg-green-200 text-green-700 px-4 py-2 rounded-md">Select chapter(s) for question papers</p>
         <div class="w-4 h-4 bg-green-200 rotate-45 absolute -bottom-1 left-4"></div>
     </div>
     <!-- <h3 class="text-lg text-left mt-8"></h3> -->

@@ -21,9 +21,9 @@
     @endif
 
     <div class="divider mt-3"></div>
-    <form action="{{route('papers.questions.store',$test->id)}}" method='post' onsubmit="return validate(event)">
+    <form action="{{route('paper-questions.store')}}" method='post' onsubmit="return validate(event)">
         @csrf
-        <!-- <input type="hidden" name="test_id" value="{{$test->id}}"> -->
+        <input type="hidden" name="test_id" value="{{$test->id}}">
         <input type="hidden" name="question_no" value="{{$test->questions->count()+1}}">
         <input type="hidden" name="question_type" value="{{$questionType}}">
 

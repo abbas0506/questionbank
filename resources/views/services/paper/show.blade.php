@@ -59,18 +59,18 @@
             <div class="head">
                 <div class="sr">Q.{{$questionSr++}}</div>
                 <div class="statement">
-                    Encircle the correct option.
                     @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                    <span>All questions are compulsory.</span>
+                    <span>Encircle the correct option</span>
                     @else
-                    <span>Any {{$testQuestion->necessary_parts}} questions.</span>
+                    <span>Encircle the correct option. (any {{SpellNumber::value($testQuestion->necessary_parts)->toLetters()}})</span>
                     @endif
+
                     <span>{{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts*1}}</span>
                 </div>
                 <div class="action border border-green-200 rounded bg-green-50">
-                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
-                    <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
-                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return confirmDel(event)">
+                    <a href="{{route('paper-questions.edit',$testQuestion)}}" class="text-cyan-600"><i class="bx bx-pencil"></i></a>
+                    <a href="{{route('paper-questions.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
+                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button><i class="bx bx-trash text-red-600 show-confirm"></i></button>
@@ -87,7 +87,7 @@
                         <form action="{{route('paper-question-parts.destroy',$part)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button><i class="bx bx-trash text-red-600 show-confirm"></i></button>
+                            <button><i class="bx bx-x text-red-600 show-confirm"></i></button>
                         </form>
                     </div>
                 </div>
@@ -125,17 +125,17 @@
             <div class="head">
                 <div class="sr">Q.{{$questionSr++}}</div>
                 <div class="statement">
-                    Answer the following.
                     @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                    <span>All questions are compulsory.</span>
+                    <span>Answer the following.</span>
                     @else
-                    <span>Any {{$testQuestion->necessary_parts}} questions.</span>
+                    <span>Answer any {{SpellNumber::value($testQuestion->necessary_parts)->toLetters()}} questions.</span>
                     @endif
+
                     <span>{{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}</span>
                 </div>
                 <div class="action border border-green-200 rounded bg-green-50">
-                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
-                    <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
+                    <a href="{{route('paper-questions.edit',$testQuestion)}}" class="text-cyan-600"><i class="bx bx-pencil"></i></a>
+                    <a href="{{route('paper-questions.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
                     <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post">
                         @csrf
                         @method('DELETE')
@@ -153,7 +153,7 @@
                         <form id='formDel{{$part->id}}' action="{{route('paper-question-parts.destroy',$part)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"><i class="bx bx-trash text-red-600 show-confirm"></i></button>
+                            <button type="submit"><i class="bx bx-x text-red-600 show-confirm"></i></button>
                         </form>
                     </div>
                 </div>
@@ -171,17 +171,17 @@
             <div class="head">
                 <div class="sr">Q.{{$questionSr++}}</div>
                 <div class="statement">
-                    Answer the following.
+
                     @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                    <span>All questions are compulsory.</span>
+                    <span>Answer the following.</span>
                     @else
-                    <span>Any {{$testQuestion->necessary_parts}} questions.</span>
+                    <span>Answer any {{SpellNumber::value($testQuestion->necessary_parts)->toLetters()}} questions.</span>
                     @endif
                     <span>{{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}</span>
                 </div>
                 <div class="action border border-green-200 rounded bg-green-50">
-                    <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
-                    <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
+                    <a href="{{route('paper-questions.edit',$testQuestion)}}" class="text-cyan-600"><i class="bx bx-pencil"></i></a>
+                    <a href="{{route('paper-questions.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
                     <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post">
                         @csrf
                         @method('DELETE')
@@ -199,7 +199,7 @@
                         <form id='formDel{{$part->id}}' action="{{route('paper-question-parts.destroy',$part)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"><i class="bx bx-trash text-red-600 show-confirm"></i></button>
+                            <button type="submit"><i class="bx bx-x text-red-600 show-confirm"></i></button>
                         </form>
                     </div>
                 </div>
@@ -268,9 +268,9 @@
     <!-- modal showing question types -->
     <div id='floating-modal' class="modal bg-gray-600 rounded w-1/2 md:w-1/4">
         <div class="flex flex-col  p-5 rounded gap-4 text-green-400 text-sm w-full relative">
-            <a href="{{route('papers.questions.edit',[$test, 'mcq'])}}" class="hover:text-slate-100">MCQ</a>
-            <a href="{{route('papers.questions.edit',[$test, 'short'])}}" class="hover:text-slate-100">Short</a>
-            <a href="{{route('papers.questions.edit',[$test, 'long'])}}" class="hover:text-slate-100">Long</a>
+            <a href="{{route('paper-questions.add',[$test, 'mcq'])}}" class="hover:text-slate-100">MCQ</a>
+            <a href="{{route('paper-questions.add',[$test, 'short'])}}" class="hover:text-slate-100">Short</a>
+            <a href="{{route('paper-questions.add',[$test, 'long'])}}" class="hover:text-slate-100">Long</a>
 
             <button id='close-modal' class="absolute -top-4 -right-4 flex justify-center items-center rounded-full border border-slate-50 bg-gray-600  w-6 h-6"><i class="bi bi-x text-orange-300 hover:text-orange-400 text-base"></i></button>
         </div>

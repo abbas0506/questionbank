@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^10.0",
+        "rmunate/spell-number": "^4.2",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-permission": "^5.10",
         "wandersonwhcr/romans": "^1.5"

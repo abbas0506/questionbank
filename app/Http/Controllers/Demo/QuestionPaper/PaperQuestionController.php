@@ -11,6 +11,7 @@ use App\Models\TestQuestionPart;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Rmunate\Utilities\SpellNumber;
 
 class PaperQuestionController extends Controller
 {
@@ -26,20 +27,33 @@ class PaperQuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function add($testId, $questionType)
+    public function create()
     {
         //
 
     }
 
+
+    public function add($testId, string $questionType)
+    {
+        //
+
+        if (session('chapterIdArray')) {
+            $test = Test::find($testId);
+            $chapters = Chapter::whereIn('id', session('chapterIdArray'))->get();
+            return view('services.paper-questions.add', compact('test', 'chapters', 'questionType'));
+        } else {
+            echo "Chapters not selected!";
+        }
+    }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $test_id)
+    public function store(Request $request)
     {
         //validate request parameters
         $request->validate([
-            // 'test_id' => 'required|numeric',
+            'test_id' => 'required|numeric',
             'question_type' => 'required',
             'necessary_parts' => 'required|numeric',
 
@@ -51,7 +65,7 @@ class PaperQuestionController extends Controller
         try {
             //create test question instance
             $testQuestion = TestQuestion::create([
-                'test_id' => $test_id,
+                'test_id' => $request->test_id,
                 'question_no' => $request->question_no,
                 'question_type' => $request->question_type,
                 'necessary_parts' => $request->necessary_parts,
@@ -81,7 +95,7 @@ class PaperQuestionController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('papers.show', $test_id)->with('success', 'Question successfully added!');
+            return redirect()->route('papers.show', $request->test_id)->with('success', 'Question successfully added!');
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
@@ -101,17 +115,6 @@ class PaperQuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($testId, string $questionType)
-    {
-        //
-        if (session('chapterIdArray')) {
-            $test = Test::find($testId);
-            $chapters = Chapter::whereIn('id', session('chapterIdArray'))->get();
-            return view('services.paper-questions.edit', compact('test', 'chapters', 'questionType'));
-        } else {
-            echo "Chapters not selected!";
-        }
-    }
 
     /**
      * Update the specified resource in storage.
@@ -134,6 +137,37 @@ class PaperQuestionController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
             // something went wrong
+        }
+    }
+
+    public function  refresh($testQuestionId)
+    {
+        //iterate through all question parts
+        //replace each by an alternative
+        $testQuestion = TestQuestion::findOrFail($testQuestionId);
+        DB::beginTransaction();
+        try {
+            foreach ($testQuestion->parts as $part) {
+
+                $testQuestionPart = TestQuestionPart::find($part->id);
+                $alreadyIncludedQuestionIds = $testQuestionPart->testQuestion->test->parts->pluck('question_id');
+                $replacingQuestion = Question::where('chapter_id', $testQuestionPart->question->chapter_id)
+                    ->where('question_type', $testQuestionPart->testQuestion->question_type)
+                    ->whereNotIn('id', $alreadyIncludedQuestionIds)
+                    ->get()
+                    ->random(1)
+                    ->first();
+
+
+                $testQuestionPart->update([
+                    'question_id' => $replacingQuestion->id,
+                ]);
+            }
+            DB::commit();
+            return redirect()->back();
+        } catch (Exception $ex) {
+
+            echo $ex->getMessage();
         }
     }
 }

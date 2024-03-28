@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Demo\QuestionPaper;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chapter;
 use App\Models\Question;
+use App\Models\TestQuestion;
 use App\Models\TestQuestionPart;
 use Exception;
 use Illuminate\Http\Request;
