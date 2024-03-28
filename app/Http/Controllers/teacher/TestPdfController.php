@@ -63,18 +63,27 @@ class TestPdfController extends Controller
         if (Storage::disk('local')->exists('test.tex')) {
             Storage::disk('local')->delete('test.tex');
         }
-        Storage::disk('local')->put('test.tex', $data);
-        // return $data;
+        $file = Storage::disk('local')->put('test.tex', $data);
         try {
-            $res = Http::post('https://app.gleedu.com/api/latex/', [
-                'text' => $data,
-                'model' => 'bibtex',
-            ]);
-            $data =  $res->json();
-            if (!isset($data['data'])) {
-                return "Error: " . $res->body();
+            // $res = Http::post('https://app.gleedu.com/api/latex/', [
+            //     'text' => $data,
+            //     'model' => 'bibtex',
+            // ]);
+            $res = Http::attach('file', $data , 'test.tex')
+            ->post('http://16.171.40.228:5000/latex-to-pdf');
+            if($res->failed()){
+                return $res->body();
             }
-            $data =  base64_decode($res->json()['data']);
+            $output = Storage::disk('local')->put('test.pdf', $res->body());
+            return response()->file(storage_path('app/test.pdf'));
+            
+            // return the pdf file to the user
+
+            // $data =  $res->json();
+            // if (!isset($data['data'])) {
+            //     return "Error: " . $res->body();
+            // }
+            $data =  base64_decode($res);
             $filename = 'test.pdf';
             return response()->make($data, 200, [
                 'Content-Type' => 'application/pdf',
