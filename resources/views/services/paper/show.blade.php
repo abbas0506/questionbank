@@ -73,7 +73,7 @@
                     <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return confirmDel(event)">
                         @csrf
                         @method('DELETE')
-                        <button><i class="bx bx-trash text-red-600"></i></button>
+                        <button><i class="bx bx-trash text-red-600 show-confirm"></i></button>
                     </form>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                         <form action="{{route('paper-question-parts.destroy',$part)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button><i class="bx bx-trash text-red-600"></i></button>
+                            <button><i class="bx bx-trash text-red-600 show-confirm"></i></button>
                         </form>
                     </div>
                 </div>
@@ -136,10 +136,10 @@
                 <div class="action border border-green-200 rounded bg-green-50">
                     <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
                     <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
-                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return delme(event)">
+                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button><i class="bx bx-trash text-red-600"></i></button>
+                        <button><i class="bx bx-trash text-red-600 show-confirm"></i></button>
                     </form>
                 </div>
             </div>
@@ -182,10 +182,10 @@
                 <div class="action border border-green-200 rounded bg-green-50">
                     <a href="{{route('paper.question.refresh',$testQuestion)}}" class="text-blue-600"><i class="bi-plus-slash-minus"></i></a>
                     <a href="{{route('paper.question.refresh',$testQuestion)}}"><i class="bi-arrow-repeat"></i></a>
-                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post" onsubmit="return delme(event)">
+                    <form action="{{route('paper-questions.destroy',$testQuestion)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button><i class="bx bx-trash text-red-600"></i></button>
+                        <button><i class="bx bx-trash text-red-600 show-confirm"></i></button>
                     </form>
                 </div>
             </div>
@@ -196,10 +196,10 @@
                     <div class="statement">{{$part->question->question}}</div>
                     <div class="action">
                         <a href="{{route('paper.question.parts.refresh',$part)}}"><i class="bi-arrow-repeat"></i></a>
-                        <form id='formDel{{$part->id}}' action="{{route('paper-question-parts.destroy',$part)}}" method="post" onsubmit="return confirmSubQuestionRemoval(event)">
+                        <form id='formDel{{$part->id}}' action="{{route('paper-question-parts.destroy',$part)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"><i class="bx bx-trash text-red-600"></i></button>
+                            <button type="submit"><i class="bx bx-trash text-red-600 show-confirm"></i></button>
                         </form>
                     </div>
                 </div>
@@ -290,28 +290,6 @@
     $('#add-question-btn').click(function() {
         $('.modal').addClass('shown');
     });
-
-    // $('form').submit(function(event) {
-
-    //     var confirmed = false;
-    //     Swal.fire({
-    //         title: 'Are you sure?',
-    //         text: "You won't be able to revert this!",
-    //         type: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes, delete it!'
-    //     }).then((result) => {
-    //         if (result.value) {
-    //             //submit corresponding form
-    //             confirmed = true;
-    //         }
-    //     });
-    //     if (!confirmed) event.preventDefault()
-    //     return confirmed;
-    // });
-
 
     $('.show-confirm').click(function(event) {
         var form = $(this).closest("form");
