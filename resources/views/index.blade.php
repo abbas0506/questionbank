@@ -213,7 +213,7 @@
     </div>
 </section>
 
-<a href="{{url('https://wa.me/00923000373004')}}" class="flex justify-center items-center text-teal-600 text-5xl fixed right-8 bottom-8"><i class="bi-whatsapp"></i></a>
+<a href="{{url('https://wa.me/+923000373004')}}" class="flex justify-center items-center text-teal-600 text-5xl fixed right-8 bottom-8"><i class="bi-whatsapp"></i></a>
 @endsection
 @section('footer')
 <!-- footer -->

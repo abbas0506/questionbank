@@ -111,6 +111,12 @@ class PaperQuestionController extends Controller
         //
 
     }
+    public function edit($testQuestionId)
+    {
+        //
+        $testQuestion = TestQuestion::find($testQuestionId);
+        return view('services.paper-questions.edit', compact('testQuestion'));
+    }
 
     /**
      * Show the form for editing the specified resource.
