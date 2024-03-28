@@ -59,7 +59,7 @@
                 <i class="bi-book text-2xl text-pink-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Students</h3>
-            <p class="text-sm text-center">Our online self-assessment tool helps you prepare for your exams in a very short time.</p>
+            <p class="text-sm text-center">Our online self-assessment service helps you prepare for your exams in a very short time.</p>
         </div>
 
         <div class="feature-box hover:border-orange-300 hover:bg-orange-50" data-aos="fade-up" data-aos-duration="1000">
@@ -67,7 +67,7 @@
                 <i class="bi-laptop text-2xl text-orange-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Teachers</h3>
-            <p class="text-sm text-center">Our custom paper generation tool saves your time, effort and printing cost.</p>
+            <p class="text-sm text-center">Our custom paper generation service saves your time, effort and printing cost.</p>
         </div>
 
         <div class="feature-box hover:border-cyan-200 hover:bg-cyan-50" data-aos="fade-up" data-aos-duration="1000">
@@ -75,7 +75,7 @@
                 <i class="bi bi-palette text-2xl text-cyan-400"></i>
             </div>
             <h3 class="mt-3 text-lg">Institutions</h3>
-            <p class="text-sm text-center">Our progress analysis tool can make your institution distinguished among others </p>
+            <p class="text-sm text-center">Our progress analysis service can make your institution distinguished among others </p>
         </div>
     </div>
 </section>
@@ -90,7 +90,7 @@
                     <img src="{{url('images/small/quiz.jpg')}}" alt="" class="tool-image w-full h-full skew-x-12 -transform -rotate-12 translate-x-6 -translate-y-12 scale-125">
                 </div>
                 <div class="p-5">
-                    <h2 class="text-center">Self Assessment Tool</h2>
+                    <h2 class="text-center">Self Assessment</h2>
                     <div class="h-1 w-24 bg-teal-800 mx-auto my-6"></div>
                     <ul class="list-disc list-inside leading-relaxed">
                         <li>Time bound, online assessment</li>
@@ -109,7 +109,7 @@
                     <img src="{{url('images/small/paper-gen.jpg')}}" alt="" class="tool-image w-full h-full skew-x-12 -transform -rotate-12 translate-x-6 scale-125 -translate-y-12">
                 </div>
                 <div class="p-5">
-                    <h2 class="text-center">Paper Generation Tool</h2>
+                    <h2 class="text-center">Paper Generation</h2>
                     <div class="h-1 w-24 bg-teal-800 mx-auto my-6"></div>
                     <ul class="list-disc list-inside leading-relaxed">
                         <li>Quite simple and easy way</li>
@@ -131,7 +131,7 @@
                     <img src="{{url('images/small/paper-gen.jpg')}}" alt="" class="tool-image w-full h-full skew-x-12 -transform -rotate-12 translate-x-6 scale-125 -translate-y-12">
                 </div>
                 <div class="p-5">
-                    <h2 class="text-center">Progress Analysis Tool</h2>
+                    <h2 class="text-center">Progress Analysis</h2>
                     <div class="h-1 w-24 bg-teal-800 mx-auto my-6"></div>
                     <ul class="list-disc list-inside leading-relaxed">
                         <li>Teacher registration</li>
@@ -213,7 +213,7 @@
     </div>
 </section>
 
-<a href="{{url('https://wa.me/03000373004')}}" class="flex justify-center items-center text-teal-600 text-5xl fixed right-8 bottom-8"><i class="bi-whatsapp"></i></a>
+<a href="{{url('https://wa.me/00923000373004')}}" class="flex justify-center items-center text-teal-600 text-5xl fixed right-8 bottom-8"><i class="bi-whatsapp"></i></a>
 @endsection
 @section('footer')
 <!-- footer -->
