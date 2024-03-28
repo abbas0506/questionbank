@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\Test;
 use Exception;
 use Illuminate\Http\Request;
+use Romans\Filter\RomanToInt;
 
 class PaperController extends Controller
 {
@@ -69,7 +70,8 @@ class PaperController extends Controller
     {
         //
         $test = Test::find($id);
-        return view('services.paper.show', compact('test'));
+        $roman = new RomanToInt();
+        return view('services.paper.show', compact('test', 'roman'));
     }
 
     /**
