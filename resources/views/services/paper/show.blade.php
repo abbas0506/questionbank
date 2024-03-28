@@ -46,6 +46,7 @@
 
     <div class="flex flex-col gap-2 mt-3">
         @php
+        $roman=new Roman;
         $questionSr=1;
         @endphp
 
