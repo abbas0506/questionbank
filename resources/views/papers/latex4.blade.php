@@ -6,7 +6,6 @@
 \usepackage{mathrsfs}
 \usepackage{amsmath}
 \usepackage{adjustbox}
-\usepackage{multicol}
 \usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm,{{$orientation}},{{$pageSize}}paper]{geometry}
 \usepackage{polyglossia}
 \usepackage{fontspec}
@@ -15,9 +14,13 @@
 \setotherlanguage{urdu}
 \setmainfont{Jameel Noori Nastaleeq.ttf}[Path=/latex/fonts/]
 \begin{document}
-\begin{multicols}{{!!$columns!!}}
-@for($i = 1; $i <= $columns ; $i++) 
-\begin{center} \large{\uppercase{GHSS Chak Bedi, Pakpattan}}\\ \small {{$test->test_date->format('d/m/Y')}} \end{center} Subject :{{$test->subject->name}} \hfill Roll \# : \_\_\_\_\_\_\_\_\_ \hfill Name: \_\_\_\_\_\_\_\_\_\_\_ \vspace{2mm} \hrule \vspace{2mm} Marks : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}} \vspace{2mm} \hrule \vspace{1mm} \begin{questions} @foreach($test->questions()->mcqs()->get() as $testQuestion)
+\newcommand{\numRows}{3} % Number of rows
+\newcommand{\numCols}{4} % Number of columns
+\begin{tabular}{|*{\numCols}{c|}}
+@for($i = 1; $i <= 3 ; $i++)
+@for($j = 1; $j <= 4 ; $j++)
+{{-- \begin{center} \large{\uppercase{GHSS Chak Bedi, Pakpattan}}\\ \small {{$test->test_date->format('d/m/Y')}} \end{center} Subject :{{$test->subject->name}} \hfill Roll \# : \_\_\_\_\_\_\_\_\_ \hfill Name: \_\_\_\_\_\_\_\_\_\_\_ \vspace{2mm} \hrule \vspace{2mm} Marks : {{ $test->totalMarks() }} \hfill Time : {{$test->getDuration()}} \vspace{2mm} \hrule \vspace{1mm}  --}}
+\begin{questions} @foreach($test->questions()->mcqs()->get() as $testQuestion)
     \titledquestion{Encircle the correct option}[{{$testQuestion->parts->count()}}]
     @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
     All questions are compulsory
@@ -64,10 +67,9 @@
     @endforeach
     \end{parts}
     @endforeach
-@if($i < $columns) 
-    \columnbreak
-@endif
-\end{questions}
+    \end{questions}
+@if($j < 4) & @else \\ @endif
 @endfor
-\end{multicols}
+@endfor
+\end{tabular}
 \end{document}
