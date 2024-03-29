@@ -19,7 +19,7 @@
     }
 
     .tool-image::before {
-        background: blue;
+        background: #edf3fb;
         content: "";
         position: absolute;
         top: 0px;
@@ -27,8 +27,8 @@
         width: 100%;
         height: 40px;
         transform: rotate(25deg);
-        z-index: -2;
-        opacity: 0.3;
+        z-index: -1;
+        /* opacity: 0.3; */
     }
 </style>
 

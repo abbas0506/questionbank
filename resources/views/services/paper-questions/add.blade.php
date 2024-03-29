@@ -40,7 +40,7 @@
 
         <div class="divider my-3"></div>
         <div class="flex items-baseline justify-between space-x-4">
-            <h3>How many compulsory out of <span id='total_parts'></span>? <span class="text-red-600">*</span></h3>
+            <h3><span class="text-red-600 mr-1">*</span>Compulsory (out of <span id='total_parts'></span> )?</h3>
             <input type="number" id='necessary_parts' name='necessary_parts' class="custom-input w-16 h-8 text-center px-0" value="0" min='0'>
         </div>
 
@@ -58,68 +58,28 @@
         $('.num-of-parts').click(function() {
             $(this).select();
         })
-        $('.num-of-parts').keyup(function() {
+        $('#necessary_parts').click(function() {
+            $(this).select();
+        })
+        $('.num-of-parts').bind('keyup mouseup', function() {
             var sumOfParts = 0;
-            // var currentInput = $(this).val();
-            // remove spaces from around
-            // currentInput = $.trim(currentInput);
             $('.num-of-parts').each(function() {
+                sumOfParts += $(this).val();
 
-                // alert($(this).val())
-                // cellvalue = $.trim(this.val());
-                if ($(this).val() == '') {
-                    sumOfParts += 0;
-                    $('#total_parts').html(sumOfParts);
-                    $('#necessary_parts').val(sumOfParts);
-                } else {
-                    if ($.isNumeric($(this).val())) {
-                        sumOfParts += parseInt($(this).val());
-                        $('#total_parts').html(sumOfParts);
-                        $('#necessary_parts').val(sumOfParts);
-                    } else {
-                        $(this).addClass('border-red-500');
-                        $('#total_parts').html('');
-                        $('#necessary_parts').val('');
-
-                    }
-                }
-
-                // if ($.isNumeric(currentInput)) {
-                //     $('.num-of-parts').each(function() {
-                //         // update fields
-                //         sumOfParts += parseInt($(this).val());
-                //         $('#total_parts').html(sumOfParts);
-                //         $('#necessary_parts').val(Math.ceil(2 / 3 * sumOfParts));
-                //     });
-                //     //clear previous error if any
-                //     if ($(this).hasClass('border-red-500'))
-                //         $(this).removeClass('border-red-500');
-                // } else {
-                //     // if (currentInput == '')
-                //     // $(this).val(0)
-                //     if (currentInput != '') {
-                //         $(this).addClass('border-red-500');
-                //         // $('#necessary_parts').val(0);
-                //         $('#total_parts').html('');
-                //     }
-                // }
             });
+
+            sumOfParts = parseInt(sumOfParts);
+            $('#total_parts').html(sumOfParts);
+            $('#necessary_parts').val(sumOfParts);
         });
 
         $('form').submit(function(event) {
             var validated = true;
             var numOfNecessaryParts = $('#necessary_parts').val();
 
-            if ($('#total_parts').html() == '')
-                validated = false
-            else if ($.isNumeric(numOfNecessaryParts)) {
-                var totalParts = parseInt($('#total_parts').html())
-                if (numOfNecessaryParts <= 0 || numOfNecessaryParts > totalParts)
-                    validated = false
-            } else {
-                validated = false
-            }
-
+            if (numOfNecessaryParts == '' || numOfNecessaryParts == 0) validated = false;
+            if ($('#total_parts').html() == '') validated = false
+            if (numOfNecessaryParts > parseInt($('#total_parts').html())) validated = false;
             if (!validated) {
                 event.preventDefault();
                 Swal.fire({
@@ -134,7 +94,6 @@
             }
             return validated;
         });
-
     });
 </script>
 @endsection
