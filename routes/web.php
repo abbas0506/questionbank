@@ -215,6 +215,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
     Route::resource('tests', TestController::class);
     Route::resource('tests.pdf', TestPdfController::class);
 
+
     Route::get('test/annex/grade/{grade}', [TestController::class, 'annexGrade'])->name('tests.annex.grade');
     Route::get('test/annex/subject/{subject}', [TestController::class, 'annexSubject'])->name('tests.annex.subject');
     Route::resource('test-questions', TestQuestionController::class);
