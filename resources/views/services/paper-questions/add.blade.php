@@ -64,7 +64,7 @@
         $('.num-of-parts').bind('keyup mouseup', function() {
             var sumOfParts = 0;
             $('.num-of-parts').each(function() {
-                sumOfParts += $(this).val();
+                sumOfParts += parseInt($(this).val());
 
             });
 

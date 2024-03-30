@@ -40,7 +40,7 @@
             </div>
 
             <div class="w-full h-full bg-teal-100 place-content-center md:rounded-lg relative">
-                Page Orientation
+                Orientation
                 <div class="absolute w-4 h-4 hidden md:block md:-right-2 md:top-[40%]  bg-teal-100 transform rotate-45"></div>
             </div>
             <div class="w-full h-full  flex justify-start items-start space-x-4">
@@ -60,58 +60,84 @@
                 <div class="absolute w-4 h-4 hidden md:block md:-right-2 md:top-[40%]  bg-teal-100 transform rotate-45"></div>
             </div>
             <div class="w-full h-full flex justify-start items-start space-x-4">
-                <div class="bg-orange-50 rounded p-4">
-                    <h3 class="pb-4">Font Size</h3>
-                    <div class="flex justify-center gap-x-4">
-                        <div class="flex flex-col gap-2">
-                            <div class="flex items-center space-x-2">
-                                <input type="checkbox" name="font_size" value="text-base" class="font-size">
-                                <div class="text-base">Normal</div>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="checkbox" name="font_size" value="text-sm" class="font-size">
-                                <div class="text-sm">Medium</div>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="checkbox" name="font_size" value="text-xs" class="font-size" checked>
-                                <div class="text-xs">Small</div>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="checkbox" name="font_size" value="text-xxs" class="font-size">
-                                <div class="text-xxs">Extra Small</div>
-                            </div>
+                <div class="flex justify-center gap-x-4">
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" name="font_size" value="text-base" class="font-size">
+                            <div class="text-base">Normal</div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" name="font_size" value="text-sm" class="font-size">
+                            <div class="text-sm">Medium</div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" name="font_size" value="text-xs" class="font-size" checked>
+                            <div class="text-xs">Small</div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" name="font_size" value="text-xxs" class="font-size">
+                            <div class="text-xxs">Extra Small</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="w-full h-full bg-teal-100 place-content-center md:rounded-lg relative">
-                Question Papers Per Page
+                Papers Per Page
                 <div class="absolute w-4 h-4 hidden md:block md:-right-2 md:top-[40%]  bg-teal-100 transform rotate-45"></div>
             </div>
             <!-- 60 25 852 0000 -->
 
-            <div class="flex flex-col md:flex-row-reverse items-center">
-                <div class="flex flex-col items-center justify-center p-2 w-36">
-                    <p class="text-xs">For example</p>
-                    <div class="grid grid-cols-3 w-24">
-                        <div class="h-8 border"></div>
-                        <div class="h-8 border"></div>
-                        <div class="h-8 border"></div>
-                        <div class="h-8 border"></div>
-                        <div class="h-8 border"></div>
-                        <div class="h-8 border"></div>
-                    </div>
-                    <p class="text-xs">3x2</p>
+            <div id='portrait' class="grid grid-cols-3 gap-2">
+                <!-- portrait -->
+                <div row='1' col='1' class="page grid grid-cols-1 w-12">
+                    <div class="w-12 h-16 border"></div>
+                    <div class="text-xs">1x1</div>
                 </div>
-                <div class="flex flex-1 justify-center items-center gap-x-4">
-                    <input type="number" name="cols" id="" value="2" min=1 max=6 class="custom-input w-16" required>
-                    <div>x</div>
-                    <input type="number" name="rows" id="" value="1" min=1 max=6 class="custom-input w-16" required>
+                <div row='2' col='1' class="page grid grid-cols-1 w-12">
+                    <div class="h-8 border"></div>
+                    <div class="h-8 border"></div>
+                    <div class="text-xs">2x1</div>
+                </div>
+                <div row='3' col='1' class="page grid grid-cols-1 w-12">
+                    <div class="h-6 border"></div>
+                    <div class="h-6 border"></div>
+                    <div class="h-6 border"></div>
+                    <div class="text-xs">3x1</div>
+                </div>
+                <div row='1' col='2' class="page grid grid-cols-2 w-12">
+                    <div class="w-6 h-16 border"></div>
+                    <div class="w-6 h-16 border"></div>
+                    <div class="text-xs col-span-2">1x2</div>
+                </div>
+                <div row='2' col='2' class="page grid grid-cols-2 w-12">
+                    <div class="w-6 h-8 border"></div>
+                    <div class="w-6 h-8 border"></div>
+                    <div class="w-6 h-8 border"></div>
+                    <div class="w-6 h-8 border"></div>
+                    <div class="text-xs col-span-2">2x2</div>
+                </div>
+                <div row='3' col='2' class="page grid grid-cols-2 w-12">
+                    <div class="w-6 h-5 border"></div>
+                    <div class="w-6 h-5 border"></div>
+                    <div class="w-6 h-5 border"></div>
+                    <div class="w-6 h-5 border"></div>
+                    <div class="w-6 h-5 border"></div>
+                    <div class="w-6 h-5 border"></div>
+                    <div class="text-xs col-span-2">3x2</div>
+                </div>
+                <div class="col-span-3 divider"></div>
+                <div class="col-span-3 grid grid-cols-2 gap-2">
+                    <div>
+                        <input type="number" name="rows" id="rows" value="1" min=1 max=6 class="custom-input" required>
+                        <div class="text-xs">Horizontal</div>
+                    </div>
+                    <div>
+                        <input type="number" name="cols" id="cols" value="1" min=1 max=6 class="custom-input" required>
+                        <div class="text-xs">Vertical</div>
+                    </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="text-center mt-8">
@@ -133,6 +159,13 @@
     });
     $('.font-size').change(function() {
         $('.font-size').not(this).prop('checked', false);
+    });
+    $('.page').click(function() {
+        var rows = $(this).attr('row');
+        var cols = $(this).attr('col');
+        $('#rows').val(rows);
+        $('#cols').val(cols);
+
     });
 </script>
 @endsection
