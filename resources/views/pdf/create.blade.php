@@ -23,17 +23,17 @@
     @if($test->questions->count()>0)
     <form action="{{route('question-paper.pdf.store',$test)}}" method="post">
         @csrf
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center justify-center p-6 w-4/5 mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center justify-center p-6 md:w-4/5 mx-auto">
             <div class="w-full h-full bg-teal-100 place-content-center md:rounded-lg relative">
                 Page Size
                 <div class="absolute w-4 h-4 hidden md:block md:-right-2 md:top-[40%]  bg-teal-100 transform rotate-45"></div>
             </div>
             <div class="w-full h-full  flex justify-start items-start space-x-4">
-                <div class="w-16 h-20 flex justify-center items-center bg-orange-50 border  border-gray-200 relative">
+                <div class="w-16 h-20 flex justify-center items-center bg-teal-50 border  border-gray-200 relative">
                     <input type="checkbox" name="page_size" value="a4" class="absolute top-1 left-1 page-size" checked>
                     <div class="text-xs">A4</div>
                 </div>
-                <div class="w-16 h-24 flex justify-center items-center bg-orange-50 border border-gray-200 relative">
+                <div class="w-16 h-24 flex justify-center items-center bg-teal-50 border border-gray-200 relative">
                     <input type="checkbox" name="page_size" value="legal" class="absolute top-1 left-1 page-size">
                     <div class="text-xs">Legal</div>
                 </div>
@@ -86,55 +86,97 @@
                 Papers Per Page
                 <div class="absolute w-4 h-4 hidden md:block md:-right-2 md:top-[40%]  bg-teal-100 transform rotate-45"></div>
             </div>
-            <!-- 60 25 852 0000 -->
-
-            <div id='portrait' class="grid grid-cols-3 gap-2">
-                <!-- portrait -->
-                <div row='1' col='1' class="page grid grid-cols-1 w-12">
-                    <div class="w-12 h-16 border"></div>
-                    <div class="text-xs">1x1</div>
-                </div>
-                <div row='2' col='1' class="page grid grid-cols-1 w-12">
-                    <div class="h-8 border"></div>
-                    <div class="h-8 border"></div>
-                    <div class="text-xs">2x1</div>
-                </div>
-                <div row='3' col='1' class="page grid grid-cols-1 w-12">
-                    <div class="h-6 border"></div>
-                    <div class="h-6 border"></div>
-                    <div class="h-6 border"></div>
-                    <div class="text-xs">3x1</div>
-                </div>
-                <div row='1' col='2' class="page grid grid-cols-2 w-12">
-                    <div class="w-6 h-16 border"></div>
-                    <div class="w-6 h-16 border"></div>
-                    <div class="text-xs col-span-2">1x2</div>
-                </div>
-                <div row='2' col='2' class="page grid grid-cols-2 w-12">
-                    <div class="w-6 h-8 border"></div>
-                    <div class="w-6 h-8 border"></div>
-                    <div class="w-6 h-8 border"></div>
-                    <div class="w-6 h-8 border"></div>
-                    <div class="text-xs col-span-2">2x2</div>
-                </div>
-                <div row='3' col='2' class="page grid grid-cols-2 w-12">
-                    <div class="w-6 h-5 border"></div>
-                    <div class="w-6 h-5 border"></div>
-                    <div class="w-6 h-5 border"></div>
-                    <div class="w-6 h-5 border"></div>
-                    <div class="w-6 h-5 border"></div>
-                    <div class="w-6 h-5 border"></div>
-                    <div class="text-xs col-span-2">3x2</div>
-                </div>
-                <div class="col-span-3 divider"></div>
-                <div class="col-span-3 grid grid-cols-2 gap-2">
-                    <div>
-                        <input type="number" name="rows" id="rows" value="1" min=1 max=6 class="custom-input" required>
-                        <div class="text-xs">Horizontal</div>
+            <div class="w-full h-full flex justify-start items-start">
+                <!-- portrait options -->
+                <div id='portrait' class="hidden grid grid-cols-3 gap-2">
+                    <!-- portrait -->
+                    <div row='1' col='1' class="page grid grid-cols-1 w-12">
+                        <div class="w-12 h-16 border"></div>
+                        <div class="text-xs">1x1</div>
                     </div>
-                    <div>
-                        <input type="number" name="cols" id="cols" value="1" min=1 max=6 class="custom-input" required>
-                        <div class="text-xs">Vertical</div>
+                    <div row='2' col='1' class="page grid grid-cols-1 w-12">
+                        <div class="h-8 border"></div>
+                        <div class="h-8 border"></div>
+                        <div class="text-xs">2x1</div>
+                    </div>
+                    <div row='3' col='1' class="page grid grid-cols-1 w-12">
+                        <div class="h-6 border"></div>
+                        <div class="h-6 border"></div>
+                        <div class="h-6 border"></div>
+                        <div class="text-xs">3x1</div>
+                    </div>
+                    <div row='1' col='2' class="page grid grid-cols-2 w-12">
+                        <div class="w-6 h-16 border"></div>
+                        <div class="w-6 h-16 border"></div>
+                        <div class="text-xs col-span-2">1x2</div>
+                    </div>
+                    <div row='2' col='2' class="page grid grid-cols-2 w-12">
+                        <div class="w-6 h-8 border"></div>
+                        <div class="w-6 h-8 border"></div>
+                        <div class="w-6 h-8 border"></div>
+                        <div class="w-6 h-8 border"></div>
+                        <div class="text-xs col-span-2">2x2</div>
+                    </div>
+                    <div row='3' col='2' class="page grid grid-cols-2 w-12">
+                        <div class="w-6 h-5 border"></div>
+                        <div class="w-6 h-5 border"></div>
+                        <div class="w-6 h-5 border"></div>
+                        <div class="w-6 h-5 border"></div>
+                        <div class="w-6 h-5 border"></div>
+                        <div class="w-6 h-5 border"></div>
+                        <div class="text-xs col-span-2">3x2</div>
+                    </div>
+                </div>
+
+                <!-- landscapre options -->
+                <div id='landscape' class="grid grid-cols-3 gap-2">
+                    <!-- portrait -->
+                    <div row='1' col='1' class="page grid grid-cols-1 w-16">
+                        <div class="h-12 border"></div>
+                        <div class="text-xs">1x1</div>
+                    </div>
+                    <div row='2' col='1' class="page grid grid-cols-1 w-16">
+                        <div class="h-6 border"></div>
+                        <div class="h-6 border"></div>
+                        <div class="text-xs">2x1</div>
+                    </div>
+                    <div row='3' col='1' class="page grid grid-cols-1 w-16">
+                        <div class="h-4 border"></div>
+                        <div class="h-4 border"></div>
+                        <div class="h-4 border"></div>
+                        <div class="text-xs">3x1</div>
+                    </div>
+                    <div row='1' col='2' class="page grid grid-cols-2 w-16">
+                        <div class="w-8 h-12 border"></div>
+                        <div class="w-8 h-12 border"></div>
+                        <div class="text-xs col-span-2">1x2</div>
+                    </div>
+                    <div row='2' col='2' class="page grid grid-cols-2 w-16">
+                        <div class="w-8 h-6 border"></div>
+                        <div class="w-8 h-6 border"></div>
+                        <div class="w-8 h-6 border"></div>
+                        <div class="w-8 h-6 border"></div>
+                        <div class="text-xs col-span-2">2x2</div>
+                    </div>
+                    <div row='3' col='2' class="page grid grid-cols-2 w-16">
+                        <div class="w-8 h-4 border"></div>
+                        <div class="w-8 h-4 border"></div>
+                        <div class="w-8 h-4 border"></div>
+                        <div class="w-8 h-4 border"></div>
+                        <div class="w-8 h-4 border"></div>
+                        <div class="w-8 h-4 border"></div>
+                        <div class="text-xs col-span-2">3x2</div>
+                    </div>
+                    <div class="col-span-3 divider"></div>
+                    <div class="col-span-3 grid grid-cols-2 gap-2">
+                        <div>
+                            <input type="number" name="rows" id="rows" value="1" min=1 max=6 class="custom-input text-center" required>
+                            <div class="text-xs">Horizontal</div>
+                        </div>
+                        <div>
+                            <input type="number" name="cols" id="cols" value="1" min=1 max=6 class="custom-input text-center" required>
+                            <div class="text-xs">Vertical</div>
+                        </div>
                     </div>
                 </div>
             </div>
