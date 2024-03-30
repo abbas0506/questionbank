@@ -208,10 +208,9 @@
     });
 
     $('.page').click(function() {
-        var rows = $(this).attr('row');
-        var cols = $(this).attr('col');
-        $('#rows').val(rows);
-        $('#cols').val(cols);
+
+        $('#rows').val($(this).attr('row'));
+        $('#cols').val($(this).attr('col'));
         $('.page').not(this).removeClass('active');
         $(this).addClass('active');
 
