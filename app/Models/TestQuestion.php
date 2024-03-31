@@ -14,6 +14,8 @@ class TestQuestion extends Model
         'question_type',
         'necessary_parts',
     ];
+
+
     public function test()
     {
         return $this->belongsTo(Test::class);

@@ -78,11 +78,8 @@ class PaperController extends Controller
     public function edit(string $id)
     {
         //
-        $subject = Subject::find($id);
-        $chapters = Chapter::where('subject_id', $id)
-            ->whereHas('questions')
-            ->get();
-        return view('services.paper.edit', compact('chapters', 'subject'));
+        $test = Test::find($id);
+        return view('services.paper.edit', compact('test'));
     }
 
     /**
@@ -91,6 +88,19 @@ class PaperController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'duration' => 'required|numeric',
+            'test_date' => 'required|date'
+        ]);
+        try {
+            $test = Test::find($id);
+            $test->update($request->all());
+            return redirect()->route('papers.show', $test)->with('success', 'Successfully updated');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+            // something went wrong
+        }
     }
 
     /**

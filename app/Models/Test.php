@@ -25,7 +25,6 @@ class Test extends Model
         'test_date' => 'date',
 
     ];
-
     public function subject()
     {
         return $this->belongsTo(Subject::class);
@@ -67,7 +66,8 @@ class Test extends Model
         if ($duration > 59) {
             $hr = round($duration / 60, 0);
             $min = $duration % 60;
-            return $hr . "hr " . $min . "min";
+            if ($min == 0) return $hr . "hr ";
+            else return $hr . "hr " . $min . "min";
         } else
             return $duration . "min";
     }

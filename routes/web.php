@@ -30,8 +30,10 @@ use App\Http\Controllers\assistant\ClassController as AssistantClassController;
 use App\Http\Controllers\assistant\LibrayAssistantController;
 use App\Http\Controllers\assistant\QRCodeController;
 use App\Http\Controllers\Demo\QuestionPaper\PaperController;
+use App\Http\Controllers\Demo\QuestionPaper\PaperPrintController;
 use App\Http\Controllers\Demo\QuestionPaper\PaperQuestionController;
 use App\Http\Controllers\Demo\QuestionPaper\PaperQuestionPartsController;
+use App\Http\Controllers\Demo\QuestionPaper\PaperSettingController;
 use App\Http\Controllers\librarian\BookController as LibrarianBookController;
 use App\Http\Controllers\librarian\BookDomainController;
 use App\Http\Controllers\librarian\BookRackController as LibrarianBookRackController;
@@ -229,6 +231,8 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
 
 Route::resource('selftest', SelfTestController::class);
 Route::resource('papers', PaperController::class);
+Route::resource('papers.setting', PaperSettingController::class);
+// Route::resource('papers.print', PaperPrintController::class);
 Route::resource('paper-questions', PaperQuestionController::class);
 Route::get('paper-questions/{test}/{qtype}/add', [PaperQuestionController::class, 'add'])->name('paper-questions.add');
 Route::get('paper-questions/{question}/refresh', [PaperQuestionController::class, 'refresh'])->name('paper-questions.refresh');

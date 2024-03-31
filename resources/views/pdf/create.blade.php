@@ -13,10 +13,10 @@
     <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div>
 
     <h2 class="text-lg mt-8">{{$test->subject->name}} - {{$test->subject->grade->roman_name}}</h2>
+    <label for="">Print Setting <i class="bi-gear"></i></label>
 
     @if($test->questions->count())
     <div class="divider my-3"></div>
-    <h2 class="text-left">Page Setting <i class="bi bi-gear"></i></h2>
     <p class="text-left w-full mx-auto mt-1 mb-3 text-sm text-gray-600">Do you know that a wise selction of the following options can save your printing cost by more than 75%. Choose the most appropriate options and optimize your printing cost.</p>
     <div class="divider my-3"></div>
     @endif
@@ -208,6 +208,12 @@
     //     $('.font-size').not(this).prop('checked', false);
     // });
 
+    $('#rows').click(function() {
+        $(this).select();
+    })
+    $('#cols').click(function() {
+        $(this).select();
+    })
     $('.page').click(function() {
 
         $('#rows').val($(this).attr('row'));

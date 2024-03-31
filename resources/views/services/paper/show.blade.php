@@ -14,6 +14,25 @@
 
     <h2 class="text-lg mt-8">{{$test->subject->name}} - {{$test->subject->grade->roman_name}}</h2>
 
+    <div class="grid grid-cols-1 md:grid-cols-3 px-6 py-2 text-left w-full border border-dashed border-slate-200 mt-6 relative">
+        <div>
+            <label for="">Paper Title</label>
+            <h3>{{$test->title}}</h3>
+        </div>
+        <div>
+            <label for="">Scheduled Date</label>
+            <h3>{{$test->test_date->format('M d, Y')}}</h3>
+        </div>
+        <div>
+            <label for="">Duration</label>
+            <h3>{{$test->getDuration()}}</h3>
+        </div>
+        <a href="{{route('papers.edit',$test)}}" class="absolute top-2 right-2 btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
+    </div>
+
+    <!-- show print button only if test has some questions -->
+
+
     <!-- page message -->
     @if($errors->any())
     <x-message :errors='$errors'></x-message>
@@ -21,37 +40,27 @@
     <x-message></x-message>
     @endif
 
-    <!-- show print button only if test has some questions -->
-    @if($test->questions->count()>0)
-    <div class="flex justify-end w-full">
-        <div class="flex w-12 h-12 items-center justify-center rounded-full bg-orange-100 hover:bg-orange-200">
-            <a href="{{route('question-paper.pdf.create',$test)}}"><i class="bi-printer"></i></a>
-        </div>
-    </div>
-    @endif
 
-    <div class="flex flex-col items-center">
-        <div class="flex flex-row items-center space-x-3 mt-3">
-            <label>{{$test->title}}</label> <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
-        </div>
-    </div>
     @if($test->questions->count())
-    <div class="divider my-3"></div>
-    <div class="flex flex-row justify-between items-center w-full">
+    <div class="flex flex-row justify-between items-center w-full mt-6">
         <!-- can edit only if some question exists -->
-        <div class="flex items-center">
-            <label>Time: &nbsp</label>
-            <div class="flex items-center space-x-2">
-                <label>{{$test->getDuration()}}</label>
-                <a href="{{route('teacher.tests.edit',$test)}}" class="btn-sky flex justify-center items-center rounded-full p-0 w-5 h-5"><i class="bx bx-pencil text-xs"></i></a>
-            </div>
+        <label>Total Qs: {{$test->questions->count()}}, Marks: {{$test->totalMarks()}}</label>
+        @if($test->questions->count()>0)
+
+        <div class="btn-red">
+            <a href="{{route('question-paper.pdf.create',$test)}}">Print <i class="bi-printer ml-1"></i></a>
         </div>
 
-        <label>Max marks: {{$test->totalMarks()}}</label>
-    </div>
-    <div class="divider my-3"></div>
 
-    <div class="flex flex-col gap-2 mt-3">
+        <!-- <div class="flex justify-end w-full">
+            <div class="flex w-12 h-12 items-center justify-center rounded-full bg-orange-100 hover:bg-orange-200">
+                <a href="{{route('question-paper.pdf.create',$test)}}"><i class="bi-printer"></i></a>
+            </div>
+        </div> -->
+        @endif
+    </div>
+
+    <div class="flex flex-col gap-2">
         @php
         $roman=new Roman;
         $questionSr=1;

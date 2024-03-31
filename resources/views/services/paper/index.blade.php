@@ -18,23 +18,26 @@
     <x-message></x-message>
     @endif
 
-    <h3 class="text-lg mt-8">Please tell us the grade and subject</h3>
+    <h3 class="text-lg mt-8">Grades</h3>
     <div class="flex items-center justify-center gap-x-4 mt-5">
         @foreach($grades as $grade)
-        <div id='{{$grade->id}}' class="tab grade-tab">{{$grade->roman_name}}</div>
+        <div id='{{$grade->id}}' bound='{{$grade->id}}' class="grade-tab">{{$grade->roman_name}}</div>
         @endforeach
     </div>
-    <div id='messageBeforeGradeSelection' class="flex justify-center items-center text-center p-6 border mt-8">
-        Subjects will be displayed after you select a grade
+    <div id='messageBeforeGradeSelection' class="flex justify-center items-center text-center p-2 border mt-8">
+        Please select a grade
     </div>
 
     @foreach($grades as $grade)
-    <div id="tab{{$grade->id}}" class="subject-div hidden">
-        <div class="flex justify-center items-center text-center p-6 border mt-8">
-            Please select one of the following subjects
+    <div id="tab{{$grade->id}}" class="subject-container hidden">
+        <div class="flex justify-center items-center text-center bg-teal-100 p-2  mt-8">
+            Please select a subject
         </div>
         @foreach($grade->subjects as $subject)
-        <a href="{{route('papers.edit',$subject)}}" class="flex py-3 px-6 border-b">{{$subject->name}}</a>
+        <a href="{{route('papers.setting.create',$subject)}}" class="paper-subject">
+            <div>{{$subject->name}}</div>
+            <i class="bi-arrow-right"></i>
+        </a>
         @endforeach
     </div>
     @endforeach
@@ -47,13 +50,27 @@
 @section('script')
 <script type="module">
     $('.grade-tab').click(function() {
+        var obj = $(this);
+        $('.grade-tab').not(this).removeClass('active')
+        $(this).addClass('active')
 
+        // $('.grade-tab').each(function() {
+        //     if (obj.is($(this))) {
+        //         $(this).addClass('active');
+        //     } else {
+        //         $(this).removeClass('active');
+        //     }
+
+        // })
+        // make grade tab active
+        $(this).addClass('active');
         $('#messageBeforeGradeSelection').hide();
         var gradeId = $(this).attr('id');
-        $('.subject-div').each(function() {
+
+        $('.subject-container').each(function() {
             $(this).hide()
             if ('tab' + gradeId == $(this).attr('id'))
-                $(this).show();
+                $(this).slideDown('slow');
 
         })
 
