@@ -21,7 +21,7 @@
     <h3 class="text-lg mt-8">Grades</h3>
     <div class="flex items-center justify-center gap-x-4 mt-5">
         @foreach($grades as $grade)
-        <div id='{{$grade->id}}' bound='{{$grade->id}}' class="grade-tab">{{$grade->roman_name}}</div>
+        <div id='{{$grade->id}}' bound='tab{{$grade->id}}' class="grade-tab">{{$grade->roman_name}}</div>
         @endforeach
     </div>
     <div id='messageBeforeGradeSelection' class="flex justify-center items-center text-center p-2 border mt-8">
@@ -30,9 +30,11 @@
 
     @foreach($grades as $grade)
     <div id="tab{{$grade->id}}" class="subject-container hidden">
-        <div class="flex justify-center items-center text-center bg-teal-100 p-2  mt-8">
-            Please select a subject
+        <div class="flex relative mt-4">
+            <p class="bg-teal-100 text-teal-800 px-4 py-2 rounded-md">Please select a subject</p>
+            <div class="w-4 h-4 bg-teal-100 rotate-45 absolute -bottom-1 left-4"></div>
         </div>
+
         @foreach($grade->subjects as $subject)
         <a href="{{route('papers.setting.create',$subject)}}" class="paper-subject">
             <div>{{$subject->name}}</div>
@@ -52,28 +54,12 @@
     $('.grade-tab').click(function() {
         var obj = $(this);
         $('.grade-tab').not(this).removeClass('active')
-        $(this).addClass('active')
 
-        // $('.grade-tab').each(function() {
-        //     if (obj.is($(this))) {
-        //         $(this).addClass('active');
-        //     } else {
-        //         $(this).removeClass('active');
-        //     }
-
-        // })
-        // make grade tab active
+        // make grade tab active and show related subjects
         $(this).addClass('active');
         $('#messageBeforeGradeSelection').hide();
-        var gradeId = $(this).attr('id');
-
-        $('.subject-container').each(function() {
-            $(this).hide()
-            if ('tab' + gradeId == $(this).attr('id'))
-                $(this).slideDown('slow');
-
-        })
-
+        $('.subject-container').hide();
+        $('#' + $(this).attr('bound')).show()
     })
 </script>
 @endsection

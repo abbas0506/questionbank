@@ -40,21 +40,8 @@
 
         <div class="divider my-3"></div>
         <div class="flex items-baseline justify-between space-x-4">
-            <h3></span>Compulsory (out of <span id='total_parts'></span> )?<span class="text-red-600 ml-1">*</h3>
+            <h3><span class="text-red-600 mr-1">*</span>Compulsory (out of <span id='total_parts'></span> )?</h3>
             <input type="number" id='necessary_parts' name='necessary_parts' class="custom-input w-16 h-8 text-center px-0" value="0" min='0'>
-        </div>
-        <h3 class="mt-4 text-left">Apply Filters</h3>
-        <div class="flex flex-col text-left">
-            <div class="question-filter flex items-center space-x-2 border-b py-3 @if($test->exercise_only) active @endif">
-                <label for="exercise_only" class="flex-1 text-base hover:cursor-pointer">Questions form exercise only</label>
-                <input type="checkbox" id='exercise_only' name="exercise_only" class="custom-input w-4 h-4 rounded" @checked($test->exercise_only)>
-                <i class="bx bx-check"></i>
-            </div>
-            <div class="question-filter flex items-center space-x-2 border-b py-3 @if($test->frequent_only) active @endif">
-                <label for="frequent_only" class="flex-1 text-base hover:cursor-pointer">Most frequent questions only</label>
-                <input type="checkbox" id='frequent_only' name="frequent_only" class="custom-input w-4 h-4 rounded" @checked($test->frequent_only) >
-                <i class="bx bx-check"></i>
-            </div>
         </div>
 
         <button type="submit" class="fixed right-6 bottom-6 h-12 w-12 flex  justify-center items-center rounded-full bg-teal-400 hover:bg-teal-600"><i class="bi bi-caret-right"></i></button>
@@ -85,13 +72,6 @@
             $('#total_parts').html(sumOfParts);
             $('#necessary_parts').val(sumOfParts);
         });
-
-        $('.question-filter input').change(function() {
-            if ($(this).prop('checked'))
-                $(this).parent().addClass('active')
-            else
-                $(this).parent().removeClass('active')
-        })
 
         $('form').submit(function(event) {
             var validated = true;

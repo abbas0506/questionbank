@@ -71,6 +71,7 @@ use FontLib\Table\Type\cmap;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Row;
 
 /*
 |--------------------------------------------------------------------------
@@ -232,6 +233,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['role:
 Route::resource('selftest', SelfTestController::class);
 Route::resource('papers', PaperController::class);
 Route::resource('papers.setting', PaperSettingController::class);
+Route::resource('papers.questions', PaperQuestionController::class);
 // Route::resource('papers.print', PaperPrintController::class);
 Route::resource('paper-questions', PaperQuestionController::class);
 Route::get('paper-questions/{test}/{qtype}/add', [PaperQuestionController::class, 'add'])->name('paper-questions.add');

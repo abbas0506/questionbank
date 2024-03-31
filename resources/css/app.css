@@ -482,7 +482,10 @@
     }
 
     .font-size-container {
-        @apply text-left hover:cursor-pointer hover:bg-teal-200;
+        @apply text-left hover:cursor-pointer hover:bg-teal-200 relative;
+    }
+    .font-size-container input {
+        @apply hidden;
     }
     .font-size-container div {
         @apply px-3;
@@ -523,23 +526,29 @@
     .paper-subject:hover i {
         @apply right-4 text-slate-800;
     }
-    .paper-chapter-container {
+    .paper-chapter-container,
+    .question-filter {
         @apply flex items-center justify-between border-b hover:bg-slate-100 px-2 relative;
     }
-    .paper-chapter-container input {
+    .paper-chapter-container input,
+    .question-filter input {
         @apply block;
     }
-    .paper-chapter-container.active {
-        @apply bg-green-50;
+    .paper-chapter-container.active,
+    .question-filter.active {
+        @apply bg-slate-100;
     }
-    .paper-chapter-container i {
+    .paper-chapter-container i,
+    .question-filter i {
         @apply hidden;
     }
-    .paper-chapter-container.active i {
-        @apply block;
+    .paper-chapter-container.active i,
+    .question-filter.active i {
+        @apply block text-cyan-500 font-extrabold;
     }
 
-    .paper-chapter-container.active input {
+    .paper-chapter-container.active input,
+    .question-filter.active input {
         @apply hidden;
     }
     .grade-tab {

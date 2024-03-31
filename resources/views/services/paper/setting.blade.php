@@ -23,8 +23,8 @@
 
     <div class="flex flex-wrap justify-between items-center gap-2 pr-2  mt-8">
         <div class="flex relative">
-            <p class="bg-green-200 text-green-700 px-4 py-2 rounded-md">Select chapter(s) for your question paper</p>
-            <div class="w-4 h-4 bg-green-200 rotate-45 absolute -bottom-1 left-4"></div>
+            <p class="bg-green-100 text-green-700 px-4 py-2 rounded-md">Select chapter(s) for your question paper</p>
+            <div class="w-4 h-4 bg-green-100 rotate-45 absolute -bottom-1 left-4"></div>
         </div>
         <div class="flex items-center space-x-2">
             <label for="check_all">Check All</label>
@@ -44,28 +44,32 @@
             @endforeach
         </div>
 
+        <h2 class="text-lg mt-8 text-left">Value Added Filters <span class="text-sm text-salte-600 ml-4">(optional)</span></h2>
+        <div class="flex flex-col text-left mt-5">
+            <div class="question-filter flex items-center space-x-2 border-b py-3">
+                <label for="exercise_only" class="flex-1 text-base hover:cursor-pointer">Questions form exercise only</label>
+                <input type="checkbox" id='exercise_only' name="exercise_only" class="custom-input w-4 h-4 rounded">
+                <i class="bx bx-check"></i>
+            </div>
+            <div class="question-filter flex items-center space-x-2 border-b py-3">
+                <label for="frequent_only" class="flex-1 text-base hover:cursor-pointer">Most frequent questions only</label>
+                <input type="checkbox" id='frequent_only' name="frequent_only" class="custom-input w-4 h-4 rounded">
+                <i class="bx bx-check"></i>
+            </div>
+        </div>
+
 
         <h2 class="text-lg mt-8 text-left">Additional Setting <span class="text-sm text-salte-600 ml-4">(optional)</span></h2>
-        <!-- <div class="h-1 w-24 bg-teal-800 mx-auto mt-6"></div> -->
-        <div class="flex flex-col gap-x-4 gap-y-2 text-left mt-5">
-            <label for="">Institution Name</label>
-            <input type="text" name="title" value='' placeholder="Your institution name" class="custom-input">
-
-            <div class="flex flex-col gap-4">
-                <div class="">
-                    <label for="">Test Date</label>
-                    <input type="date" id='test_date' name="test_date" class="custom-input" value="{{ date('Y-m-d') }}">
-                </div>
-                <div class="flex items-center space-x-2 border-b">
-                    <label for="exercise_only" class="flex-1 py-2 text-base hover:cursor-pointer">Questions form exercise only</label>
-                    <input type="checkbox" id='exercise_only' name="exercise_only" class="custom-input w-5 h-5">
-                </div>
-                <div class="flex items-center space-x-2 border-b">
-                    <label for="frequent_only" class="flex-1 py-2 text-base hover:cursor-pointer">Most frequent questions only</label>
-                    <input type="checkbox" id='frequent_only' name="frequent_only" class="custom-input w-5 h-5">
-                </div>
+        <div class="flex flex-col text-left gap-y-4 mt-5">
+            <div>
+                <label for="">Test Title</label>
+                <input type="text" name="title" value='Sample Test' placeholder="e.g Chapter Series" class="custom-input">
             </div>
 
+            <div>
+                <label for="">Test Date</label>
+                <input type="date" id='test_date' name="test_date" class="custom-input" value="{{ date('Y-m-d') }}">
+            </div>
         </div>
 
         <input type="hidden" name='subject_id' value="{{$subject->id}}">
@@ -101,6 +105,12 @@
     })
 
     $('.paper-chapter-container input').change(function() {
+        if ($(this).prop('checked'))
+            $(this).parent().addClass('active')
+        else
+            $(this).parent().removeClass('active')
+    })
+    $('.question-filter input').change(function() {
         if ($(this).prop('checked'))
             $(this).parent().addClass('active')
         else

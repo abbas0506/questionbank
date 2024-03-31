@@ -59,8 +59,10 @@ class PaperQuestionController extends Controller
 
             'chapter_id_array' => 'required',
             'num_of_parts_array' => 'required',
+
         ]);
 
+        $test = Test::find($request->test_id);
         DB::beginTransaction();
         try {
             //create test question instance
@@ -77,13 +79,18 @@ class PaperQuestionController extends Controller
             $numOfParts = $request->num_of_parts_array;
             $chapters = Chapter::whereIn('id', $chaperIds)->get();
 
-            $i = 0;     //for iterating numOfparts
+            $i = 0; //for iterating numOfparts
+            $threshold = 1;
+            if ($request->frequent_only)
+                $threshold = 3;
 
+            // echo $threshold;
 
             foreach ($chapters as $chapter) {
                 $questions = Question::where('question_type', $request->question_type)
                     ->where('chapter_id', $chapter->id)
-                    ->where('bise_frequency', '>', 1)
+                    // ->where('is_from_exercise', $request->exercise_only)
+                    ->where('bise_frequency', '>=', $threshold)
                     ->get()
                     ->random($numOfParts[$i++]);
                 foreach ($questions as $question) {
@@ -95,6 +102,7 @@ class PaperQuestionController extends Controller
                 }
             }
             DB::commit();
+            // echo $questions;
             return redirect()->route('papers.show', $request->test_id)->with('success', 'Question successfully added!');
         } catch (Exception $e) {
             DB::rollBack();

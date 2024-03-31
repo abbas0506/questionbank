@@ -34,15 +34,13 @@ class PaperController extends Controller
     {
         //
         $request->validate([
-            // 'title' => 'required',
-            // 'test_date' => 'required',
+            'test_date' => 'required',
             'subject_id' => 'required|numeric',
             'chapter_id_array' => 'required',
         ]);
 
         $request->merge([
-            'title' => 'Test Title',
-            'test_date' => date('Y/m/d'),
+            'title' => $request->title,
             'exercise_only' => ($request->exercise_only) ? 1 : 0,
             'frequent_only' => ($request->frequent_only) ? 1 : 0,
             'user_id' => 1,
