@@ -17,7 +17,7 @@
     @if($test->questions->count())
     <div class="divider my-3"></div>
     <h2 class="text-left">Page Setting <i class="bi bi-gear"></i></h2>
-    <p class="text-left w-full mx-auto mt-1 mb-3 text-sm text-gray-600">Do you know that a careful selction of the following options can save your printing cost by more than 50%. Choose the most appropriate options and optimize your printing cost.</p>
+    <p class="text-left w-full mx-auto mt-1 mb-3 text-sm text-gray-600">Do you know that a wise selction of the following options can save your printing cost by more than 75%. Choose the most appropriate options and optimize your printing cost.</p>
     <div class="divider my-3"></div>
     @endif
     @if($test->questions->count()>0)
@@ -62,19 +62,19 @@
             <div class="w-full h-full flex justify-start items-start space-x-4">
                 <div class="flex justify-center gap-x-4">
                     <div class="flex flex-col gap-2">
-                        <div class="flex items-center space-x-2">
+                        <div class="font-size-container">
                             <input type="checkbox" name="font_size" value="text-base" class="font-size">
                             <div class="text-base">Normal</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div class="font-size-container">
                             <input type="checkbox" name="font_size" value="text-sm" class="font-size">
                             <div class="text-sm">Medium</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div class="font-size-container active">
                             <input type="checkbox" name="font_size" value="text-xs" class="font-size" checked>
                             <div class="text-xs">Small</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div class="font-size-container">
                             <input type="checkbox" name="font_size" value="text-xxs" class="font-size">
                             <div class="text-xxs">Extra Small</div>
                         </div>
@@ -131,11 +131,11 @@
                 <!-- landscapre options -->
                 <div id='landscape' class="grid grid-cols-3 gap-2 w-full">
                     <!-- portrait -->
-                    <div row='1' col='1' class="page grid grid-cols-1 w-16">
+                    <div row='1' col='1' class="page grid grid-cols-1 w-16 active">
                         <div class="paper h-12 border"></div>
                         <div class="text-xs">1x1</div>
                     </div>
-                    <div row='2' col='1' class="page grid grid-cols-1 w-16 active">
+                    <div row='2' col='1' class="page grid grid-cols-1 w-16">
                         <div class="paper h-6 border"></div>
                         <div class="paper h-6 border"></div>
                         <div class="text-xs">2x1</div>
@@ -179,7 +179,7 @@
                     </div>
 
                     <div class="body">
-                        <div id='advanced' class="col-span-3 grid grid-cols-2 gap-2">
+                        <div id='advanced' class="col-span-3 grid grid-cols-2 gap-4">
                             <div>
                                 <input type="number" name="rows" id="rows" value="1" min=1 max=6 class="custom-input text-center" required>
                                 <div class="text-xs">Horizontal</div>
@@ -192,9 +192,10 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center my-8">
-                <button type="submit" class="btn-green">Generate PDF</button>
-            </div>
+        </div>
+        <div class="divider my-4"></div>
+        <div class="text-center mb-8">
+            <button type="submit" class="btn-teal">Generate Paper <i class="bi-file-pdf ml-2"></i></button>
         </div>
     </form>
     @endif
@@ -202,17 +203,17 @@
 @endsection
 @section('script')
 <script type="module">
-    $('.font-size').change(function() {
-        // check only one of many
-        $('.font-size').not(this).prop('checked', false);
-    });
+    // $('.font-size').change(function() {
+    //     // check only one of many
+    //     $('.font-size').not(this).prop('checked', false);
+    // });
 
     $('.page').click(function() {
 
         $('#rows').val($(this).attr('row'));
         $('#cols').val($(this).attr('col'));
-        $('.page').not(this).removeClass('active');
         $(this).addClass('active');
+        $('.page').not(this).removeClass('active');
 
     });
 
@@ -232,7 +233,6 @@
         });
     })
 
-
     $('.page-orientation-container').click(function() {
         //iterate through all first children (checkboxes) of the page orientation
         //update their check status and visibility 
@@ -241,11 +241,33 @@
             if (obj.is($(this))) {
                 $(this).prop('checked', true);
                 $('#' + $(this).attr('bound')).removeClass('hidden');
+                $('#' + $(this).attr('bound')).children(":first").addClass('active')
+                $('#' + $(this).attr('bound')).children().not(":first").removeClass('active')
+                $('#rows').val(1);
+                $('#cols').val(1);
                 $(this).parent().addClass('active');
+
 
             } else {
                 $(this).prop('checked', false);
                 $('#' + $(this).attr('bound')).addClass('hidden');
+                $(this).parent().removeClass('active');
+            }
+        });
+
+    })
+
+    $('.font-size-container').click(function() {
+        //iterate through all first children (checkboxes) of the font szie class
+        //update their check status and visibility 
+        var obj = $(this).children(":first");
+        $('.font-size-container').find(":first-child").each(function() {
+            if (obj.is($(this))) {
+                $(this).prop('checked', true);
+                $(this).parent().addClass('active');
+
+            } else {
+                $(this).prop('checked', false);
                 $(this).parent().removeClass('active');
             }
         });

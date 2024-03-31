@@ -480,12 +480,20 @@
     .question .bi-arrow-repeat {
         @apply text-green-600;
     }
+
+    .font-size-container {
+        @apply text-left hover:cursor-pointer hover:bg-teal-200;
+    }
+    .font-size-container div {
+        @apply px-3;
+    }
     .page-size-container,
     .page-orientation-container {
         @apply flex justify-center items-center hover:cursor-pointer bg-teal-50 hover:bg-teal-300 border relative;
     }
     .page-size-container.active,
-    .page-orientation-container.active {
+    .page-orientation-container.active,
+    .font-size-container.active {
         @apply bg-teal-300 hover:cursor-auto;
     }
 
@@ -495,11 +503,15 @@
     .callable .right-pointer {
         @apply absolute w-4 h-4 hidden md:block md:-right-2 md:top-[40%]  bg-slate-100 transform rotate-45;
     }
+    .font-size,
     .page-size,
     .page-orientation {
         @apply absolute top-1 left-1 -z-10;
     }
     .page.active .paper {
+        @apply bg-teal-300;
+    }
+    .page:hover .paper {
         @apply bg-teal-300;
     }
 }
