@@ -51,6 +51,10 @@ $roman = config('global.romans');
                 @php
                 $i=1;
                 $j=1;
+
+                $roman=new Roman;
+                $questionSr=1;
+
                 @endphp
                 <tbody>
                     @for($i=1; $i<=$rows;$i++) <tr>
@@ -66,7 +70,7 @@ $roman = config('global.romans');
                                     </tr>
 
                                     <tr>
-                                        <td colspan="2" class="m-0 p-0">Dated: {{$test->test_date->format('d/m/Y')}}</td>
+                                        <td colspan="2" class="m-0 p-0">{{$test->title}} Dated {{$test->test_date->format('d/m/Y')}}</td>
                                     </tr>
 
                                     <tr>
@@ -96,13 +100,14 @@ $roman = config('global.romans');
                                     </tr>
                                 </thead>
                                 <tbody>
+
+
                                     @foreach($test->questions()->mcqs()->get() as $testQuestion)
                                     <tr>
-                                        <td class="text-left font-bold">Q.{{$questionNo++}} Encircle the correct option.
-                                            @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                                            All questions are compulsory
+                                        <td class="text-left font-bold">Q.{{$questionSr++}} @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
+                                            <span>Encircle the correct option</span>
                                             @else
-                                            Answer any {{$testQuestion->necessary_parts}} questions
+                                            <span>Encircle the correct option. (any {{SpellNumber::value($testQuestion->necessary_parts)->toLetters()}})</span>
                                             @endif
                                         </td>
                                         <td>{{$testQuestion->necessary_parts}}x1={{$testQuestion->necessary_parts}}</td>
@@ -135,11 +140,11 @@ $roman = config('global.romans');
                                     @foreach($test->questions()->short()->get() as $testQuestion)
 
                                     <tr>
-                                        <td class="text-left font-bold">Q.{{$questionNo}} Answer the following.
+                                        <td class="text-left font-bold">Q.{{$questionSr++}}
                                             @if($testQuestion->parts->count()==$testQuestion->necessary_parts)
-                                            All questions are compulsory
+                                            <span>Answer the following.</span>
                                             @else
-                                            (any {{$testQuestion->necessary_parts}} questions)
+                                            <span>Answer any {{SpellNumber::value($testQuestion->necessary_parts)->toLetters()}} questions.</span>
                                             @endif
                                         </td>
                                         <td>{{$testQuestion->necessary_parts}}x2={{$testQuestion->necessary_parts*2}}</td>
@@ -164,7 +169,7 @@ $roman = config('global.romans');
                                         <td class="text-left" colspan="2">
 
                                             <ul class="list-horizontal w-full font-bold">
-                                                <li style='width:90%'>Q.{{$questionNo}} {{$testQuestion->parts->first()->question->question}}</li>
+                                                <li style='width:90%'>Q.{{$questionSr++}} {{$testQuestion->parts->first()->question->question}}</li>
                                                 <li class="w-4 text-right">{{$testQuestion->parts->first()->marks}}</li>
                                             </ul>
 
